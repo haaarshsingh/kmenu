@@ -107,7 +107,6 @@ const Cmdk: FC<{
       {open && (
         <motion.div
           className={styles.backdrop}
-          onClick={() => setOpen(false)}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

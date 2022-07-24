@@ -61,6 +61,6 @@
     "dist"
   ],
   "dependencies": {
-    "framer-motion": "^6.5.1"
+    "framer-motion": "^4.1.17"
   }
 }
