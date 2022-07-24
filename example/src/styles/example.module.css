@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: 900;
+  background: linear-gradient(45deg, #ff7272, #47cbff);
+  color: transparent;
+  background-clip: text;
+  margin-bottom: 25px;
+}
+
+.description {
+  color: #6d6d6d;
+}

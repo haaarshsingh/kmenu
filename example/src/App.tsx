@@ -12,6 +12,7 @@ import {
   FiBook,
   FiAlertOctagon
 } from 'react-icons/fi'
+import styles from './styles/example.module.css'
 
 const App = () => {
   const [open, setOpen] = useState(0)
@@ -107,9 +108,14 @@ const App = () => {
         index={2}
         commands={nestedCommands}
       />
-      <div>
-        <h1>Hello, World!</h1>
-      </div>
+      <main className={styles.main}>
+        <h1 className={styles.title}>Hello, World!</h1>
+        <p className={styles.description}>
+          This is an example of <a href='https://kmenu.hxrsh.in'>kmenu</a> live
+          in action! To get started, check out the{' '}
+          <a href='https://github.com/harshhhdev/kmenu'>GitHub</a>
+        </p>
+      </main>
     </div>
   )
 }
