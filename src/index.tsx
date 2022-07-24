@@ -1,4 +1,10 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react'
+import React, {
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+  useCallback
+} from 'react'
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import type { Dispatch, FC, Reducer, SetStateAction } from 'react'
 import { useShortcut } from './hooks/useShortcut'
@@ -21,8 +27,9 @@ const Kmenu: FC<{
   setOpen: Dispatch<SetStateAction<number>>
   index: number
   commands: CommandType[]
+  main?: boolean
   colors?: ColorConfig
-}> = ({ open, setOpen, index, commands, colors }) => {
+}> = ({ open, setOpen, index, commands, main, colors }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState(filter(commands, query))
@@ -69,21 +76,22 @@ const Kmenu: FC<{
   const tab = useShortcut('Tab')
   const reverseTab = useShortcut('Tab', 'shift')
 
-  useClickOutside(paletteRef, () => setOpen(index))
+  useClickOutside(paletteRef, () => setOpen(0))
 
   useEffect(() => {
     if (up || reverseTab) dispatch({ type: ActionType.DECREASE, custom: 0 })
     else if (down || tab) dispatch({ type: ActionType.INCREASE, custom: 0 })
   }, [up, down, tab, reverseTab])
 
-  const toggle = (event: KeyboardEvent) => {
+  const toggle = useCallback((event: KeyboardEvent) => {
     if (event.ctrlKey && event.key === 'k') {
       event.preventDefault()
-      setOpen(open === index ? 0 : index)
+      if (main) setOpen((open) => (open === index ? 0 : index))
+      else if (!main && open === index) setOpen(0)
     }
 
     if (event.key === 'Escape') setOpen(0)
-  }
+  }, [])
 
   useEffect(() => {
     window.addEventListener('keydown', toggle)
@@ -177,16 +185,16 @@ const Command: FC<{
 
   useEffect(() => {
     if (isSelected)
-      return ref.current?.scrollIntoView({
+      // eslint-disable-next-line
+      ref.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'center'
       })
 
     if (enter && isSelected) {
-      if (typeof command.href !== 'undefined') window.open(command.href)
-      else if (typeof command.perform !== 'undefined') command.perform()
-
-      return setOpen(0)
+      setOpen(0)
+      if (typeof command.perform !== 'undefined') return command.perform?.()
+      else if (typeof command.href !== 'undefined') window.open(command.href)
     }
   }, [isSelected, enter])
 
