@@ -217,3 +217,11 @@ git commit -m "commit message"
 git push YOUR_REPO_URL YOUR_BRANCH
 ```
 
+# Inspirations 
+
+- [Vercel](https://vercel.com)
+- [Ultra](https://ultra.tf) 
+- [GitHub](https://github.com)
+- [kbar](https://kbar.vercel.app)
+- [react-cmdk](https://react-cmdk.com/)
+- [CommandBar](https://commandbar.com)
