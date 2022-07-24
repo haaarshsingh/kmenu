@@ -9,7 +9,7 @@ export type Command = {
   keywords?: string
 }
 
-export type Colors = {
+export type Config = {
   backdropColor: string
   backdropBlur: number
   backgroundColor: string

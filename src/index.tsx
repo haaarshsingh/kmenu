@@ -13,14 +13,14 @@ import {
   ActionType,
   Action,
   State,
-  Colors,
+  Config,
   Command as CommandType
 } from './types'
 import styles from './styles/palette.module.css'
 import useClickOutside from './hooks/useClickOutside'
 
 const initialState = { selected: 0 }
-export type ColorConfig = Partial<Colors>
+export type PaletteConfig = Partial<Config>
 
 const Kmenu: FC<{
   open: number
@@ -28,8 +28,8 @@ const Kmenu: FC<{
   index: number
   commands: CommandType[]
   main?: boolean
-  colors?: ColorConfig
-}> = ({ open, setOpen, index, commands, main, colors }) => {
+  config?: PaletteConfig
+}> = ({ open, setOpen, index, commands, main, config }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState(filter(commands, query))
@@ -107,8 +107,8 @@ const Kmenu: FC<{
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           style={{
-            backgroundColor: colors?.backdropColor,
-            backdropFilter: `blur(${colors?.backdropBlur}px)`
+            backgroundColor: config?.backdropColor,
+            backdropFilter: `blur(${config?.backdropBlur}px)`
           }}
         >
           <motion.div
@@ -120,10 +120,10 @@ const Kmenu: FC<{
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             style={{
-              backgroundColor: colors?.backgroundColor,
-              border: `solid ${colors?.borderColor}`,
-              borderRadius: `${colors?.borderRadius}px`,
-              borderWidth: colors?.borderWidth || 1
+              backgroundColor: config?.backgroundColor,
+              border: `solid ${config?.borderColor}`,
+              borderRadius: `${config?.borderRadius}px`,
+              borderWidth: config?.borderWidth || 1
             }}
           >
             <input
@@ -132,7 +132,7 @@ const Kmenu: FC<{
               autoFocus
               ref={input}
               onChange={() => setQuery(input.current?.value!)}
-              style={{ color: colors?.inputColor }}
+              style={{ color: config?.inputColor }}
             />
             <div className={styles.wrapper} ref={parentRef}>
               <AnimateSharedLayout>
@@ -156,7 +156,7 @@ const Kmenu: FC<{
                       isSelected={state.selected === index}
                       command={command}
                       setOpen={setOpen}
-                      colors={colors}
+                      config={config}
                       key={index}
                     />
                   ))
@@ -175,11 +175,11 @@ const Command: FC<{
   onMouseEnter: () => void
   isSelected: boolean
   setOpen: Dispatch<SetStateAction<number>>
-  colors?: Pick<
-    ColorConfig,
+  config?: Pick<
+    PaletteConfig,
     'commandInactive' | 'commandActive' | 'barBackground' | 'barOpacity'
   >
-}> = ({ onMouseEnter, isSelected, command, setOpen, colors }) => {
+}> = ({ onMouseEnter, isSelected, command, setOpen, config }) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const enter = useShortcut('Enter')
 
@@ -204,8 +204,8 @@ const Command: FC<{
       onMouseEnter={onMouseEnter}
       style={{
         color: isSelected
-          ? colors?.commandActive || '#FFFFFF'
-          : colors?.commandInactive || '#777777'
+          ? config?.commandActive || '#FFFFFF'
+          : config?.commandInactive || '#777777'
       }}
       ref={ref}
       onClick={command.perform}
@@ -224,8 +224,8 @@ const Command: FC<{
             damping: 70
           }}
           style={{
-            background: colors?.barBackground,
-            opacity: colors?.barOpacity
+            background: config?.barBackground,
+            opacity: config?.barOpacity
           }}
         />
       )}
