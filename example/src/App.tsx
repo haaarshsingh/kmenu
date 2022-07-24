@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Palette, { ColorConfig, Command } from 'kmenu'
+import Palette, { Command } from 'kmenu'
 import 'kmenu/dist/index.css'
 
 import {
@@ -8,53 +8,54 @@ import {
   FiTwitter,
   FiGithub,
   FiDribbble,
-  FiLinkedin
+  FiLinkedin,
+  FiArrowRight,
 } from 'react-icons/fi'
 
 const App = () => {
   const [open, setOpen] = useState(false)
 
-  const colours: ColorConfig = {
-    backdropColor: '#00000090',
-    backdropBlur: 5,
-    inputColor: '#000',
-    borderRadius: 30,
-    commandInactive: '#000',
-    barBackground: '#000',
-    barOpacity: 0.2
-  }
-
   const commands: Command[] = [
     {
       icon: <FiGlobe />,
-      text: 'Website'
+      text: 'Website',
+      href: 'https://hxrsh.in',
+      newTab: true,
+      keywords: 'home',
+    },
+    {
+      icon: <FiArrowRight />,
+      text: 'Nested Example...',
     },
     {
       icon: <FiTwitter />,
-      text: 'Twitter'
+      text: 'Twitter',
+      href: 'https://twitter.com/harshhhdev',
+      newTab: true,
     },
     {
       icon: <FiGithub />,
-      text: 'GitHub'
+      text: 'GitHub',
+      href: 'https://github.com/harshhhdev',
+      newTab: true,
     },
     {
       icon: <FiDribbble />,
-      text: 'Dribbble'
+      text: 'Dribbble',
+      href: 'https://dribbble.com/harshhhdev',
+      newTab: true,
     },
     {
       icon: <FiLinkedin />,
-      text: 'Linkedin'
-    }
+      text: 'Linkedin',
+      href: 'https://linkedin.com/in/harshhhdev',
+      newTab: true,
+    },
   ]
 
   return (
     <div>
-      <Palette
-        open={open}
-        setOpen={setOpen}
-        commands={commands}
-        colors={colours}
-      />
+      <Palette open={open} setOpen={setOpen} commands={commands} />
       <div>
         <h1>Hello, World!</h1>
       </div>

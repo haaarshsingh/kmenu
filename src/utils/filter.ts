@@ -1,11 +1,11 @@
-import type { CommandType as Command } from '../index'
+import type { Command } from '../index'
 
 const filter = (commands: Command[] | undefined, query: string) => {
   if (!query) return commands
 
-  return commands?.filter((command: Command) => {
-    const cmdText = command.text.toLowerCase()
-    return cmdText.includes(query.toLowerCase())
+  return commands?.filter((command: Pick<Command, 'text' | 'keywords'>) => {
+    const text = command.text.toLowerCase() + command.keywords?.toLowerCase()
+    return text.includes(query.toLowerCase())
   })
 }
 

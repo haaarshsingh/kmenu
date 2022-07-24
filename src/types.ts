@@ -5,6 +5,7 @@ export type Command = {
   text: string
   perform?: () => void
   href?: string
+  newTab?: boolean
   keywords?: string
 }
 

@@ -17,6 +17,7 @@ import {
   Command as CommandType
 } from './types'
 import styles from './styles/palette.module.css'
+import useClickOutside from './hooks/useClickOutside'
 
 const initialState = { selected: 0 }
 
@@ -60,6 +61,7 @@ const Cmdk: FC<{
     }
   }
 
+  const paletteRef = useRef<HTMLDivElement>(null)
   const parentRef = useRef<HTMLDivElement>(null)
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -73,6 +75,8 @@ const Cmdk: FC<{
   const tab = useShortcut('Tab')
   const reverseTab = useShortcut('Tab', 'shift')
 
+  useClickOutside(paletteRef, () => setOpen(false))
+
   useEffect(() => {
     if (up || reverseTab) dispatch({ type: ActionType.DECREASE, custom: 0 })
     else if (down || tab) dispatch({ type: ActionType.INCREASE, custom: 0 })
@@ -83,6 +87,8 @@ const Cmdk: FC<{
       event.preventDefault()
       setOpen((open) => !open)
     }
+
+    if (event.key === 'Escape') setOpen(false)
   }, [])
 
   useEffect(() => {
@@ -107,6 +113,7 @@ const Cmdk: FC<{
             className={styles.dialog}
             role='dialog'
             aria-modal='true'
+            ref={paletteRef}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
@@ -171,7 +178,7 @@ const Command: FC<{
     'commandInactive' | 'commandActive' | 'barBackground' | 'barOpacity'
   >
 }> = ({ onMouseEnter, isSelected, command, setOpen, colors }) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLAnchorElement>(null)
   const enter = useShortcut('Enter')
 
   useEffect(() => {
@@ -182,14 +189,15 @@ const Command: FC<{
       })
 
     if (enter && isSelected) {
-      /* eslint-disable */
-      command.perform?.()
+      if (typeof command.href !== 'undefined') window.open(command.href)
+      else if (typeof command.perform !== 'undefined') command.perform()
+
       return setOpen(false)
     }
   }, [isSelected, enter])
 
   return (
-    <div
+    <a
       className={styles.command}
       onMouseEnter={onMouseEnter}
       style={{
@@ -199,6 +207,9 @@ const Command: FC<{
       }}
       ref={ref}
       onClick={command.perform}
+      href={command.href || '#'}
+      target={command.newTab ? '_blank' : '_self'}
+      rel='noreferrer'
     >
       {isSelected && (
         <motion.div
@@ -218,7 +229,7 @@ const Command: FC<{
       )}
       {command.icon}
       <p className={styles.text}>{command.text}</p>
-    </div>
+    </a>
   )
 }
 

@@ -28,13 +28,14 @@ After you've installed the package, you can now begin adding commands onto the c
 
 Here's a look at how you can create commands:
 
-| Parameter | Description                            | Type         | Optional | 
-|-----------|----------------------------------------|--------------|----------|
-| icon      | The icon displayed next to the command | ReactElement | ✅       |
-| text      | The text displayed on the command      | String       | ❌       |
-| perform   | The action to perform                  | void         | ✅       |
-| href      | The link to open                       | void         | ✅       |
-| keywords  | Search keywords for the command        | string       | ✅       |
+| Parameter | Description                                      | Type         | Optional | 
+|-----------|--------------------------------------------------|--------------|----------|
+| icon      | The icon displayed next to the command           | ReactElement | ✅       |
+| text      | The text displayed on the command                | String       | ❌       |
+| perform   | The action to perform                            | void         | ✅       |
+| href      | The link to open                                 | void         | ✅       |
+| newTab    | Whether or not the link should open in a new tab | void         | ✅       |
+| keywords  | Search keywords for the command                  | string       | ✅       |
 
 Here's an example of how to create the commands (using [TypeScript](https://typescriptlang.org/)): 
 

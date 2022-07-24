@@ -16,6 +16,7 @@
   height: 100vh;
   background: #00000090;
   backdrop-filter: blur(2px);
+  user-select: none;
 }
 
 .dialog {
@@ -73,6 +74,7 @@
   font-size: 1.125rem;
   line-height: 1.75rem;
   align-items: center;
+  text-decoration: none;
   cursor: pointer;
 }
 
