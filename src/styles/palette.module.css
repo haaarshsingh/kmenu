@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+}
+
+.backdrop {
+  display: flex;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: #00000090;
+}
+
+.dialog {
+  padding: 0.5rem;
+  background-color: #181818;
+  width: 30%;
+  border-radius: 1rem;
+  border: solid 1px #3f3f3f;
+}
+
+.search {
+  color: white;
+  border: none;
+  padding: 1.25rem;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  width: 100%;
+  border-bottom: #777777 1px solid;
+  outline: 0;
+}
+
+.wrapper {
+  display: flex;
+  overflow-y: scroll;
+  overflow: hidden;
+  flex-direction: column;
+  width: 100%;
+  height: 300px;
+}
+
+.no_results {
+  display: flex;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.command {
+  display: flex;
+  position: relative;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  color: #d1d5db;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.command > svg {
+  margin: 0 10px 0 15px;
+  width: 20px;
+  height: 20px;
+}
+
+.selected {
+  position: absolute;
+  width: 100%;
+  height: 4rem;
+  border-radius: 0.5rem;
+  background: #ffffff20;
+}
+
+.text {
+  width: 90%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 1440px) {
+  .dialog {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .dialog {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .dialog {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .dialog {
+    width: 90%;
+  }
+}
