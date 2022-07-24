@@ -105,26 +105,40 @@ Need help customising? Play around with values on the [website!](https://cmdk.hx
 
 ### Setting up the palette
 
+Here are all the options available on the palette: 
+
+
+| Parameter       | Description                                                      | Type                             | Optional | 
+|-----------------|------------------------------------------------------------------|----------------------------------|----------|
+| open            | The index of which palette is currently open                     | number                           | ❌       |
+| setOpen         | The hook to handle the state for which palette is currently open | Dispatch<SetStateAction<number>> | ❌       |
+| index           | The index of this palette                                        | number                           | ❌       |
+| commands        | The commands for this palette to display                         | Command[]                        | ❌       |
+| config          | The configuration for this colour palette                        | PaletteConfig                    | ✅       |
+| main            | Whether or not this is the first palette that'll be displayed    | boolean                          | ✅       |
+
 Once you have added commands to the palette and configured it to you likings, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the palette to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/example/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
 
 ```jsx
 import { useState } from 'react'
-import Palette, { Command, ColorConfig } from 'kmenu'
+import Palette, { Command, PaletteConfig } from 'kmenu'
 import 'kmenu/dist/index.css'
 
 const Palette = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(0)
 
   const commands: Command[] = [ /* ... */ ]
-  const colours: ColorConfig = { /* ... */ }
+  const config: PaletteConfig = { /* ... */ }
 
   return (
     /* ... */
     <Palette
       open={open}
       setOpen={setOpen}
+      index={1}
       commands={commands}
-      colors={colours}
+      config={config}
+      main
     />
     /* ... */
   )
