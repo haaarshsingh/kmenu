@@ -86,18 +86,19 @@ You can easily customise the colours on your command palette as well. Here's a l
 
 _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
-| Parameter       | Description                                                  | Type         | Default  | 
-|-----------------|--------------------------------------------------------------|--------------|----------|
-| backdropColor   | The colour of the backdrop                                   | string       | #000000  |
-| backdropOpacity | The opacity of the backdrop                                  | number (0-1) | 0.90     |
-| background      | The background colour of the palette                         | ntring       | #181818  |
-| border          | Width of the border surrounding the palette                  | number       | 1px      |
-| borderColor     | The colour of the border surrounding the palette             | string       | #3F3F3F  |
-| inputColor      | The colour of the text in the search bar                     | string       | #FFFFFF  |
-| commandInactive | The colour of the icon and text when the command is inactive | string       | #777777  |
-| commandActive   | The colour of the icon and text when the command is active   | string       | #FFFFFF  |
-| barBackground   | The background colour of the active bar                      | string       | #FFFFFF  |
-| barOpacity      | The opacity of the active bar                                | number (0-1) | 0.20     |
+| Parameter       | Description                                                  | Type         | Default   | 
+|-----------------|--------------------------------------------------------------|--------------|-----------|
+| backdropColor   | The colour of the backdrop (include opacity)                 | string       | #00000020 |
+| backdropBlur    | The backround blur of the backdrop in pixels                 | number       | 5px       |
+| backgroundColor | The background colour of the palette                         | ntring       | #181818   |
+| borderWidth     | Width of the border surrounding the palette                  | number       | 1px       |
+| borderColor     | The colour of the border surrounding the palette             | string       | #3F3F3F   |
+| borderWidth     | The radius of the palette (px)                               | number       | 16px      |
+| inputColor      | The colour of the text in the search bar                     | string       | #FFFFFF   |
+| commandInactive | The colour of the icon and text when the command is inactive | string       | #777777   |
+| commandActive   | The colour of the icon and text when the command is active   | string       | #FFFFFF   |
+| barBackground   | The background colour of the active bar                      | string       | #FFFFFF   |
+| barOpacity      | The opacity of the active bar                                | number (0-1) | 0.20      |
 
 Need help customising? Play around with values on the [website!](https://cmdk.hxrsh.in)
 
@@ -107,14 +108,14 @@ Once you have added commands to the palette and configured it to you likings, yo
 
 ```jsx
 import { useState } from 'react'
-import Palette, { CommandType, ColorConfig } from 'kmenu'
+import Palette, { Command, ColorConfig } from 'kmenu'
 import 'kmenu/dist/index.css'
 
 const Palette = () => {
   const [open, setOpen] = useState(false)
 
-  const commands: CommandType[] = [ /* ... */ ]
-  const colours: Partial<ColorConfig> = { /* ... */ }
+  const commands: Command[] = [ /* ... */ ]
+  const colours: ColorConfig = { /* ... */ }
 
   return (
     /* ... */

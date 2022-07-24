@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Palette, { ColorConfig, CommandType } from 'kmenu'
+import Palette, { ColorConfig, Command } from 'kmenu'
 import 'kmenu/dist/index.css'
 
 import {
@@ -14,12 +14,17 @@ import {
 const App = () => {
   const [open, setOpen] = useState(false)
 
-  const colours: Partial<ColorConfig> = {
-    backdropOpacity: 0.2,
-    backdrop: '#000'
+  const colours: ColorConfig = {
+    backdropColor: '#00000090',
+    backdropBlur: 5,
+    inputColor: '#000',
+    borderRadius: 30,
+    commandInactive: '#000',
+    barBackground: '#000',
+    barOpacity: 0.2
   }
 
-  const commands: CommandType[] = [
+  const commands: Command[] = [
     {
       icon: <FiGlobe />,
       text: 'Website'
@@ -43,12 +48,17 @@ const App = () => {
   ]
 
   return (
-    <Palette
-      open={open}
-      setOpen={setOpen}
-      commands={commands}
-      colors={colours}
-    />
+    <div>
+      <Palette
+        open={open}
+        setOpen={setOpen}
+        commands={commands}
+        colors={colours}
+      />
+      <div>
+        <h1>Hello, World!</h1>
+      </div>
+    </div>
   )
 }
 

@@ -1,5 +1,4 @@
 import React, {
-  ReactElement,
   useCallback,
   useEffect,
   useReducer,
@@ -10,35 +9,24 @@ import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import type { Dispatch, FC, Reducer, SetStateAction } from 'react'
 import { useShortcut } from './hooks/useShortcut'
 import filter from './utils/filter'
-import { ActionType, Action, State, Opacity } from './types'
+import {
+  ActionType,
+  Action,
+  State,
+  Colors,
+  Command as CommandType
+} from './types'
 import styles from './styles/palette.module.css'
 
 const initialState = { selected: 0 }
 
-export type CommandType = {
-  icon: ReactElement
-  text: string
-  perform?: () => void
-  href?: string
-  keywords?: string
-}
-
-export type ColorConfig = {
-  backdrop: string
-  backdropOpacity: Opacity
-  background: string
-  border: string
-  borderColor: string
-  inputColor: string
-  commandInactive: string
-  commandActive: string
-}
+export type ColorConfig = Partial<Colors>
 
 const Cmdk: FC<{
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
   commands: CommandType[]
-  colors?: Partial<ColorConfig>
+  colors?: ColorConfig
 }> = ({ open, setOpen, commands, colors }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
@@ -111,8 +99,8 @@ const Cmdk: FC<{
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           style={{
-            backgroundColor: colors?.backdrop,
-            opacity: colors?.backdropOpacity
+            backgroundColor: colors?.backdropColor,
+            backdropFilter: `blur(${colors?.backdropBlur}px)`
           }}
         >
           <motion.div
@@ -123,9 +111,10 @@ const Cmdk: FC<{
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             style={{
-              backgroundColor: colors?.background,
-              border: `${colors?.border} solid`,
-              borderColor: colors?.borderColor
+              backgroundColor: colors?.backgroundColor,
+              border: `solid ${colors?.borderColor}`,
+              borderRadius: `${colors?.borderRadius}px`,
+              borderWidth: colors?.borderWidth || 1
             }}
           >
             <input
@@ -158,6 +147,7 @@ const Cmdk: FC<{
                       isSelected={state.selected === index}
                       command={command}
                       setOpen={setOpen}
+                      colors={colors}
                       key={index}
                     />
                   ))
@@ -176,8 +166,11 @@ const Command: FC<{
   onMouseEnter: () => void
   isSelected: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
-  colors?: Pick<ColorConfig, 'commandInactive' | 'commandActive'>
-}> = ({ onMouseEnter, isSelected, command, setOpen }) => {
+  colors?: Pick<
+    ColorConfig,
+    'commandInactive' | 'commandActive' | 'barBackground' | 'barOpacity'
+  >
+}> = ({ onMouseEnter, isSelected, command, setOpen, colors }) => {
   const ref = useRef<HTMLDivElement>(null)
   const enter = useShortcut('Enter')
 
@@ -199,7 +192,11 @@ const Command: FC<{
     <div
       className={styles.command}
       onMouseEnter={onMouseEnter}
-      style={{ color: isSelected ? '#FFFFFF' : '#777777' }}
+      style={{
+        color: isSelected
+          ? colors?.commandActive || '#FFFFFF'
+          : colors?.commandInactive || '#777777'
+      }}
       ref={ref}
       onClick={command.perform}
     >
@@ -213,6 +210,10 @@ const Command: FC<{
             stiffness: 1000,
             damping: 70
           }}
+          style={{
+            background: colors?.barBackground,
+            opacity: colors?.barOpacity
+          }}
         />
       )}
       {command.icon}
@@ -221,5 +222,6 @@ const Command: FC<{
   )
 }
 
+export { Command } from './types'
 export { useShortcut } from './hooks/useShortcut'
 export default Cmdk
