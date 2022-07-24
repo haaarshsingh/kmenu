@@ -9,11 +9,11 @@ import {
   FiGithub,
   FiDribbble,
   FiLinkedin,
-  FiArrowRight,
+  FiArrowRight
 } from 'react-icons/fi'
 
 const App = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(0)
 
   const commands: Command[] = [
     {
@@ -21,41 +21,41 @@ const App = () => {
       text: 'Website',
       href: 'https://hxrsh.in',
       newTab: true,
-      keywords: 'home',
+      keywords: 'home'
     },
     {
       icon: <FiArrowRight />,
-      text: 'Nested Example...',
+      text: 'Nested Example...'
     },
     {
       icon: <FiTwitter />,
       text: 'Twitter',
       href: 'https://twitter.com/harshhhdev',
-      newTab: true,
+      newTab: true
     },
     {
       icon: <FiGithub />,
       text: 'GitHub',
       href: 'https://github.com/harshhhdev',
-      newTab: true,
+      newTab: true
     },
     {
       icon: <FiDribbble />,
       text: 'Dribbble',
       href: 'https://dribbble.com/harshhhdev',
-      newTab: true,
+      newTab: true
     },
     {
       icon: <FiLinkedin />,
       text: 'Linkedin',
       href: 'https://linkedin.com/in/harshhhdev',
-      newTab: true,
-    },
+      newTab: true
+    }
   ]
 
   return (
     <div>
-      <Palette open={open} setOpen={setOpen} commands={commands} />
+      <Palette open={open} setOpen={setOpen} index={1} commands={commands} />
       <div>
         <h1>Hello, World!</h1>
       </div>

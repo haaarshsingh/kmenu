@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useReducer,
-  useRef,
-  useState
-} from 'react'
+import React, { useEffect, useReducer, useRef, useState } from 'react'
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import type { Dispatch, FC, Reducer, SetStateAction } from 'react'
 import { useShortcut } from './hooks/useShortcut'
@@ -20,15 +14,15 @@ import styles from './styles/palette.module.css'
 import useClickOutside from './hooks/useClickOutside'
 
 const initialState = { selected: 0 }
-
 export type ColorConfig = Partial<Colors>
 
-const Cmdk: FC<{
-  open: boolean
-  setOpen: Dispatch<SetStateAction<boolean>>
+const Kmenu: FC<{
+  open: number
+  setOpen: Dispatch<SetStateAction<number>>
+  index: number
   commands: CommandType[]
   colors?: ColorConfig
-}> = ({ open, setOpen, commands, colors }) => {
+}> = ({ open, setOpen, index, commands, colors }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState(filter(commands, query))
@@ -75,21 +69,21 @@ const Cmdk: FC<{
   const tab = useShortcut('Tab')
   const reverseTab = useShortcut('Tab', 'shift')
 
-  useClickOutside(paletteRef, () => setOpen(false))
+  useClickOutside(paletteRef, () => setOpen(index))
 
   useEffect(() => {
     if (up || reverseTab) dispatch({ type: ActionType.DECREASE, custom: 0 })
     else if (down || tab) dispatch({ type: ActionType.INCREASE, custom: 0 })
   }, [up, down, tab, reverseTab])
 
-  const toggle = useCallback((event: KeyboardEvent) => {
+  const toggle = (event: KeyboardEvent) => {
     if (event.ctrlKey && event.key === 'k') {
       event.preventDefault()
-      setOpen((open) => !open)
+      setOpen(open === index ? 0 : index)
     }
 
-    if (event.key === 'Escape') setOpen(false)
-  }, [])
+    if (event.key === 'Escape') setOpen(0)
+  }
 
   useEffect(() => {
     window.addEventListener('keydown', toggle)
@@ -98,7 +92,7 @@ const Cmdk: FC<{
 
   return (
     <AnimatePresence>
-      {open && (
+      {open === index && (
         <motion.div
           className={styles.backdrop}
           initial={{ opacity: 0 }}
@@ -172,7 +166,7 @@ const Command: FC<{
   command: CommandType
   onMouseEnter: () => void
   isSelected: boolean
-  setOpen: Dispatch<SetStateAction<boolean>>
+  setOpen: Dispatch<SetStateAction<number>>
   colors?: Pick<
     ColorConfig,
     'commandInactive' | 'commandActive' | 'barBackground' | 'barOpacity'
@@ -192,7 +186,7 @@ const Command: FC<{
       if (typeof command.href !== 'undefined') window.open(command.href)
       else if (typeof command.perform !== 'undefined') command.perform()
 
-      return setOpen(false)
+      return setOpen(0)
     }
   }, [isSelected, enter])
 
@@ -235,4 +229,4 @@ const Command: FC<{
 
 export { Command } from './types'
 export { useShortcut } from './hooks/useShortcut'
-export default Cmdk
+export default Kmenu
