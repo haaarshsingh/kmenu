@@ -8,7 +8,6 @@ import React, {
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import type { Dispatch, FC, Reducer, SetStateAction } from 'react'
 import { useShortcut } from './hooks/useShortcut'
-import filter from './utils/filter'
 import {
   ActionType,
   Action,
@@ -35,44 +34,66 @@ const Kmenu: FC<KmenuProps> = ({
 }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState(filter(commands, query))
   const [sortedCommands, setSortedCommands] = useState<SortedCommands[]>([])
+  const [results, setResults] = useState<SortedCommands[]>([])
+  const [resultIndex, setResultIndex] = useState(0)
 
   useEffect(() => {
-    let globalIndex = 0
-    const sortedCommandsArray: SortedCommands[] = []
+    state.selected = 0
+    let index = 0
 
-    // eslint-disable-next-line no-unused-expressions
-    categories?.forEach((category) => {
-      const f = commands.filter((command) => command.category === category)
-      const sorted = f.map((command) => {
-        globalIndex++
-        return {
-          ...command,
-          globalIndex: globalIndex - 1
-        }
+    if (!query) {
+      const sortedCommandsArray: SortedCommands[] = []
+      let index = 0
+
+      // eslint-disable-next-line no-unused-expressions
+      categories?.forEach((category) => {
+        const f = commands.filter((command) => command.category === category)
+        const sorted = f.map((command) => {
+          index++
+          return {
+            ...command,
+            globalIndex: index - 1
+          }
+        })
+
+        sortedCommandsArray.push({ title: category, commands: sorted })
       })
 
-      sortedCommandsArray.push({ title: category, commands: sorted })
+      setResultIndex(index)
+      setSortedCommands(sortedCommandsArray)
+      return setResults(sortedCommandsArray)
+    }
+
+    const sorted: SortedCommands[] = []
+
+    // eslint-disable-next-line no-unused-expressions
+    sortedCommands.forEach((row) => {
+      const results: SortedCommands = { title: row.title, commands: [] }
+      row.commands.forEach((command) => {
+        const text =
+          command.text.toLowerCase() + command.keywords?.toLowerCase()
+        if (text.includes(query.toLowerCase())) {
+          results.commands.push({ ...command, globalIndex: index })
+          index++
+        }
+      })
+      sorted.push(results)
     })
 
-    setSortedCommands(sortedCommandsArray)
-  }, [])
-
-  useEffect(() => {
-    setResults(filter(commands, query))
-    state.selected = 0
+    setResultIndex(index)
+    setResults(sorted)
   }, [query, setQuery])
 
   const reducer: Reducer<State, Action> = (state, action) => {
     switch (action.type) {
       case ActionType.INCREASE:
-        return state.selected === results!.length - 1
+        return state.selected === resultIndex - 1
           ? { ...state, selected: 0 }
           : { ...state, selected: state.selected + 1 }
       case ActionType.DECREASE:
         return state.selected === 0
-          ? { ...state, selected: results!.length - 1 }
+          ? { ...state, selected: resultIndex - 1 }
           : { ...state, selected: state.selected - 1 }
       case ActionType.CUSTOM:
         return {
@@ -123,10 +144,6 @@ const Kmenu: FC<KmenuProps> = ({
     return () => window.removeEventListener('keydown', toggle)
   }, [])
 
-  useEffect(() => {
-    return console.log(sortedCommands)
-  }, [sortedCommands, setSortedCommands])
-
   return (
     <AnimatePresence>
       {open === index && (
@@ -163,23 +180,22 @@ const Kmenu: FC<KmenuProps> = ({
               onChange={() => setQuery(input.current?.value!)}
               style={{ color: config?.inputColor }}
             />
-            <motion.div className={styles.wrapper} ref={parentRef}>
+            <motion.div
+              className={styles.wrapper}
+              ref={parentRef}
+              style={{ maxHeight: config?.paletteMaxHeight }}
+            >
               <AnimateSharedLayout>
-                {/* {results?.map((command, index) => (
-                  <Command
-                    onMouseEnter={() =>
-                      dispatch({ type: ActionType.CUSTOM, custom: index })
-                    }
-                    isSelected={state.selected === index}
-                    command={command}
-                    setOpen={setOpen}
-                    config={config}
-                    key={index}
-                  />
-                ))} */}
-                {sortedCommands.map((category, index) => (
+                {results?.map((category, index) => (
                   <div key={index}>
-                    <p className={styles.title}>{category.title}</p>
+                    {category.commands.length > 0 && (
+                      <p
+                        className={styles.title}
+                        style={{ color: config?.headingColor }}
+                      >
+                        {category.title}
+                      </p>
+                    )}
                     {category.commands.map((command, index) => (
                       <Command
                         onMouseEnter={() =>

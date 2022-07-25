@@ -50,7 +50,7 @@
   flex-direction: column;
   width: 100%;
   height: fit-content;
-  max-height: 300px;
+  max-height: 320px;
   transition: height 0.1s ease 0s;
   will-change: height;
 }
@@ -93,6 +93,7 @@
 .title {
   margin: 10px 0 15px 10px;
   font-size: 14px;
+  color: #777777;
 }
 
 .selected {
