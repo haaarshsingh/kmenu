@@ -14,7 +14,9 @@ import {
   Action,
   State,
   Config,
-  Command as CommandType
+  Command as CommandType,
+  KmenuProps,
+  SortedCommands
 } from './types'
 import styles from './styles/palette.module.css'
 import useClickOutside from './hooks/useClickOutside'
@@ -22,17 +24,40 @@ import useClickOutside from './hooks/useClickOutside'
 const initialState = { selected: 0 }
 export type PaletteConfig = Partial<Config>
 
-const Kmenu: FC<{
-  open: number
-  setOpen: Dispatch<SetStateAction<number>>
-  index: number
-  commands: CommandType[]
-  main?: boolean
-  config?: PaletteConfig
-}> = ({ open, setOpen, index, commands, main, config }) => {
+const Kmenu: FC<KmenuProps> = ({
+  open,
+  setOpen,
+  index,
+  commands,
+  categories,
+  main,
+  config
+}) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState(filter(commands, query))
+  const [sortedCommands, setSortedCommands] = useState<SortedCommands[]>([])
+
+  useEffect(() => {
+    let globalIndex = 0
+    const sortedCommandsArray: SortedCommands[] = []
+
+    // eslint-disable-next-line no-unused-expressions
+    categories?.forEach((category) => {
+      const f = commands.filter((command) => command.category === category)
+      const sorted = f.map((command) => {
+        globalIndex++
+        return {
+          ...command,
+          globalIndex: globalIndex - 1
+        }
+      })
+
+      sortedCommandsArray.push({ title: category, commands: sorted })
+    })
+
+    setSortedCommands(sortedCommandsArray)
+  }, [])
 
   useEffect(() => {
     setResults(filter(commands, query))
@@ -98,6 +123,10 @@ const Kmenu: FC<{
     return () => window.removeEventListener('keydown', toggle)
   }, [])
 
+  useEffect(() => {
+    return console.log(sortedCommands)
+  }, [sortedCommands, setSortedCommands])
+
   return (
     <AnimatePresence>
       {open === index && (
@@ -134,35 +163,42 @@ const Kmenu: FC<{
               onChange={() => setQuery(input.current?.value!)}
               style={{ color: config?.inputColor }}
             />
-            <div className={styles.wrapper} ref={parentRef}>
+            <motion.div className={styles.wrapper} ref={parentRef}>
               <AnimateSharedLayout>
-                {results!.length <= 0 ? (
-                  <motion.div
-                    className={styles.no_results}
-                    initial={{ y: -40 }}
-                    animate={{ y: 0 }}
-                  >
-                    <h1>Nothing to see here...</h1>
-                    <p className={styles.description}>
-                      Make sure to double-check your spelling
-                    </p>
-                  </motion.div>
-                ) : (
-                  results?.map((command, index) => (
-                    <Command
-                      onMouseEnter={() =>
-                        dispatch({ type: ActionType.CUSTOM, custom: index })
-                      }
-                      isSelected={state.selected === index}
-                      command={command}
-                      setOpen={setOpen}
-                      config={config}
-                      key={index}
-                    />
-                  ))
-                )}
+                {/* {results?.map((command, index) => (
+                  <Command
+                    onMouseEnter={() =>
+                      dispatch({ type: ActionType.CUSTOM, custom: index })
+                    }
+                    isSelected={state.selected === index}
+                    command={command}
+                    setOpen={setOpen}
+                    config={config}
+                    key={index}
+                  />
+                ))} */}
+                {sortedCommands.map((category, index) => (
+                  <div key={index}>
+                    <p className={styles.title}>{category.title}</p>
+                    {category.commands.map((command, index) => (
+                      <Command
+                        onMouseEnter={() =>
+                          dispatch({
+                            type: ActionType.CUSTOM,
+                            custom: command.globalIndex
+                          })
+                        }
+                        isSelected={state.selected === command.globalIndex}
+                        command={command}
+                        setOpen={setOpen}
+                        config={config}
+                        key={index}
+                      />
+                    ))}
+                  </div>
+                ))}
               </AnimateSharedLayout>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       )}
@@ -235,6 +271,6 @@ const Command: FC<{
   )
 }
 
-export { Command } from './types'
+export { Command, KmenuProps } from './types'
 export { useShortcut } from './hooks/useShortcut'
 export default Kmenu

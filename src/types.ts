@@ -1,4 +1,21 @@
-import { ReactElement } from 'react'
+import { Dispatch, ReactElement, SetStateAction } from 'react'
+
+export type KmenuProps = {
+  open: number
+  setOpen: Dispatch<SetStateAction<number>>
+  index: number
+  commands: Command[]
+  categories?: Array<string>
+  main?: boolean
+  config?: Config
+}
+
+export type SortedCommands = {
+  title: string
+  commands: GlobalCommand[]
+}
+
+type GlobalCommand = Command & { globalIndex: number }
 
 export type Command = {
   icon: ReactElement
@@ -7,6 +24,7 @@ export type Command = {
   href?: string
   newTab?: boolean
   keywords?: string
+  category?: string
 }
 
 export type Config = {

@@ -1,3 +1,7 @@
+:root {
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -43,10 +47,12 @@
 .wrapper {
   display: flex;
   overflow-y: scroll;
-  overflow: hidden;
   flex-direction: column;
   width: 100%;
-  height: 300px;
+  height: fit-content;
+  max-height: 300px;
+  transition: height 0.1s ease 0s;
+  will-change: height;
 }
 
 .no_results {
@@ -82,6 +88,11 @@
   margin: 0 10px 0 15px;
   width: 20px;
   height: 20px;
+}
+
+.title {
+  margin: 10px 0 15px 10px;
+  font-size: 14px;
 }
 
 .selected {

@@ -9,9 +9,7 @@
 <p align="center">
   <a href="https://kmenu.hxrsh.in">Demo</a>
     ·
-  <a href="https://hxrsh.in/ama">Docs</a>
-    ·
-  <a href="https://hxrsh.in/uses">NPM</a>
+  <a href="https://npmjs.com/package/kmenu">NPM</a>
  </p>
 
 # 🚀 Quickstart
