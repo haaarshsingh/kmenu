@@ -193,7 +193,7 @@ export const Palette: FC<PaletteProps> = ({
                     ? config?.paletteMaxHeight || 340
                     : resultIndex > 1
                     ? resultIndex * 80
-                    : 100
+                    : 120
               }}
             >
               <AnimateSharedLayout>
