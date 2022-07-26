@@ -191,7 +191,7 @@ export const Palette: FC<PaletteProps> = ({
                 height:
                   resultIndex >= 5
                     ? config?.paletteMaxHeight || 340
-                    : resultIndex > 1
+                    : resultIndex !== 1
                     ? resultIndex * 80
                     : 120
               }}
