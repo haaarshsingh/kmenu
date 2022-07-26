@@ -23,7 +23,7 @@ import useClickOutside from './hooks/useClickOutside'
 const initialState = { selected: 0 }
 export type PaletteConfig = Partial<Config>
 
-const Kmenu: FC<KmenuProps> = ({
+export const Palette: FC<KmenuProps> = ({
   open,
   setOpen,
   index,
@@ -288,4 +288,3 @@ const Command: FC<{
 
 export { Command, KmenuProps } from './types'
 export { useShortcut } from './hooks/useShortcut'
-export default Kmenu
