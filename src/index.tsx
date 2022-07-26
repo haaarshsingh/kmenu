@@ -177,7 +177,7 @@ export const Palette: FC<PaletteProps> = ({
             }}
           >
             <input
-              placeholder='Type to search...'
+              placeholder={config?.placeholderText || 'What do you need?'}
               className={styles.search}
               autoFocus
               ref={input}

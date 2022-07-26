@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 export const useShortcut = (
   targetKey: string,
-  modifier?: 'shift' | 'ctrl'
+  modifier?: 'shift' | 'ctrl' | 'alt'
 ): boolean => {
   const [keyPressed, setKeyPressed] = useState(false)
 
@@ -12,6 +12,9 @@ export const useShortcut = (
         event.preventDefault()
         setKeyPressed(true)
       } else if (modifier === 'ctrl' && event.ctrlKey) {
+        event.preventDefault()
+        setKeyPressed(true)
+      } else if (modifier === 'alt' && event.altKey) {
         event.preventDefault()
         setKeyPressed(true)
       } else {
