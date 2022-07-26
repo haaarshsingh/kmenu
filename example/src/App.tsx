@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Palette, { Command } from 'kmenu'
+import { Command, Palette } from 'kmenu'
 import 'kmenu/dist/index.css'
 import {
   FiGlobe,

@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-  useCallback
-} from 'react'
+import React, { useEffect, useReducer, useRef, useState } from 'react'
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import type { Dispatch, FC, Reducer, SetStateAction } from 'react'
 import { useShortcut } from './hooks/useShortcut'
@@ -119,17 +113,19 @@ export const Palette: FC<KmenuProps> = ({
 
   const up = useShortcut('ArrowUp')
   const down = useShortcut('ArrowDown')
-  const tab = useShortcut('Tab')
-  const reverseTab = useShortcut('Tab', 'shift')
+  // const tab = useShortcut('Tab')
+  // const reverseTab = useShortcut('Tab', 'shift')
 
   useClickOutside(paletteRef, () => setOpen(0))
 
   useEffect(() => {
-    if (up || reverseTab) dispatch({ type: ActionType.DECREASE, custom: 0 })
-    else if (down || tab) dispatch({ type: ActionType.INCREASE, custom: 0 })
-  }, [up, down, tab, reverseTab])
+    if (open === index) {
+      if (up) dispatch({ type: ActionType.DECREASE, custom: 0 })
+      else if (down) dispatch({ type: ActionType.INCREASE, custom: 0 })
+    }
+  }, [up, down])
 
-  const toggle = useCallback((event: KeyboardEvent) => {
+  const toggle = (event: KeyboardEvent) => {
     if (event.ctrlKey && event.key === 'k') {
       event.preventDefault()
       if (main) setOpen((open) => (open === index ? 0 : index))
@@ -137,12 +133,22 @@ export const Palette: FC<KmenuProps> = ({
     }
 
     if (event.key === 'Escape') setOpen(0)
-  }, [])
+
+    if (open === index) {
+      if (event.key === 'Tab' && !event.shiftKey) {
+        event.preventDefault()
+        dispatch({ type: ActionType.INCREASE, custom: 0 })
+      } else if (event.shiftKey && event.key === 'Tab') {
+        event.preventDefault()
+        dispatch({ type: ActionType.DECREASE, custom: 0 })
+      }
+    }
+  }
 
   useEffect(() => {
     window.addEventListener('keydown', toggle)
     return () => window.removeEventListener('keydown', toggle)
-  }, [])
+  }, [open, setOpen])
 
   return (
     <AnimatePresence>
@@ -273,8 +279,7 @@ const Command: FC<{
             damping: 70
           }}
           style={{
-            background: config?.barBackground,
-            opacity: config?.barOpacity
+            background: config?.barBackground
           }}
         />
       )}
