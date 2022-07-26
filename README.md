@@ -10,6 +10,8 @@
   <a href="https://kmenu.hxrsh.in">Demo</a>
     ·
   <a href="https://npmjs.com/package/kmenu">NPM</a>
+      ·
+  <a href="https://www.producthunt.com/products/kmenu">Product Hunt</a>
  </p>
 
 # 🚀 Quickstart
@@ -40,47 +42,62 @@ Here's an example of how to create the commands (using [TypeScript](https://type
 
 ```ts
 import {
-  FiGlobe,
-  FiCopy,
-  FiDribbble,
-  FiSearch,
-  FiToggleRight
-} from 'react-icons/fi'
+  Search,
+  Copy,
+  Globe,
+  GitHub,
+  AlertCircle,
+  GitPullRequest,
+  Zap,
+  Edit2,
+  Plus,
+  Settings,
+  Code,
+  Command as Cmd,
+  Terminal
+} from 'react-feather'
 
-const commands: CommandType[] = [
+const commands: Command[] = [
   {
-    icon: <FiGlobe />,
-    text: 'Website',
-    href: 'https://hxrsh.in',
-    keywords: 'harsh homepage site', 
-    category: 'Social'
+    icon: <Search />,
+    text: 'Search Documentation...',
+    keywords: 'docs',
+    category: 'Utility',
+    perform: () => /* function */
   },
   {
-    icon: <i.Copy />,
-    text: 'Copy URL', 
-    perform: () => copyToClipboard(window.location.href), 
+    icon: <Copy />,
+    text: 'Copy URL',
+    perform: () => /* function */,
     category: 'Utility'
   },
   {
-    icon: <FiDribbble />,
-    text: 'Dribbble', 
-    href: 'https://dribbble.com/harshhhdev',
-    keywords: 'behance design web social'
-    category: 'Social'
+    icon: <Globe />,
+    text: 'Demo',
+    href: 'https://kmenu.hxrsh.in',
+    keywords: 'homepage site web',
+    category: 'Links'
   },
   {
-    icon: <FiSearch />,
-    text: 'Search Documentation...'
-    perform: () => setOpenMenu(1), 
-    keywords: 'docs'
-    category: 'Utility'
+    icon: <GitHub />,
+    text: 'GitHub',
+    href: 'https://github.com/harshhhdev/kmenu',
+    keywords: 'source',
+    category: 'Links'
   },
   {
-    icon: <FiToggleRight />,
-    text: 'Toggle Theme',
-    perform: () => setDarkMode((dark) => !dark), 
-    keywords: 'light dark mode colors colours'
-    category: 'Utility'
+    icon: <AlertCircle />,
+    text: 'Issues',
+    href: 'https://github.com/harshhhdev/kmenu/issues',
+    keywords: 'source',
+    category: 'Links'
+  },
+  {
+    icon: <GitPullRequest />,
+    text: 'Pull Requests',
+    href: 'https://github.com/harshhhdev/kmenu/pulls',
+    keywords: 'source',
+    category: 'Links'
   }
 ]
 ```
@@ -93,20 +110,19 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
 | Parameter        | Description                                                  | Type         | Default             | 
 |------------------|--------------------------------------------------------------|--------------|---------------------|
-| paletteMaxHeight | The max height of the palette (px)                           | number       | 320px               |
+| paletteMaxHeight | The max height of the palette (px)                           | number       | 320                 |
 | backdropColor    | The colour of the backdrop (include opacity)                 | string       | #00000020           |
-| backdropBlur     | The backround blur of the backdrop in pixels                 | number       | 5px                 |
-| backgroundColor  | The background colour of the palette                         | ntring       | #181818             |
+| backdropBlur     | The backround blur of the backdrop (px)                      | number       | 5px                 |
+| backgroundColor  | The background colour of the palette                         | string       | #181818             |
 | borderWidth      | Width of the border surrounding the palette                  | number       | 1px                 |
 | borderColor      | The colour of the border surrounding the palette             | string       | #3F3F3F             |
 | borderRadius     | The radius of the palette (px)                               | number       | 16px                |
 | inputColor       | The colour of the text in the search bar                     | string       | #FFFFFF             |
-| placeholderText  | The placeholder input text in the search bar                 | string       | "What do you need?" |
+| placeholderText  | The placeholder input text in the search bar                 | string       | 'What do you need?' |
 | headingColor     | The colour of the command category headings                  | string       | #777777             |
 | commandInactive  | The colour of the icon and text when the command is inactive | string       | #777777             |
 | commandActive    | The colour of the icon and text when the command is active   | string       | #FFFFFF             |
-| barBackground    | The background colour of the active bar                      | string       | #FFFFFF             |
-| barOpacity       | The opacity of the active bar                                | number (0-1) | 0.20                |
+| barBackground    | The background colour of the active bar (include opacity)    | string       | #FFFFFF20           |
 
 ### Setting up the palette
 
@@ -238,8 +254,8 @@ This library also ships with a [custom React hook](https://reactjs.org/docs/hook
 
 | Parameter       | Description                                           | Type                       | Optional  | 
 |-----------------|-------------------------------------------------------|----------------------------|-----------|
-| targetKey       | The key that the shortcut is listening for            | string (must be valid key) | ✅       |
-| modifier        | The modifier key which can will activate the shortcut | enum (shift/alt/a)         | ❌        |
+| targetKey       | The key that the shortcut is listening for            | string (must be valid key) | ❌        |
+| modifier        | The modifier key which can will activate the shortcut | enum (shift/alt/ctrl)      | ✅        |
 
 Here's an example: 
 
@@ -255,6 +271,8 @@ const Palette = () => {
 export default Palette
 ```
 
+The example below will run when someone uses the keyboard shortcut `shift+s`.
+
 # 💻 Development
 
 Run the project locally
@@ -263,22 +281,38 @@ Run the project locally
 git clone https://github.com/harshhhdev/kmenu.git
 ```
 
-## Setting up the project
+### Setting up the project
 
 ```zsh
 cd kmenu
 
-# install deps
+# Install dependencies
 yarn
 ```
 
-## Starting server
+Next, start the development server:
 
 ```zsh
 yarn start
 ```
 
-This should compile an instance of your project to the `dist` folder
+This should compile an instance of your project to the `dist` folder. It should re-build everytime you save a new change.
+
+### Using the package
+
+You can test the built package locally by running the example repository:
+
+```zsh
+cd example
+
+# Install dependencies
+yarn
+
+# Start development server
+yarn start
+```
+
+Awesome. Your React development server should now be running on [port 3000](http://localhost:3000).
 
 # 🔧 Tools Used
 
@@ -305,6 +339,4 @@ git push YOUR_REPO_URL YOUR_BRANCH
 - [Vercel](https://vercel.com)
 - [Ultra](https://ultra.tf) 
 - [GitHub](https://github.com)
-- [kbar](https://kbar.vercel.app)
-- [react-cmdk](https://react-cmdk.com/)
 - [CommandBar](https://commandbar.com)
