@@ -1,13 +1,13 @@
 import { Dispatch, ReactElement, SetStateAction } from 'react'
 
-export type KmenuProps = {
+export type PaletteProps = {
   open: number
   setOpen: Dispatch<SetStateAction<number>>
   index: number
   commands: Command[]
   categories: string[]
   main?: boolean
-  config?: Config
+  config?: Partial<Config>
 }
 
 export type SortedCommands = {
@@ -41,7 +41,6 @@ export type Config = {
   commandInactive: string
   commandActive: string
   barBackground: string
-  barOpacity: number
 }
 
 export enum ActionType {

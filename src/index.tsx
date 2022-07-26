@@ -8,7 +8,7 @@ import {
   State,
   Config,
   Command as CommandType,
-  KmenuProps,
+  PaletteProps,
   SortedCommands
 } from './types'
 import styles from './styles/palette.module.css'
@@ -17,7 +17,7 @@ import useClickOutside from './hooks/useClickOutside'
 const initialState = { selected: 0 }
 export type PaletteConfig = Partial<Config>
 
-export const Palette: FC<KmenuProps> = ({
+export const Palette: FC<PaletteProps> = ({
   open,
   setOpen,
   index,
@@ -291,5 +291,5 @@ const Command: FC<{
   )
 }
 
-export { Command, KmenuProps } from './types'
+export { Command, PaletteProps } from './types'
 export { useShortcut } from './hooks/useShortcut'
