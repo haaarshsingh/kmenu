@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.backdrop {
+._palette-module__backdrop__1c4BQ {
   display: flex;
   overflow: hidden;
   position: fixed;
@@ -19,11 +19,14 @@
   width: 100vw;
   height: 100vh;
   background: #00000090;
+  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
+  -webkit-user-select: none;
+  -moz-user-select: none;
   user-select: none;
 }
 
-.dialog {
+._palette-module__dialog__1zn65 {
   padding: 0.5rem;
   background-color: #181818;
   width: 30%;
@@ -31,7 +34,7 @@
   border: solid 1px #3f3f3f;
 }
 
-.search {
+._palette-module__search__3vbGc {
   color: white;
   border: none;
   padding: 1.25rem;
@@ -44,18 +47,20 @@
   outline: 0;
 }
 
-.wrapper {
+._palette-module__wrapper__SKV7e {
   display: flex;
   overflow-y: scroll;
   flex-direction: column;
   width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   max-height: 320px;
   transition: height 0.1s ease 0s;
   will-change: height;
 }
 
-.no_results {
+._palette-module__no_results__29zn5 {
   display: flex;
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -65,13 +70,13 @@
   height: 100%;
 }
 
-.description {
+._palette-module__description__18LcE {
   margin-top: 0.5rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
 
-.command {
+._palette-module__command__30iJb {
   display: flex;
   position: relative;
   margin-top: 0.25rem;
@@ -84,19 +89,19 @@
   cursor: pointer;
 }
 
-.command > svg {
+._palette-module__command__30iJb > svg {
   margin: 0 10px 0 15px;
   width: 20px;
   height: 20px;
 }
 
-.title {
+._palette-module__title__3WYB3 {
   margin: 10px 0 15px 10px;
   font-size: 14px;
   color: #777777;
 }
 
-.selected {
+._palette-module__selected__3EiZZ {
   position: absolute;
   width: 100%;
   height: 4rem;
@@ -104,7 +109,7 @@
   background: #ffffff20;
 }
 
-.text {
+._palette-module__text__O2N7u {
   width: 90%;
   margin: 1rem 0;
   font-size: 1rem;
@@ -114,25 +119,25 @@
 }
 
 @media only screen and (max-width: 1440px) {
-  .dialog {
+  ._palette-module__dialog__1zn65 {
     width: 40%;
   }
 }
 
 @media only screen and (max-width: 1024px) {
-  .dialog {
+  ._palette-module__dialog__1zn65 {
     width: 50%;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .dialog {
+  ._palette-module__dialog__1zn65 {
     width: 70%;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .dialog {
+  ._palette-module__dialog__1zn65 {
     width: 90%;
   }
 }

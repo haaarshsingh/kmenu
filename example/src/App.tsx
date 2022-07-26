@@ -5,7 +5,6 @@ import {
   FiGlobe,
   FiTwitter,
   FiGithub,
-  FiDribbble,
   FiLinkedin,
   FiArrowRight,
   FiDownloadCloud,
@@ -47,7 +46,6 @@ const App = () => {
       category: 'Socials'
     },
     {
-      icon: <FiDribbble />,
       text: 'Dribbble',
       href: 'https://dribbble.com/harshhhdev',
       newTab: true,

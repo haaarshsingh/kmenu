@@ -227,10 +227,7 @@ const Command: FC<{
   onMouseEnter: () => void
   isSelected: boolean
   setOpen: Dispatch<SetStateAction<number>>
-  config?: Pick<
-    PaletteConfig,
-    'commandInactive' | 'commandActive' | 'barBackground' | 'barOpacity'
-  >
+  config?: PaletteConfig
 }> = ({ onMouseEnter, isSelected, command, setOpen, config }) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const enter = useShortcut('Enter')
@@ -281,8 +278,10 @@ const Command: FC<{
           }}
         />
       )}
-      {command.icon}
-      <p className={styles.text}>{command.text}</p>
+      {command.icon && command.icon}
+      <p className={styles.text} style={{ marginLeft: command.icon ? 0 : 15 }}>
+        {command.text}
+      </p>
     </a>
   )
 }

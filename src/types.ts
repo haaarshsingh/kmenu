@@ -5,7 +5,7 @@ export type KmenuProps = {
   setOpen: Dispatch<SetStateAction<number>>
   index: number
   commands: Command[]
-  categories: Array<string>
+  categories: string[]
   main?: boolean
   config?: Config
 }
@@ -18,7 +18,7 @@ export type SortedCommands = {
 export type GlobalCommand = Command & { globalIndex: number }
 
 export type Command = {
-  icon: ReactElement
+  icon?: ReactElement
   text: string
   perform?: () => void
   href?: string
@@ -36,6 +36,7 @@ export type Config = {
   borderColor: string
   borderRadius: number
   inputColor: string
+  placeholderText: string
   headingColor: string
   commandInactive: string
   commandActive: string
