@@ -5,7 +5,7 @@
     <h2 align="center"></h2>
   </a>
 </p> 
-<p align="center">🌈 Animated and accessible React cmd+k interface</p>
+<p align="center">🌈 Animated and accessible cmdk interface</p>
 <p align="center">
   <a href="https://kmenu.hxrsh.in">Demo</a>
     ·
