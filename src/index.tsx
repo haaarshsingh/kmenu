@@ -113,8 +113,6 @@ export const Palette: FC<PaletteProps> = ({
 
   const up = useShortcut('ArrowUp')
   const down = useShortcut('ArrowDown')
-  // const tab = useShortcut('Tab')
-  // const reverseTab = useShortcut('Tab', 'shift')
 
   useClickOutside(paletteRef, () => setOpen(0))
 
@@ -189,7 +187,14 @@ export const Palette: FC<PaletteProps> = ({
             <motion.div
               className={styles.wrapper}
               ref={parentRef}
-              style={{ maxHeight: config?.paletteMaxHeight }}
+              style={{
+                height:
+                  resultIndex >= 5
+                    ? config?.paletteMaxHeight || 340
+                    : resultIndex > 1
+                    ? resultIndex * 80
+                    : 100
+              }}
             >
               <AnimateSharedLayout>
                 {results?.map((category, index) => (

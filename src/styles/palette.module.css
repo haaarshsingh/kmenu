@@ -8,14 +8,14 @@
 
 .backdrop {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 50;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
   background: #00000090;
@@ -29,6 +29,9 @@
   width: 30%;
   border-radius: 1rem;
   border: solid 1px #3f3f3f;
+  transition: height 0.1s ease 0s;
+  will-change: height;
+  position: relative;
 }
 
 .search {
@@ -50,7 +53,6 @@
   flex-direction: column;
   width: 100%;
   height: fit-content;
-  max-height: 320px;
   transition: height 0.1s ease 0s;
   will-change: height;
 }
