@@ -2,9 +2,10 @@
 
 <p align="center">
   <a href="https://kmenu.hxrsh.in/">
-    <h2 align="center"></h2>
+    <h2 align="center">kmenu</h2>
   </a>
-</p> 
+</p>
+
 <p align="center">🌈 Animated and accessible cmdk interface</p>
 <p align="center">
   <a href="https://kmenu.hxrsh.in">Demo</a>
