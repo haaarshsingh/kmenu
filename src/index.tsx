@@ -13,6 +13,7 @@ import {
 } from './types'
 import styles from './styles/palette.module.css'
 import useClickOutside from './hooks/useClickOutside'
+import useInView from './hooks/useInView'
 
 const initialState = { selected: 0 }
 export type PaletteConfig = Partial<Config>
@@ -109,6 +110,9 @@ export const Palette: FC<PaletteProps> = ({
   useEffect(() => {
     dispatch({ type: ActionType.RESET, custom: 0 })
     setQuery('')
+
+    if (open) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = 'unset'
   }, [open, setOpen])
 
   const up = useShortcut('ArrowUp')
@@ -191,9 +195,7 @@ export const Palette: FC<PaletteProps> = ({
                 height:
                   resultIndex >= 5
                     ? config?.paletteMaxHeight || 340
-                    : resultIndex !== 1
-                    ? resultIndex * 80
-                    : 120
+                    : 'fit-content'
               }}
             >
               <AnimateSharedLayout>
@@ -240,15 +242,19 @@ const Command: FC<{
   setOpen: Dispatch<SetStateAction<number>>
   config?: PaletteConfig
 }> = ({ onMouseEnter, isSelected, command, setOpen, config }) => {
-  const ref = useRef<HTMLAnchorElement>(null)
+  const topRef = useRef<HTMLSpanElement>(null)
+  const bottomRef = useRef<HTMLSpanElement>(null)
   const enter = useShortcut('Enter')
 
+  const inViewTop = useInView(topRef)
+  const inViewBottom = useInView(bottomRef)
+
   useEffect(() => {
-    if (isSelected)
+    if (isSelected && (!inViewTop || !inViewBottom))
       // eslint-disable-next-line
-      ref.current?.scrollIntoView({
+      bottomRef.current?.scrollIntoView({
         behavior: 'smooth',
-        block: 'center'
+        block: 'end'
       })
 
     if (enter && isSelected) {
@@ -259,40 +265,46 @@ const Command: FC<{
   }, [isSelected, enter])
 
   return (
-    <a
-      className={styles.command}
-      onMouseEnter={onMouseEnter}
-      style={{
-        color: isSelected
-          ? config?.commandActive || '#FFFFFF'
-          : config?.commandInactive || '#777777'
-      }}
-      ref={ref}
-      onClick={command.perform}
-      href={command.href || '#'}
-      target={command.newTab ? '_blank' : '_self'}
-      rel='noreferrer'
-    >
-      {isSelected && (
-        <motion.div
-          layoutId='box'
-          className={styles.selected}
-          initial={false}
-          transition={{
-            type: 'spring',
-            stiffness: 1000,
-            damping: 70
-          }}
-          style={{
-            background: config?.barBackground
-          }}
-        />
-      )}
-      {command.icon && command.icon}
-      <p className={styles.text} style={{ marginLeft: command.icon ? 0 : 15 }}>
-        {command.text}
-      </p>
-    </a>
+    <div>
+      <span ref={topRef} />
+      <a
+        className={styles.command}
+        onMouseMove={onMouseEnter}
+        style={{
+          color: isSelected
+            ? config?.commandActive || '#FFFFFF'
+            : config?.commandInactive || '#777777'
+        }}
+        onClick={command.perform}
+        href={command.href || '#'}
+        target={command.newTab ? '_blank' : '_self'}
+        rel='noreferrer'
+      >
+        {isSelected && (
+          <motion.div
+            layoutId='box'
+            className={styles.selected}
+            initial={false}
+            transition={{
+              type: 'spring',
+              stiffness: 1000,
+              damping: 70
+            }}
+            style={{
+              background: config?.barBackground
+            }}
+          />
+        )}
+        {command.icon && command.icon}
+        <p
+          className={styles.text}
+          style={{ marginLeft: command.icon ? 0 : 15 }}
+        >
+          {command.text}
+        </p>
+      </a>
+      <span ref={bottomRef} className={styles.scroll_ref} />
+    </div>
   )
 }
 

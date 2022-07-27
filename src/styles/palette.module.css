@@ -50,21 +50,12 @@
 .wrapper {
   display: flex;
   overflow-y: scroll;
+  overflow-x: visible;
   flex-direction: column;
   width: 100%;
   height: fit-content;
   transition: height 0.1s ease 0s;
   will-change: height;
-}
-
-.no_results {
-  display: flex;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }
 
 .description {
@@ -76,8 +67,7 @@
 .command {
   display: flex;
   position: relative;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+  margin: 0.4rem 0;
   color: #d1d5db;
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -113,6 +103,10 @@
   line-height: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.scroll_ref {
+  margin-top: 20px;
 }
 
 @media only screen and (max-width: 1440px) {

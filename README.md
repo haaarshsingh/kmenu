@@ -1,4 +1,4 @@
-![image](https://kmenu.hxrsh.in/banner.png)
+![image](https://kmenu.hxrsh.in/Banner.png)
 
 <p align="center">
   <a href="https://kmenu.hxrsh.in/">
