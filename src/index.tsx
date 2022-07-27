@@ -128,7 +128,7 @@ export const Palette: FC<PaletteProps> = ({
   }, [up, down])
 
   const toggle = (event: KeyboardEvent) => {
-    if (event.ctrlKey && event.key === 'k') {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
       event.preventDefault()
       if (main) setOpen((open) => (open === index ? 0 : index))
       else if (!main && open === index) setOpen(0)
