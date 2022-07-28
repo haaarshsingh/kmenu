@@ -35,7 +35,7 @@ Here's a look at how you can create commands:
 | text      | The text displayed on the command                | String       | ❌       |
 | perform   | The action to perform                            | void         | ✅       |
 | href      | The link to open                                 | void         | ✅       |
-| newTab    | Whether or not the link should open in a new tab | void         | ✅       |
+| newTab    | Whether or not the link should open in a new tab | boolean      | ✅       |
 | keywords  | Search keywords for the command                  | string       | ✅       |
 | category  | The category this command will go under          | string       | ❌       |
 
@@ -57,6 +57,7 @@ import {
   Command as Cmd,
   Terminal
 } from 'react-feather'
+import type { Command } from 'kmenu'
 
 const commands: Command[] = [
   {
