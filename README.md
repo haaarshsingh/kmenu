@@ -162,6 +162,7 @@ const Palette = () => {
       index={1}
       commands={commands}
       config={config}
+      categories={categories}
       main
     />
     /* ... */
@@ -232,6 +233,7 @@ const Palette = () => {
       index={1}
       commands={mainCommands}
       config={config}
+      categories={categories}
       main
     />
     <Palette
@@ -240,6 +242,7 @@ const Palette = () => {
       index={2}
       commands={nestedExample}
       config={config}
+      categories={categories}
     />
     /* ... */
   )
