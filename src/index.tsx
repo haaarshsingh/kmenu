@@ -260,7 +260,8 @@ const Command: FC<{
     if (enter && isSelected) {
       setOpen(0)
       if (typeof command.perform !== 'undefined') return command.perform?.()
-      else if (typeof command.href !== 'undefined') window.open(command.href)
+      else if (typeof command.href !== 'undefined')
+        window.open(command.href, command.newTab ? '_blank' : '_self')
     }
   }, [isSelected, enter])
 

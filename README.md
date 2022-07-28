@@ -2,9 +2,10 @@
 
 <p align="center">
   <a href="https://kmenu.hxrsh.in/">
-    <h2 align="center"></h2>
+    <h2 align="center">kmenu</h2>
   </a>
-</p> 
+</p>
+
 <p align="center">🌈 Animated and accessible cmdk interface</p>
 <p align="center">
   <a href="https://kmenu.hxrsh.in">Demo</a>
@@ -34,7 +35,7 @@ Here's a look at how you can create commands:
 | text      | The text displayed on the command                | String       | ❌       |
 | perform   | The action to perform                            | void         | ✅       |
 | href      | The link to open                                 | void         | ✅       |
-| newTab    | Whether or not the link should open in a new tab | void         | ✅       |
+| newTab    | Whether or not the link should open in a new tab | boolean      | ✅       |
 | keywords  | Search keywords for the command                  | string       | ✅       |
 | category  | The category this command will go under          | string       | ❌       |
 
@@ -56,6 +57,7 @@ import {
   Command as Cmd,
   Terminal
 } from 'react-feather'
+import type { Command } from 'kmenu'
 
 const commands: Command[] = [
   {
@@ -160,6 +162,7 @@ const Palette = () => {
       index={1}
       commands={commands}
       config={config}
+      categories={categories}
       main
     />
     /* ... */
@@ -230,6 +233,7 @@ const Palette = () => {
       index={1}
       commands={mainCommands}
       config={config}
+      categories={categories}
       main
     />
     <Palette
@@ -238,6 +242,7 @@ const Palette = () => {
       index={2}
       commands={nestedExample}
       config={config}
+      categories={categories}
     />
     /* ... */
   )
