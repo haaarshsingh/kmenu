@@ -144,10 +144,10 @@ Once you have added commands to the palette and configured it to you likings, yo
 
 ```jsx
 import { useState } from 'react'
-import Palette, { Command, PaletteConfig } from 'kmenu'
+import { Palette, Command, PaletteConfig } from 'kmenu'
 import 'kmenu/dist/index.css'
 
-const Palette = () => {
+const Component = () => {
   const [open, setOpen] = useState(0)
 
   const commands: Command[] = [ /* ... */ ]
@@ -169,7 +169,7 @@ const Palette = () => {
   )
 }
 // ...
-export default Palette
+export default Component
 ```
 
 That's about all the configuration you'll need to do in order to get a basic command palette to work!
