@@ -45,6 +45,7 @@
   width: 100%;
   border-bottom: #777777 1px solid;
   outline: 0;
+  font-family: inherit;
 }
 
 .wrapper {
