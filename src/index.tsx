@@ -161,8 +161,8 @@ export const Palette: FC<PaletteProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           style={{
-            backgroundColor: config?.backdropColor,
-            backdropFilter: `blur(${config?.backdropBlur}px)`
+            backgroundColor: config?.backdropColor || '#00000090',
+            backdropFilter: `blur(${config?.backdropBlur}px)` || 'blur(2px)'
           }}
         >
           <motion.div
@@ -174,9 +174,9 @@ export const Palette: FC<PaletteProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             style={{
-              backgroundColor: config?.backgroundColor,
-              border: `solid ${config?.borderColor}`,
-              borderRadius: `${config?.borderRadius}px`,
+              backgroundColor: config?.backgroundColor || '#F6F6F6',
+              border: `solid ${config?.borderColor}` || 'solid #3f3f3f',
+              borderRadius: `${config?.borderRadius}px` || '16px',
               borderWidth: config?.borderWidth || 1
             }}
           >
@@ -186,7 +186,7 @@ export const Palette: FC<PaletteProps> = ({
               autoFocus
               ref={input}
               onChange={() => setQuery(input.current?.value!)}
-              style={{ color: config?.inputColor }}
+              style={{ color: config?.inputColor || '#000' }}
             />
             <motion.div
               className={styles.wrapper}
@@ -204,7 +204,7 @@ export const Palette: FC<PaletteProps> = ({
                     {category.commands.length > 0 && (
                       <p
                         className={styles.title}
-                        style={{ color: config?.headingColor }}
+                        style={{ color: config?.headingColor || '#828282' }}
                       >
                         {category.title}
                       </p>
@@ -273,8 +273,8 @@ const Command: FC<{
         onMouseMove={onMouseEnter}
         style={{
           color: isSelected
-            ? config?.commandActive || '#FFFFFF'
-            : config?.commandInactive || '#777777'
+            ? config?.commandActive || '#343434'
+            : config?.commandInactive || '#828282'
         }}
         onClick={command.perform}
         href={command.href || '#'}
@@ -292,7 +292,7 @@ const Command: FC<{
               damping: 70
             }}
             style={{
-              background: config?.barBackground
+              background: config?.barBackground || '#82828220'
             }}
           />
         )}
