@@ -24,7 +24,13 @@ export type Command = {
   href?: string
   newTab?: boolean
   keywords?: string
+  shortcuts?: Shortcut
   category: string
+}
+
+export type Shortcut = {
+  modifier?: 'shift' | 'ctrl' | 'alt'
+  keys: string[]
 }
 
 export type Config = {

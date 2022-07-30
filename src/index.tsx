@@ -296,13 +296,20 @@ const Command: FC<{
             }}
           />
         )}
-        {command.icon && command.icon}
-        <p
-          className={styles.text}
-          style={{ marginLeft: command.icon ? 0 : 15 }}
-        >
-          {command.text}
-        </p>
+        <div className={styles.info_wrapper}>
+          {command.icon && command.icon}
+          <p className={styles.text}>{command.text}</p>
+        </div>
+        {command.shortcuts && (
+          <div className={styles.shortcuts}>
+            {command.shortcuts.modifier && (
+              <kbd>{command.shortcuts.modifier}</kbd>
+            )}
+            {command.shortcuts.keys.map((key, index) => (
+              <kbd key={index}>{key}</kbd>
+            ))}
+          </div>
+        )}
       </a>
       <span ref={bottomRef} className={styles.scroll_ref} />
     </div>

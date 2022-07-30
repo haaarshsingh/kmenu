@@ -60,6 +60,7 @@
 
 .command {
   display: flex;
+  justify-content: space-between;
   position: relative;
   margin: 0.4rem 0;
   color: #d1d5db;
@@ -70,10 +71,34 @@
   cursor: pointer;
 }
 
-.command > svg {
-  margin: 0 10px 0 15px;
+kbd {
+  background-color: #82828220;
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-right: 7px;
+}
+
+.shortcuts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+.info_wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-left: 20px;
+}
+
+svg {
   width: 20px;
   height: 20px;
+  margin-right: 7px;
 }
 
 .title {
@@ -91,10 +116,9 @@
 }
 
 .text {
-  width: 90%;
+  max-width: 90%;
+  width: fit-content;
   margin: 1rem 0;
-  font-size: 1rem;
-  line-height: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
 }

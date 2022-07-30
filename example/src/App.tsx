@@ -36,14 +36,16 @@ const App = () => {
       text: 'Twitter',
       href: 'https://twitter.com/harshhhdev',
       newTab: true,
-      category: 'Socials'
+      category: 'Socials',
+      shortcuts: { modifier: 'ctrl', keys: ['t'] }
     },
     {
       icon: <FiGithub />,
       text: 'GitHub',
       href: 'https://github.com/harshhhdev',
       newTab: true,
-      category: 'Socials'
+      category: 'Socials',
+      shortcuts: { keys: ['g', 'h'] }
     },
     {
       text: 'Dribbble',
