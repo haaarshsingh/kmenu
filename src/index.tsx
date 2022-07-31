@@ -24,7 +24,10 @@ const run = (command: CommandType) => {
     window.open(command.href, command.newTab ? '_blank' : '_self')
 }
 
-const parse = (command: CommandType, event: KeyboardEvent) => {
+const parse = (command: CommandType, event: KeyboardEvent, map: string[]) => {
+  map.push(event.key)
+  setTimeout(() => map.splice(0, map.length), 1000)
+
   if (typeof command.shortcuts?.modifier === 'string') {
     if (
       command.shortcuts.modifier === 'ctrl' &&
@@ -54,12 +57,14 @@ const parse = (command: CommandType, event: KeyboardEvent) => {
       event.preventDefault()
       return run(command)
     }
+  } else if (command.shortcuts?.keys.length === 2) {
+    const last = map.slice(-2)
+    if (
+      last[0] === command.shortcuts.keys[0] &&
+      last[1] === command.shortcuts.keys[1]
+    )
+      return run(command)
   } else if (
-    event.key === command.shortcuts?.keys[0] &&
-    event.key === command.shortcuts.keys[1]
-  )
-    return run(command)
-  else if (
     command.shortcuts?.keys.length === 1 &&
     event.key === command.shortcuts.keys[0]
   )
@@ -202,16 +207,22 @@ export const Palette: FC<PaletteProps> = ({
 
   useEffect(() => {
     commands.forEach((command) => {
-      if (command.shortcuts)
-        window.addEventListener('keydown', (event) => parse(command, event))
+      if (command.shortcuts) {
+        const map: string[] = []
+        window.addEventListener('keydown', (event) =>
+          parse(command, event, map)
+        )
+      }
     })
 
     return () => {
       commands.forEach((command) => {
-        if (command.shortcuts)
+        if (command.shortcuts) {
+          const map: string[] = []
           window.removeEventListener('keydown', (event) =>
-            parse(command, event)
+            parse(command, event, map)
           )
+        }
       })
     }
   }, [])

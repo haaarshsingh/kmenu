@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #242424;
+  background-color: #eeeeee;
   color: #fff;
 }
 
@@ -27,6 +27,6 @@ button {
 }
 
 a {
-  color: #fff;
+  color: #000000;
   text-underline-offset: 8px;
 }
