@@ -29,7 +29,7 @@ export type Command = {
 }
 
 export type Shortcut = {
-  modifier?: 'shift' | 'ctrl' | 'alt'
+  modifier?: 'shift' | 'ctrl' | 'alt' | 'meta'
   keys: string[]
 }
 

@@ -18,6 +18,54 @@ import useInView from './hooks/useInView'
 const initialState = { selected: 0 }
 export type PaletteConfig = Partial<Config>
 
+const run = (command: CommandType) => {
+  if (typeof command.perform !== 'undefined') return command.perform?.()
+  else if (typeof command.href !== 'undefined')
+    window.open(command.href, command.newTab ? '_blank' : '_self')
+}
+
+const parse = (command: CommandType, event: KeyboardEvent) => {
+  if (typeof command.shortcuts?.modifier === 'string') {
+    if (
+      command.shortcuts.modifier === 'ctrl' &&
+      event.ctrlKey &&
+      event.key === command.shortcuts.keys[0]
+    ) {
+      event.preventDefault()
+      run(command)
+    } else if (
+      command.shortcuts.modifier === 'alt' &&
+      event.altKey &&
+      event.key === command.shortcuts.keys[0]
+    ) {
+      event.preventDefault()
+      return run(command)
+    } else if (
+      command.shortcuts.modifier === 'shift' &&
+      event.key === command.shortcuts.keys[0].toUpperCase()
+    ) {
+      event.preventDefault()
+      return run(command)
+    } else if (
+      command.shortcuts.modifier === 'meta' &&
+      event.metaKey &&
+      event.key === command.shortcuts.keys[0]
+    ) {
+      event.preventDefault()
+      return run(command)
+    }
+  } else if (
+    event.key === command.shortcuts?.keys[0] &&
+    event.key === command.shortcuts.keys[1]
+  )
+    return run(command)
+  else if (
+    command.shortcuts?.keys.length === 1 &&
+    event.key === command.shortcuts.keys[0]
+  )
+    run(command)
+}
+
 export const Palette: FC<PaletteProps> = ({
   open,
   setOpen,
@@ -152,6 +200,22 @@ export const Palette: FC<PaletteProps> = ({
     return () => window.removeEventListener('keydown', toggle)
   }, [open, setOpen])
 
+  useEffect(() => {
+    commands.forEach((command) => {
+      if (command.shortcuts)
+        window.addEventListener('keydown', (event) => parse(command, event))
+    })
+
+    return () => {
+      commands.forEach((command) => {
+        if (command.shortcuts)
+          window.removeEventListener('keydown', (event) =>
+            parse(command, event)
+          )
+      })
+    }
+  }, [])
+
   return (
     <AnimatePresence>
       {open === index && (
@@ -259,9 +323,7 @@ const Command: FC<{
 
     if (enter && isSelected) {
       setOpen(0)
-      if (typeof command.perform !== 'undefined') return command.perform?.()
-      else if (typeof command.href !== 'undefined')
-        window.open(command.href, command.newTab ? '_blank' : '_self')
+      run(command)
     }
   }, [isSelected, enter])
 

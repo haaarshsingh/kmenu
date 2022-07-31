@@ -37,7 +37,7 @@ const App = () => {
       href: 'https://twitter.com/harshhhdev',
       newTab: true,
       category: 'Socials',
-      shortcuts: { modifier: 'ctrl', keys: ['t'] }
+      shortcuts: { modifier: 'alt', keys: ['t'] }
     },
     {
       icon: <FiGithub />,
