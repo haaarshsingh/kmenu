@@ -22,7 +22,7 @@
   background-color: #181818;
   width: 30%;
   border-radius: 1rem;
-  transition: height 0.1s ease 0s;
+  transition: 0.1s ease 0s;
   will-change: height;
   position: relative;
 }
@@ -47,7 +47,6 @@
   overflow-x: visible;
   flex-direction: column;
   width: 100%;
-  height: fit-content;
   transition: height 0.1s ease 0s;
   will-change: height;
 }
@@ -127,15 +126,27 @@ svg {
   margin-top: 20px;
 }
 
+@media only screen and (max-width: 1650px) {
+  .dialog {
+    width: 30%;
+  }
+}
+
 @media only screen and (max-width: 1440px) {
   .dialog {
     width: 40%;
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1300px) {
   .dialog {
     width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .dialog {
+    width: 60%;
   }
 }
 

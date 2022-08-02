@@ -1,23 +1,42 @@
 import { Dispatch, ReactElement, SetStateAction } from 'react'
 
+export type PaletteContext = {
+  open: number
+  setOpen: (index: number) => void
+  input: string
+}
+
+export type PaletteProviderProps = {
+  config?: Config
+}
+
 export type PaletteProps = {
   open: number
   setOpen: Dispatch<SetStateAction<number>>
   index: number
   commands: Command[]
-  categories: string[]
   main?: boolean
   config?: Partial<Config>
 }
 
-export type SortedCommands = {
-  title: string
+export type UseKmenuProps = {
+  open: boolean
+  setOpen: () => void
+}
+
+export type GlobalCommand = CategoryCommand & { globalIndex: number }
+
+export type Command = {
+  category: string
+  commands: CategoryCommand[]
+}
+
+export type CommandResults = {
+  category: string
   commands: GlobalCommand[]
 }
 
-export type GlobalCommand = Command & { globalIndex: number }
-
-export type Command = {
+export type CategoryCommand = {
   icon?: ReactElement
   text: string
   perform?: () => void
@@ -25,7 +44,6 @@ export type Command = {
   newTab?: boolean
   keywords?: string
   shortcuts?: Shortcut
-  category: string
 }
 
 export type Shortcut = {

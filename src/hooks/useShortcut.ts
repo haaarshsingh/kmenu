@@ -50,32 +50,3 @@ export const useShortcut = (
 
   return keyPressed
 }
-
-export const useKeys = (targetKeys: string[], handler: () => void): boolean => {
-  const [keyPressed, setKeyPressed] = useState(false)
-
-  const downHandler = useCallback((event: KeyboardEvent) => {
-    if (event.key === targetKeys[0] && event.key === targetKeys[1]) {
-      event.preventDefault()
-      setKeyPressed(true)
-      handler()
-    }
-  }, [])
-
-  const upHandler = useCallback((event: KeyboardEvent) => {
-    if (event.key === targetKeys[0] || event.key === targetKeys[1])
-      setKeyPressed(false)
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('keydown', downHandler)
-    window.addEventListener('keyup', upHandler)
-
-    return () => {
-      window.removeEventListener('keydown', downHandler)
-      window.removeEventListener('keyup', upHandler)
-    }
-  }, [])
-
-  return keyPressed
-}

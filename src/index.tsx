@@ -1,4 +1,11 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react'
+import React, {
+  // createContext,
+  // ReactNode,
+  useEffect,
+  useReducer,
+  useRef,
+  useState
+} from 'react'
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import type { Dispatch, FC, Reducer, SetStateAction } from 'react'
 import { useShortcut } from './hooks/useShortcut'
@@ -7,83 +14,50 @@ import {
   Action,
   State,
   Config,
-  Command as CommandType,
+  CategoryCommand,
   PaletteProps,
-  SortedCommands
+  GlobalCommand,
+  CommandResults
+  // PaletteContext as PaletteContextType
 } from './types'
 import styles from './styles/palette.module.css'
 import useClickOutside from './hooks/useClickOutside'
 import useInView from './hooks/useInView'
+import parse, { run } from './utils/parse'
 
 const initialState = { selected: 0 }
 export type PaletteConfig = Partial<Config>
 
-const run = (command: CommandType) => {
-  if (typeof command.perform !== 'undefined') return command.perform?.()
-  else if (typeof command.href !== 'undefined')
-    window.open(command.href, command.newTab ? '_blank' : '_self')
-}
+// export const PaletteContext = createContext<PaletteContextType | undefined>(
+//   undefined
+// )
 
-const parse = (command: CommandType, event: KeyboardEvent, map: string[]) => {
-  map.push(event.key)
-  setTimeout(() => map.splice(0, map.length), 1000)
-
-  if (typeof command.shortcuts?.modifier === 'string') {
-    if (
-      command.shortcuts.modifier === 'ctrl' &&
-      event.ctrlKey &&
-      event.key === command.shortcuts.keys[0]
-    ) {
-      event.preventDefault()
-      run(command)
-    } else if (
-      command.shortcuts.modifier === 'alt' &&
-      event.altKey &&
-      event.key === command.shortcuts.keys[0]
-    ) {
-      event.preventDefault()
-      return run(command)
-    } else if (
-      command.shortcuts.modifier === 'shift' &&
-      event.key === command.shortcuts.keys[0].toUpperCase()
-    ) {
-      event.preventDefault()
-      return run(command)
-    } else if (
-      command.shortcuts.modifier === 'meta' &&
-      event.metaKey &&
-      event.key === command.shortcuts.keys[0]
-    ) {
-      event.preventDefault()
-      return run(command)
-    }
-  } else if (command.shortcuts?.keys.length === 2) {
-    const last = map.slice(-2)
-    if (
-      last[0] === command.shortcuts.keys[0] &&
-      last[1] === command.shortcuts.keys[1]
-    )
-      return run(command)
-  } else if (
-    command.shortcuts?.keys.length === 1 &&
-    event.key === command.shortcuts.keys[0]
-  )
-    run(command)
-}
+// const Provider: FC<{
+//   children: ReactNode
+//   value: {
+//     open: number
+//     setOpen: Dispatch<SetStateAction<number>>
+//     input: string
+//     setInput: Dispatch<SetStateAction<number>>
+//     config: Config
+//   }
+// }> = ({ children, value }) => {
+//   return (
+//     <PaletteContext.Provider value={value}>{children}</PaletteContext.Provider>
+//   )
+// }
 
 export const Palette: FC<PaletteProps> = ({
   open,
   setOpen,
   index,
   commands,
-  categories,
   main,
   config
 }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
-  const [sortedCommands, setSortedCommands] = useState<SortedCommands[]>([])
-  const [results, setResults] = useState<SortedCommands[]>([])
+  const [results, setResults] = useState<CommandResults[]>([])
   const [resultIndex, setResultIndex] = useState(0)
 
   useEffect(() => {
@@ -91,33 +65,35 @@ export const Palette: FC<PaletteProps> = ({
     let index = 0
 
     if (!query) {
-      const sortedCommandsArray: SortedCommands[] = []
+      const sortedCommandsArray: CommandResults[] = []
       let index = 0
 
       // eslint-disable-next-line no-unused-expressions
-      categories?.forEach((category) => {
-        const f = commands.filter((command) => command.category === category)
-        const sorted = f.map((command) => {
-          index++
-          return {
-            ...command,
-            globalIndex: index - 1
+      commands?.forEach((category) => {
+        const indexedCommands: GlobalCommand[] = category.commands.map(
+          (command) => {
+            index++
+            return {
+              ...command,
+              globalIndex: index - 1
+            }
           }
-        })
+        )
 
-        sortedCommandsArray.push({ title: category, commands: sorted })
+        sortedCommandsArray.push({
+          category: category.category,
+          commands: indexedCommands
+        })
       })
 
       setResultIndex(index)
-      setSortedCommands(sortedCommandsArray)
       return setResults(sortedCommandsArray)
     }
 
-    const sorted: SortedCommands[] = []
-
+    const sorted: CommandResults[] = []
     // eslint-disable-next-line no-unused-expressions
-    sortedCommands.forEach((row) => {
-      const results: SortedCommands = { title: row.title, commands: [] }
+    commands.forEach((row) => {
+      const results: CommandResults = { category: row.category, commands: [] }
       row.commands.forEach((command) => {
         const text =
           command.text.toLowerCase() + command.keywords?.toLowerCase()
@@ -206,23 +182,27 @@ export const Palette: FC<PaletteProps> = ({
   }, [open, setOpen])
 
   useEffect(() => {
-    commands.forEach((command) => {
-      if (command.shortcuts) {
-        const map: string[] = []
-        window.addEventListener('keydown', (event) =>
-          parse(command, event, map)
-        )
-      }
-    })
-
-    return () => {
-      commands.forEach((command) => {
+    commands.forEach((row) => {
+      row.commands.forEach((command) => {
         if (command.shortcuts) {
           const map: string[] = []
-          window.removeEventListener('keydown', (event) =>
+          window.addEventListener('keydown', (event) =>
             parse(command, event, map)
           )
         }
+      })
+    })
+
+    return () => {
+      commands.forEach((row) => {
+        row.commands.forEach((command) => {
+          if (command.shortcuts) {
+            const map: string[] = []
+            window.removeEventListener('keydown', (event) =>
+              parse(command, event, map)
+            )
+          }
+        })
       })
     }
   }, [])
@@ -267,10 +247,7 @@ export const Palette: FC<PaletteProps> = ({
               className={styles.wrapper}
               ref={parentRef}
               style={{
-                height:
-                  resultIndex >= 5
-                    ? config?.paletteMaxHeight || 340
-                    : 'fit-content'
+                height: config?.paletteMaxHeight || 320
               }}
             >
               <AnimateSharedLayout>
@@ -281,7 +258,7 @@ export const Palette: FC<PaletteProps> = ({
                         className={styles.title}
                         style={{ color: config?.headingColor || '#828282' }}
                       >
-                        {category.title}
+                        {category.category}
                       </p>
                     )}
                     {category.commands.map((command, index) => (
@@ -311,7 +288,7 @@ export const Palette: FC<PaletteProps> = ({
 }
 
 const Command: FC<{
-  command: CommandType
+  command: CategoryCommand
   onMouseEnter: () => void
   isSelected: boolean
   setOpen: Dispatch<SetStateAction<number>>
