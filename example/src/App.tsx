@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Command, Palette } from 'kmenu'
+import { Command, Palette, Provider, useCommands } from 'kmenu'
 import 'kmenu/dist/index.css'
 import {
   FiGlobe,
@@ -15,6 +15,7 @@ import styles from './styles/example.module.css'
 
 const App = () => {
   const [open, setOpen] = useState(0)
+  // const [index, toggle] = useKmenu()
 
   const mainCommands: Command[] = [
     {
@@ -109,21 +110,18 @@ const App = () => {
     }
   ]
 
+  const main = useCommands(mainCommands)
+  const nested = useCommands(nestedCommands)
+
   return (
-    <div>
-      <Palette
-        open={open}
-        setOpen={setOpen}
-        index={1}
-        commands={mainCommands}
-        main
-      />
-      <Palette
-        open={open}
-        setOpen={setOpen}
-        index={2}
-        commands={nestedCommands}
-      />
+    <Provider
+      values={{
+        open: open,
+        setOpen: setOpen
+      }}
+    >
+      <Palette index={1} commands={main} main />
+      <Palette index={2} commands={nested} />
       <main className={styles.main}>
         <h1 className={styles.title}>Hello, World!</h1>
         <p className={styles.description}>
@@ -131,8 +129,10 @@ const App = () => {
           in action! To get started, check out the{' '}
           <a href='https://github.com/harshhhdev/kmenu'>GitHub</a>.
         </p>
+        {/* <p>{index}</p>
+        <button onClick={() => toggle()}>Toggle</button> */}
       </main>
-    </div>
+    </Provider>
   )
 }
 

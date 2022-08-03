@@ -2,8 +2,9 @@ import { Dispatch, ReactElement, SetStateAction } from 'react'
 
 export type PaletteContext = {
   open: number
-  setOpen: (index: number) => void
-  input: string
+  setOpen: Dispatch<SetStateAction<number>>
+  input?: string
+  config?: Partial<Config>
 }
 
 export type PaletteProviderProps = {
@@ -11,17 +12,14 @@ export type PaletteProviderProps = {
 }
 
 export type PaletteProps = {
-  open: number
-  setOpen: Dispatch<SetStateAction<number>>
   index: number
-  commands: Command[]
+  commands: CommandWithIndex
   main?: boolean
-  config?: Partial<Config>
 }
 
 export type UseKmenuProps = {
   open: boolean
-  setOpen: () => void
+  setOpen: Dispatch<SetStateAction<number>>
 }
 
 export type GlobalCommand = CategoryCommand & { globalIndex: number }
@@ -31,7 +29,12 @@ export type Command = {
   commands: CategoryCommand[]
 }
 
-export type CommandResults = {
+export type CommandWithIndex = {
+  index: number
+  commands: SortedCommands[]
+}
+
+export type SortedCommands = {
   category: string
   commands: GlobalCommand[]
 }

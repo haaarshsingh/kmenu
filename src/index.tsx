@@ -1,6 +1,8 @@
 import React, {
-  // createContext,
-  // ReactNode,
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
   useEffect,
   useReducer,
   useRef,
@@ -17,8 +19,10 @@ import {
   CategoryCommand,
   PaletteProps,
   GlobalCommand,
-  CommandResults
-  // PaletteContext as PaletteContextType
+  SortedCommands,
+  PaletteContext as PaletteContextType,
+  Command,
+  CommandWithIndex
 } from './types'
 import styles from './styles/palette.module.css'
 import useClickOutside from './hooks/useClickOutside'
@@ -28,72 +32,82 @@ import parse, { run } from './utils/parse'
 const initialState = { selected: 0 }
 export type PaletteConfig = Partial<Config>
 
-// export const PaletteContext = createContext<PaletteContextType | undefined>(
-//   undefined
-// )
+export const PaletteContext = createContext<PaletteContextType>(
+  {} as PaletteContextType
+)
 
-// const Provider: FC<{
-//   children: ReactNode
-//   value: {
-//     open: number
-//     setOpen: Dispatch<SetStateAction<number>>
-//     input: string
-//     setInput: Dispatch<SetStateAction<number>>
-//     config: Config
-//   }
-// }> = ({ children, value }) => {
-//   return (
-//     <PaletteContext.Provider value={value}>{children}</PaletteContext.Provider>
-//   )
-// }
+export const Provider: FC<{
+  children: ReactNode
+  values: {
+    open: number
+    setOpen: Dispatch<SetStateAction<number>>
+    input?: string
+    config?: Config
+  }
+}> = ({ children, values }) => {
+  return (
+    <PaletteContext.Provider value={values}>{children}</PaletteContext.Provider>
+  )
+}
 
-export const Palette: FC<PaletteProps> = ({
-  open,
-  setOpen,
-  index,
-  commands,
-  main,
-  config
-}) => {
+export const useCommands = (commands: Command[]): CommandWithIndex => {
+  const sortedCommandsArray: SortedCommands[] = []
+  let index = 0
+
+  // eslint-disable-next-line no-unused-expressions
+  commands?.forEach((category) => {
+    const indexedCommands: GlobalCommand[] = category.commands.map(
+      (command) => {
+        index++
+        return {
+          ...command,
+          globalIndex: index - 1
+        }
+      }
+    )
+
+    sortedCommandsArray.push({
+      category: category.category,
+      commands: indexedCommands
+    })
+  })
+
+  return { index: index, commands: sortedCommandsArray }
+}
+
+export const useKmenu = (): [number, () => void] => {
+  const { open, config } = useContext(PaletteContext)
+
+  const toggle = useCallback(() => {
+    console.log(open)
+    console.log(config)
+  }, [open, config])
+
+  return [open, toggle]
+}
+
+export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<CommandResults[]>([])
-  const [resultIndex, setResultIndex] = useState(0)
+  const [results, setResults] = useState<CommandWithIndex | null>(null)
+  const { open, setOpen, config } = useContext(PaletteContext)
 
   useEffect(() => {
     state.selected = 0
     let index = 0
 
     if (!query) {
-      const sortedCommandsArray: CommandResults[] = []
-      let index = 0
-
-      // eslint-disable-next-line no-unused-expressions
-      commands?.forEach((category) => {
-        const indexedCommands: GlobalCommand[] = category.commands.map(
-          (command) => {
-            index++
-            return {
-              ...command,
-              globalIndex: index - 1
-            }
-          }
-        )
-
-        sortedCommandsArray.push({
-          category: category.category,
-          commands: indexedCommands
-        })
-      })
-
-      setResultIndex(index)
-      return setResults(sortedCommandsArray)
+      return setResults(commands)
     }
 
-    const sorted: CommandResults[] = []
+    const sorted: SortedCommands[] = []
     // eslint-disable-next-line no-unused-expressions
-    commands.forEach((row) => {
-      const results: CommandResults = { category: row.category, commands: [] }
+    commands.commands.forEach((row) => {
+      const results: SortedCommands = {
+        category: row.category,
+        commands: []
+      }
+
       row.commands.forEach((command) => {
         const text =
           command.text.toLowerCase() + command.keywords?.toLowerCase()
@@ -102,22 +116,22 @@ export const Palette: FC<PaletteProps> = ({
           index++
         }
       })
+
       sorted.push(results)
     })
 
-    setResultIndex(index)
-    setResults(sorted)
+    setResults({ index: index, commands: sorted })
   }, [query, setQuery])
 
   const reducer: Reducer<State, Action> = (state, action) => {
     switch (action.type) {
       case ActionType.INCREASE:
-        return state.selected === resultIndex - 1
+        return state.selected === results!.index - 1
           ? { ...state, selected: 0 }
           : { ...state, selected: state.selected + 1 }
       case ActionType.DECREASE:
         return state.selected === 0
-          ? { ...state, selected: resultIndex - 1 }
+          ? { ...state, selected: results!.index - 1 }
           : { ...state, selected: state.selected - 1 }
       case ActionType.CUSTOM:
         return {
@@ -182,7 +196,7 @@ export const Palette: FC<PaletteProps> = ({
   }, [open, setOpen])
 
   useEffect(() => {
-    commands.forEach((row) => {
+    commands.commands.forEach((row) => {
       row.commands.forEach((command) => {
         if (command.shortcuts) {
           const map: string[] = []
@@ -194,7 +208,7 @@ export const Palette: FC<PaletteProps> = ({
     })
 
     return () => {
-      commands.forEach((row) => {
+      commands.commands.forEach((row) => {
         row.commands.forEach((command) => {
           if (command.shortcuts) {
             const map: string[] = []
@@ -251,7 +265,7 @@ export const Palette: FC<PaletteProps> = ({
               }}
             >
               <AnimateSharedLayout>
-                {results?.map((category, index) => (
+                {results?.commands.map((category, index) => (
                   <div key={index}>
                     {category.commands.length > 0 && (
                       <p
