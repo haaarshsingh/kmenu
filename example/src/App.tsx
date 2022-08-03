@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useEffect, useState } from 'react'
 import { Command, Palette, Provider, useCommands } from 'kmenu'
 import 'kmenu/dist/index.css'
 import {
   FiGlobe,
-  FiTwitter,
   FiGithub,
-  FiLinkedin,
-  FiArrowRight,
   FiDownloadCloud,
   FiBook,
   FiAlertOctagon
@@ -17,58 +15,7 @@ const App = () => {
   const [open, setOpen] = useState(0)
   // const [index, toggle] = useKmenu()
 
-  const mainCommands: Command[] = [
-    {
-      category: 'Socials',
-      commands: [
-        {
-          icon: <FiGlobe />,
-          text: 'Website',
-          href: 'https://hxrsh.in',
-          newTab: true,
-          keywords: 'home'
-        },
-
-        {
-          icon: <FiTwitter />,
-          text: 'Twitter',
-          href: 'https://twitter.com/harshhhdev',
-          newTab: true,
-          shortcuts: { modifier: 'alt', keys: ['t'] }
-        },
-        {
-          icon: <FiGithub />,
-          text: 'GitHub',
-          href: 'https://github.com/harshhhdev',
-          newTab: true,
-          shortcuts: { keys: ['g', 'h'] }
-        },
-        {
-          text: 'Dribbble',
-          href: 'https://dribbble.com/harshhhdev',
-          newTab: true
-        },
-        {
-          icon: <FiLinkedin />,
-          text: 'Linkedin',
-          href: 'https://linkedin.com/in/harshhhdev',
-          newTab: true
-        }
-      ]
-    },
-    {
-      category: 'Utility',
-      commands: [
-        {
-          icon: <FiArrowRight />,
-          text: 'Nested Example...',
-          perform: () => setOpen(2)
-        }
-      ]
-    }
-  ]
-
-  const nestedCommands: Command[] = [
+  const nested: Command[] = [
     {
       category: 'Information',
       commands: [
@@ -110,8 +57,12 @@ const App = () => {
     }
   ]
 
-  const main = useCommands(mainCommands)
-  const nested = useCommands(nestedCommands)
+  const [cmds, setCmds] = useCommands()
+  const [n] = useCommands(nested)
+
+  useEffect(() => {
+    setCmds([{ category: 'Example', commands: [{ text: 'Test' }] }])
+  }, [])
 
   return (
     <Provider
@@ -120,8 +71,8 @@ const App = () => {
         setOpen: setOpen
       }}
     >
-      <Palette index={1} commands={main} main />
-      <Palette index={2} commands={nested} />
+      <Palette index={1} commands={cmds} main />
+      <Palette index={2} commands={n} />
       <main className={styles.main}>
         <h1 className={styles.title}>Hello, World!</h1>
         <p className={styles.description}>

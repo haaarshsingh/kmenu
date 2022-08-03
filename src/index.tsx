@@ -50,29 +50,66 @@ export const Provider: FC<{
   )
 }
 
-export const useCommands = (commands: Command[]): CommandWithIndex => {
-  const sortedCommandsArray: SortedCommands[] = []
+export const useCommands = (
+  initialCommands?: Command[]
+): [CommandWithIndex, (commands: Command[]) => void] => {
   let index = 0
 
-  // eslint-disable-next-line no-unused-expressions
-  commands?.forEach((category) => {
-    const indexedCommands: GlobalCommand[] = category.commands.map(
-      (command) => {
-        index++
-        return {
-          ...command,
-          globalIndex: index - 1
-        }
-      }
-    )
+  const [commands, setCommands] = useState<SortedCommands[]>(() => {
+    const sorted: SortedCommands[] = []
 
-    sortedCommandsArray.push({
-      category: category.category,
-      commands: indexedCommands
+    // eslint-disable-next-line no-unused-expressions
+    initialCommands?.forEach((category) => {
+      const indexedCommands: GlobalCommand[] = category.commands.map(
+        (command) => {
+          index++
+          return {
+            ...command,
+            globalIndex: index - 1
+          }
+        }
+      )
+
+      sorted.push({
+        category: category.category,
+        commands: indexedCommands
+      })
     })
+
+    return sorted
   })
 
-  return { index: index, commands: sortedCommandsArray }
+  return [
+    { index: index, commands: commands },
+    useCallback(
+      (cmds: Command[]) => {
+        setCommands(() => {
+          const sorted: SortedCommands[] = []
+
+          // eslint-disable-next-line no-unused-expressions
+          cmds.forEach((category) => {
+            const indexedCommands: GlobalCommand[] = category.commands.map(
+              (command) => {
+                index++
+                return {
+                  ...command,
+                  globalIndex: index - 1
+                }
+              }
+            )
+
+            sorted.push({
+              category: category.category,
+              commands: indexedCommands
+            })
+          })
+
+          return sorted
+        })
+      },
+      [commands]
+    )
+  ]
 }
 
 export const useKmenu = (): [number, () => void] => {
@@ -96,9 +133,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
     state.selected = 0
     let index = 0
 
-    if (!query) {
-      return setResults(commands)
-    }
+    if (!query || query === '') return setResults(commands)
 
     const sorted: SortedCommands[] = []
     // eslint-disable-next-line no-unused-expressions
