@@ -232,9 +232,21 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
     }
   }
 
+  const mobileToggle = (event: TouchEvent) => {
+    if (event.touches.length >= 2) {
+      event.preventDefault()
+      if (main) setOpen((open) => (open === index ? 0 : index))
+      else if (!main && open === index) setOpen(0)
+    }
+  }
+
   useEffect(() => {
     window.addEventListener('keydown', toggle)
-    return () => window.removeEventListener('keydown', toggle)
+    window.addEventListener('touchstart', mobileToggle)
+    return () => {
+      window.removeEventListener('keydown', toggle)
+      window.removeEventListener('touchstart', mobileToggle)
+    }
   }, [open, setOpen])
 
   useEffect(() => {
