@@ -36,7 +36,7 @@ export const PaletteContext = createContext<PaletteContextType>(
   {} as PaletteContextType
 )
 
-export const Provider: FC<{
+export const MenuProvider: FC<{
   children: ReactNode
   values: {
     open: number
@@ -53,9 +53,9 @@ export const Provider: FC<{
 export const useCommands = (
   initialCommands?: Command[]
 ): [CommandWithIndex, (commands: Command[]) => void] => {
-  let index = 0
-
+  const [index, setIndex] = useState<number>()
   const [commands, setCommands] = useState<SortedCommands[]>(() => {
+    let index = 0
     const sorted: SortedCommands[] = []
 
     // eslint-disable-next-line no-unused-expressions
@@ -76,13 +76,16 @@ export const useCommands = (
       })
     })
 
+    setIndex(index)
     return sorted
   })
 
   return [
-    { index: index, commands: commands },
+    { index: index!, commands: commands },
     useCallback(
       (cmds: Command[]) => {
+        let index = 0
+
         setCommands(() => {
           const sorted: SortedCommands[] = []
 
@@ -104,6 +107,7 @@ export const useCommands = (
             })
           })
 
+          setIndex(index)
           return sorted
         })
       },
@@ -133,7 +137,10 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
     state.selected = 0
     let index = 0
 
-    if (!query || query === '') return setResults(commands)
+    if (!query) {
+      console.log(commands)
+      return setResults(commands)
+    }
 
     const sorted: SortedCommands[] = []
     // eslint-disable-next-line no-unused-expressions
@@ -157,6 +164,10 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
 
     setResults({ index: index, commands: sorted })
   }, [query, setQuery])
+
+  // useEffect(() => {
+  //   console.log(results?.index)
+  // }, [results, setResults])
 
   const reducer: Reducer<State, Action> = (state, action) => {
     switch (action.type) {

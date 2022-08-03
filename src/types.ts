@@ -13,7 +13,7 @@ export type PaletteProviderProps = {
 
 export type PaletteProps = {
   index: number
-  commands: CommandWithIndex
+  commands: Readonly<CommandWithIndex>
   main?: boolean
 }
 
