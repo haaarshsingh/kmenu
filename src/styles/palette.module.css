@@ -20,8 +20,8 @@
 .dialog {
   padding: 0.5rem;
   background-color: #181818;
-  width: 30%;
-  border-radius: 1rem;
+  width: 640px;
+  border-radius: 10px;
   transition: 0.1s ease 0s;
   will-change: height;
   position: relative;
@@ -30,21 +30,20 @@
 .search {
   color: white;
   border: none;
-  padding: 1.25rem;
-  margin-bottom: 0.5rem;
+  padding: 20px 10px;
+  margin: 0 0 8px;
   background-color: transparent;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 18px;
   width: 100%;
-  border-bottom: #777777 1px solid;
+  border-bottom: #e9ecef 1px solid;
   outline: 0;
   font-family: inherit;
 }
 
 .wrapper {
   display: flex;
-  overflow-y: scroll;
-  overflow-x: visible;
+  overflow-y: auto;
+  overflow-x: hidden;
   flex-direction: column;
   width: 100%;
   transition: height 0.1s ease 0s;
@@ -62,6 +61,7 @@
   justify-content: space-between;
   position: relative;
   margin: 0.4rem 0;
+  height: 54px;
   color: #d1d5db;
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -97,7 +97,7 @@ kbd {
 svg {
   width: 20px;
   height: 20px;
-  margin-right: 7px;
+  margin-right: 12px;
 }
 
 .title {
@@ -109,7 +109,7 @@ svg {
 .selected {
   position: absolute;
   width: 100%;
-  height: 4rem;
+  height: 54px;
   border-radius: 0.5rem;
   background: #ffffff20;
 }
@@ -117,46 +117,17 @@ svg {
 .text {
   max-width: 90%;
   width: fit-content;
-  margin: 1rem 0;
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 16px;
 }
 
 .scroll_ref {
   margin-top: 20px;
 }
 
-@media only screen and (max-width: 1650px) {
-  .dialog {
-    width: 30%;
-  }
-}
-
-@media only screen and (max-width: 1440px) {
-  .dialog {
-    width: 40%;
-  }
-}
-
-@media only screen and (max-width: 1300px) {
-  .dialog {
-    width: 50%;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .dialog {
-    width: 60%;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .dialog {
-    width: 70%;
-  }
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .dialog {
     width: 90%;
   }

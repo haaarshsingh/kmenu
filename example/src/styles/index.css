@@ -30,3 +30,7 @@ a {
   color: #000000;
   text-underline-offset: 8px;
 }
+
+::placeholder {
+  color: #adb5bd;
+}

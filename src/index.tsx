@@ -165,10 +165,6 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
     setResults({ index: index, commands: sorted })
   }, [query, setQuery])
 
-  // useEffect(() => {
-  //   console.log(results?.index)
-  // }, [results, setResults])
-
   const reducer: Reducer<State, Action> = (state, action) => {
     switch (action.type) {
       case ActionType.INCREASE:
@@ -289,9 +285,9 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             style={{
-              backgroundColor: config?.backgroundColor || '#F6F6F6',
+              backgroundColor: config?.backgroundColor || '#FFFFFF',
               border: `solid ${config?.borderColor}` || 'solid #3f3f3f',
-              borderRadius: `${config?.borderRadius}px` || '16px',
+              borderRadius: `${config?.borderRadius}px` || '12px',
               borderWidth: config?.borderWidth || 1
             }}
           >
@@ -307,7 +303,11 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
               className={styles.wrapper}
               ref={parentRef}
               style={{
-                height: config?.paletteMaxHeight || 320
+                overflowY: results!.index >= 5 ? 'auto' : 'hidden',
+                height:
+                  results!.index >= 5
+                    ? config?.paletteMaxHeight || 320
+                    : results!.index * 80
               }}
             >
               <AnimateSharedLayout>
