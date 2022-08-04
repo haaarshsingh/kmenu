@@ -25,6 +25,7 @@
   transition: 0.1s ease 0s;
   will-change: height;
   position: relative;
+  box-shadow: 0px 0px 59px 10px #00000020;
 }
 
 .search {
@@ -60,7 +61,6 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  margin: 0.4rem 0;
   height: 54px;
   color: #d1d5db;
   font-size: 1.125rem;
@@ -101,7 +101,7 @@ svg {
 }
 
 .title {
-  margin: 10px 0 15px 10px;
+  margin: 5px 0 10px 10px;
   font-size: 14px;
   color: #777777;
 }

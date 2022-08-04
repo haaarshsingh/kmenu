@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Command, Palette, MenuProvider, useCommands } from 'kmenu'
 import 'kmenu/dist/index.css'
 import {
@@ -113,10 +113,6 @@ const App = () => {
 
   const [mainCommands] = useCommands(main)
   const [nestedCommands] = useCommands(nested)
-
-  useEffect(() => {
-    console.log(mainCommands.index)
-  }, [mainCommands])
 
   return (
     <MenuProvider

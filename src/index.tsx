@@ -143,6 +143,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
     }
 
     const sorted: SortedCommands[] = []
+
     // eslint-disable-next-line no-unused-expressions
     commands.commands.forEach((row) => {
       const results: SortedCommands = {
@@ -159,7 +160,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
         }
       })
 
-      sorted.push(results)
+      if (results.commands.length > 0) sorted.push(results)
     })
 
     setResults({ index: index, commands: sorted })
@@ -284,7 +285,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           style={{
-            backgroundColor: config?.backdropColor || '#00000090',
+            backgroundColor: config?.backdropColor || '#FFFFFF20',
             backdropFilter: `blur(${config?.backdropBlur}px)` || 'blur(2px)'
           }}
         >
@@ -319,7 +320,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
                 height:
                   results!.index >= 5
                     ? config?.paletteMaxHeight || 320
-                    : results!.index * 80
+                    : results!.commands.length * 31 + results!.index * 54
               }}
             >
               <AnimateSharedLayout>
