@@ -29,7 +29,7 @@ yarn add kmenu
 
 ### Using the Provider
 
-After you install, you must wrap your application around the `MenuProvider` component. Want to learn how you can customise your menu configuration? Check out the [MenuConfig section](https://github.com/harshhhdev/kmenu/edit/v1/README.md#menu-config).
+After you install, you must wrap your application around the `MenuProvider` component. Want to learn how you can customise your menu configuration? Check out the [MenuConfig section](https://github.com/harshhhdev/kmenu/README.md#menu-config).
 
 Inside the `MenuProvider`, you can pass in the theme configuration which all of the palettes will use. 
 
@@ -82,7 +82,7 @@ Each shortcut can have two target keys and a modifier that would be used in conj
 | modifier  | The modifier key used in conjunction with the target key | shift, ctrl, alt, or meta (string) | ✅       |
 | keys      | The target keys for this command                         | [string, string?]                  | ❌       |
 
-After you've created all your commands, you must pass them into the `useCommands` hook, which returns a getter and a setter for the commands. For a reference, check out the section on the [useCommands hook](https://github.com/harshhhdev/kmenu/edit/v1/README.md#usecommands-hook). 
+After you've created all your commands, you must pass them into the `useCommands` hook, which returns a getter and a setter for the commands. For a reference, check out the section on the [useCommands hook](https://github.com/harshhhdev/kmenu/README.md#usecommands-hook). 
 
 Anyways, now that you have an underlying idea of how commands work, here's an example of how to create the commands (using [TypeScript](https://typescriptlang.org/)): 
 
