@@ -70,9 +70,10 @@ export type CategoryCommand = {
   keywords?: string
   /* Keyboard shortcuts which can trigger the command OUTSIDE the command menu */
   shortcuts?: Shortcut
+  /* Whether or not to close this palette when the functino is called */
+  closeOnComplete?: boolean
 }
 
-/* */
 export type Shortcut = {
   /* Key that will be used in conjunction with the shortcut */
   /* NOTE: Some operating systems don't recognise the meta key. On macOS it's the 'cmd' key */
@@ -96,6 +97,16 @@ export type Config = {
   commandInactive: string
   commandActive: string
   barBackground: string
+}
+
+/* Props for the parse function to parse command shortcuts */
+export type ParseProps = {
+  /* The command which defined this shortcut */
+  command: CategoryCommand
+  /* Keyboard event object to get the user interaction with the keyboard */
+  event: KeyboardEvent
+  /* A character map containing the characters the user has pressed for double key commands */
+  map: string[]
 }
 
 /* Types for the useClickOutside hook */

@@ -212,7 +212,7 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
           const map: string[] = []
           /* Add a keydown event to listen for the shortcuts, and use the parse function to parse the shortcut */
           window.addEventListener('keydown', (event) =>
-            parse(command, event, map)
+            parse({ command: command, event: event, map: map })
           )
         }
       })
@@ -225,7 +225,7 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
           if (command.shortcuts) {
             const map: string[] = []
             window.removeEventListener('keydown', (event) =>
-              parse(command, event, map)
+              parse({ command: command, event: event, map: map })
             )
           }
         })
