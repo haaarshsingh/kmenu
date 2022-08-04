@@ -1,6 +1,4 @@
 import React, {
-  createContext,
-  ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -17,10 +15,8 @@ import {
   State,
   Config,
   CategoryCommand,
-  PaletteProps,
-  GlobalCommand,
+  MenuProps,
   SortedCommands,
-  PaletteContext as PaletteContextType,
   Command,
   CommandWithIndex
 } from './types'
@@ -28,121 +24,33 @@ import styles from './styles/palette.module.css'
 import useClickOutside from './hooks/useClickOutside'
 import useInView from './hooks/useInView'
 import parse, { run } from './utils/parse'
+import { MenuContext } from './menuProvider'
 
 const initialState = { selected: 0 }
-export type PaletteConfig = Partial<Config>
+export type MenuConfig = Partial<Config>
 
-export const PaletteContext = createContext<PaletteContextType>(
-  {} as PaletteContextType
-)
+export const useKmenu = (): [
+  number,
+  () => void,
+  Dispatch<SetStateAction<number>>
+] => {
+  const context = useContext(MenuContext)
 
-export const MenuProvider: FC<{
-  children: ReactNode
-  values: {
-    open: number
-    setOpen: Dispatch<SetStateAction<number>>
-    input?: string
-    config?: Config
-  }
-}> = ({ children, values }) => {
-  return (
-    <PaletteContext.Provider value={values}>{children}</PaletteContext.Provider>
-  )
-}
-
-export const useCommands = (
-  initialCommands?: Command[]
-): [CommandWithIndex, (commands: Command[]) => void] => {
-  const [height, setHeight] = useState<number>()
-  const [index, setIndex] = useState<number>()
-  const [commands, setCommands] = useState<SortedCommands[]>(() => {
-    let currentCategories = 0
-    let height = 0
-    let index = 0
-    const sorted: SortedCommands[] = []
-
-    // eslint-disable-next-line no-unused-expressions
-    initialCommands?.forEach((category) => {
-      currentCategories++
-      const indexedCommands: GlobalCommand[] = category.commands.map(
-        (command) => {
-          index++
-          if (index <= 5) height = currentCategories * 31 + index * 54
-          return {
-            ...command,
-            globalIndex: index - 1
-          }
-        }
-      )
-
-      sorted.push({
-        category: category.category,
-        commands: indexedCommands
-      })
-    })
-
-    setHeight(height)
-    setIndex(index)
-    return sorted
-  })
-
-  return [
-    { index: index!, commands: commands, initialHeight: height! },
-    useCallback(
-      (cmds: Command[]) => {
-        let currentCategories = 0
-        let height = 0
-        let index = 0
-
-        setCommands(() => {
-          const sorted: SortedCommands[] = []
-
-          // eslint-disable-next-line no-unused-expressions
-          cmds.forEach((category) => {
-            currentCategories++
-            const indexedCommands: GlobalCommand[] = category.commands.map(
-              (command) => {
-                index++
-                if (index <= 5) height = currentCategories * 31 + index * 54
-                return {
-                  ...command,
-                  globalIndex: index - 1
-                }
-              }
-            )
-
-            sorted.push({
-              category: category.category,
-              commands: indexedCommands
-            })
-          })
-
-          setHeight(height)
-          setIndex(index)
-          return sorted
-        })
-      },
-      [commands]
-    )
-  ]
-}
-
-export const useKmenu = (): [number, () => void] => {
-  const { open, config } = useContext(PaletteContext)
+  if (!context)
+    throw new Error('useKmenu must be called inside the MenuProvider')
 
   const toggle = useCallback(() => {
-    console.log(open)
-    console.log(config)
-  }, [open, config])
+    context.setOpen((open: number) => (open === 0 ? 1 : 0))
+  }, [])
 
-  return [open, toggle]
+  return [context.open, toggle, context.setOpen]
 }
 
-export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
+export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<CommandWithIndex | null>(null)
-  const { open, setOpen, config } = useContext(PaletteContext)
+  const { open, setOpen, config } = useContext(MenuContext)
 
   useEffect(() => {
     state.selected = 0
@@ -230,7 +138,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
   const toggle = (event: KeyboardEvent) => {
     if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
       event.preventDefault()
-      if (main) setOpen((open) => (open === index ? 0 : index))
+      if (main) setOpen((open: number) => (open === index ? 0 : index))
       else if (!main && open === index) setOpen(0)
     }
 
@@ -250,7 +158,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
   const mobileToggle = (event: TouchEvent) => {
     if (event.touches.length >= 2) {
       event.preventDefault()
-      if (main) setOpen((open) => (open === index ? 0 : index))
+      if (main) setOpen((open: number) => (open === index ? 0 : index))
       else if (!main && open === index) setOpen(0)
     }
   }
@@ -321,7 +229,12 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
             <input
               placeholder={config?.placeholderText || 'What do you need?'}
               className={styles.search}
+              aria-expanded='true'
+              aria-autocomplete='list'
+              aria-haspopup='listbox'
+              role='combobox'
               autoFocus
+              spellCheck='false'
               ref={input}
               onChange={() => setQuery(input.current?.value!)}
               style={{ color: config?.inputColor || '#000' }}
@@ -329,6 +242,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
             <motion.div
               className={styles.wrapper}
               ref={parentRef}
+              role='listbox'
               style={{
                 overflowY: results!.index >= 5 ? 'auto' : 'hidden',
                 height:
@@ -379,7 +293,7 @@ const Command: FC<{
   onMouseEnter: () => void
   isSelected: boolean
   setOpen: Dispatch<SetStateAction<number>>
-  config?: PaletteConfig
+  config?: MenuConfig
 }> = ({ onMouseEnter, isSelected, command, setOpen, config }) => {
   const topRef = useRef<HTMLSpanElement>(null)
   const bottomRef = useRef<HTMLSpanElement>(null)
@@ -403,8 +317,8 @@ const Command: FC<{
   }, [isSelected, enter])
 
   return (
-    <div>
-      <span ref={topRef} />
+    <div role='option' aria-selected={isSelected}>
+      <span ref={topRef} aria-hidden='true' />
       <a
         className={styles.command}
         onMouseMove={onMouseEnter}
@@ -423,6 +337,7 @@ const Command: FC<{
             layoutId='box'
             className={styles.selected}
             initial={false}
+            aria-hidden='true'
             transition={{
               type: 'spring',
               stiffness: 1000,
@@ -448,10 +363,12 @@ const Command: FC<{
           </div>
         )}
       </a>
-      <span ref={bottomRef} className={styles.scroll_ref} />
+      <span ref={bottomRef} className={styles.scroll_ref} aria-hidden='true' />
     </div>
   )
 }
 
-export { Command, PaletteProps } from './types'
+export { Command, MenuProps } from './types'
 export { useShortcut } from './hooks/useShortcut'
+export { MenuProvider } from './menuProvider'
+export { useCommands } from './hooks/useCommands'
