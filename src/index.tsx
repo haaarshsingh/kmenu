@@ -28,7 +28,7 @@ import { MenuContext } from './menuProvider'
 /* The initial state of our keyboard selection */
 const initialState = { selected: 0 }
 
-export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
+export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
   /* Ref for handling the search bar */
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
@@ -108,7 +108,7 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
           ...state,
           selected: action.custom
         }
-      /* Action to reset the palette when the palette is closed and re-opened, or when the user searches for something */
+      /* Action to reset the menu when the menu is closed and re-opened, or when the user searches for something */
       case ActionType.RESET:
         /* Just set the selected to the first element on the list */
         return {
@@ -119,15 +119,15 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
   }
 
   /* Ref for controlling the dialog */
-  const paletteRef = useRef<HTMLDivElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
   /* Ref for controlling the div wheere all the commands are located */
   const parentRef = useRef<HTMLDivElement>(null)
   /* useReducer hook to manage the keyboard state */
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  /* Reset the palette whenever the open state is changed */
+  /* Reset the menu whenever the open state is changed */
   useEffect(() => {
-    /* Reset the component whenever the palette is toggled */
+    /* Reset the component whenever the menu is toggled */
     dispatch({ type: ActionType.RESET, custom: 0 })
     /* Set the query to blank */
     setQuery('')
@@ -137,16 +137,16 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
     else document.body.style.overflow = 'unset'
   }, [open, setOpen])
 
-  /* Shortcuts for navigating up and down the palette */
+  /* Shortcuts for navigating up and down the menu */
   const up = useShortcut({ targetKey: 'ArrowUp' })
   const down = useShortcut({ targetKey: 'ArrowDown' })
 
-  /* Hook for detecting clicks outside the palette area */
-  useClickOutside({ ref: paletteRef, handler: () => setOpen(0) })
+  /* Hook for detecting clicks outside the menu area */
+  useClickOutside({ ref: menuRef, handler: () => setOpen(0) })
 
-  /* Handle keyboard shortcuts for navigating the palette */
+  /* Handle keyboard shortcuts for navigating the menu */
   useEffect(() => {
-    /* First check if this instance of the palette is actually open or not */
+    /* First check if this instance of the menu is actually open or not */
     if (open === index) {
       /* Move up or down depending on what key the user has pressed */
       if (up) dispatch({ type: ActionType.DECREASE, custom: 0 })
@@ -154,19 +154,19 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
     }
   }, [up, down])
 
-  /* Function for toggling the palette along with using the tab key to navigate the palette */
+  /* Function for toggling the menu along with using the tab key to navigate the menu */
   const navigation = (event: KeyboardEvent) => {
-    /* Toggle the palette if the user presses ctrl/cmdk+k */
+    /* Toggle the menu if the user presses ctrl/cmdk+k */
     if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
       event.preventDefault()
       if (main) setOpen((open: number) => (open === index ? 0 : index))
       else if (!main && open === index) setOpen(0)
     }
 
-    /* Close the palette if the user presses escape */
+    /* Close the menu if the user presses escape */
     if (event.key === 'Escape') setOpen(0)
 
-    /* If the palette is open, then check if the user presses tab/shift+tab and navigate accordingly */
+    /* If the menu is open, then check if the user presses tab/shift+tab and navigate accordingly */
     if (open === index) {
       if (event.key === 'Tab' && !event.shiftKey) {
         event.preventDefault()
@@ -178,13 +178,13 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
     }
   }
 
-  /* Function to toggle the palette on mobile */
+  /* Function to toggle the menu on mobile */
   const mobileToggle = (event: TouchEvent) => {
     /* Check if the user has pressed their screen with two fingers */
     if (event.touches.length >= 2) {
       /* Prevent the default action */
       event.preventDefault()
-      /* Adjust the palette depending upon whether or not it's the main palette and if it's currently open/active */
+      /* Adjust the menu depending upon whether or not it's the main menu and if it's currently open/active */
       if (main) setOpen((open: number) => (open === index ? 0 : index))
       else if (!main && open === index) setOpen(0)
     }
@@ -250,7 +250,7 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
             className={styles.dialog}
             role='dialog'
             aria-modal='true'
-            ref={paletteRef}
+            ref={menuRef}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
@@ -282,7 +282,7 @@ export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
                 overflowY: results!.index >= 5 ? 'auto' : 'hidden',
                 height:
                   results!.index >= 5
-                    ? config?.paletteMaxHeight || results?.initialHeight
+                    ? results?.initialHeight
                     : results!.commands.length * 31 + results!.index * 54
               }}
             >
@@ -351,8 +351,8 @@ const Command: FC<{
 
     /* If the user presses the enter key, then run the command */
     if (enter && isSelected) {
-      /* Close the palette on select */
-      setOpen(0)
+      /* Close the menu on select if the closeOnComplete value isn't set to true */
+      if (!command.closeOnComplete) setOpen(0)
       /* Pass the entire command object in the run function */
       run(command)
     }
@@ -417,9 +417,9 @@ export type MenuConfig = Partial<Config>
 export { Command, MenuProps } from './types'
 /* Hook for defining custom shortcuts */
 export { useShortcut } from './hooks/useShortcut'
-/* The hook for declaring and setting dynamic commands on the palette */
+/* The hook for declaring and setting dynamic commands on the menu */
 export { useCommands } from './hooks/useCommands'
-/* The hook with utilities for using the palette */
+/* The hook with utilities for using the menu */
 export { useKmenu } from './hooks/useKmenu'
-/* The MenuProvider which the Palette must be wrapped under */
+/* The MenuProvider which the menu must be wrapped under */
 export { MenuProvider } from './menuProvider'

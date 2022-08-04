@@ -32,7 +32,7 @@ export const useCommands = ({
       const indexedCommands: GlobalCommand[] = category.commands.map(
         (command) => {
           index++
-          /* Adjust the height of the palette accordingly with the current index and the current categories */
+          /* Adjust the height of the menu accordingly with the current index and the current categories */
           if (index <= 5) height = currentCategories * 31 + index * 54
           /* Return the command with a global index */
           return {

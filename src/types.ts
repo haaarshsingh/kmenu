@@ -84,7 +84,6 @@ export type Shortcut = {
 
 /* Configuration options for the menu */
 export type Config = {
-  paletteMaxHeight: number
   backdropColor: string
   backdropBlur: number
   backgroundColor: string

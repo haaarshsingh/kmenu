@@ -11,11 +11,11 @@ export const useKmenu = (): UseKmenuReturnType => {
   if (!context)
     throw new Error('useKmenu must be called inside the MenuProvider')
 
-  /* Function for toggling the palette */
+  /* Function for toggling the menu */
   const toggle = useCallback(() => {
     context.setOpen((open: number) => (open === 0 ? 1 : 0))
   }, [])
 
-  /* Return the query, the index of the open palette, the toggle function and the setOpen hook */
+  /* Return the query, the index of the open menu, the toggle function and the setOpen hook */
   return [context.query, context.open, toggle, context.setOpen]
 }
