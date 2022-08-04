@@ -1,5 +1,4 @@
 import React, {
-  useCallback,
   useContext,
   useEffect,
   useReducer,
@@ -355,3 +354,4 @@ export { Command, MenuProps } from './types'
 export { useShortcut } from './hooks/useShortcut'
 export { MenuProvider } from './menuProvider'
 export { useCommands } from './hooks/useCommands'
+export { useKmenu } from './hooks/useKmenu'

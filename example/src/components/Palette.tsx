@@ -14,7 +14,7 @@ import {
 const CommandPalette: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
-  const [open, toggle, setOpen] = useKmenu()
+  const [input, open, toggle, setOpen] = useKmenu()
 
   const main: Command[] = [
     {
