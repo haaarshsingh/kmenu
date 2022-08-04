@@ -1,4 +1,4 @@
-import { Dispatch, ReactElement, SetStateAction } from 'react'
+import { Dispatch, ReactElement, RefObject, SetStateAction } from 'react'
 
 /* The props passed from the MenuProvider onto the index */
 export type MenuContext = {
@@ -25,15 +25,6 @@ export type MenuProps = {
   commands: CommandWithIndex
   /* Whether or not you want this menu to be the first displayed on toggle */
   main?: boolean
-}
-
-export type UseKmenuProps = {
-  /* Which menu is currently open */
-  open: boolean
-  /* Open another menu */
-  setOpen: Dispatch<SetStateAction<number>>
-  /* The input in the search bar */
-  input: string
 }
 
 /* Command with an index used for keyboard navigation */
@@ -105,6 +96,48 @@ export type Config = {
   commandInactive: string
   commandActive: string
   barBackground: string
+}
+
+/* Types for the useClickOutside hook */
+export type UseClickOutsideProps = {
+  /* The click boundary */
+  ref: RefObject<HTMLDivElement>
+  /* What happens when the user clicks outside */
+  handler: () => void
+}
+
+/* Types for the useCommands hook */
+export type UseCommandsProps = {
+  /* The initial set of commands on the palette */
+  initialCommands: Command[]
+}
+
+/* Types for the useInView hook */
+export type UseInViewProps = {
+  /* The ref that we'll be checking */
+  ref: RefObject<HTMLSpanElement>
+}
+
+/* Return type of the useKmenu hook */
+export type UseKmenuReturnType = [
+  /* The input text */
+  string,
+  /* The index of the palette that's currently open */
+  number,
+  /* The toggle function */
+  () => void,
+  /* The setter function for opening different palettes */
+  Dispatch<SetStateAction<number>>
+]
+
+/* Types for the useShortcut hook */
+export type UseShortcutProps = {
+  /* The target key this hook is listening for */
+  targetKey: string
+  /* Modifier that will be used in conjuntion with the target key */
+  modifier?: 'shift' | 'ctrl' | 'alt' | 'meta'
+  /* Function to call when this is actually pressed */
+  handler?: () => void
 }
 
 /* Type of actions one can perform on the menu */

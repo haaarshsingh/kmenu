@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-expressions */
 import { useCallback, useEffect, useState } from 'react'
+import { UseShortcutProps } from '../types'
 
-export const useShortcut = (
-  targetKey: string,
-  modifier?: 'shift' | 'ctrl' | 'alt' | 'meta',
-  handler?: () => void
-): boolean => {
+/* Hook for creating new shortcuts */
+export const useShortcut = ({
+  targetKey,
+  modifier,
+  handler
+}: UseShortcutProps): boolean => {
   const [keyPressed, setKeyPressed] = useState(false)
 
   const downHandler = useCallback((event: KeyboardEvent) => {
