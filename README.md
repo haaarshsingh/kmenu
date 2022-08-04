@@ -27,23 +27,64 @@ Install the [npm package](https://www.npmjs.com/package/kmenu)
 yarn add kmenu
 ```
 
+### Using the Provider
+
+After you install, you must wrap your application around the `MenuProvider` component. Want to learn how you can customise your menu configuration? Check out the [MenuConfig section](https://github.com/harshhhdev/kmenu/edit/v1/README.md#menu-config).
+
+Inside the `MenuProvider`, you can pass in the theme configuration which all of the palettes will use. 
+
+Below is an example:
+
+```jsx
+import { MenuProvider, MenuConfig } from 'kmenu'
+
+const App = () => {
+  const config: MenuConfig = { /* ... */ }
+  
+  return (
+    <MenuProvider config={config}>
+       {/* ... */}
+    </MenuProvider>
+  )
+}
+```
+
 ### Adding commands 
 
-After you've installed the package, you can now begin adding commands onto the command palette.
+After you've installed the package, you can now begin adding commands onto the command palette. 
 
-Here's a look at how you can create commands:
+The commands are broken up into two arrays. One array contains the different categories of the commands, and another array contains the commands itself. Here's a look at how you can define categories:
 
-| Parameter | Description                                      | Type         | Optional | 
-|-----------|--------------------------------------------------|--------------|----------|
-| icon      | The icon displayed next to the command           | ReactElement | ✅       |
-| text      | The text displayed on the command                | String       | ❌       |
-| perform   | The action to perform                            | void         | ✅       |
-| href      | The link to open                                 | void         | ✅       |
-| newTab    | Whether or not the link should open in a new tab | boolean      | ✅       |
-| keywords  | Search keywords for the command                  | string       | ✅       |
-| category  | The category this command will go under          | string       | ❌       |
+| Parameter | Description                                               | Type    | Optional | 
+|-----------|-----------------------------------------------------------|---------|----------|
+| category  | The name of the category the command will be displayed in | string  | ❌       |
+| commands  | An array of commands passed onto the category             | Command | ❌       |
 
-Here's an example of how to create the commands (using [TypeScript](https://typescriptlang.org/)): 
+Awesome. Now here's a look at how you can create commands:
+
+| Parameter       | Description                                                               | Type         | Optional | 
+|-----------------|---------------------------------------------------------------------------|--------------|----------|
+| icon            | The icon displayed next to the command                                    | ReactElement | ✅       |
+| text            | The text displayed on the command                                         | String       | ❌       |
+| perform         | The action to perform                                                     | void         | ✅       |
+| href            | The link to open                                                          | void         | ✅       |
+| newTab          | Whether or not the link should open in a new tab                          | boolean      | ✅       |
+| keywords        | Search keywords for the command                                           | string       | ✅       |
+| shorcuts        | The keyboard shortcuts to activate this command                           | Shortcut     | ✅       |
+| closeOnComplete | Whether the palette should close when the command is run (default: false) | Shortcut     | ✅       |
+
+As you might notice, the commands give you the ability to define custom shortcuts. 
+
+Each shortcut can have two target keys and a modifier that would be used in conjunction with a single target key. Note that if you're using a modifier, you can only use a SINGLE target key. Here's a look at how you can create shortcuts:
+
+| Parameter | Description                                              | Type                               | Optional | 
+|-----------|----------------------------------------------------------|------------------------------------|----------|
+| modifier  | The modifier key used in conjunction with the target key | shift, ctrl, alt, or meta (string) | ✅       |
+| keys      | The target keys for this command                         | [string, string?]                  | ❌       |
+
+After you've created all your commands, you must pass them into the `useCommands` hook, which returns a getter and a setter for the commands. For a reference, check out the section on the [useCommands hook](https://github.com/harshhhdev/kmenu/edit/v1/README.md#usecommands-hook). 
+
+Anyways, now that you have an underlying idea of how commands work, here's an example of how to create the commands (using [TypeScript](https://typescriptlang.org/)): 
 
 ```ts
 import {
@@ -61,51 +102,110 @@ import {
   Command as Cmd,
   Terminal
 } from 'react-feather'
-import type { Command } from 'kmenu'
 
-const commands: Command[] = [
+const main: Command[] = [
   {
-    icon: <Search />,
-    text: 'Search Documentation...',
-    keywords: 'docs',
-    category: 'Utility',
-    perform: () => /* function */
-  },
-  {
-    icon: <Copy />,
-    text: 'Copy URL',
-    perform: () => /* function */,
-    category: 'Utility'
-  },
-  {
-    icon: <Globe />,
-    text: 'Demo',
-    href: 'https://kmenu.hxrsh.in',
-    keywords: 'homepage site web',
-    category: 'Links'
-  },
-  {
-    icon: <GitHub />,
-    text: 'GitHub',
-    href: 'https://github.com/harshhhdev/kmenu',
-    keywords: 'source',
-    category: 'Links'
-  },
-  {
-    icon: <AlertCircle />,
-    text: 'Issues',
-    href: 'https://github.com/harshhhdev/kmenu/issues',
-    keywords: 'source',
-    category: 'Links'
-  },
-  {
-    icon: <GitPullRequest />,
-    text: 'Pull Requests',
-    href: 'https://github.com/harshhhdev/kmenu/pulls',
-    keywords: 'source',
-    category: 'Links'
+    category: 'Socials',
+    commands: [
+      {
+        icon: <FiGlobe />,
+        text: 'Website',
+        href: 'https://hxrsh.in',
+        newTab: true,
+        keywords: 'home'
+      },
+
+      {
+        icon: <FiTwitter />,
+        text: 'Twitter',
+        href: 'https://twitter.com/harshhhdev',
+        newTab: true,
+        shortcuts: { modifier: 'alt', keys: ['t'] }
+      },
+      {
+        icon: <FiGithub />,
+        text: 'GitHub',
+        href: 'https://github.com/harshhhdev',
+        newTab: true,
+        shortcuts: { keys: ['g', 'h'] }
+      },
+      {
+        text: 'Dribbble',
+        href: 'https://dribbble.com/harshhhdev',
+        newTab: true
+      },
+      {
+        icon: <FiLinkedin />,
+        text: 'Linkedin',
+        href: 'https://linkedin.com/in/harshhhdev',
+        newTab: true
+      }
+    ]
   }
 ]
+
+const Component = () => {
+  const [commands, setCommands] = useCommands(main)
+  
+  /* ... */
+}
+```
+
+### useKmenu
+
+`useKmenu` is a utility hook that gives you some useful functions and information about the current status of the palette. You can use these for a multitude of different things such as nested routes on the command menu or for toggling the palette through a button on your UI.
+
+Here's a list of all the information it provides: 
+
+| Parameter  | Description                                                              | Type                             |
+|------------|--------------------------------------------------------------------------|----------------------------------|
+| input      | The current text in the search bar of the palette that is currently open | string                           |
+| open       | The index of the palette is currently open                               | number                           |
+| setOpen    | The setter function to change the open state                             | Dispatch<SetStateAction<number>> |
+| toggle     | The function for toggling the main palette open/close                    | void                             |
+
+With that, here's also a code example of how you could use this hook!
+
+_NOTE: YOU MUST WRAP YOUR COMPONENT INSIDE THE MENUPROVIDER TO USE THIS HOOK_
+
+```jsx
+import { useKmenu } from 'kmenu'
+
+const Component = () => {
+  const [input, open, setOpen, toggle] = useKmenu()
+  
+  return (
+    <div>
+      <p>The current text on the search bar is: {input}</p>
+      <p>The index of the palette which is currently open is: {open}</p>
+      <button onClick={toggle}>Toggle Menu</button>
+    </div>
+  )
+}
+```
+
+
+### useCommands 
+
+With [kmenu v1](https://www.npmjs.com/package/kmenu/v/1.0.0-dev), you can now dynamically compute and define commands.
+
+When commands are inputted into the `useCommands` hook, they're returned into an object of command-menu parsable commands, and they require an initial value of the commands you'd like to pass in. 
+
+*NOTE: YOU CANNOT USE `SETCOMMANDS` DIRECTLY INSIDE OF A USEEFFECT HOOK AT RENDER*
+
+Here's an example of the hook live in action:
+
+```jsx
+import { CommandMenu, Command, useCommands } from 'kmenu'
+
+const Component = () => {
+  const main: Command[] = [ /* ... */ ]
+  
+  const [commands, setCommands] = useCommands(main)
+  
+  return 
+    <CommandMenu commands={commands} index={1} main />
+}
 ```
 
 ### Customising the Palette
