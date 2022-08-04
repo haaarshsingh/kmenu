@@ -31,6 +31,7 @@ export type Command = {
 
 export type CommandWithIndex = {
   index: number
+  initialHeight: number
   commands: SortedCommands[]
 }
 

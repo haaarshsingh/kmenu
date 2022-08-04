@@ -53,16 +53,21 @@ export const MenuProvider: FC<{
 export const useCommands = (
   initialCommands?: Command[]
 ): [CommandWithIndex, (commands: Command[]) => void] => {
+  const [height, setHeight] = useState<number>()
   const [index, setIndex] = useState<number>()
   const [commands, setCommands] = useState<SortedCommands[]>(() => {
+    let currentCategories = 0
+    let height = 0
     let index = 0
     const sorted: SortedCommands[] = []
 
     // eslint-disable-next-line no-unused-expressions
     initialCommands?.forEach((category) => {
+      currentCategories++
       const indexedCommands: GlobalCommand[] = category.commands.map(
         (command) => {
           index++
+          if (index <= 5) height = currentCategories * 31 + index * 54
           return {
             ...command,
             globalIndex: index - 1
@@ -76,14 +81,17 @@ export const useCommands = (
       })
     })
 
+    setHeight(height)
     setIndex(index)
     return sorted
   })
 
   return [
-    { index: index!, commands: commands },
+    { index: index!, commands: commands, initialHeight: height! },
     useCallback(
       (cmds: Command[]) => {
+        let currentCategories = 0
+        let height = 0
         let index = 0
 
         setCommands(() => {
@@ -91,9 +99,11 @@ export const useCommands = (
 
           // eslint-disable-next-line no-unused-expressions
           cmds.forEach((category) => {
+            currentCategories++
             const indexedCommands: GlobalCommand[] = category.commands.map(
               (command) => {
                 index++
+                if (index <= 5) height = currentCategories * 31 + index * 54
                 return {
                   ...command,
                   globalIndex: index - 1
@@ -107,6 +117,7 @@ export const useCommands = (
             })
           })
 
+          setHeight(height)
           setIndex(index)
           return sorted
         })
@@ -138,7 +149,6 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
     let index = 0
 
     if (!query) {
-      console.log(commands)
       return setResults(commands)
     }
 
@@ -163,7 +173,11 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
       if (results.commands.length > 0) sorted.push(results)
     })
 
-    setResults({ index: index, commands: sorted })
+    setResults({
+      index: index,
+      commands: sorted,
+      initialHeight: commands.initialHeight
+    })
   }, [query, setQuery])
 
   const reducer: Reducer<State, Action> = (state, action) => {
@@ -319,7 +333,7 @@ export const Palette: FC<PaletteProps> = ({ index, commands, main }) => {
                 overflowY: results!.index >= 5 ? 'auto' : 'hidden',
                 height:
                   results!.index >= 5
-                    ? config?.paletteMaxHeight || 320
+                    ? config?.paletteMaxHeight || results?.initialHeight
                     : results!.commands.length * 31 + results!.index * 54
               }}
             >
