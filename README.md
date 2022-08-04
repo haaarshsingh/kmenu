@@ -71,7 +71,7 @@ Awesome. Now here's a look at how you can create commands:
 | newTab          | Whether or not the link should open in a new tab                          | boolean      | ✅       |
 | keywords        | Search keywords for the command                                           | string       | ✅       |
 | shorcuts        | The keyboard shortcuts to activate this command                           | Shortcut     | ✅       |
-| closeOnComplete | Whether the palette should close when the command is run (default: false) | Shortcut     | ✅       |
+| closeOnComplete | Whether the palette should close when the command is run (default: false) | boolean      | ✅       |
 
 As you might notice, the commands give you the ability to define custom shortcuts. 
 
@@ -151,7 +151,7 @@ const Component = () => {
 }
 ```
 
-### useKmenu
+### useKmenu Hook
 
 `useKmenu` is a utility hook that gives you some useful functions and information about the current status of the palette. You can use these for a multitude of different things such as nested routes on the command menu or for toggling the palette through a button on your UI.
 
@@ -185,7 +185,7 @@ const Component = () => {
 ```
 
 
-### useCommands 
+### useCommands Hook
 
 With [kmenu v1](https://www.npmjs.com/package/kmenu/v/1.0.0-dev), you can now dynamically compute and define commands.
 
