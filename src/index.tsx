@@ -29,23 +29,6 @@ import { MenuContext } from './menuProvider'
 const initialState = { selected: 0 }
 export type MenuConfig = Partial<Config>
 
-export const useKmenu = (): [
-  number,
-  () => void,
-  Dispatch<SetStateAction<number>>
-] => {
-  const context = useContext(MenuContext)
-
-  if (!context)
-    throw new Error('useKmenu must be called inside the MenuProvider')
-
-  const toggle = useCallback(() => {
-    context.setOpen((open: number) => (open === 0 ? 1 : 0))
-  }, [])
-
-  return [context.open, toggle, context.setOpen]
-}
-
 export const Palette: FC<MenuProps> = ({ index, commands, main }) => {
   const input = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')
