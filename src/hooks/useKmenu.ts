@@ -17,5 +17,11 @@ export const useKmenu = (): UseKmenuReturnType => {
   }, [])
 
   /* Return the query, the index of the open menu, the toggle function and the setOpen hook */
-  return [context.query, context.open, toggle, context.setOpen]
+  return [
+    context.query,
+    context.setQuery,
+    context.open,
+    toggle,
+    context.setOpen
+  ]
 }

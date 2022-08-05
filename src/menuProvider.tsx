@@ -8,10 +8,8 @@ export const MenuContext = createContext<MenuContextType>({} as MenuContextType)
 export const MenuProvider: FC<{
   children: ReactNode
   /* Allow the user to pass in the configuration file to the other objects here */
-  values?: {
-    config?: Config
-  }
-}> = ({ children, values }) => {
+  config?: Partial<Config>
+}> = ({ children, config }) => {
   /* Hook for toggling the open/close state of the menu */
   const [open, setOpen] = useState(0)
   /* Hook for managing the search queries */
@@ -20,13 +18,13 @@ export const MenuProvider: FC<{
   /* Memorise all values in the provider using the useMemo hook */
   const memorisedValues = useMemo(
     () => ({
-      ...values,
+      config,
       open,
       setOpen,
       query,
       setQuery
     }),
-    [values, open, setOpen, query, setQuery]
+    [config, open, setOpen, query, setQuery]
   )
 
   /* Pass down the provider and the children below this component */
