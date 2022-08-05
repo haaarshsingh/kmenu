@@ -150,9 +150,12 @@ export type UseClickOutsideProps = {
 }
 
 /* Types for the useCommands hook */
-export type UseCommandsProps =
+export type UseCommandsProps = {
   /* The initial set of commands on the menu */
-  Command[]
+  initialCommands: Command[]
+  commandHeight?: number
+  sectionHeight?: number
+}
 
 /* Types for the useInView hook */
 export type UseInViewProps = {
@@ -168,10 +171,10 @@ export type UseKmenuReturnType = [
   Dispatch<SetStateAction<string>>,
   /* The index of the menu that's currently open */
   number,
-  /* The toggle function */
-  () => void,
   /* The setter function for opening different menus */
-  Dispatch<SetStateAction<number>>
+  Dispatch<SetStateAction<number>>,
+  /* The toggle function */
+  () => void
 ]
 
 /* Types for the useShortcut hook */

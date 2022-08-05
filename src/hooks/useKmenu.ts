@@ -21,7 +21,7 @@ export const useKmenu = (): UseKmenuReturnType => {
     context.query,
     context.setQuery,
     context.open,
-    toggle,
-    context.setOpen
+    context.setOpen,
+    toggle
   ]
 }

@@ -7,9 +7,11 @@ import {
   UseCommandsProps
 } from '../types'
 
-export const useCommands = (
-  initialCommands: UseCommandsProps
-): /* Return the sorted commands, and the setCommands function */ [
+export const useCommands = ({
+  initialCommands,
+  commandHeight,
+  sectionHeight
+}: UseCommandsProps): /* Return the sorted commands, and the setCommands function */ [
   CommandWithIndex,
   (commands: Command[]) => void
 ] => {
@@ -35,7 +37,11 @@ export const useCommands = (
         (command) => {
           index++
           /* Adjust the height of the menu accordingly with the current index and the current categories */
-          if (index <= 5) height = currentCategories * 31 + index * 54
+          if (index <= 5)
+            height =
+              currentCategories * (sectionHeight || 31) +
+              index * (commandHeight || 54)
+
           /* Return the command with a global index */
           return {
             ...command,

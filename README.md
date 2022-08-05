@@ -147,7 +147,7 @@ const main: Command[] = [
 ]
 
 const Component = () => {
-  const [commands, setCommands] = useCommands(main)
+  const [commands, setCommands] = useCommands({ initialCommands: main })
   
   /* ... */
 }
@@ -194,6 +194,14 @@ With [kmenu v1](https://www.npmjs.com/package/kmenu/v/1.0.0-dev), you can now dy
 
 When commands are inputted into the `useCommands` hook, they're returned into an object of command-menu parsable commands, and they require an initial value of the commands you'd like to pass in. 
 
+Here's a list of what you can pass into this hook: 
+
+| Parameter       | Description                                             | Type    | Default | Optional |
+|-----------------|---------------------------------------------------------|---------|---------|----------|
+| initialCommands | The initial set of commands to populate the hook with   | Command | None    | ❌       |
+| commandHeight   | The height of each command in the palette (px)          | number  | 54      | ✅       |
+| sectionHeight   | The height of each category/section in the palette (px) | number  | 31      | ✅       |
+
 *NOTE: YOU CANNOT USE `SetCommands` DIRECTLY INSIDE OF A `useEffect` HOOK AT RENDER*
 
 Here's an example of the hook live in action:
@@ -204,7 +212,7 @@ import { CommandMenu, Command, useCommands } from 'kmenu'
 const Component = () => {
   const main: Command[] = [ /* ... */ ]
   
-  const [commands, setCommands] = useCommands(main)
+  const [commands, setCommands] = useCommands({ initialCommands: main})
   
   return 
     <CommandMenu commands={commands} index={1} main />
@@ -323,8 +331,8 @@ const Component = () => {
   ]
   
   const [input, open, setOpen, toggle] = useKmenu()
-  const [mainCommands, setMainCommands] = useCommands(main)
-  const [nestedCommands, setNestedCommands] = useCommands(nested)
+  const [mainCommands, setMainCommands] = useCommands({ initialCommands: main })
+  const [nestedCommands, setNestedCommands] = useCommands({ initialCommands: nested })
   
   return (
     {/* ... */}
