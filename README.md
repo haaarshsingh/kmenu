@@ -90,19 +90,10 @@ Anyways, now that you have an underlying idea of how commands work, here's an ex
 
 ```ts
 import {
-  Search,
-  Copy,
   Globe,
-  GitHub,
-  AlertCircle,
-  GitPullRequest,
-  Zap,
-  Edit2,
-  Plus,
-  Settings,
-  Code,
-  Command as Cmd,
-  Terminal
+  Twitter,
+  Github,
+  Linkedin
 } from 'react-feather'
 
 const main: Command[] = [
@@ -110,7 +101,7 @@ const main: Command[] = [
     category: 'Socials',
     commands: [
       {
-        icon: <FiGlobe />,
+        icon: <Globe />,
         text: 'Website',
         href: 'https://hxrsh.in',
         newTab: true,
@@ -118,14 +109,14 @@ const main: Command[] = [
       },
 
       {
-        icon: <FiTwitter />,
+        icon: <Twitter />,
         text: 'Twitter',
         href: 'https://twitter.com/harshhhdev',
         newTab: true,
         shortcuts: { modifier: 'alt', keys: ['t'] }
       },
       {
-        icon: <FiGithub />,
+        icon: <Github />,
         text: 'GitHub',
         href: 'https://github.com/harshhhdev',
         newTab: true,
@@ -137,7 +128,7 @@ const main: Command[] = [
         newTab: true
       },
       {
-        icon: <FiLinkedin />,
+        icon: <Linkedin />,
         text: 'Linkedin',
         href: 'https://linkedin.com/in/harshhhdev',
         newTab: true
