@@ -19,17 +19,15 @@
 
 .dialog {
   padding: 0.5rem;
-  background-color: #181818;
   width: 640px;
   border-radius: 10px;
   transition: 0.1s ease 0s;
   will-change: height;
   position: relative;
-  box-shadow: 0px 0px 59px 10px #00000020;
+  border-style: solid;
 }
 
 .search {
-  color: white;
   border: none;
   padding: 20px 10px;
   margin: 0 0 8px;
@@ -62,7 +60,6 @@
   justify-content: space-between;
   position: relative;
   height: 54px;
-  color: #d1d5db;
   font-size: 1.125rem;
   line-height: 1.75rem;
   align-items: center;
@@ -71,7 +68,6 @@
 }
 
 kbd {
-  background-color: #82828220;
   padding: 3px 6px;
   border-radius: 3px;
   font-size: 14px;
@@ -103,7 +99,6 @@ svg {
 .title {
   margin: 5px 0 10px 10px;
   font-size: 14px;
-  color: #777777;
 }
 
 .selected {
@@ -111,7 +106,6 @@ svg {
   width: 100%;
   height: 54px;
   border-radius: 0.5rem;
-  background: #ffffff20;
 }
 
 .text {

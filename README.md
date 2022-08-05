@@ -218,9 +218,9 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
 | Parameter        | Description                                                  | Type         | Default             | 
 |------------------|--------------------------------------------------------------|--------------|---------------------|
-| backdropColor    | The colour of the backdrop (include opacity)                 | string       | #00000020           |
-| backdropBlur     | The backround blur of the backdrop (px)                      | number       | 5px                 |
-| backgroundColor  | The background colour of the menu                            | string       | #181818             |
+| backdropColor    | The colour of the backdrop (include opacity)                 | string       | #FFFFFF20           |
+| backdropBlur     | The backround blur of the backdrop (px)                      | number       | 2px                 |
+| backgroundColor  | The background colour of the menu                            | string       | #FFFFFF             |
 | borderWidth      | Width of the border surrounding the menu                     | number       | 1px                 |
 | borderColor      | The colour of the border surrounding the menu                | string       | #3F3F3F             |
 | borderRadius     | The radius of the menu (px)                                  | number       | 16px                |

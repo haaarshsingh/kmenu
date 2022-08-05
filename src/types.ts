@@ -84,17 +84,44 @@ export type Shortcut = {
 
 /* Configuration options for the menu */
 export type Config = {
+  /* The colour of the backdrop */
+  /* Default: #FFFFFF20 */
   backdropColor: string
+  /* The blurring behind the backdrop element */
+  /* Default: 2px */
   backdropBlur: number
+  /* Background colour of the dialog */
+  /* Default: #FFFFFF */
   backgroundColor: string
+  /* Border width on the dialog */
+  /* Default: 0px */
   borderWidth: number
+  /* The colour of the border on the dialog */
+  /* Default: transparent */
   borderColor: string
+  /* The border radius of the dialog */
+  /* Default: 12px */
   borderRadius: number
+  /* The shadow on the dialog */
+  /* Default: 0px 0px 60px 10px #00000020 */
+  boxShadow: string
+  /* The colour of the text in the search bar */
+  /* Default: #000000 */
   inputColor: string
+  /* The placeholder text on the search bar */
+  /* Default: 'What do you need?' */
   placeholderText: string
+  /* The colour of the category headings on the menu */
+  /* Default: #828282 */
   headingColor: string
+  /* The colour of the command icon and text when the command is inactive */
+  /* Default: #828282 */
   commandInactive: string
+  /* The colour of the command icon and text when the command is active */
+  /* Default: #343434 */
   commandActive: string
+  /* The colour of the bar which hovers the selected item */
+  /* Default: #82828220 */
   barBackground: string
 }
 

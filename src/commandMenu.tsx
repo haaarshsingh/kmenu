@@ -22,6 +22,8 @@ import {
 import parse from './utils/parse'
 import styles from './styles/menu.module.css'
 import Command from './command'
+import useBodyScrollable from './hooks/useBodyScrollable'
+import useScrollbarWidth from './hooks/useScrollbarWidth'
 
 /* The initial state of our keyboard selection */
 const initialState = { selected: 0 }
@@ -123,6 +125,10 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
   /* useReducer hook to manage the keyboard state */
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  /* Use our hooks we've defined for checking if the body is scrollable and for getting the width of the scrollbar */
+  const scrollable = useBodyScrollable()
+  const scrollbarWidth = useScrollbarWidth()
+
   /* Reset the menu whenever the open state is changed */
   useEffect(() => {
     /* Reset the component whenever the menu is toggled */
@@ -131,8 +137,13 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
     setQuery('')
 
     /* Toggle scrollbars base upon whether or not the bar is open or not to prevent background scrolling */
-    if (open) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = 'unset'
+    if (open && scrollable) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = `${scrollbarWidth}px`
+    } else {
+      document.body.style.overflow = 'unset'
+      document.body.style.paddingRight = '0px'
+    }
   }, [open, setOpen])
 
   /* Shortcuts for navigating up and down the menu */
@@ -254,9 +265,9 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
             exit={{ opacity: 0, y: 40 }}
             style={{
               backgroundColor: config?.backgroundColor || '#FFFFFF',
-              border: `solid ${config?.borderColor}` || 'solid #3f3f3f',
-              borderRadius: `${config?.borderRadius}px` || '12px',
-              borderWidth: config?.borderWidth || 1
+              borderColor: config?.borderColor || 'transparent',
+              borderWidth: config?.borderWidth || 0,
+              boxShadow: config?.boxShadow || '0px 0px 59px 10px #00000020'
             }}
           >
             <input
