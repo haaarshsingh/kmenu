@@ -283,7 +283,7 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
               onChange={() => setQuery(input.current?.value!)}
               style={{
                 color: config?.inputColor || '#000',
-                borderBottom: `#${config?.inputBorder || '#e9ecef'} 1px solid`
+                borderBottom: `${config?.inputBorder || '#e9ecef'} 1px solid`
               }}
             />
             <motion.div
