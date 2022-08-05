@@ -70,7 +70,7 @@ export type CategoryCommand = {
   keywords?: string
   /* Keyboard shortcuts which can trigger the command OUTSIDE the command menu */
   shortcuts?: Shortcut
-  /* Whether or not to close this palette when the functino is called */
+  /* Whether or not to close this menu when the functino is called */
   closeOnComplete?: boolean
 }
 
@@ -117,10 +117,9 @@ export type UseClickOutsideProps = {
 }
 
 /* Types for the useCommands hook */
-export type UseCommandsProps = {
-  /* The initial set of commands on the palette */
-  initialCommands: Command[]
-}
+export type UseCommandsProps =
+  /* The initial set of commands on the menu */
+  Command[]
 
 /* Types for the useInView hook */
 export type UseInViewProps = {
@@ -132,11 +131,11 @@ export type UseInViewProps = {
 export type UseKmenuReturnType = [
   /* The input text */
   string,
-  /* The index of the palette that's currently open */
+  /* The index of the menu that's currently open */
   number,
   /* The toggle function */
   () => void,
-  /* The setter function for opening different palettes */
+  /* The setter function for opening different menus */
   Dispatch<SetStateAction<number>>
 ]
 

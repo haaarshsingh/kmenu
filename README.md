@@ -33,7 +33,7 @@ yarn add kmenu
 
 After you install, you must wrap your application around the `MenuProvider` component. Want to learn how you can customise your menu configuration? Check out the [MenuConfig section](https://github.com/harshhhdev/kmenu/README.md#menu-config).
 
-Inside the `MenuProvider`, you can pass in the theme configuration which all of the palettes will use. 
+Inside the `MenuProvider`, you can pass in the theme configuration which all of the menus will use. 
 
 Below is an example:
 
@@ -53,7 +53,7 @@ const App = () => {
 
 ### Adding commands 
 
-After you've installed the package, you can now begin adding commands onto the command palette. 
+After you've installed the package, you can now begin adding commands onto the command menu. 
 
 The commands are broken up into two arrays. One array contains the different categories of the commands, and another array contains the commands itself. Here's a look at how you can define categories:
 

@@ -7,10 +7,12 @@ import {
   UseCommandsProps
 } from '../types'
 
-export const useCommands = ({
-  initialCommands
-}: UseCommandsProps): /* Return the sorted commands, and the setCommands function */
-[CommandWithIndex, (commands: Command[]) => void] => {
+export const useCommands = (
+  initialCommands: UseCommandsProps
+): /* Return the sorted commands, and the setCommands function */ [
+  CommandWithIndex,
+  (commands: Command[]) => void
+] => {
   /* Hook for the initial height of the command menu */
   const [height, setHeight] = useState<number>()
   /* Hook for the globalIndex of the command menu */

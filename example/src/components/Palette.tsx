@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Palette, Command, useCommands, useKmenu } from 'kmenu'
+import { CommandMenu, Command, useCommands, useKmenu } from 'kmenu'
 import {
   FiGlobe,
   FiGithub,
@@ -114,8 +114,8 @@ const CommandPalette: FC = () => {
 
   return (
     <>
-      <Palette index={1} commands={mainCommands} main />
-      <Palette index={2} commands={nestedCommands} />
+      <CommandMenu index={1} commands={mainCommands} main />
+      <CommandMenu index={2} commands={nestedCommands} />
     </>
   )
 }

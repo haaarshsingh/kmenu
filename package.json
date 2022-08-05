@@ -8,6 +8,14 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
+  "keywords": [
+    "kbar",
+    "cmdk",
+    "react-cmdk",
+    "commandbar",
+    "command bar",
+    "command menu"
+  ],
   "engines": {
     "node": ">=10"
   },
