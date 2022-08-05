@@ -1,22 +1,26 @@
 import { useCallback, useContext } from 'react'
-import { MenuContext } from '../menuProvider'
+import { MenuContext } from '../MenuProvider'
 import { UseKmenuReturnType } from '../types'
 
-/* Utilities for using kmenu */
+/**
+ * Utilities for using kmenu.
+ *
+ * @returns {string} The current input in the active command menu
+ * @returns {Dispatch<SetStateAction<string>>} The setter function for setting the text in the command menu
+ * @returns {number} The index of the currently active command menu
+ * @returns {Dispatch<SetStateAction<number>>} The setter function for setting the open menu index
+ * @returns {() => void} A function for toggling the state of the palette
+ */
 export const useKmenu = (): UseKmenuReturnType => {
-  /* Pull the information out of our Provider */
   const context = useContext(MenuContext)
 
-  /* Throw an error if the Provider doesn't exist, or if this is called outside the provider */
   if (!context)
     throw new Error('useKmenu must be called inside the MenuProvider')
 
-  /* Function for toggling the menu */
   const toggle = useCallback(() => {
     context.setOpen((open: number) => (open === 0 ? 1 : 0))
   }, [])
 
-  /* Return the query, the index of the open menu, the toggle function and the setOpen hook */
   return [
     context.query,
     context.setQuery,

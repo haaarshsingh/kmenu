@@ -13,17 +13,13 @@ const Command: FC<{
   setOpen: Dispatch<SetStateAction<number>>
   config?: Partial<Config>
 }> = ({ onMouseEnter, isSelected, command, setOpen, config }) => {
-  /* Refs for the top and bottom of the span for scroll navigation */
   const topRef = useRef<HTMLSpanElement>(null)
   const bottomRef = useRef<HTMLSpanElement>(null)
-  /* Check if the user presses the enter key to run the command */
   const enter = useShortcut({ targetKey: 'Enter' })
 
-  /* Use a custom hook that uses the IntersectionObserver API to check if the command is in view from the top and the bottom */
   const inViewTop = useInView({ ref: topRef })
   const inViewBottom = useInView({ ref: bottomRef })
 
-  /* Function determining whether or not to scroll the div and when to run commands */
   useEffect(() => {
     if (isSelected && (!inViewTop || !inViewBottom))
       // eslint-disable-next-line
@@ -32,11 +28,8 @@ const Command: FC<{
         block: 'end'
       })
 
-    /* If the user presses the enter key, then run the command */
     if (enter && isSelected) {
-      /* Close the menu on select if the closeOnComplete value isn't set to true */
       if (!command.closeOnComplete) setOpen(0)
-      /* Pass the entire command object in the run function */
       run(command)
     }
   }, [isSelected, enter])

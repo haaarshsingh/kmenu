@@ -1,39 +1,42 @@
-import {
-  Dispatch,
-  ReactElement,
-  ReactNode,
-  RefObject,
-  SetStateAction
-} from 'react'
+import { Dispatch, ReactElement, RefObject, SetStateAction } from 'react'
 
-/* The props passed from the MenuProvider onto the index */
 export type MenuContext = {
-  /* Hooks that handle the open/close state of the component */
+  /**
+   * The index of which element is currently open
+   */
   open: number
+  /**
+   * The setter to update the open state
+   */
   setOpen: Dispatch<SetStateAction<number>>
-  /* Hooks that handle the search bar */
+  /**
+   * The text that is currently in the serch bar
+   */
   query: string
+  /**
+   * The setter to update the text in the search bar
+   */
   setQuery: Dispatch<SetStateAction<string>>
-  /* Menu configuration options to be passed onto all menus */
+  /**
+   * The menu configuration options to be passed down onto all menus
+   */
   config?: Partial<Config>
-  /* Dimensions of the individual elements */
+  /**
+   * Dimensions of individual elements in the menu
+   */
   dimensions?: Partial<Dimensions>
 }
 
-/* Props passed onto the MenuProvider */
-export type MenuProviderProps = {
-  children: ReactNode
-  /* Provide the config here to pass down onto all menus */
-  config?: Partial<Config>
-  /* Dimensions of the individual elements */
-  dimensions?: Partial<Dimensions>
-}
+export type MenuProviderProps = Pick<MenuContext, 'config' | 'dimensions'>
 
-/* Props that contain the dimensions of the commands */
 type Dimensions = {
-  /* Height of each section/category in px */
+  /**
+   * Height of each section/category (px)
+   */
   sectionHeight: number
-  /* Height of each command in px */
+  /**
+   * Height of each command (px)
+   */
   commandHeight: number
 }
 
@@ -50,161 +53,207 @@ export type MenuProps = {
 export type GlobalCommand = CategoryCommand & { globalIndex: number }
 
 export type Command = {
-  /* The category this command will display under */
+  /**
+   * The category this command will display under
+   */
   category: string
-  /* The commands this category will have */
+  /**
+   * The commands this category will have
+   */
   commands: CategoryCommand[]
 }
 
-/* This type is used for commands */
 export type CommandWithIndex = {
-  /* The index of all commands inside of the menu */
   index: number
-  /* Initial height of the command menu */
   initialHeight: number
-  /* The sorted commands in the menu */
   commands: SortedCommands[]
 }
 
-/* Type used for commands AFTER they've been sorted with a global index */
 export type SortedCommands = {
-  /* The category the commands belong to */
   category: string
-  /* An array of sorted commands, all with an index */
   commands: GlobalCommand[]
 }
 
 export type CategoryCommand = {
-  /* Icon to be displayed next to the command text */
+  /**
+   * Icon to be displayed next to the command text
+   */
   icon?: ReactElement
-  /* The text displayed on the command */
+  /**
+   * The text displayed on the command
+   */
   text: string
-  /* The action to be performed */
+  /**
+   * The action to be performed
+   */
   perform?: () => void
-  /* The URL to be opened */
+  /**
+   * The URL to be opened
+   */
   href?: string
-  /* Whether or not that URL should open in a new tab */
+  /**
+   * Whether or not that URL should open in a new tab
+   */
   newTab?: boolean
-  /* Keywords for the command that will make it show up when the user searches something */
+  /**
+   * Keywords for the command that will make it show up when the user searches something
+   */
   keywords?: string
-  /* Keyboard shortcuts which can trigger the command OUTSIDE the command menu */
+  /**
+   * Keyboard shortcuts which can trigger the command OUTSIDE the command menu
+   *
+   */
   shortcuts?: Shortcut
-  /* Whether or not to close this menu when the functino is called */
+  /**
+   * Whether or not to close this menu when the functino is called
+   */
   closeOnComplete?: boolean
 }
 
 export type Shortcut = {
-  /* Key that will be used in conjunction with the shortcut */
-  /* NOTE: Some operating systems don't recognise the meta key. On macOS it's the 'cmd' key */
+  /**
+   * Key that will be used in conjunction with the shortcut
+   */
   modifier?: 'shift' | 'ctrl' | 'alt' | 'meta'
-  /* The key(s) which triggers the function */
+  /**
+   * The key(s) that will trigger the function
+   */
   keys: [string, string?]
 }
 
-/* Configuration options for the menu */
 export type Config = {
-  /* The colour of the backdrop */
-  /* Default: #FFFFFF20 */
+  /**
+   * The colour of the backdrop (include opacity)
+   *
+   * @default #FFFFFF20
+   */
   backdropColor: string
-  /* The blurring behind the backdrop element */
-  /* Default: 2px */
+  /**
+   * The backround blur of the backdrop (px)
+   *
+   * @default 2px
+   */
   backdropBlur: number
-  /*
-   * The background colour of the modal
+  /**
+   * The background colour of the menu
    *
    * @default #FFFFFF
    */
   backgroundColor: string
-  /* Border width on the dialog */
-  /* Default: 0px */
+  /**
+   * Width of the border surrounding the menu
+   *
+   * @default 1px
+   */
   borderWidth: number
-  /* The colour of the border on the dialog */
-  /* Default: transparent */
+  /**
+   * The colour of the border surrounding the menu
+   *
+   * @default #3F3F3F
+   */
   borderColor: string
-  /* The border radius of the dialog */
-  /* Default: 12px */
+  /**
+   * The colour of the border surrounding the menu
+   *
+   * @default 10px
+   */
   borderRadius: number
-  /* The shadow on the dialog */
-  /* Default: 0px 0px 60px 10px #00000020 */
+  /**
+   * The shadow of the menu
+   *
+   * @default 0px 0px 60px 10px #00000020
+   */
   boxShadow: string
-  /* The colour of the text in the search bar */
-  /* Default: #000000 */
+  /**
+   * The colour of the text in the search bar
+   *
+   * @default #000000
+   */
   inputColor: string
-  /* The colour of the border below the input text */
-  /* Default: #E9CEF */
+  /**
+   * The colour of the border below the search bar
+   *
+   * @default #E9ECEF
+   */
   inputBorder: string
-  /* The placeholder text on the search bar */
-  /* Default: 'What do you need?' */
+  /**
+   * The placeholder input text in the search bar
+   *
+   * @default 'What do you need?'
+   */
   placeholderText: string
-  /* The colour of the category headings on the menu */
-  /* Default: #828282 */
+  /**
+   * The colour of the command category headings
+   *
+   * @default #777777
+   */
   headingColor: string
-  /* The colour of the command icon and text when the command is inactive */
-  /* Default: #828282 */
+  /**
+   * The colour of the icon and text when the command is inactive
+   *
+   * @default #828282
+   */
   commandInactive: string
-  /* The colour of the command icon and text when the command is active */
-  /* Default: #343434 */
+  /**
+   * The colour of the icon and text when the command is active
+   *
+   * @default #343434
+   */
   commandActive: string
-  /* The colour of the bar which hovers the selected item */
-  /* Default: #82828220 */
+  /**
+   * The background colour of the active bar (include opacity)
+   *
+   * @default #FFFFFF20
+   */
   barBackground: string
-  /* The colour of background of the keyboard shortcut next to the element */
-  /* Default: #82828220 */
+  /**
+   * The background colour of the keyboard shortcut
+   *
+   * @default #82828220
+   */
   shortcutBackground: string
 }
 
-/* Props for the parse function to parse command shortcuts */
 export type ParseProps = {
-  /* The command which defined this shortcut */
   command: CategoryCommand
-  /* Keyboard event object to get the user interaction with the keyboard */
   event: KeyboardEvent
-  /* A character map containing the characters the user has pressed for double key commands */
   map: string[]
 }
 
-/* Types for the useClickOutside hook */
 export type UseClickOutsideProps = {
-  /* The click boundary */
   ref: RefObject<HTMLDivElement>
-  /* What happens when the user clicks outside */
   handler: () => void
 }
 
-/* Types for the useCommands hook */
 export type UseCommandsProps = Command[]
 
-/* Types for the useInView hook */
 export type UseInViewProps = {
-  /* The ref that we'll be checking */
   ref: RefObject<HTMLSpanElement>
 }
 
-/* Return type of the useKmenu hook */
 export type UseKmenuReturnType = [
-  /* The input text */
   string,
-  /* The setter function for the input text */
   Dispatch<SetStateAction<string>>,
-  /* The index of the menu that's currently open */
   number,
-  /* The setter function for opening different menus */
   Dispatch<SetStateAction<number>>,
-  /* The toggle function */
   () => void
 ]
 
-/* Types for the useShortcut hook */
 export type UseShortcutProps = {
-  /* The target key this hook is listening for */
+  /**
+   * The key this shortcut is listening for
+   */
   targetKey: string
-  /* Modifier that will be used in conjuntion with the target key */
+  /**
+   * Modifier that will be used in conjuntion with the target key
+   */
   modifier?: 'shift' | 'ctrl' | 'alt' | 'meta'
-  /* Function to call when this is actually pressed */
+  /**
+   * Function to call when this is actually pressed
+   */
   handler?: () => void
 }
 
-/* Type of actions one can perform on the menu */
 export enum ActionType {
   INCREASE = 'INCREASE',
   DECREASE = 'DECREASE',
@@ -212,13 +261,11 @@ export enum ActionType {
   CUSTOM = 'CUSTOM'
 }
 
-/* Action prop passed onto the useReducer for handling keyboard navigation */
 export type Action = {
   type: ActionType
   custom: number
 }
 
-/* State prop passed onto the useReducer for handling keyboard navigation */
 export type State = {
   selected: number
 }

@@ -1,27 +1,22 @@
 import { useEffect, useState } from 'react'
 
-/* Hook for checking if the body of our element is actually scrollable using the ResizeObserver API */
+/**
+ * A hook to check if the HTML body element is scrollable vertically.
+ *
+ * @returns {boolean} Whether or not the given element is in view
+ */
 const useBodyScrollable = () => {
-  /* Hook for managing the state, set to true if the body's scroll height is GREATER than the window's inner height */
   const [bodyScrollable, setBodyScrollable] = useState(true)
 
   useEffect(() => {
-    /* Check for resizes on the screen using the ResizeObserver API */
-    /* Resize observer does not properly work for some reason? */
-    const resizeObserver = new (window as any).ResizeObserver(() =>
-      /* Set the hook to true if the body's height is still greater than the window's inner height */
+    const resizeObserver = new ResizeObserver(() =>
       setBodyScrollable(document.body.scrollHeight > window.innerHeight)
     )
-    /* Add the observer onto the document's body */
-    resizeObserver.observe(document.body)
 
-    /* Clean up on component unmount */
-    return () => {
-      resizeObserver.unobserve(document.body)
-    }
+    resizeObserver.observe(document.body)
+    return () => resizeObserver.unobserve(document.body)
   }, [])
 
-  /* Return the state */
   return bodyScrollable
 }
 

@@ -14,4 +14,4 @@ export { useCommands } from './hooks/useCommands'
 /* The hook with utilities for using the menu */
 export { useKmenu } from './hooks/useKmenu'
 /* The MenuProvider which the menu must be wrapped under */
-export { MenuProvider } from './menuProvider'
+export { MenuProvider } from './MenuProvider'
