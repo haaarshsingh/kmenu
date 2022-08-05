@@ -1,7 +1,7 @@
-import Palette from '..'
+import { CommandMenu } from '..'
 
-describe('Command Palette', () => {
+describe('Command Menu', () => {
   it('is truthy', () => {
-    expect(Palette).toBeTruthy()
+    expect(CommandMenu).toBeTruthy()
   })
 })

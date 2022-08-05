@@ -1,6 +1,6 @@
 {
   "name": "kmenu",
-  "version": "0.0.25-beta",
+  "version": "1.0.0-dev",
   "description": "🌈 Animated and accessible cmdk interface",
   "author": "harshhhdev",
   "license": "MIT",
@@ -8,6 +8,14 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
+  "keywords": [
+    "kbar",
+    "cmdk",
+    "react-cmdk",
+    "commandbar",
+    "command bar",
+    "command menu"
+  ],
   "engines": {
     "node": ">=10"
   },
@@ -20,8 +28,7 @@
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "predeploy": "cd example && yarn install && yarn run build"
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -32,8 +39,8 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^25.1.4",
     "@types/node": "^12.12.38",
-    "@types/react": "^16.9.27",
-    "@types/react-dom": "^16.9.7",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.0.3",
@@ -48,12 +55,11 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-scripts": "^3.4.1",
     "typescript": "^3.7.5"
   },
@@ -61,6 +67,7 @@
     "dist"
   ],
   "dependencies": {
-    "framer-motion": "^4.1.17"
+    "framer-motion": "^4.1.17",
+    "react-scrollbar-size": "^5.0.0"
   }
 }
