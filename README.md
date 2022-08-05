@@ -21,7 +21,9 @@
 
 # 🚀 Quickstart
 
-Install the [npm package](https://www.npmjs.com/package/kmenu)
+Having trouble? Unsure of something? Feel free to ask away in the [discussions](https://github.com/harshhhdev/kmenu/discussions).
+
+Install the [npm package](https://www.npmjs.com/package/kmenu):
 
 ```zsh
 yarn add kmenu
@@ -62,25 +64,25 @@ The commands are broken up into two arrays. One array contains the different cat
 
 Awesome. Now here's a look at how you can create commands:
 
-| Parameter       | Description                                                               | Type         | Optional | 
-|-----------------|---------------------------------------------------------------------------|--------------|----------|
-| icon            | The icon displayed next to the command                                    | ReactElement | ✅       |
-| text            | The text displayed on the command                                         | String       | ❌       |
-| perform         | The action to perform                                                     | void         | ✅       |
-| href            | The link to open                                                          | void         | ✅       |
-| newTab          | Whether or not the link should open in a new tab                          | boolean      | ✅       |
-| keywords        | Search keywords for the command                                           | string       | ✅       |
-| shorcuts        | The keyboard shortcuts to activate this command                           | Shortcut     | ✅       |
-| closeOnComplete | Whether the palette should close when the command is run (default: false) | boolean      | ✅       |
+| Parameter       | Description                                                            | Type         | Optional | 
+|-----------------|------------------------------------------------------------------------|--------------|----------|
+| icon            | The icon displayed next to the command                                 | ReactElement | ✅       |
+| text            | The text displayed on the command                                      | String       | ❌       |
+| perform         | The action to perform                                                  | void         | ✅       |
+| href            | The link to open                                                       | void         | ✅       |
+| newTab          | Whether or not the link should open in a new tab                       | boolean      | ✅       |
+| keywords        | Search keywords for the command                                        | string       | ✅       |
+| shorcuts        | The keyboard shortcuts to activate this command                        | Shortcut     | ✅       |
+| closeOnComplete | Whether the menu should close when the command is run (default: false) | boolean      | ✅       |
 
 As you might notice, the commands give you the ability to define custom shortcuts. 
 
 Each shortcut can have two target keys and a modifier that would be used in conjunction with a single target key. Note that if you're using a modifier, you can only use a SINGLE target key. Here's a look at how you can create shortcuts:
 
-| Parameter | Description                                              | Type                               | Optional | 
-|-----------|----------------------------------------------------------|------------------------------------|----------|
-| modifier  | The modifier key used in conjunction with the target key | shift, ctrl, alt, or meta (string) | ✅       |
-| keys      | The target keys for this command                         | [string, string?]                  | ❌       |
+| Parameter | Description                                              | Type                       | Optional | 
+|-----------|----------------------------------------------------------|----------------------------|----------|
+| modifier  | The modifier key used in conjunction with the target key | enum (shift/alt/ctrl/meta) | ✅       |
+| keys      | The target keys for this command                         | Tuple [string, string?]    | ❌       |
 
 After you've created all your commands, you must pass them into the `useCommands` hook, which returns a getter and a setter for the commands. For a reference, check out the section on the [useCommands hook](https://github.com/harshhhdev/kmenu/README.md#usecommands-hook). 
 
@@ -153,20 +155,20 @@ const Component = () => {
 
 ### useKmenu Hook
 
-`useKmenu` is a utility hook that gives you some useful functions and information about the current status of the palette. You can use these for a multitude of different things such as nested routes on the command menu or for toggling the palette through a button on your UI.
+`useKmenu` is a utility hook that gives you some useful functions and information about the current status of the menu. You can use these for a multitude of different things such as nested routes on the command menu or for toggling the menu through a button on your UI.
 
 Here's a list of all the information it provides: 
 
 | Parameter  | Description                                                              | Type                             |
 |------------|--------------------------------------------------------------------------|----------------------------------|
-| input      | The current text in the search bar of the palette that is currently open | string                           |
-| open       | The index of the palette is currently open                               | number                           |
+| input      | The current text in the search bar of the menu that is currently open    | string                           |
+| open       | The index of the menu is currently open                                  | number                           |
 | setOpen    | The setter function to change the open state                             | Dispatch<SetStateAction<number>> |
-| toggle     | The function for toggling the main palette open/close                    | void                             |
+| toggle     | The function for toggling the main menu open/close                       | void                             |
 
 With that, here's also a code example of how you could use this hook!
 
-_NOTE: YOU MUST WRAP YOUR COMPONENT INSIDE THE MENUPROVIDER TO USE THIS HOOK_
+_NOTE: YOU MUST WRAP YOUR COMPONENT INSIDE THE `MenuProvider` TO USE THIS HOOK_
 
 ```jsx
 import { useKmenu } from 'kmenu'
@@ -177,7 +179,7 @@ const Component = () => {
   return (
     <div>
       <p>The current text on the search bar is: {input}</p>
-      <p>The index of the palette which is currently open is: {open}</p>
+      <p>The index of the menu which is currently open is: {open}</p>
       <button onClick={toggle}>Toggle Menu</button>
     </div>
   )
@@ -191,7 +193,7 @@ With [kmenu v1](https://www.npmjs.com/package/kmenu/v/1.0.0-dev), you can now dy
 
 When commands are inputted into the `useCommands` hook, they're returned into an object of command-menu parsable commands, and they require an initial value of the commands you'd like to pass in. 
 
-*NOTE: YOU CANNOT USE `SETCOMMANDS` DIRECTLY INSIDE OF A USEEFFECT HOOK AT RENDER*
+*NOTE: YOU CANNOT USE `SetCommands` DIRECTLY INSIDE OF A `useEffect` HOOK AT RENDER*
 
 Here's an example of the hook live in action:
 
@@ -208,21 +210,20 @@ const Component = () => {
 }
 ```
 
-### Customising the Palette
+### Customising the menu
 
-You can easily customise the colours on your command palette as well. Here's a list of properties that are customisable: 
+You can easily customise the colours on your command menu as well. Here's a list of properties that are customisable: 
 
 _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
 | Parameter        | Description                                                  | Type         | Default             | 
 |------------------|--------------------------------------------------------------|--------------|---------------------|
-| paletteMaxHeight | The max height of the palette (px)                           | number       | 320                 |
 | backdropColor    | The colour of the backdrop (include opacity)                 | string       | #00000020           |
 | backdropBlur     | The backround blur of the backdrop (px)                      | number       | 5px                 |
-| backgroundColor  | The background colour of the palette                         | string       | #181818             |
-| borderWidth      | Width of the border surrounding the palette                  | number       | 1px                 |
-| borderColor      | The colour of the border surrounding the palette             | string       | #3F3F3F             |
-| borderRadius     | The radius of the palette (px)                               | number       | 16px                |
+| backgroundColor  | The background colour of the menu                            | string       | #181818             |
+| borderWidth      | Width of the border surrounding the menu                     | number       | 1px                 |
+| borderColor      | The colour of the border surrounding the menu                | string       | #3F3F3F             |
+| borderRadius     | The radius of the menu (px)                                  | number       | 16px                |
 | inputColor       | The colour of the text in the search bar                     | string       | #FFFFFF             |
 | placeholderText  | The placeholder input text in the search bar                 | string       | 'What do you need?' |
 | headingColor     | The colour of the command category headings                  | string       | #777777             |
@@ -230,67 +231,59 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 | commandActive    | The colour of the icon and text when the command is active   | string       | #FFFFFF             |
 | barBackground    | The background colour of the active bar (include opacity)    | string       | #FFFFFF20           |
 
-### Setting up the palette
+### Setting up the menu
 
-Here are all the options available on the palette: 
+Here are all the options available on the menu: 
 
-| Parameter  | Description                                                      | Type                             | Optional | 
-|------------|------------------------------------------------------------------|----------------------------------|----------|
-| open       | The index of which palette is currently open                     | number                           | ❌       |
-| setOpen    | The hook to handle the state for which palette is currently open | Dispatch<SetStateAction<number>> | ❌       |
-| index      | The index of this palette                                        | number                           | ❌       |
-| commands   | The commands for this palette to display                         | Command[]                        | ❌       |
-| categories | The categories which the commands have been assigned to          | string[]                         | ❌       |
-| config     | The configuration for this colour palette                        | PaletteConfig                    | ✅       |
-| main       | Whether or not this is the first palette that'll be displayed    | boolean                          | ✅       |
+| Parameter  | Description                                                   | Type                             | Optional | 
+|------------|---------------------------------------------------------------|----------------------------------|----------|
+| commands   | The commands for this menu to display                         | Command[]                        | ❌       |
+| index      | The index of this menu                                        | number                           | ❌       |
+| main       | Whether or not this is the first menu that'll be displayed    | boolean                          | ✅       |
 
-Once you have added commands to the palette and configured it to you likings, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the palette to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
+Once you have added commands to the menu and configured it to you likings, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the menu to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
+
+_NOTE: YOU MUST WRAP YOUR MENU INSIDE OF THE `MenuProvider` FOR IT TO WORK_
 
 ```jsx
 import { useState } from 'react'
-import { Palette, Command, PaletteConfig } from 'kmenu'
+import { CommandMenu, Command, MenuConfig } from 'kmenu'
 import 'kmenu/dist/index.css'
 
 const Component = () => {
-  const [open, setOpen] = useState(0)
-
   const commands: Command[] = [ /* ... */ ]
-  const config: PaletteConfig = { /* ... */ }
+  const config: MenuConfig = { /* ... */ }
   const categories: string[] = [ /* ... */ ]
 
   return (
-    /* ... */
-    <Palette
-      open={open}
-      setOpen={setOpen}
-      index={1}
-      commands={commands}
-      config={config}
-      categories={categories}
-      main
-    />
-    /* ... */
+    <MenuProvider config={config}>
+      /* ... */
+      <CommandMenu
+        commands={commands}
+        index={1}
+        main
+      />
+      /* ... */
+    </MenuProvider>
   )
 }
-// ...
+/* ... */
 export default Component
 ```
 
-That's about all the configuration you'll need to do in order to get a basic command palette to work!
+That's about all the configuration you'll need to do in order to get a basic command menu to work!
 
-### Nested Palettes 
+### Nested Menus 
 
-This library also provides support for nested palettes and commands. Here's an example to help you out:
+This library also provides support for nested menus and commands. Here's an example to help you out:
 
 ```tsx
 import { useState } from 'react'
-import Palette, { Command, PaletteConfig } from 'kmenu'
+import { Menu, Command, useKmenu, useCommands } from 'kmenu'
 import 'kmenu/dist/index.css'
 
-const Palette = () => {
-  const [open, setOpen] = useState(0)
-
-  const mainCommands: Command[] = [
+const Component = () => {  
+  const main: Command[] = [
     {
       icon: <FiGlobe />,
       text: 'Website',
@@ -307,7 +300,7 @@ const Palette = () => {
     },
   ]
 
-  const nestedExample: Command[] = [
+  const nested: Command[] = [
     {
       icon: <FiGlobe />,
       text: 'Demo',
@@ -325,59 +318,52 @@ const Palette = () => {
       category: 'Resources'
     },
   ]
-
-  const config: PaletteConfig = { /* ... */ }
-  const categories: string[] = [ /* ... */ ]
-
+  
+  const [input, open, setOpen, toggle] = useKmenu()
+  const [mainCommands, setMainCommands] = useCommands(main)
+  const [nestedCommands, setNestedCommands] = useCommands(nested)
+  
   return (
-    /* ... */
-    <Palette
-      open={open}
-      setOpen={setOpen}
-      index={1}
+    {/* ... */}
+    <CommandMenu
       commands={mainCommands}
-      config={config}
-      categories={categories}
+      index={1}
       main
     />
-    <Palette
-      open={open}
-      setOpen={setOpen}
+    <CommandMenu
+      commands={nestedCommands}
       index={2}
-      commands={nestedExample}
-      config={config}
-      categories={categories}
     />
-    /* ... */
+    {/* ... */}
   )
 }
-// ...
-export default Palette
+/* ... */
+export default Component
 ```
 
 If this isn't enough, there's also an [example](https://github.com/harshhhdev/kmenu/blob/master/example) directory which you can clone and experiment around with to build nested routes!
 
-### Using the useShortcut hook
+### useShortcut hook
 
 This library also ships with a [custom React hook](https://reactjs.org/docs/hooks-custom.html) called `useShortcut` which you can use to define your own shortcuts within your application. 
 
 | Parameter       | Description                                           | Type                       | Optional  | 
 |-----------------|-------------------------------------------------------|----------------------------|-----------|
 | targetKey       | The key that the shortcut is listening for            | string (must be valid key) | ❌        |
-| modifier        | The modifier key which can will activate the shortcut | enum (shift/alt/ctrl)      | ✅        |
+| modifier        | The modifier key which can will activate the shortcut | enum (shift/alt/ctrl/meta) | ✅        |
 
 Here's an example: 
 
 ```jsx
 import { useShortcut } from 'kmenu'
 
-const Palette = () => {
-  const shiftS = useShortcut('s', 'shift')
+const Shortcut = () => {
+  const shiftS = useShortcut({ targetKey: 's', modifier: 'shift' })
 
-  // ...
+  /* ... */
 }
-// ...
-export default Palette
+
+export default Shortcut
 ```
 
 The example below will run when someone uses the keyboard shortcut `shift+s`.
@@ -394,8 +380,10 @@ git clone https://github.com/harshhhdev/kmenu.git
 
 ```zsh
 cd kmenu
+yarn
 
-# Install dependencies
+# Setup example directory
+cd example 
 yarn
 ```
 
@@ -413,9 +401,6 @@ You can test the built package locally by running the example repository:
 
 ```zsh
 cd example
-
-# Install dependencies
-yarn
 
 # Start development server
 yarn start
@@ -442,6 +427,8 @@ git add .
 git commit -m "commit message"
 git push YOUR_REPO_URL YOUR_BRANCH
 ```
+
+This codebase is well-documented and has comments explaining just about everything in here. All contributions are welcome! Anything from fixing a typo in the documentation to opening an issue to fix a bug or add an enhancement are welcome. 
 
 # Inspirations 
 
