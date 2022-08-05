@@ -1,7 +1,7 @@
 import { Config } from './types'
 
 /* Export our main command menu component */
-export { CommandMenu } from './commandMenu'
+export { CommandMenu } from './CommandMenu'
 /* Export components from other files so the user can import it directly from kmenu */
 /* Optional configuration options the user passes onto the menu */
 export type MenuConfig = Partial<Config>

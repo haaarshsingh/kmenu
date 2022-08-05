@@ -21,7 +21,7 @@ import {
 } from './types'
 import parse from './utils/parse'
 import styles from './styles/menu.module.css'
-import Command from './command'
+import Command from './Command'
 import useBodyScrollable from './hooks/useBodyScrollable'
 import useScrollbarSize from 'react-scrollbar-size'
 

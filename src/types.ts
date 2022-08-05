@@ -109,8 +109,11 @@ export type Config = {
   /* The blurring behind the backdrop element */
   /* Default: 2px */
   backdropBlur: number
-  /* Background colour of the dialog */
-  /* Default: #FFFFFF */
+  /*
+   * The background colour of the modal
+   *
+   * @default #FFFFFF
+   */
   backgroundColor: string
   /* Border width on the dialog */
   /* Default: 0px */
