@@ -80,10 +80,23 @@ const Command: FC<{
         {command.shortcuts && (
           <div className={styles.shortcuts}>
             {command.shortcuts.modifier && (
-              <kbd>{command.shortcuts.modifier}</kbd>
+              <kbd
+                style={{
+                  backgroundColor: config?.shortcutBackground || '#82828220'
+                }}
+              >
+                {command.shortcuts.modifier}
+              </kbd>
             )}
             {command.shortcuts.keys.map((key, index) => (
-              <kbd key={index}>{key}</kbd>
+              <kbd
+                key={index}
+                style={{
+                  backgroundColor: config?.shortcutBackground || '#82828220'
+                }}
+              >
+                {key}
+              </kbd>
             ))}
           </div>
         )}

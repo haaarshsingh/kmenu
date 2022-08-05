@@ -123,6 +123,9 @@ export type Config = {
   /* The colour of the bar which hovers the selected item */
   /* Default: #82828220 */
   barBackground: string
+  /* The colour of background of the keyboard shortcut next to the element */
+  /* Default: #82828220 */
+  shortcutBackground: string
 }
 
 /* Props for the parse function to parse command shortcuts */
@@ -158,6 +161,8 @@ export type UseInViewProps = {
 export type UseKmenuReturnType = [
   /* The input text */
   string,
+  /* The setter function for the input text */
+  Dispatch<SetStateAction<string>>,
   /* The index of the menu that's currently open */
   number,
   /* The toggle function */

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { CommandMenu, Command, useCommands, useKmenu } from 'kmenu'
 import {
   FiGlobe,
@@ -14,7 +14,11 @@ import {
 const CommandPalette: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
-  const [input, open, toggle, setOpen] = useKmenu()
+  const [input, setInput, open, toggle, setOpen] = useKmenu()
+
+  useEffect(() => {
+    console.log(input)
+  }, [input, setInput])
 
   const main: Command[] = [
     {

@@ -159,12 +159,13 @@ const Component = () => {
 
 Here's a list of all the information it provides: 
 
-| Parameter  | Description                                                              | Type                             |
-|------------|--------------------------------------------------------------------------|----------------------------------|
-| input      | The current text in the search bar of the menu that is currently open    | string                           |
-| open       | The index of the menu is currently open                                  | number                           |
-| setOpen    | The setter function to change the open state                             | Dispatch<SetStateAction<number>> |
-| toggle     | The function for toggling the main menu open/close                       | void                             |
+| Parameter | Description                                                              | Type                             |
+|-----------|--------------------------------------------------------------------------|----------------------------------|
+| input     | The current text in the search bar of the menu that is currently open    | string                           |
+| setInput  | The setter function to change the open state                             | Dispatch<SetStateAction<string>> |
+| open      | The index of the menu is currently open                                  | number                           |
+| setOpen   | The setter function to change the open state                             | Dispatch<SetStateAction<number>> |
+| toggle    | The function for toggling the main menu open/close                       | void                             |
 
 With that, here's also a code example of how you could use this hook!
 
@@ -174,7 +175,7 @@ _NOTE: YOU MUST WRAP YOUR COMPONENT INSIDE THE `MenuProvider` TO USE THIS HOOK_
 import { useKmenu } from 'kmenu'
 
 const Component = () => {
-  const [input, open, setOpen, toggle] = useKmenu()
+  const [input, setInput, open, setOpen, toggle] = useKmenu()
   
   return (
     <div>
@@ -216,20 +217,21 @@ You can easily customise the colours on your command menu as well. Here's a list
 
 _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
-| Parameter        | Description                                                  | Type         | Default             | 
-|------------------|--------------------------------------------------------------|--------------|---------------------|
-| backdropColor    | The colour of the backdrop (include opacity)                 | string       | #FFFFFF20           |
-| backdropBlur     | The backround blur of the backdrop (px)                      | number       | 2px                 |
-| backgroundColor  | The background colour of the menu                            | string       | #FFFFFF             |
-| borderWidth      | Width of the border surrounding the menu                     | number       | 1px                 |
-| borderColor      | The colour of the border surrounding the menu                | string       | #3F3F3F             |
-| borderRadius     | The radius of the menu (px)                                  | number       | 16px                |
-| inputColor       | The colour of the text in the search bar                     | string       | #FFFFFF             |
-| placeholderText  | The placeholder input text in the search bar                 | string       | 'What do you need?' |
-| headingColor     | The colour of the command category headings                  | string       | #777777             |
-| commandInactive  | The colour of the icon and text when the command is inactive | string       | #777777             |
-| commandActive    | The colour of the icon and text when the command is active   | string       | #FFFFFF             |
-| barBackground    | The background colour of the active bar (include opacity)    | string       | #FFFFFF20           |
+| Parameter          | Description                                                  | Type         | Default             | 
+|--------------------|--------------------------------------------------------------|--------------|---------------------|
+| backdropColor      | The colour of the backdrop (include opacity)                 | string       | #FFFFFF20           |
+| backdropBlur       | The backround blur of the backdrop (px)                      | number       | 2px                 |
+| backgroundColor    | The background colour of the menu                            | string       | #FFFFFF             |
+| borderWidth        | Width of the border surrounding the menu                     | number       | 1px                 |
+| borderColor        | The colour of the border surrounding the menu                | string       | #3F3F3F             |
+| borderRadius       | The radius of the menu (px)                                  | number       | 16px                |
+| inputColor         | The colour of the text in the search bar                     | string       | #FFFFFF             |
+| placeholderText    | The placeholder input text in the search bar                 | string       | 'What do you need?' |
+| headingColor       | The colour of the command category headings                  | string       | #777777             |
+| commandInactive    | The colour of the icon and text when the command is inactive | string       | #777777             |
+| commandActive      | The colour of the icon and text when the command is active   | string       | #FFFFFF             |
+| barBackground      | The background colour of the active bar (include opacity)    | string       | #FFFFFF20           |
+| shortcutBackground | The background colour of the keyboard shortcut               | string       | #82828220           |
 
 ### Setting up the menu
 

@@ -31,11 +31,10 @@ const initialState = { selected: 0 }
 export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
   /* Ref for handling the search bar */
   const input = useRef<HTMLInputElement>(null)
-  const [query, setQuery] = useState('')
   /* Contains filtered results when the user searches for commands */
   const [results, setResults] = useState<CommandWithIndex | null>(null)
   /* Get important data out of our Provider */
-  const { open, setOpen, config } = useContext(MenuContext)
+  const { open, setOpen, config, query, setQuery } = useContext(MenuContext)
 
   useEffect(() => {
     /* Set the keyboard selected command back to zero */
