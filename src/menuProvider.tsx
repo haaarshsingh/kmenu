@@ -15,22 +15,18 @@ export const MenuProvider: FC<MenuProviderProps> = ({
   /* Hook for managing the search queries */
   const [query, setQuery] = useState('')
 
-  /* Memorise all values in the provider using the useMemo hook */
-  const memorisedValues = useMemo(
-    () => ({
-      query,
-      setQuery,
-      open,
-      setOpen,
-      config,
-      dimensions
-    }),
-    [query, setQuery, open, setOpen, config, dimensions]
-  )
-
   /* Pass down the provider and the children below this component */
   return (
-    <MenuContext.Provider value={memorisedValues}>
+    <MenuContext.Provider
+      value={{
+        query: query,
+        setQuery: setQuery,
+        open: open,
+        setOpen: setOpen,
+        config: config,
+        dimensions: dimensions
+      }}
+    >
       {children}
     </MenuContext.Provider>
   )

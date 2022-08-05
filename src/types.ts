@@ -1,4 +1,10 @@
-import { Dispatch, ReactElement, RefObject, SetStateAction } from 'react'
+import {
+  Dispatch,
+  ReactElement,
+  ReactNode,
+  RefObject,
+  SetStateAction
+} from 'react'
 
 /* The props passed from the MenuProvider onto the index */
 export type MenuContext = {
@@ -16,6 +22,7 @@ export type MenuContext = {
 
 /* Props passed onto the MenuProvider */
 export type MenuProviderProps = {
+  children: ReactNode
   /* Provide the config here to pass down onto all menus */
   config?: Partial<Config>
   /* Dimensions of the individual elements */
