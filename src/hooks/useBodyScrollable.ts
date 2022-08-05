@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react'
 /* Hook for checking if the body of our element is actually scrollable using the ResizeObserver API */
 const useBodyScrollable = () => {
   /* Hook for managing the state, set to true if the body's scroll height is GREATER than the window's inner height */
-  const [bodyScrollable, setBodyScrollable] = useState(
-    document.body.scrollHeight > window.innerHeight
-  )
+  const [bodyScrollable, setBodyScrollable] = useState(true)
 
   useEffect(() => {
     /* Check for resizes on the screen using the ResizeObserver API */

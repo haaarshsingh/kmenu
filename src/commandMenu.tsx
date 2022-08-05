@@ -23,7 +23,7 @@ import parse from './utils/parse'
 import styles from './styles/menu.module.css'
 import Command from './command'
 import useBodyScrollable from './hooks/useBodyScrollable'
-import useScrollbarWidth from './hooks/useScrollbarWidth'
+import useScrollbarSize from 'react-scrollbar-size'
 
 /* The initial state of our keyboard selection */
 const initialState = { selected: 0 }
@@ -126,7 +126,8 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
 
   /* Use our hooks we've defined for checking if the body is scrollable and for getting the width of the scrollbar */
   const scrollable = useBodyScrollable()
-  const scrollbarWidth = useScrollbarWidth()
+  // @ts-ignore
+  const { height, width } = useScrollbarSize()
 
   /* Reset the menu whenever the open state is changed */
   useEffect(() => {
@@ -138,7 +139,7 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
     /* Toggle scrollbars base upon whether or not the bar is open or not to prevent background scrolling */
     if (open && scrollable) {
       document.body.style.overflow = 'hidden'
-      document.body.style.paddingRight = `${scrollbarWidth}px`
+      document.body.style.paddingRight = `${width}px`
     } else {
       document.body.style.overflow = 'unset'
       document.body.style.paddingRight = '0px'
@@ -280,7 +281,10 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
               spellCheck='false'
               ref={input}
               onChange={() => setQuery(input.current?.value!)}
-              style={{ color: config?.inputColor || '#000' }}
+              style={{
+                color: config?.inputColor || '#000',
+                borderBottom: `#${config?.inputBorder || '#e9ecef'} 1px solid`
+              }}
             />
             <motion.div
               className={styles.wrapper}

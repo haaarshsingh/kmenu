@@ -225,6 +225,7 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 | borderWidth        | Width of the border surrounding the menu                     | number       | 1px                 |
 | borderColor        | The colour of the border surrounding the menu                | string       | #3F3F3F             |
 | borderRadius       | The radius of the menu (px)                                  | number       | 16px                |
+| inputBorder        | The colour of the border below the search bar                | string       | #FFFFFF             |
 | inputColor         | The colour of the text in the search bar                     | string       | #FFFFFF             |
 | placeholderText    | The placeholder input text in the search bar                 | string       | 'What do you need?' |
 | headingColor       | The colour of the command category headings                  | string       | #777777             |

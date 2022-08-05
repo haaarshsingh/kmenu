@@ -108,6 +108,9 @@ export type Config = {
   /* The colour of the text in the search bar */
   /* Default: #000000 */
   inputColor: string
+  /* The colour of the border below the input text */
+  /* Default: #E9CEF */
+  inputBorder: string
   /* The placeholder text on the search bar */
   /* Default: 'What do you need?' */
   placeholderText: string
