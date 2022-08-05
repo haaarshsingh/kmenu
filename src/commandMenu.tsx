@@ -34,7 +34,8 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
   /* Contains filtered results when the user searches for commands */
   const [results, setResults] = useState<CommandWithIndex | null>(null)
   /* Get important data out of our Provider */
-  const { open, setOpen, config, query, setQuery } = useContext(MenuContext)
+  const { open, setOpen, config, query, setQuery, dimensions } =
+    useContext(MenuContext)
 
   useEffect(() => {
     /* Set the keyboard selected command back to zero */
@@ -295,7 +296,9 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
                 height:
                   results!.index >= 5
                     ? results?.initialHeight
-                    : results!.commands.length * 31 + results!.index * 54
+                    : results!.commands.length *
+                        (dimensions?.sectionHeight || 31) +
+                      results!.index * (dimensions?.commandHeight || 54)
               }}
             >
               <AnimateSharedLayout>

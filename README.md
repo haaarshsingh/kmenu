@@ -33,7 +33,19 @@ yarn add kmenu
 
 After you install, you must wrap your application around the `MenuProvider` component. Want to learn how you can customise your menu configuration? Check out the [MenuConfig section](https://github.com/harshhhdev/kmenu/README.md#menu-config).
 
-Inside the `MenuProvider`, you can pass in the theme configuration which all of the menus will use. 
+Inside the `MenuProvider`, you can pass in the theme configuration which all of the menus will use. All props are optional, and you can also pass in props if your commands or sections have extra margin between them. Here's a look: 
+
+| Parameter       | Description                                             | Type      | Optional |
+|-----------------|---------------------------------------------------------|-----------|----------|
+| config          | The config file passed onto the palette                 | Config    | ✅       |
+| dimensions      | The values of the height of the palettes (px)           | Dimension | ✅       |
+
+Now, here's a look at the dimensions object:
+
+| Parameter       | Description                                             | Type    | Default | Optional |
+|-----------------|---------------------------------------------------------|---------|---------|----------|
+| commandHeight   | The height of each command in the palette (px)          | number  | 54      | ✅       |
+| sectionHeight   | The height of each category/section in the palette (px) | number  | 31      | ✅       |
 
 Below is an example:
 
@@ -90,10 +102,19 @@ Anyways, now that you have an underlying idea of how commands work, here's an ex
 
 ```ts
 import {
+  Search,
+  Copy,
   Globe,
-  Twitter,
-  Github,
-  Linkedin
+  GitHub,
+  AlertCircle,
+  GitPullRequest,
+  Zap,
+  Edit2,
+  Plus,
+  Settings,
+  Code,
+  Command as Cmd,
+  Terminal
 } from 'react-feather'
 
 const main: Command[] = [
@@ -101,7 +122,7 @@ const main: Command[] = [
     category: 'Socials',
     commands: [
       {
-        icon: <Globe />,
+        icon: <FiGlobe />,
         text: 'Website',
         href: 'https://hxrsh.in',
         newTab: true,
@@ -109,14 +130,14 @@ const main: Command[] = [
       },
 
       {
-        icon: <Twitter />,
+        icon: <FiTwitter />,
         text: 'Twitter',
         href: 'https://twitter.com/harshhhdev',
         newTab: true,
         shortcuts: { modifier: 'alt', keys: ['t'] }
       },
       {
-        icon: <Github />,
+        icon: <FiGithub />,
         text: 'GitHub',
         href: 'https://github.com/harshhhdev',
         newTab: true,
@@ -128,7 +149,7 @@ const main: Command[] = [
         newTab: true
       },
       {
-        icon: <Linkedin />,
+        icon: <FiLinkedin />,
         text: 'Linkedin',
         href: 'https://linkedin.com/in/harshhhdev',
         newTab: true
@@ -138,7 +159,7 @@ const main: Command[] = [
 ]
 
 const Component = () => {
-  const [commands, setCommands] = useCommands({ initialCommands: main })
+  const [commands, setCommands] = useCommands(main)
   
   /* ... */
 }
@@ -185,14 +206,6 @@ With [kmenu v1](https://www.npmjs.com/package/kmenu/v/1.0.0-dev), you can now dy
 
 When commands are inputted into the `useCommands` hook, they're returned into an object of command-menu parsable commands, and they require an initial value of the commands you'd like to pass in. 
 
-Here's a list of what you can pass into this hook: 
-
-| Parameter       | Description                                             | Type    | Default | Optional |
-|-----------------|---------------------------------------------------------|---------|---------|----------|
-| initialCommands | The initial set of commands to populate the hook with   | Command | None    | ❌       |
-| commandHeight   | The height of each command in the palette (px)          | number  | 54      | ✅       |
-| sectionHeight   | The height of each category/section in the palette (px) | number  | 31      | ✅       |
-
 *NOTE: YOU CANNOT USE `SetCommands` DIRECTLY INSIDE OF A `useEffect` HOOK AT RENDER*
 
 Here's an example of the hook live in action:
@@ -203,7 +216,7 @@ import { CommandMenu, Command, useCommands } from 'kmenu'
 const Component = () => {
   const main: Command[] = [ /* ... */ ]
   
-  const [commands, setCommands] = useCommands({ initialCommands: main})
+  const [commands, setCommands] = useCommands(main)
   
   return 
     <CommandMenu commands={commands} index={1} main />
@@ -322,8 +335,8 @@ const Component = () => {
   ]
   
   const [input, open, setOpen, toggle] = useKmenu()
-  const [mainCommands, setMainCommands] = useCommands({ initialCommands: main })
-  const [nestedCommands, setNestedCommands] = useCommands({ initialCommands: nested })
+  const [mainCommands, setMainCommands] = useCommands(main)
+  const [nestedCommands, setNestedCommands] = useCommands(nested)
   
   return (
     {/* ... */}

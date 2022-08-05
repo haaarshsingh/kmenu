@@ -10,12 +10,24 @@ export type MenuContext = {
   setQuery: Dispatch<SetStateAction<string>>
   /* Menu configuration options to be passed onto all menus */
   config?: Partial<Config>
+  /* Dimensions of the individual elements */
+  dimensions?: Partial<Dimensions>
 }
 
 /* Props passed onto the MenuProvider */
 export type MenuProviderProps = {
   /* Provide the config here to pass down onto all menus */
-  config?: Config
+  config?: Partial<Config>
+  /* Dimensions of the individual elements */
+  dimensions?: Partial<Dimensions>
+}
+
+/* Props that contain the dimensions of the commands */
+type Dimensions = {
+  /* Height of each section/category in px */
+  sectionHeight: number
+  /* Height of each command in px */
+  commandHeight: number
 }
 
 export type MenuProps = {
@@ -150,12 +162,7 @@ export type UseClickOutsideProps = {
 }
 
 /* Types for the useCommands hook */
-export type UseCommandsProps = {
-  /* The initial set of commands on the menu */
-  initialCommands: Command[]
-  commandHeight?: number
-  sectionHeight?: number
-}
+export type UseCommandsProps = Command[]
 
 /* Types for the useInView hook */
 export type UseInViewProps = {

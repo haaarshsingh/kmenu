@@ -14,7 +14,7 @@ import {
 const CommandPalette: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
-  const [input, setInput, open, toggle, setOpen] = useKmenu()
+  const [input, setInput, open, setOpen, toggle] = useKmenu()
 
   useEffect(() => {
     console.log(input)

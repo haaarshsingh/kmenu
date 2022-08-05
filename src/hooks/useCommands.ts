@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
+import { MenuContext } from '../menuProvider'
 import {
   Command,
   CommandWithIndex,
@@ -7,11 +8,9 @@ import {
   UseCommandsProps
 } from '../types'
 
-export const useCommands = ({
-  initialCommands,
-  commandHeight,
-  sectionHeight
-}: UseCommandsProps): /* Return the sorted commands, and the setCommands function */ [
+export const useCommands = (
+  initialCommands: UseCommandsProps
+): /* Return the sorted commands, and the setCommands function */ [
   CommandWithIndex,
   (commands: Command[]) => void
 ] => {
@@ -28,6 +27,8 @@ export const useCommands = ({
     /* Empty array that'll contain all of the sorted commands */
     const sorted: SortedCommands[] = []
 
+    const { dimensions } = useContext(MenuContext)
+
     /* Loop through each category in the initial commands */
     // eslint-disable-next-line no-unused-expressions
     initialCommands?.forEach((category) => {
@@ -39,8 +40,8 @@ export const useCommands = ({
           /* Adjust the height of the menu accordingly with the current index and the current categories */
           if (index <= 5)
             height =
-              currentCategories * (sectionHeight || 31) +
-              index * (commandHeight || 54)
+              currentCategories * (dimensions?.sectionHeight || 31) +
+              index * (dimensions?.commandHeight || 54)
 
           /* Return the command with a global index */
           return {
