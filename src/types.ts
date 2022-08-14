@@ -57,6 +57,13 @@ export type MenuProps = {
    * Placeholder text in the menu
    */
   placeholder?: string
+  /**
+   * Search when a user types something
+   * If you want to turn a kmenu palette into a modal, this comes in handy
+   *
+   * @default true
+   */
+  preventSearch?: boolean
 }
 
 /* Command with an index used for keyboard navigation */

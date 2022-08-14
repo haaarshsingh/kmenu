@@ -39,9 +39,9 @@ export const CommandMenu: FC<MenuProps> = ({
   index,
   commands,
   main,
-  placeholder
+  placeholder,
+  preventSearch
 }) => {
-  const input = useRef<HTMLInputElement>(null)
   const [results, setResults] = useState<CommandWithIndex | null>(null)
   const { open, setOpen, config, query, setQuery, dimensions } =
     useContext(MenuContext)
@@ -249,8 +249,9 @@ export const CommandMenu: FC<MenuProps> = ({
               role='combobox'
               autoFocus
               spellCheck='false'
-              ref={input}
-              onChange={() => setQuery(input.current?.value!)}
+              onChange={(e) => {
+                if (!preventSearch) setQuery(e.target.value)
+              }}
               style={{
                 color: config?.inputColor || '#000000',
                 borderBottom: `${config?.inputBorder || '#e9ecef'} 1px solid`

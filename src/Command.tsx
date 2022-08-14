@@ -11,7 +11,7 @@ const Command: FC<{
   onMouseEnter: () => void
   isSelected: boolean
 }> = ({ onMouseEnter, isSelected, command }) => {
-  const { setOpen, config, setQuery } = useContext(MenuContext)
+  const { setOpen, config } = useContext(MenuContext)
 
   const topRef = useRef<HTMLSpanElement>(null)
   const bottomRef = useRef<HTMLSpanElement>(null)
@@ -31,7 +31,6 @@ const Command: FC<{
     if (enter && isSelected) {
       if (!command.closeOnComplete) setOpen(0)
       run(command)
-      setQuery('')
     }
   }, [isSelected, enter])
 
@@ -49,7 +48,6 @@ const Command: FC<{
         onClick={() => {
           if (!command.closeOnComplete) setOpen(0)
           run(command)
-          setQuery('')
         }}
         href={command.href || '#'}
         target={command.newTab ? '_blank' : '_self'}

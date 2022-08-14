@@ -229,34 +229,35 @@ You can easily customise the colours on your command menu as well. Here's a list
 
 _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
-| Parameter          | Description                                                  | Type         | Default                     | 
-|--------------------|--------------------------------------------------------------|--------------|-----------------------------|
-| backdropColor      | The colour of the backdrop (include opacity)                 | string       | #FFFFFF90                   |
-| backdropBlur       | The backround blur of the backdrop (px)                      | number       | 2px                         |
-| backgroundColor    | The background colour of the menu                            | string       | #FFFFFF                     |
-| borderWidth        | Width of the border surrounding the menu                     | number       | 1px                         |
-| borderColor        | The colour of the border surrounding the menu                | string       | #3F3F3F                     |
-| borderRadius       | The radius of the menu (px)                                  | number       | 10px                        |
-| boxShadow          | The shadow of the menu                                       | string       | 0px 0px 60px 10px #00000020 |
-| inputBorder        | The colour of the border below the search bar                | string       | #E9ECEF                     |
-| inputColor         | The colour of the text in the search bar                     | string       | #000000                     |
-| placeholderText    | The placeholder input text in the search bar                 | string       | 'What do you need?'         |
-| headingColor       | The colour of the command category headings                  | string       | #777777                     |
-| commandInactive    | The colour of the icon and text when the command is inactive | string       | #828282                     |
-| commandActive      | The colour of the icon and text when the command is active   | string       | #343434                     |
-| barBackground      | The background colour of the active bar (include opacity)    | string       | #FFFFFF20                   |
-| shortcutBackground | The background colour of the keyboard shortcut               | string       | #82828220                   |
+| Parameter          | Description                                                  | Type   | Default                     | 
+|--------------------|--------------------------------------------------------------|--------|-----------------------------|
+| backdropColor      | The colour of the backdrop (include opacity)                 | string | #FFFFFF90                   |
+| backdropBlur       | The backround blur of the backdrop (px)                      | number | 2px                         |
+| backgroundColor    | The background colour of the menu                            | string | #FFFFFF                     |
+| borderWidth        | Width of the border surrounding the menu                     | number | 1px                         |
+| borderColor        | The colour of the border surrounding the menu                | string | #3F3F3F                     |
+| borderRadius       | The radius of the menu (px)                                  | number | 10px                        |
+| boxShadow          | The shadow of the menu                                       | string | 0px 0px 60px 10px #00000020 |
+| inputBorder        | The colour of the border below the search bar                | string | #E9ECEF                     |
+| inputColor         | The colour of the text in the search bar                     | string | #000000                     |
+| placeholderText    | The placeholder input text in the search bar                 | string | 'What do you need?'         |
+| headingColor       | The colour of the command category headings                  | string | #777777                     |
+| commandInactive    | The colour of the icon and text when the command is inactive | string | #828282                     |
+| commandActive      | The colour of the icon and text when the command is active   | string | #343434                     |
+| barBackground      | The background colour of the active bar (include opacity)    | string | #FFFFFF20                   |
+| shortcutBackground | The background colour of the keyboard shortcut               | string | #82828220                   |
 
 ### Setting up the menu
 
 Here are all the options available on the menu: 
 
-| Parameter   | Description                                                   | Type                             | Optional | 
-|-------------|---------------------------------------------------------------|----------------------------------|----------|
-| commands    | The commands for this menu to display                         | Command[]                        | ❌       |
-| index       | The index of this menu                                        | number                           | ❌       |
-| main        | Whether or not this is the first menu that'll be displayed    | boolean                          | ✅       |
-| placeholder | The placeholder text on this particular menu                  | string                           | ✅       |
+| Parameter     | Description                                                   | Type      | Optional | 
+|---------------|---------------------------------------------------------------|-----------|----------|
+| commands      | The commands for this menu to display                         | Command[] | ❌       |
+| index         | The index of this menu                                        | number    | ❌       |
+| main          | Whether or not this is the first menu that'll be displayed    | boolean   | ✅       |
+| placeholder   | The placeholder text on this particular menu                  | string    | ✅       |
+| preventSearch | The placeholder text on this particular menu                  | boolean   | ✅       |
 
 Once you have added commands to the menu and configured it to you likings, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the menu to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
 
