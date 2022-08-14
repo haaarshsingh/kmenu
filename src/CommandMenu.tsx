@@ -35,7 +35,12 @@ const initialState = { selected: 0 }
  * @type {React.FC<MenuProps>}
  * @returns {React.ReactElement} the menu provider
  */
-export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
+export const CommandMenu: FC<MenuProps> = ({
+  index,
+  commands,
+  main,
+  placeholder
+}) => {
   const input = useRef<HTMLInputElement>(null)
   const [results, setResults] = useState<CommandWithIndex | null>(null)
   const { open, setOpen, config, query, setQuery, dimensions } =
@@ -133,11 +138,19 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
   const navigation = (event: KeyboardEvent) => {
     if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
       event.preventDefault()
-      if (main) setOpen((open: number) => (open === index ? 0 : index))
-      else if (!main && open === index) setOpen(0)
+      if (main) {
+        setQuery('')
+        setOpen((open: number) => (open === index ? 0 : index))
+      } else if (!main && open === index) {
+        setQuery('')
+        setOpen(0)
+      }
     }
 
-    if (event.key === 'Escape') setOpen(0)
+    if (event.key === 'Escape') {
+      setQuery('')
+      setOpen(0)
+    }
 
     if (open === index) {
       if (event.key === 'Tab' && !event.shiftKey) {
@@ -226,7 +239,9 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
             }}
           >
             <input
-              placeholder={config?.placeholderText || 'What do you need?'}
+              placeholder={
+                placeholder || config?.placeholderText || 'What do you need?'
+              }
               className='searchbar'
               aria-expanded='true'
               aria-autocomplete='list'
@@ -276,8 +291,6 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
                         }
                         isSelected={state.selected === command.globalIndex}
                         command={command}
-                        setOpen={setOpen}
-                        config={config}
                         key={index}
                       />
                     ))}

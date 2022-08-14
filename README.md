@@ -251,11 +251,12 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
 Here are all the options available on the menu: 
 
-| Parameter  | Description                                                   | Type                             | Optional | 
-|------------|---------------------------------------------------------------|----------------------------------|----------|
-| commands   | The commands for this menu to display                         | Command[]                        | ❌       |
-| index      | The index of this menu                                        | number                           | ❌       |
-| main       | Whether or not this is the first menu that'll be displayed    | boolean                          | ✅       |
+| Parameter   | Description                                                   | Type                             | Optional | 
+|-------------|---------------------------------------------------------------|----------------------------------|----------|
+| commands    | The commands for this menu to display                         | Command[]                        | ❌       |
+| index       | The index of this menu                                        | number                           | ❌       |
+| main        | Whether or not this is the first menu that'll be displayed    | boolean                          | ✅       |
+| placeholder | The placeholder text on this particular menu                  | string                           | ✅       |
 
 Once you have added commands to the menu and configured it to you likings, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the menu to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
 

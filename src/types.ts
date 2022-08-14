@@ -41,12 +41,22 @@ type Dimensions = {
 }
 
 export type MenuProps = {
-  /* The hierarchical index of the menu */
+  /**
+   * The hierarchical index of the menu
+   */
   index: number
-  /* Commands passed onto the menu */
+  /**
+   * Commands passed onto the menu
+   */
   commands: CommandWithIndex
-  /* Whether or not you want this menu to be the first displayed on toggle */
+  /**
+   * Whether or not you want this menu to be the first displayed on toggle
+   */
   main?: boolean
+  /**
+   * Placeholder text in the menu
+   */
+  placeholder?: string
 }
 
 /* Command with an index used for keyboard navigation */

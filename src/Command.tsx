@@ -1,17 +1,18 @@
-import React, { FC, Dispatch, SetStateAction, useRef, useEffect } from 'react'
+import React, { FC, useRef, useEffect, useContext } from 'react'
 import useInView from './hooks/useInView'
 import { useShortcut } from './hooks/useShortcut'
-import { CategoryCommand, Config } from './types'
+import { CategoryCommand } from './types'
 import run from './utils/run'
 import { motion } from 'framer-motion'
+import { MenuContext } from './MenuProvider'
 
 const Command: FC<{
   command: CategoryCommand
   onMouseEnter: () => void
   isSelected: boolean
-  setOpen: Dispatch<SetStateAction<number>>
-  config?: Partial<Config>
-}> = ({ onMouseEnter, isSelected, command, setOpen, config }) => {
+}> = ({ onMouseEnter, isSelected, command }) => {
+  const { setOpen, config, setQuery } = useContext(MenuContext)
+
   const topRef = useRef<HTMLSpanElement>(null)
   const bottomRef = useRef<HTMLSpanElement>(null)
   const enter = useShortcut({ targetKey: 'Enter' })
