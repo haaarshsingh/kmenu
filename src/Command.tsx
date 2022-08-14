@@ -44,7 +44,10 @@ const Command: FC<{
             ? config?.commandActive || '#343434'
             : config?.commandInactive || '#828282'
         }}
-        onClick={command.perform}
+        onClick={() => {
+          if (!command.closeOnComplete) setOpen(0)
+          run(command)
+        }}
         href={command.href || '#'}
         target={command.newTab ? '_blank' : '_self'}
         rel='noreferrer'
