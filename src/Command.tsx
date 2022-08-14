@@ -31,6 +31,7 @@ const Command: FC<{
     if (enter && isSelected) {
       if (!command.closeOnComplete) setOpen(0)
       run(command)
+      setQuery('')
     }
   }, [isSelected, enter])
 
@@ -48,6 +49,7 @@ const Command: FC<{
         onClick={() => {
           if (!command.closeOnComplete) setOpen(0)
           run(command)
+          setQuery('')
         }}
         href={command.href || '#'}
         target={command.newTab ? '_blank' : '_self'}
