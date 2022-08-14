@@ -231,7 +231,7 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
 | Parameter          | Description                                                  | Type         | Default                     | 
 |--------------------|--------------------------------------------------------------|--------------|-----------------------------|
-| backdropColor      | The colour of the backdrop (include opacity)                 | string       | #FFFFFF20                   |
+| backdropColor      | The colour of the backdrop (include opacity)                 | string       | #FFFFFF90                   |
 | backdropBlur       | The backround blur of the backdrop (px)                      | number       | 2px                         |
 | backgroundColor    | The background colour of the menu                            | string       | #FFFFFF                     |
 | borderWidth        | Width of the border surrounding the menu                     | number       | 1px                         |

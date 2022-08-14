@@ -18,6 +18,7 @@ import {
 export const useCommands = (
   initialCommands: UseCommandsProps
 ): [CommandWithIndex, (commands: Command[]) => void] => {
+  const { dimensions } = useContext(MenuContext)
   const [height, setHeight] = useState<number>()
   const [index, setIndex] = useState<number>()
   const [commands, setCommands] = useState<SortedCommands[]>(() => {
@@ -25,8 +26,6 @@ export const useCommands = (
     let height = 0
     let index = 0
     const sorted: SortedCommands[] = []
-
-    const { dimensions } = useContext(MenuContext)
 
     // eslint-disable-next-line no-unused-expressions
     initialCommands?.forEach((category) => {

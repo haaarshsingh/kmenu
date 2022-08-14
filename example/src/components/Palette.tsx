@@ -1,71 +1,99 @@
-import React, { FC, useEffect } from 'react'
-import { CommandMenu, Command, useCommands, useKmenu } from 'kmenu'
+import { Command, CommandMenu, useCommands, useKmenu } from 'kmenu'
+import React, { FC } from 'react'
 import {
-  FiGlobe,
+  FiAlertCircle,
+  FiCode,
+  FiCommand,
+  FiCopy,
+  FiDribbble,
+  FiEdit2,
   FiGithub,
-  FiDownloadCloud,
-  FiBook,
-  FiAlertOctagon,
-  FiArrowRight,
-  FiLinkedin,
-  FiTwitter
+  FiGitPullRequest,
+  FiGlobe,
+  FiMessageSquare,
+  FiPlus,
+  FiSearch,
+  FiSettings,
+  FiTwitter,
+  FiZap
 } from 'react-icons/fi'
 
-const CommandPalette: FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Palette: FC = () => {
   // @ts-ignore
   const [input, setInput, open, setOpen, toggle] = useKmenu()
 
-  useEffect(() => {
-    console.log(input)
-  }, [input, setInput])
-
   const main: Command[] = [
     {
-      category: 'Socials',
+      category: 'Utility',
       commands: [
         {
-          icon: <FiGlobe />,
-          text: 'Website',
-          href: 'https://hxrsh.in',
-          newTab: true,
-          keywords: 'home'
+          icon: <FiSearch />,
+          text: 'Search Documentation',
+          perform: () => setOpen(2)
         },
-
         {
-          icon: <FiTwitter />,
-          text: 'Twitter',
-          href: 'https://twitter.com/harshhhdev',
-          newTab: true,
-          shortcuts: { modifier: 'alt', keys: ['t'] }
-        },
+          icon: <FiCopy />,
+          text: 'Copy URL'
+        }
+      ]
+    },
+    {
+      category: 'Links',
+      commands: [
         {
           icon: <FiGithub />,
-          text: 'GitHub',
-          href: 'https://github.com/harshhhdev',
-          newTab: true,
-          shortcuts: { keys: ['g', 'h'] }
-        },
-        {
-          text: 'Dribbble',
-          href: 'https://dribbble.com/harshhhdev',
+          text: 'Source Code',
+          keywords: 'GitHub',
+          shortcuts: { keys: ['g', 'h'] },
+          href: 'https://github.com/harshhhdev/kmenu',
           newTab: true
         },
         {
-          icon: <FiLinkedin />,
-          text: 'Linkedin',
-          href: 'https://linkedin.com/in/harshhhdev',
+          icon: <FiAlertCircle />,
+          text: 'Issues',
+          href: 'https://github.com/harshhhdev/kmenu/issues',
+          newTab: true
+        },
+        {
+          icon: <FiGitPullRequest />,
+          text: 'Pull Requests',
+          href: 'https://github.com/harshhhdev/kmenu/pulls',
+          newTab: true
+        },
+        {
+          icon: <FiMessageSquare />,
+          text: 'Discussions',
+          href: 'https://github.com/harshhhdev/kmenu/discussions',
           newTab: true
         }
       ]
     },
     {
-      category: 'Utility',
+      category: 'Creator',
       commands: [
         {
-          icon: <FiArrowRight />,
-          text: 'Nested Example...',
-          perform: () => setOpen(2)
+          icon: <FiGlobe />,
+          text: 'Website',
+          href: 'https://hxrsh.in',
+          newTab: true
+        },
+        {
+          icon: <FiTwitter />,
+          text: 'Twitter',
+          href: 'https://twitter.com/harshhhdev',
+          newTab: true
+        },
+        {
+          icon: <FiGithub />,
+          text: 'GitHub',
+          href: 'https://github.com/harshhhdev',
+          newTab: true
+        },
+        {
+          icon: <FiDribbble />,
+          text: 'Dribbble',
+          href: 'https://dribbble.com/harshhhdev',
+          newTab: true
         }
       ]
     }
@@ -73,40 +101,60 @@ const CommandPalette: FC = () => {
 
   const nested: Command[] = [
     {
-      category: 'Information',
+      category: 'Navigation',
       commands: [
         {
-          icon: <FiGlobe />,
-          text: 'Demo',
-          href: 'https://kmenu.hxrsh.in',
-          newTab: true,
-          keywords: 'website'
+          icon: <FiZap />,
+          text: 'Quickstart',
+          href: 'https://github.com/harshhhdev/kmenu#-quickstart',
+          newTab: true
         },
         {
-          icon: <FiGithub />,
-          text: 'Source',
-          href: 'https://github.com/harshhhdev/kmenu',
-          newTab: true,
-          keywords: 'github'
+          icon: <FiCommand />,
+          text: 'Using the Provider',
+          href: 'https://github.com/harshhhdev/kmenu/#using-the-provider',
+          newTab: true
         },
         {
-          icon: <FiBook />,
-          text: 'Documentation',
-          href: 'https://github.com/harshhhdev/kmenu/blob/master/README.md',
-          newTab: true,
-          keywords: 'docs'
+          icon: <FiPlus />,
+          text: 'Adding Commands',
+          href: 'https://github.com/harshhhdev/kmenu#adding-commands',
+          newTab: true
         },
         {
-          icon: <FiDownloadCloud />,
-          text: 'NPM',
-          href: 'https://npmjs.com/package/kmenu',
-          newTab: true,
-          keywords: 'download'
+          icon: <FiCode />,
+          text: 'useKmenu Hook',
+          href: 'https://github.com/harshhhdev/kmenu/#usekmenu-hook',
+          newTab: true
         },
         {
-          icon: <FiAlertOctagon />,
-          text: 'Issues',
-          href: 'https://github.com/harshhhdev/kmenu/issues',
+          icon: <FiCode />,
+          text: 'useCommands Hook',
+          href: 'https://github.com/harshhhdev/kmenu/#usecommands-hook',
+          newTab: true
+        },
+        {
+          icon: <FiEdit2 />,
+          text: 'Customising the Menu',
+          href: 'https://github.com/harshhhdev/kmenu#customising-the-menu',
+          newTab: true
+        },
+        {
+          icon: <FiSettings />,
+          text: 'Setting up the Menu',
+          href: 'https://github.com/harshhhdev/kmenu#setting-up-the-menu',
+          newTab: true
+        },
+        {
+          icon: <FiCommand />,
+          text: 'Nested Menus',
+          href: 'https://github.com/harshhhdev/kmenu#nested-menus',
+          newTab: true
+        },
+        {
+          icon: <FiCode />,
+          text: 'useShortcut Hook',
+          href: 'https://github.com/harshhhdev/kmenu#useshortcut-hook',
           newTab: true
         }
       ]
@@ -114,14 +162,14 @@ const CommandPalette: FC = () => {
   ]
 
   const [mainCommands] = useCommands(main)
-  const [nestedCommands] = useCommands(nested)
+  const [navigationCommands] = useCommands(nested)
 
   return (
     <>
-      <CommandMenu index={1} commands={mainCommands} main />
-      <CommandMenu index={2} commands={nestedCommands} />
+      <CommandMenu commands={mainCommands} index={1} main />
+      <CommandMenu commands={navigationCommands} index={2} />
     </>
   )
 }
 
-export default CommandPalette
+export default Palette

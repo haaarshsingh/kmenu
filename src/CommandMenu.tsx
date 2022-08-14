@@ -20,7 +20,6 @@ import {
   State
 } from './types'
 import parse from './utils/parse'
-import styles from './styles/menu.module.css'
 import Command from './Command'
 import useBodyScrollable from './hooks/useBodyScrollable'
 import useScrollbarSize from 'react-scrollbar-size'
@@ -198,17 +197,20 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
     <AnimatePresence>
       {open === index && (
         <motion.div
-          className={styles.backdrop}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          className='backdrop'
+          initial={{ opacity: 0, pointerEvents: 'none' }}
+          animate={{ opacity: 1, pointerEvents: 'auto' }}
+          exit={{ opacity: 0, pointerEvents: 'none' }}
+          key={index}
           style={{
-            backgroundColor: config?.backdropColor || '#FFFFFF20',
-            backdropFilter: `blur(${config?.backdropBlur}px)` || 'blur(2px)'
+            backgroundColor: config?.backdropColor || '#FFFFFF90',
+            backdropFilter: config?.backdropBlur
+              ? `blur(${config?.backdropBlur}px)`
+              : 'blur(2px)'
           }}
         >
           <motion.div
-            className={styles.dialog}
+            className='dialog'
             role='dialog'
             aria-modal='true'
             ref={menuRef}
@@ -225,7 +227,7 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
           >
             <input
               placeholder={config?.placeholderText || 'What do you need?'}
-              className={styles.search}
+              className='searchbar'
               aria-expanded='true'
               aria-autocomplete='list'
               aria-haspopup='listbox'
@@ -240,7 +242,7 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
               }}
             />
             <motion.div
-              className={styles.wrapper}
+              className='command_wrapper'
               ref={parentRef}
               role='listbox'
               style={{
@@ -258,7 +260,7 @@ export const CommandMenu: FC<MenuProps> = ({ index, commands, main }) => {
                   <div key={index}>
                     {category.commands.length > 0 && (
                       <p
-                        className={styles.title}
+                        className='category_header'
                         style={{ color: config?.headingColor || '#828282' }}
                       >
                         {category.category}

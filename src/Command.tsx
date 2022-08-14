@@ -3,7 +3,6 @@ import useInView from './hooks/useInView'
 import { useShortcut } from './hooks/useShortcut'
 import { CategoryCommand, Config } from './types'
 import run from './utils/run'
-import styles from './styles/menu.module.css'
 import { motion } from 'framer-motion'
 
 const Command: FC<{
@@ -38,7 +37,7 @@ const Command: FC<{
     <div role='option' aria-selected={isSelected}>
       <span ref={topRef} aria-hidden='true' />
       <a
-        className={styles.command}
+        className='command'
         onMouseMove={onMouseEnter}
         style={{
           color: isSelected
@@ -53,7 +52,7 @@ const Command: FC<{
         {isSelected && (
           <motion.div
             layoutId='box'
-            className={styles.selected}
+            className='selected'
             initial={false}
             aria-hidden='true'
             transition={{
@@ -66,12 +65,12 @@ const Command: FC<{
             }}
           />
         )}
-        <div className={styles.info_wrapper}>
+        <div className='info_wrapper'>
           {command.icon && command.icon}
-          <p className={styles.text}>{command.text}</p>
+          <p className='command_text'>{command.text}</p>
         </div>
         {command.shortcuts && (
-          <div className={styles.shortcuts}>
+          <div className='shortcuts'>
             {command.shortcuts.modifier && (
               <kbd
                 style={{
@@ -94,7 +93,7 @@ const Command: FC<{
           </div>
         )}
       </a>
-      <span ref={bottomRef} className={styles.scroll_ref} aria-hidden='true' />
+      <span ref={bottomRef} className='scroll_ref' aria-hidden='true' />
     </div>
   )
 }

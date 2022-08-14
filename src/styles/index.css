@@ -26,7 +26,7 @@
   border-style: solid;
 }
 
-.search {
+.searchbar {
   border: none;
   padding: 20px 10px;
   margin: 0 0 8px;
@@ -37,7 +37,7 @@
   font-family: inherit;
 }
 
-.wrapper {
+.command_wrapper {
   display: flex;
   overflow-y: auto;
   overflow-x: hidden;
@@ -45,12 +45,6 @@
   width: 100%;
   transition: height 0.1s ease 0s;
   will-change: height;
-}
-
-.description {
-  margin-top: 0.5rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 
 .command {
@@ -63,13 +57,15 @@
   align-items: center;
   text-decoration: none;
   cursor: pointer;
+  transition: 0.1s linear;
 }
 
-kbd {
+.shortcuts > kbd {
   padding: 3px 6px;
   border-radius: 3px;
   font-size: 14px;
   margin-right: 7px;
+  font-family: monospace;
 }
 
 .shortcuts {
@@ -88,13 +84,13 @@ kbd {
   margin-left: 20px;
 }
 
-svg {
+.info_wrapper > svg {
   width: 20px;
   height: 20px;
   margin-right: 12px;
 }
 
-.title {
+.category_header {
   margin: 5px 0 10px 10px;
   font-size: 14px;
 }
@@ -106,7 +102,7 @@ svg {
   border-radius: 0.5rem;
 }
 
-.text {
+.command_text {
   max-width: 90%;
   width: fit-content;
   margin: 0;

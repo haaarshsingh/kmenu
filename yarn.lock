@@ -7694,7 +7694,7 @@ methods@~1.1.2:
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==
 
-microbundle-crl@^0.13.10:
+microbundle-crl@^0.13.11:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/microbundle-crl/-/microbundle-crl-0.13.11.tgz#8a3a3613685502c2a52dfde10e0390386eab4bff"
   integrity sha512-3roSSgtJdIvvIOJdhefWD8BoEjHkbInkJzUoSE+ER6NGcpTuPWXNFyAbXamCL9Qg8rTU4urbYtXusk/d1ZpteA==
