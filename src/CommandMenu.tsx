@@ -50,8 +50,7 @@ export const CommandMenu: FC<MenuProps> = ({
     state.selected = 0
     let index = 0
 
-    if (preventSearch) return
-    if (!query) return setResults(commands)
+    if (!query || preventSearch) return setResults(commands)
 
     const sorted: SortedCommands[] = []
     // eslint-disable-next-line no-unused-expressions
