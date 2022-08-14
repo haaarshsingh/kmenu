@@ -50,6 +50,7 @@ export const CommandMenu: FC<MenuProps> = ({
     state.selected = 0
     let index = 0
 
+    if (preventSearch) return
     if (!query) return setResults(commands)
 
     const sorted: SortedCommands[] = []
@@ -249,9 +250,7 @@ export const CommandMenu: FC<MenuProps> = ({
               role='combobox'
               autoFocus
               spellCheck='false'
-              onChange={(e) => {
-                if (!preventSearch) setQuery(e.target.value)
-              }}
+              onChange={(e) => setQuery(e.target.value)}
               style={{
                 color: config?.inputColor || '#000000',
                 borderBottom: `${config?.inputBorder || '#e9ecef'} 1px solid`
