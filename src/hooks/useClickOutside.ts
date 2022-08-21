@@ -5,7 +5,7 @@ const useClickOutside = ({ ref, handler }: UseClickOutsideProps) => {
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       if (!ref.current || ref.current.contains(event.target as Node)) return
-      handler()
+      if (handler) handler()
     }
 
     document.addEventListener('mousedown', listener)
