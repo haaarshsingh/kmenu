@@ -58,6 +58,10 @@ export type MenuProps = {
    */
   placeholder?: string
   /**
+   * Default text in the input box
+   */
+  value?: string
+  /**
    * Search when a user types something
    * If you want to turn a kmenu palette into a modal, this comes in handy
    *

@@ -40,6 +40,7 @@ export const CommandMenu: FC<MenuProps> = ({
   commands,
   main,
   placeholder,
+  value,
   preventSearch
 }) => {
   const [results, setResults] = useState<CommandWithIndex | null>(null)
@@ -242,6 +243,7 @@ export const CommandMenu: FC<MenuProps> = ({
               placeholder={
                 placeholder || config?.placeholderText || 'What do you need?'
               }
+              defaultValue={value}
               className='searchbar'
               aria-expanded='true'
               aria-autocomplete='list'
