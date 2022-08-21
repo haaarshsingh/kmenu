@@ -40,6 +40,7 @@ export const CommandMenu: FC<MenuProps> = ({
   commands,
   main,
   placeholder,
+  preventClose,
   value,
   preventSearch
 }) => {
@@ -127,7 +128,10 @@ export const CommandMenu: FC<MenuProps> = ({
   const up = useShortcut({ targetKey: 'ArrowUp' })
   const down = useShortcut({ targetKey: 'ArrowDown' })
 
-  useClickOutside({ ref: menuRef, handler: () => setOpen(0) })
+  useClickOutside({
+    ref: menuRef,
+    handler: preventClose ? undefined : () => setOpen(0)
+  })
 
   useEffect(() => {
     if (open === index) {
@@ -137,7 +141,11 @@ export const CommandMenu: FC<MenuProps> = ({
   }, [up, down])
 
   const navigation = (event: KeyboardEvent) => {
-    if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+    if (
+      (event.ctrlKey || event.metaKey) &&
+      event.key === 'k' &&
+      !preventClose
+    ) {
       event.preventDefault()
       if (main) {
         setQuery('')
@@ -165,7 +173,7 @@ export const CommandMenu: FC<MenuProps> = ({
   }
 
   const mobileToggle = (event: TouchEvent) => {
-    if (event.touches.length >= 2) {
+    if (event.touches.length >= 2 && !preventClose) {
       event.preventDefault()
       if (main) setOpen((open: number) => (open === index ? 0 : index))
       else if (!main && open === index) setOpen(0)

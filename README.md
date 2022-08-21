@@ -257,6 +257,7 @@ Here are all the options available on the menu:
 | index         | The index of this menu                                        | number    | ❌       |
 | main          | Whether or not this is the first menu that'll be displayed    | boolean   | ✅       |
 | placeholder   | The placeholder text on this particular menu                  | string    | ✅       |
+| preventClose  | Whether or not the menu is togglable                          | boolean   | ✅       |
 | value         | The default value on this particular menu                     | string    | ✅       |
 | preventSearch | The placeholder text on this particular menu                  | boolean   | ✅       |
 

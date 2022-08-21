@@ -58,6 +58,10 @@ export type MenuProps = {
    */
   placeholder?: string
   /**
+   * Whether or not the modal should prevent being closed
+   */
+  preventClose?: boolean
+  /**
    * Default text in the input box
    */
   value?: string
@@ -243,7 +247,7 @@ export type ParseProps = {
 
 export type UseClickOutsideProps = {
   ref: RefObject<HTMLDivElement>
-  handler: () => void
+  handler?: () => void
 }
 
 export type UseCommandsProps = Command[]
