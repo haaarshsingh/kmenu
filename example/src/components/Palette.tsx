@@ -19,8 +19,7 @@ import {
 } from 'react-icons/fi'
 
 const Palette: FC = () => {
-  // @ts-ignore
-  const [input, setInput, open, setOpen, toggle] = useKmenu()
+  const { setOpen } = useKmenu()
 
   const main: Command[] = [
     {

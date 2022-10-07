@@ -187,7 +187,7 @@ _NOTE: YOU MUST WRAP YOUR COMPONENT INSIDE THE `MenuProvider` TO USE THIS HOOK_
 import { useKmenu } from 'kmenu'
 
 const Component = () => {
-  const [input, setInput, open, setOpen, toggle] = useKmenu()
+  const { input, open, toggle } = useKmenu()
   
   return (
     <div>
@@ -339,7 +339,7 @@ const Component = () => {
     },
   ]
   
-  const [input, open, setOpen, toggle] = useKmenu()
+  const { setOpen } = useKmenu()
   const [mainCommands, setMainCommands] = useCommands(main)
   const [nestedCommands, setNestedCommands] = useCommands(nested)
   

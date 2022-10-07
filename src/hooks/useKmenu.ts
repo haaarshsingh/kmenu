@@ -21,11 +21,11 @@ export const useKmenu = (): UseKmenuReturnType => {
     context.setOpen((open: number) => (open === 0 ? 1 : 0))
   }, [])
 
-  return [
-    context.query,
-    context.setQuery,
-    context.open,
-    context.setOpen,
+  return {
+    input: context.query,
+    setInput: context.setQuery,
+    open: context.open,
+    setOpen: context.setOpen,
     toggle
-  ]
+  }
 }

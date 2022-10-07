@@ -257,6 +257,8 @@ export const CommandMenu: FC<MenuProps> = ({
               aria-expanded='true'
               aria-autocomplete='list'
               aria-haspopup='listbox'
+              aria-readonly='true'
+              aria-activedescendant={state.selected.toString()}
               role='combobox'
               autoFocus
               spellCheck='false'
