@@ -256,13 +256,13 @@ export type UseInViewProps = {
   ref: RefObject<HTMLSpanElement>
 }
 
-export type UseKmenuReturnType = [
-  string,
-  Dispatch<SetStateAction<string>>,
-  number,
-  Dispatch<SetStateAction<number>>,
-  () => void
-]
+export type UseKmenuReturnType = {
+  input: string
+  setInput: Dispatch<SetStateAction<string>>
+  open: number
+  setOpen: Dispatch<SetStateAction<number>>
+  toggle: () => void
+}
 
 export type UseShortcutProps = {
   /**
