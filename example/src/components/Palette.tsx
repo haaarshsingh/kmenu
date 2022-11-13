@@ -165,8 +165,12 @@ const Palette: FC = () => {
 
   return (
     <>
-      <CommandMenu commands={mainCommands} index={1} main />
-      <CommandMenu commands={navigationCommands} index={2} />
+      <CommandMenu commands={mainCommands} crumbs={['Home']} index={1} main />
+      <CommandMenu
+        commands={navigationCommands}
+        crumbs={['Home', 'Search']}
+        index={2}
+      />
     </>
   )
 }

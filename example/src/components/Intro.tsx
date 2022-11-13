@@ -3,8 +3,7 @@ import { FiCommand } from 'react-icons/fi'
 import { useKmenu } from 'kmenu'
 
 const Intro: FC = () => {
-  // @ts-ignore
-  const [input, setInput, open, setOpen, toggle] = useKmenu()
+  const { toggle } = useKmenu()
 
   return (
     <div>

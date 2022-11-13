@@ -38,6 +38,7 @@ const initialState = { selected: 0 }
 export const CommandMenu: FC<MenuProps> = ({
   index,
   commands,
+  crumbs,
   main,
   placeholder,
   preventClose,
@@ -170,6 +171,11 @@ export const CommandMenu: FC<MenuProps> = ({
         dispatch({ type: ActionType.DECREASE, custom: 0 })
       }
     }
+
+    if (open !== index && event.key === 'Backspace') {
+      event.preventDefault()
+      setOpen(1)
+    }
   }
 
   const mobileToggle = (event: TouchEvent) => {
@@ -193,7 +199,7 @@ export const CommandMenu: FC<MenuProps> = ({
     commands.commands.forEach((row) => {
       row.commands.forEach((command) => {
         if (command.shortcuts) {
-          const map: string[] = []
+          const map: Array<string> = []
           window.addEventListener('keydown', (event) =>
             parse({ command: command, event: event, map: map })
           )
@@ -205,7 +211,7 @@ export const CommandMenu: FC<MenuProps> = ({
       commands.commands.forEach((row) => {
         row.commands.forEach((command) => {
           if (command.shortcuts) {
-            const map: string[] = []
+            const map: Array<string> = []
             window.removeEventListener('keydown', (event) =>
               parse({ command: command, event: event, map: map })
             )
@@ -248,6 +254,19 @@ export const CommandMenu: FC<MenuProps> = ({
               boxShadow: config?.boxShadow || '0px 0px 60px 10px #00000020'
             }}
           >
+            <div className='crumbs'>
+              {crumbs?.map((crumb, index) => (
+                <button
+                  onClick={() => setOpen(index + 1)}
+                  className='breadcrumb'
+                  style={{
+                    backgroundColor: config?.breadcrumbColor || '#EFEFEF'
+                  }}
+                >
+                  {crumb}
+                </button>
+              ))}
+            </div>
             <input
               placeholder={
                 placeholder || config?.placeholderText || 'What do you need?'

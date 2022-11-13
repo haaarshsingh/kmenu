@@ -3,10 +3,7 @@
 }
 
 .backdrop {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -24,6 +21,20 @@
   will-change: height;
   position: relative;
   border-style: solid;
+}
+
+.crumbs {
+  display: flex;
+  margin: 5px 0px 0px 5px;
+}
+
+.breadcrumb {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 7px;
+  cursor: pointer;
 }
 
 .searchbar {

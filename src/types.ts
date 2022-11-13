@@ -50,6 +50,10 @@ export type MenuProps = {
    */
   commands: CommandWithIndex
   /**
+   * The current path of the command menu
+   */
+  crumbs?: Array<string>
+  /**
    * Whether or not you want this menu to be the first displayed on toggle
    */
   main?: boolean
@@ -166,6 +170,12 @@ export type Config = {
    */
   backgroundColor: string
   /**
+   * The background colour of the breadcrumbs
+   *
+   * @default #EFEFEF
+   */
+  breadcrumbColor: string
+  /**
    * Width of the border surrounding the menu
    *
    * @default 1px
@@ -242,7 +252,7 @@ export type Config = {
 export type ParseProps = {
   command: CategoryCommand
   event: KeyboardEvent
-  map: string[]
+  map: Array<string>
 }
 
 export type UseClickOutsideProps = {
