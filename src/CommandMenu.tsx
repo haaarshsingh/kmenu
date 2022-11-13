@@ -260,7 +260,8 @@ export const CommandMenu: FC<MenuProps> = ({
                   onClick={() => setOpen(index + 1)}
                   className='breadcrumb'
                   style={{
-                    backgroundColor: config?.breadcrumbColor || '#EFEFEF'
+                    backgroundColor: config?.breadcrumbColor || '#EFEFEF',
+                    borderRadius: config?.breadcrumbRadius || 5
                   }}
                 >
                   {crumb}
@@ -306,7 +307,9 @@ export const CommandMenu: FC<MenuProps> = ({
                   {category.commands.length > 0 && (
                     <p
                       className='category_header'
-                      style={{ color: config?.headingColor || '#828282' }}
+                      style={{
+                        color: config?.headingColor || '#828282'
+                      }}
                     >
                       {category.category}
                     </p>

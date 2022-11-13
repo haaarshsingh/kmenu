@@ -219,7 +219,7 @@ const Component = () => {
   const [commands, setCommands] = useCommands(main)
   
   return 
-    <CommandMenu commands={commands} index={1} main />
+    <CommandMenu commands={commands} crumbs={['Home']} index={1} main />
 }
 ```
 
@@ -234,6 +234,8 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 | backdropColor      | The colour of the backdrop (include opacity)                 | string | #FFFFFF90                   |
 | backdropBlur       | The backround blur of the backdrop (px)                      | number | 2px                         |
 | backgroundColor    | The background colour of the menu                            | string | #FFFFFF                     |
+| breadcrumbColor    | The background colour of the breadcrumbs                     | string | #FFFFFF                     |
+| breadcrumbRadius   | The border radius of the breadcrumbs                         | string | 5px                         |
 | borderWidth        | Width of the border surrounding the menu                     | number | 1px                         |
 | borderColor        | The colour of the border surrounding the menu                | string | #3F3F3F                     |
 | borderRadius       | The radius of the menu (px)                                  | number | 10px                        |
@@ -255,6 +257,7 @@ Here are all the options available on the menu:
 |---------------|---------------------------------------------------------------|-----------|----------|
 | commands      | The commands for this menu to display                         | Command[] | ❌       |
 | index         | The index of this menu                                        | number    | ❌       |
+| crumbs        | The current path of the command menu                          | string[]  | ✅       |
 | main          | Whether or not this is the first menu that'll be displayed    | boolean   | ✅       |
 | placeholder   | The placeholder text on this particular menu                  | string    | ✅       |
 | preventClose  | Whether or not the menu is togglable                          | boolean   | ✅       |
@@ -281,6 +284,7 @@ const Component = () => {
       <CommandMenu
         commands={commands}
         index={1}
+        crumbs={['Home']}
         main
       />
       /* ... */
@@ -347,11 +351,13 @@ const Component = () => {
     {/* ... */}
     <CommandMenu
       commands={mainCommands}
+      crumbs={['Home']}
       index={1}
       main
     />
     <CommandMenu
       commands={nestedCommands}
+      crumbs={['Home', 'Example']}
       index={2}
     />
     {/* ... */}

@@ -176,6 +176,12 @@ export type Config = {
    */
   breadcrumbColor: string
   /**
+   * The border radius of the breadcrumbs
+   *
+   * @default 5px
+   */
+  breadcrumbRadius: string
+  /**
    * Width of the border surrounding the menu
    *
    * @default 1px
