@@ -7,7 +7,7 @@ import React, {
   Reducer,
   useReducer
 } from 'react'
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import useClickOutside from './hooks/useClickOutside'
 import { useShortcut } from './hooks/useShortcut'
 import { MenuContext } from './MenuProvider'
@@ -301,33 +301,31 @@ export const CommandMenu: FC<MenuProps> = ({
                       results!.index * (dimensions?.commandHeight || 54)
               }}
             >
-              <AnimateSharedLayout>
-                {results?.commands.map((category, index) => (
-                  <div key={index}>
-                    {category.commands.length > 0 && (
-                      <p
-                        className='category_header'
-                        style={{ color: config?.headingColor || '#828282' }}
-                      >
-                        {category.category}
-                      </p>
-                    )}
-                    {category.commands.map((command, index) => (
-                      <Command
-                        onMouseEnter={() =>
-                          dispatch({
-                            type: ActionType.CUSTOM,
-                            custom: command.globalIndex
-                          })
-                        }
-                        isSelected={state.selected === command.globalIndex}
-                        command={command}
-                        key={index}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </AnimateSharedLayout>
+              {results?.commands.map((category, index) => (
+                <div key={index}>
+                  {category.commands.length > 0 && (
+                    <p
+                      className='category_header'
+                      style={{ color: config?.headingColor || '#828282' }}
+                    >
+                      {category.category}
+                    </p>
+                  )}
+                  {category.commands.map((command, index) => (
+                    <Command
+                      onMouseEnter={() =>
+                        dispatch({
+                          type: ActionType.CUSTOM,
+                          custom: command.globalIndex
+                        })
+                      }
+                      isSelected={state.selected === command.globalIndex}
+                      command={command}
+                      key={index}
+                    />
+                  ))}
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </motion.div>

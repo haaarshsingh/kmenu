@@ -3,7 +3,9 @@
 }
 
 .backdrop {
+  display: flex;
   flex-direction: column;
+  align-items: center;
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -19,8 +21,9 @@
   width: 640px;
   transition: 0.1s ease 0s;
   will-change: height;
-  position: relative;
+  position: fixed;
   border-style: solid;
+  top: 20%;
 }
 
 .crumbs {
