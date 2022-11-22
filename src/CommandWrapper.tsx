@@ -22,11 +22,7 @@ export const CommandWrapper: FC<
         <motion.div
           className='backdrop'
           initial={{ opacity: 0, pointerEvents: 'none' }}
-          animate={{
-            opacity: 1,
-            pointerEvents: 'auto',
-            scale: animate ? 0.98 : 1
-          }}
+          animate={{ opacity: 1, pointerEvents: 'auto' }}
           exit={{ opacity: 0, pointerEvents: 'none' }}
           style={{
             backgroundColor: config?.backdropColor || '#FFFFFF90',
@@ -41,7 +37,7 @@ export const CommandWrapper: FC<
             aria-modal='true'
             ref={menuRef}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0, scale: animate ? 0.98 : 1 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.1 }}
             style={{
