@@ -5,7 +5,6 @@ import React, {
   Reducer,
   useEffect,
   useReducer,
-  useRef,
   useState
 } from 'react'
 import useScrollbarSize from 'react-scrollbar-size'
@@ -35,11 +34,11 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
   dimensions,
   config
 }) => {
-  const [results, setResults] = useState<CommandWithIndex | null>(null)
   const [open, setOpen] = useState(0)
   const [query, setQuery] = useState('')
-
-  const input = useRef<HTMLInputElement>(null)
+  const [results, setResults] = useState<CommandWithIndex | null>(null)
+  const [crumbs, setCrumbs] = useState<Array<string>>([])
+  const [animate, setAnimate] = useState(false)
 
   const scrollable = useBodyScrollable()
   const { width } = useScrollbarSize()
@@ -78,7 +77,6 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
 
     if (event.key === 'Escape') {
       setQuery('')
-      setResults(null)
       setOpen(0)
     }
 
@@ -92,8 +90,10 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
       }
     }
 
-    if (open > 1 && event.key === 'Backspace' && input.current?.value === '') {
+    if (open > 1 && event.key === 'Backspace' && query === '') {
       event.preventDefault()
+      setAnimate(true)
+      setTimeout(() => setAnimate(false), 100)
       setQuery('')
       setOpen(1)
     }
@@ -113,7 +113,7 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
       window.removeEventListener('keydown', navigation)
       window.removeEventListener('touchstart', mobileToggle)
     }
-  }, [open, setOpen])
+  }, [open, setOpen, query])
 
   useEffect(() => {
     dispatch({ type: ActionType.RESET, custom: 0 })
@@ -131,17 +131,20 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
   return (
     <MenuContext.Provider
       value={{
-        query: query,
-        setQuery: setQuery,
-        results: results,
+        query,
+        setQuery,
+        results,
         setResults,
-        open: open,
-        setOpen: setOpen,
-        config: config,
-        dimensions: dimensions,
-        state: state,
-        dispatch: dispatch,
-        input: input
+        animate,
+        setAnimate,
+        crumbs,
+        setCrumbs,
+        open,
+        setOpen,
+        config,
+        dimensions,
+        state,
+        dispatch
       }}
     >
       {children}

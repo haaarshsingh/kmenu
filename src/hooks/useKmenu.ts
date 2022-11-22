@@ -23,6 +23,8 @@ export const useKmenu = (): UseKmenuReturnType => {
 
   const openNestedMenu = useCallback(
     (index: number) => {
+      context.setAnimate(true)
+      setTimeout(() => context.setAnimate(false), 100)
       context.setOpen(index)
     },
     [open]

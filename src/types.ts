@@ -26,6 +26,22 @@ export type MenuContext = {
    */
   setQuery: Dispatch<SetStateAction<string>>
   /**
+   * Animate the menu on change
+   */
+  crumbs: Array<string>
+  /**
+   * The setter to animate the menu
+   */
+  setCrumbs: Dispatch<SetStateAction<Array<string>>>
+  /**
+   * Animate the menu on change
+   */
+  animate: boolean
+  /**
+   * The setter to animate the menu
+   */
+  setAnimate: Dispatch<SetStateAction<boolean>>
+  /**
    * The menu configuration options to be passed down onto all menus
    */
   config?: Partial<Config>
@@ -35,7 +51,6 @@ export type MenuContext = {
   dimensions?: Partial<Dimensions>
   state: State
   dispatch: Dispatch<Action>
-  input: RefObject<HTMLInputElement>
 }
 
 export type MenuProviderProps = Pick<MenuContext, 'config' | 'dimensions'>

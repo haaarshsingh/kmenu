@@ -8,7 +8,7 @@ export const CommandWrapper: FC<
   CommandWrapperProps & { children: ReactNode }
 > = ({ children, value, placeholder }) => {
   const menuRef = useRef<HTMLDivElement>(null)
-  const { open, setOpen, config, setQuery, input, state } =
+  const { open, setOpen, animate, config, setQuery, state } =
     useContext(MenuContext)
 
   useClickOutside({
@@ -22,7 +22,11 @@ export const CommandWrapper: FC<
         <motion.div
           className='backdrop'
           initial={{ opacity: 0, pointerEvents: 'none' }}
-          animate={{ opacity: 1, pointerEvents: 'auto' }}
+          animate={{
+            opacity: 1,
+            pointerEvents: 'auto',
+            scale: animate ? 0.98 : 1
+          }}
           exit={{ opacity: 0, pointerEvents: 'none' }}
           style={{
             backgroundColor: config?.backdropColor || '#FFFFFF90',
@@ -62,7 +66,6 @@ export const CommandWrapper: FC<
               autoFocus
               spellCheck='false'
               aria-activedescendant={state.selected.toString()}
-              ref={input}
               onChange={(e) => setQuery(e.target.value)}
               style={{
                 color: config?.inputColor || '#000000',

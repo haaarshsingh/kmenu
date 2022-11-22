@@ -2,7 +2,6 @@ import React, { FC, ReactNode, useCallback, useContext, useEffect } from 'react'
 import { useShortcut } from './hooks/useShortcut'
 import { MenuContext } from './MenuProvider'
 import { ActionType, MenuProps, SortedCommands } from './types'
-import parse from './utils/parse'
 import Command from './Command'
 import { motion } from 'framer-motion'
 
@@ -72,32 +71,6 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
       else if (down) dispatch({ type: ActionType.INCREASE, custom: 0 })
     }
   }, [up, down])
-
-  useEffect(() => {
-    props.commands.commands.forEach((row) => {
-      row.commands.forEach((command) => {
-        if (command.shortcuts) {
-          const map: Array<string> = []
-          window.addEventListener('keydown', (event) =>
-            parse({ command: command, event: event, map: map })
-          )
-        }
-      })
-    })
-
-    return () => {
-      props.commands.commands.forEach((row) => {
-        row.commands.forEach((command) => {
-          if (command.shortcuts) {
-            const map: Array<string> = []
-            window.removeEventListener('keydown', (event) =>
-              parse({ command: command, event: event, map: map })
-            )
-          }
-        })
-      })
-    }
-  }, [])
 
   const sortCommands = useCallback(() => {
     let index = 0
