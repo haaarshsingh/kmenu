@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback, useContext, useEffect } from 'react'
+import React, { FC, ReactNode, useContext, useEffect } from 'react'
 import { useShortcut } from './hooks/useShortcut'
 import { MenuContext } from './MenuProvider'
 import { ActionType, MenuProps, SortedCommands } from './types'
@@ -51,28 +51,29 @@ export const CommandMenu: FC<MenuProps> = (props) => {
 }
 
 const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
-  const { open, query, setQuery, results, setResults, dispatch, dimensions } =
-    useContext(MenuContext)
+  const {
+    open,
+    query,
+    setQuery,
+    results,
+    setResults,
+    dispatch,
+    dimensions,
+    setCrumbs,
+    input
+  } = useContext(MenuContext)
 
   useEffect(() => {
     if (open !== props.index) return
 
     dispatch({ type: ActionType.RESET, custom: 0 })
-    if (!query) return setResults(props.commands)
-    sortCommands()
-  }, [query, setQuery, open])
 
-  const up = useShortcut({ targetKey: 'ArrowUp' })
-  const down = useShortcut({ targetKey: 'ArrowDown' })
-
-  useEffect(() => {
-    if (open === props.index) {
-      if (up) dispatch({ type: ActionType.DECREASE, custom: 0 })
-      else if (down) dispatch({ type: ActionType.INCREASE, custom: 0 })
+    if (!query) {
+      setCrumbs(props.crumbs)
+      input.current!.value = ''
+      return setResults(props.commands)
     }
-  }, [up, down])
 
-  const sortCommands = useCallback(() => {
     let index = 0
     const sorted: SortedCommands[] = []
 
@@ -94,12 +95,22 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
       if (results.commands.length > 0) sorted.push(results)
     })
 
-    setResults({
+    return setResults({
       index: index,
       commands: sorted,
       initialHeight: props.commands.initialHeight
     })
-  }, [])
+  }, [query, setQuery, open])
+
+  const up = useShortcut({ targetKey: 'ArrowUp' })
+  const down = useShortcut({ targetKey: 'ArrowDown' })
+
+  useEffect(() => {
+    if (open === props.index) {
+      if (up) dispatch({ type: ActionType.DECREASE, custom: 0 })
+      else if (down) dispatch({ type: ActionType.INCREASE, custom: 0 })
+    }
+  }, [up, down])
 
   useEffect(() => console.log(results?.index), [results])
   if (open !== props.index || typeof results?.index === 'undefined') return null

@@ -171,7 +171,7 @@ const Palette: FC = () => {
   const [navigationCommands] = useCommands(nested)
 
   return (
-    <CommandWrapper commands={[mainCommands, navigationCommands]}>
+    <CommandWrapper>
       <CommandMenu commands={mainCommands} crumbs={['Home']} index={1} />
       <CommandMenu
         commands={navigationCommands}

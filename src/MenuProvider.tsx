@@ -5,6 +5,7 @@ import React, {
   Reducer,
   useEffect,
   useReducer,
+  useRef,
   useState
 } from 'react'
 import useScrollbarSize from 'react-scrollbar-size'
@@ -34,6 +35,8 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
   dimensions,
   config
 }) => {
+  const input = useRef<HTMLInputElement>(null)
+
   const [open, setOpen] = useState(0)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<CommandWithIndex | null>(null)
@@ -144,7 +147,8 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
         config,
         dimensions,
         state,
-        dispatch
+        dispatch,
+        input
       }}
     >
       {children}

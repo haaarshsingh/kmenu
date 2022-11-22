@@ -49,8 +49,18 @@ export type MenuContext = {
    * Dimensions of individual elements in the menu
    */
   dimensions?: Partial<Dimensions>
+  /**
+   * The state of the item selected
+   */
   state: State
+  /**
+   * Dispatch to change the state of the item selected
+   */
   dispatch: Dispatch<Action>
+  /**
+   * Ref object for the
+   */
+  input: RefObject<HTMLInputElement>
 }
 
 export type MenuProviderProps = Pick<MenuContext, 'config' | 'dimensions'>
@@ -89,26 +99,7 @@ export type MenuProps = {
   /**
    * The current path of the command menu
    */
-  crumbs?: Array<string>
-  /**
-   * Placeholder text in the menu
-   */
-  placeholder?: string
-  /**
-   * Whether or not the modal should prevent being closed
-   */
-  preventClose?: boolean
-  /**
-   * Default text in the input box
-   */
-  value?: string
-  /**
-   * Search when a user types something
-   * If you want to turn a kmenu palette into a modal, this comes in handy
-   *
-   * @default true
-   */
-  preventSearch?: boolean
+  crumbs: Array<string>
 }
 
 /* Command with an index used for keyboard navigation */
@@ -309,7 +300,7 @@ export type UseKmenuReturnType = {
   input: string
   setInput: Dispatch<SetStateAction<string>>
   open: number
-  setOpen: Dispatch<SetStateAction<number>>
+  setOpen: (index: number) => void
   toggle: () => void
 }
 

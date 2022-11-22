@@ -8,7 +8,7 @@ export const CommandWrapper: FC<
   CommandWrapperProps & { children: ReactNode }
 > = ({ children, value, placeholder }) => {
   const menuRef = useRef<HTMLDivElement>(null)
-  const { open, setOpen, animate, config, setQuery, state } =
+  const { open, setOpen, animate, config, setQuery, state, crumbs, input } =
     useContext(MenuContext)
 
   useClickOutside({
@@ -52,6 +52,20 @@ export const CommandWrapper: FC<
               boxShadow: config?.boxShadow || '0px 0px 60px 10px #00000020'
             }}
           >
+            <div className='crumbs'>
+              {crumbs?.map((crumb, index) => (
+                <button
+                  onClick={() => setOpen(index + 1)}
+                  className='breadcrumb'
+                  style={{
+                    backgroundColor: config?.breadcrumbColor || '#EFEFEF',
+                    borderRadius: config?.breadcrumbRadius || 5
+                  }}
+                >
+                  {crumb}
+                </button>
+              ))}
+            </div>
             <input
               placeholder={
                 placeholder || config?.placeholderText || 'What do you need?'
@@ -65,6 +79,7 @@ export const CommandWrapper: FC<
               role='combobox'
               autoFocus
               spellCheck='false'
+              ref={input}
               aria-activedescendant={state.selected.toString()}
               onChange={(e) => setQuery(e.target.value)}
               style={{

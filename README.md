@@ -98,7 +98,9 @@ Each shortcut can have two target keys and a modifier that would be used in conj
 
 After you've created all your commands, you must pass them into the `useCommands` hook, which returns a getter and a setter for the commands. For a reference, check out the section on the [useCommands hook](https://github.com/harshhhdev/kmenu/README.md#usecommands-hook). 
 
-Anyways, now that you have an underlying idea of how commands work, here's an example of how to create the commands (using [TypeScript](https://typescriptlang.org/)): 
+_NOTE: THE SHORTCUTS PROPERTY IS PURELY COSMETIC AND HAS NO FUNCTIONALITY._
+
+Now that you have an underlying idea of how commands work, here's an example of how to create the commands (using [TypeScript](https://typescriptlang.org/)): 
 
 ```ts
 import {
@@ -176,12 +178,12 @@ Here's a list of all the information it provides:
 | input     | The current text in the search bar of the menu that is currently open    | string                           |
 | setInput  | The setter function to change the open state                             | Dispatch<SetStateAction<string>> |
 | open      | The index of the menu is currently open                                  | number                           |
-| setOpen   | The setter function to change the open state                             | Dispatch<SetStateAction<number>> |
+| setOpen   | The setter function to change the open state                             | (index: number) => void          |
 | toggle    | The function for toggling the main menu open/close                       | void                             |
 
-With that, here's also a code example of how you could use this hook!
+With that, here's also a code example of how you could use this hook.
 
-_NOTE: YOU MUST WRAP YOUR COMPONENT INSIDE THE `MenuProvider` TO USE THIS HOOK_
+_NOTE: YOU MUST WRAP YOUR COMPONENT INSIDE THE `MenuProvider` TO USE THIS HOOK._
 
 ```jsx
 import { useKmenu } from 'kmenu'
@@ -251,20 +253,22 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
 ### Setting up the menu
 
+Be sure to wrap our menu around a `CommandWrapper` component. Here are all the properties you can pass into it:
+
+| Parameter     | Description                                                   | Type      | Optional | 
+|---------------|---------------------------------------------------------------|-----------|----------|
+| placeholder   | The placeholder text on this particular menu                  | string    | ✅       |
+| value         | The default value on this particular menu                     | string    | ✅       |
+
 Here are all the options available on the menu: 
 
 | Parameter     | Description                                                   | Type      | Optional | 
 |---------------|---------------------------------------------------------------|-----------|----------|
 | commands      | The commands for this menu to display                         | Command[] | ❌       |
 | index         | The index of this menu                                        | number    | ❌       |
-| crumbs        | The current path of the command menu                          | string[]  | ✅       |
-| main          | Whether or not this is the first menu that'll be displayed    | boolean   | ✅       |
-| placeholder   | The placeholder text on this particular menu                  | string    | ✅       |
-| preventClose  | Whether or not the menu is togglable                          | boolean   | ✅       |
-| value         | The default value on this particular menu                     | string    | ✅       |
-| preventSearch | The placeholder text on this particular menu                  | boolean   | ✅       |
+| crumbs        | The current path of the command menu                          | string[]  | ❌       |
 
-Once you have added commands to the menu and configured it to you likings, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the menu to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
+Once you have added commands to the menu and configured it to you preferences, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the menu to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
 
 _NOTE: YOU MUST WRAP YOUR MENU INSIDE OF THE `MenuProvider` FOR IT TO WORK_
 
@@ -281,12 +285,14 @@ const Component = () => {
   return (
     <MenuProvider config={config}>
       /* ... */
-      <CommandMenu
-        commands={commands}
-        index={1}
-        crumbs={['Home']}
-        main
-      />
+      <CommandWrapper>
+        <CommandMenu
+          commands={commands}
+          index={1}
+          crumbs={['Home']}
+          main
+        />
+      </CommandWrapper>
       /* ... */
     </MenuProvider>
   )
@@ -295,7 +301,7 @@ const Component = () => {
 export default Component
 ```
 
-That's about all the configuration you'll need to do in order to get a basic command menu to work!
+That's about all the configuration you'll need to do in order to get a basic command menu to work.
 
 ### Nested Menus 
 
@@ -306,41 +312,44 @@ import { useState } from 'react'
 import { Menu, Command, useKmenu, useCommands } from 'kmenu'
 import 'kmenu/dist/index.css'
 
-const Component = () => {  
+const Component = () => {
   const main: Command[] = [
     {
-      icon: <FiGlobe />,
-      text: 'Website',
-      href: 'https://hxrsh.in',
-      newTab: true,
-      keywords: 'home',
-      category: 'Socials'
-    },
-    {
-      icon: <FiArrowRight />,
-      text: 'Nested Example...',
-      perform: () => setOpen(2),
-      category: 'Utility'
-    },
+      category: 'Navigation',
+      commands: [
+        {
+          icon: <FiGlobe />,
+          text: 'Website',
+          href: 'https://hxrsh.in',
+          newTab: true,
+        },
+        {
+          icon: <FiArrowRight />,
+          text: 'Nested Example...',
+          perform: () => setOpen(2),
+        },
+      ]
+    }
   ]
 
   const nested: Command[] = [
     {
-      icon: <FiGlobe />,
-      text: 'Demo',
-      href: 'https://kmenu.hxrsh.in',
-      newTab: true,
-      keywords: 'home',
-      category: 'Resources'
-    },
-    {
-      icon: <FiGlobe />,
-      text: 'GitHub',
-      href: 'https://github.com/harshhhdev/kmenu',
-      newTab: true,
-      keywords: 'source',
-      category: 'Resources'
-    },
+      category: 'Navigation',
+      commands: [
+        {
+          icon: <FiGlobe />,
+          text: 'Demo',
+          href: 'https://kmenu.hxrsh.in',
+          newTab: true,
+        },
+        {
+          icon: <FiGlobe />,
+          text: 'GitHub',
+          href: 'https://github.com/harshhhdev/kmenu',
+          newTab: true,
+        },
+      ]
+    }
   ]
   
   const { setOpen } = useKmenu()
@@ -367,7 +376,7 @@ const Component = () => {
 export default Component
 ```
 
-If this isn't enough, there's also an [example](https://github.com/harshhhdev/kmenu/blob/master/example) directory which you can clone and experiment around with to build nested routes!
+If this isn't enough, there's also an [example](https://github.com/harshhhdev/kmenu/blob/master/example) directory which you can clone and experiment around with to build nested routes.
 
 ### useShortcut hook
 
@@ -443,18 +452,6 @@ Awesome. Your React development server should now be running on [port 3000](http
 - [Framer Motion](https://framer.com/motion/)
 - [Prettier](https://prettier.io/)
 - [ESLint](https://eslint.org/)
-
-# 🤞 Contributing
-
-After setting up the project, and making changes:
-
-```git
-git add .
-git commit -m "commit message"
-git push YOUR_REPO_URL YOUR_BRANCH
-```
-
-This codebase is well-documented and has comments explaining just about everything in here. All contributions are welcome! Anything from fixing a typo in the documentation to opening an issue to fix a bug or add an enhancement are welcome. 
 
 # Inspirations 
 
