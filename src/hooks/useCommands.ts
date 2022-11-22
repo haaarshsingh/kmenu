@@ -27,7 +27,6 @@ export const useCommands = (
     let index = 0
     const sorted: SortedCommands[] = []
 
-    // eslint-disable-next-line no-unused-expressions
     initialCommands?.forEach((category) => {
       currentCategories++
       const indexedCommands: GlobalCommand[] = category.commands.map(
@@ -67,8 +66,6 @@ export const useCommands = (
 
         setCommands(() => {
           const sorted: SortedCommands[] = []
-
-          // eslint-disable-next-line no-unused-expressions
           cmds.forEach((category) => {
             currentCategories++
             const indexedCommands: GlobalCommand[] = category.commands.map(

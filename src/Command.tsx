@@ -22,7 +22,6 @@ const Command: FC<{
 
   useEffect(() => {
     if (isSelected && (!inViewTop || !inViewBottom))
-      // eslint-disable-next-line
       bottomRef.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'end'
@@ -59,14 +58,8 @@ const Command: FC<{
             className='selected'
             initial={false}
             aria-hidden='true'
-            transition={{
-              type: 'spring',
-              stiffness: 1000,
-              damping: 70
-            }}
-            style={{
-              background: config?.barBackground || '#82828220'
-            }}
+            transition={{ type: 'spring', stiffness: 1000, damping: 80 }}
+            style={{ background: config?.barBackground || '#82828220' }}
           />
         )}
         <div className='info_wrapper'>

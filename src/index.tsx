@@ -2,6 +2,7 @@ import { Config } from './types'
 import './styles/index.css'
 
 export { CommandMenu } from './CommandMenu'
+export { CommandWrapper } from './CommandWrapper'
 export type MenuConfig = Partial<Config>
 
 export { Command, MenuProps } from './types'

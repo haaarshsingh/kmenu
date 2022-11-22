@@ -10,6 +10,14 @@ export type MenuContext = {
    */
   setOpen: Dispatch<SetStateAction<number>>
   /**
+   * The results on the command menu
+   */
+  results: CommandWithIndex | null
+  /**
+   * The setter to update the results
+   */
+  setResults: Dispatch<SetStateAction<CommandWithIndex | null>>
+  /**
    * The text that is currently in the serch bar
    */
   query: string
@@ -25,6 +33,9 @@ export type MenuContext = {
    * Dimensions of individual elements in the menu
    */
   dimensions?: Partial<Dimensions>
+  state: State
+  dispatch: Dispatch<Action>
+  input: RefObject<HTMLInputElement>
 }
 
 export type MenuProviderProps = Pick<MenuContext, 'config' | 'dimensions'>
@@ -40,6 +51,17 @@ type Dimensions = {
   commandHeight: number
 }
 
+export type CommandWrapperProps = {
+  /**
+   * Placeholder text in the menu
+   */
+  placeholder?: string
+  /**
+   * Default text in the input box
+   */
+  value?: string
+}
+
 export type MenuProps = {
   /**
    * The hierarchical index of the menu
@@ -53,10 +75,6 @@ export type MenuProps = {
    * The current path of the command menu
    */
   crumbs?: Array<string>
-  /**
-   * Whether or not you want this menu to be the first displayed on toggle
-   */
-  main?: boolean
   /**
    * Placeholder text in the menu
    */

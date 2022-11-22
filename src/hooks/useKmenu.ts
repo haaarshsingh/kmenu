@@ -21,11 +21,18 @@ export const useKmenu = (): UseKmenuReturnType => {
     context.setOpen((open: number) => (open === 0 ? 1 : 0))
   }, [])
 
+  const openNestedMenu = useCallback(
+    (index: number) => {
+      context.setOpen(index)
+    },
+    [open]
+  )
+
   return {
     input: context.query,
     setInput: context.setQuery,
     open: context.open,
-    setOpen: context.setOpen,
+    setOpen: openNestedMenu,
     toggle
   }
 }

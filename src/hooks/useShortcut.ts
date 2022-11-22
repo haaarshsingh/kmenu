@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import { useCallback, useEffect, useState } from 'react'
 import { UseShortcutProps } from '../types'
 

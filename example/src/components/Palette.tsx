@@ -1,4 +1,11 @@
-import { Command, CommandMenu, useCommands, useKmenu } from 'kmenu'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {
+  Command,
+  CommandMenu,
+  CommandWrapper,
+  useCommands,
+  useKmenu
+} from 'kmenu'
 import React, { FC } from 'react'
 import {
   FiAlertCircle,
@@ -164,14 +171,14 @@ const Palette: FC = () => {
   const [navigationCommands] = useCommands(nested)
 
   return (
-    <>
-      <CommandMenu commands={mainCommands} crumbs={['Home']} index={1} main />
+    <CommandWrapper>
+      <CommandMenu commands={mainCommands} crumbs={['Home']} index={1} />
       <CommandMenu
         commands={navigationCommands}
         crumbs={['Home', 'Search']}
         index={2}
       />
-    </>
+    </CommandWrapper>
   )
 }
 
