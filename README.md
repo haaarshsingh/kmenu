@@ -14,9 +14,9 @@
       ·
   <a href="https://www.producthunt.com/products/kmenu">Product Hunt</a>
       ·
-  <a href="https://stackblitz.com/edit/react-ts-fotwq9?file=App.tsx">StackBlitz</a>
+  <a href="https://react-ts-fotwq9.stackblitz.io">StackBlitz</a>
       ·
-  <a href="https://codesandbox.io/s/kmenu-demo-codesandbox-cqdhfl">CodeSandbox</a>
+  <a href="https://18nb0j.csb.app/">CodeSandbox</a>
  </p>
 
 # 🚀 Quickstart
