@@ -172,7 +172,12 @@ const Palette: FC = () => {
 
   return (
     <CommandWrapper>
-      <CommandMenu commands={mainCommands} crumbs={['Home']} index={1} />
+      <CommandMenu
+        commands={mainCommands}
+        crumbs={['Home']}
+        index={1}
+        placeholder='Placeholder Two'
+      />
       <CommandMenu
         commands={navigationCommands}
         crumbs={['Home', 'Search']}

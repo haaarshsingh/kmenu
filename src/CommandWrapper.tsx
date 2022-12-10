@@ -6,10 +6,19 @@ import useClickOutside from './hooks/useClickOutside'
 
 export const CommandWrapper: FC<
   CommandWrapperProps & { children: ReactNode }
-> = ({ children, value, placeholder }) => {
+> = ({ children, value }) => {
   const menuRef = useRef<HTMLDivElement>(null)
-  const { open, setOpen, animate, config, setQuery, state, crumbs, input } =
-    useContext(MenuContext)
+  const {
+    open,
+    setOpen,
+    placeholder,
+    animate,
+    config,
+    setQuery,
+    state,
+    crumbs,
+    input
+  } = useContext(MenuContext)
 
   useClickOutside({
     ref: menuRef,
@@ -57,15 +66,14 @@ export const CommandWrapper: FC<
                     backgroundColor: config?.breadcrumbColor || '#EFEFEF',
                     borderRadius: config?.breadcrumbRadius || 5
                   }}
+                  key={index}
                 >
                   {crumb}
                 </button>
               ))}
             </div>
             <input
-              placeholder={
-                placeholder || config?.placeholderText || 'What do you need?'
-              }
+              placeholder={placeholder || 'What do you need?'}
               defaultValue={value}
               className='searchbar'
               aria-expanded='true'

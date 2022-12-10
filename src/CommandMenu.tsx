@@ -55,6 +55,7 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
     open,
     query,
     setQuery,
+    setPlaceholder,
     results,
     setResults,
     dispatch,
@@ -62,6 +63,15 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
     setCrumbs,
     input
   } = useContext(MenuContext)
+
+  useEffect(() => {
+    if (open === props.index)
+      setPlaceholder(
+        typeof props.placeholder === 'string'
+          ? props.placeholder
+          : 'What do you need?'
+      )
+  }, [open])
 
   useEffect(() => {
     if (open !== props.index) return
@@ -112,7 +122,6 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
     }
   }, [up, down])
 
-  useEffect(() => console.log(results?.index), [results])
   if (open !== props.index || typeof results?.index === 'undefined') return null
 
   return (

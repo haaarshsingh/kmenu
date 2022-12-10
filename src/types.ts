@@ -18,6 +18,14 @@ export type MenuContext = {
    */
   setResults: Dispatch<SetStateAction<CommandWithIndex | null>>
   /**
+   * The index of which element is currently open
+   */
+  placeholder: string | undefined
+  /**
+   * The setter to update the open state
+   */
+  setPlaceholder: Dispatch<SetStateAction<string>>
+  /**
    * The text that is currently in the serch bar
    */
   query: string
@@ -78,10 +86,6 @@ type Dimensions = {
 
 export type CommandWrapperProps = {
   /**
-   * Placeholder text in the menu
-   */
-  placeholder?: string
-  /**
    * Default text in the input box
    */
   value?: string
@@ -100,6 +104,10 @@ export type MenuProps = {
    * The current path of the command menu
    */
   crumbs: Array<string>
+  /**
+   * Placeholder text in the menu
+   */
+  placeholder?: string
 }
 
 /* Command with an index used for keyboard navigation */
