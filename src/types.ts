@@ -250,12 +250,6 @@ export type Config = {
    */
   inputBorder: string
   /**
-   * The placeholder input text in the search bar
-   *
-   * @default 'What do you need?'
-   */
-  placeholderText: string
-  /**
    * The colour of the command category headings
    *
    * @default #777777

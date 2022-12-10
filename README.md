@@ -244,7 +244,6 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 | boxShadow          | The shadow of the menu                                       | string | 0px 0px 60px 10px #00000020 |
 | inputBorder        | The colour of the border below the search bar                | string | #E9ECEF                     |
 | inputColor         | The colour of the text in the search bar                     | string | #000000                     |
-| placeholderText    | The placeholder input text in the search bar                 | string | 'What do you need?'         |
 | headingColor       | The colour of the command category headings                  | string | #777777                     |
 | commandInactive    | The colour of the icon and text when the command is inactive | string | #828282                     |
 | commandActive      | The colour of the icon and text when the command is active   | string | #343434                     |
@@ -257,7 +256,6 @@ Be sure to wrap our menu around a `CommandWrapper` component. Here are all the p
 
 | Parameter     | Description                                                   | Type      | Optional | 
 |---------------|---------------------------------------------------------------|-----------|----------|
-| placeholder   | The placeholder text on this particular menu                  | string    | ✅       |
 | value         | The default value on this particular menu                     | string    | ✅       |
 
 Here are all the options available on the menu: 
@@ -267,6 +265,7 @@ Here are all the options available on the menu:
 | commands      | The commands for this menu to display                         | Command[] | ❌       |
 | index         | The index of this menu                                        | number    | ❌       |
 | crumbs        | The current path of the command menu                          | string[]  | ❌       |
+| placeholder   | The placeholder text on this particular menu                  | string    | ✅       |
 
 Once you have added commands to the menu and configured it to you preferences, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the menu to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
 

@@ -39,7 +39,7 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
 
   const [open, setOpen] = useState(0)
   const [query, setQuery] = useState('')
-  const [placeholder, setPlaceholder] = useState(config?.placeholderText)
+  const [placeholder, setPlaceholder] = useState<string | undefined>(undefined)
   const [results, setResults] = useState<CommandWithIndex | null>(null)
   const [crumbs, setCrumbs] = useState<Array<string>>([])
   const [animate, setAnimate] = useState(false)
