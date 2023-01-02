@@ -68,7 +68,7 @@
     "dist"
   ],
   "dependencies": {
-    "framer-motion": "^7.6.6",
+    "framer-motion": "^8.1.1",
     "react-scrollbar-size": "^5.0.0"
   }
 }
