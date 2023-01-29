@@ -41,11 +41,11 @@ export const useShortcut = ({
         handler?.()
       }
     }
-  }, [])
+  }, [handler, setKeyPressed])
 
   const upHandler = useCallback((event: KeyboardEvent) => {
     if (event.key === targetKey) setKeyPressed(false)
-  }, [])
+  }, [setKeyPressed])
 
   useEffect(() => {
     window.addEventListener('keydown', downHandler)
@@ -55,7 +55,7 @@ export const useShortcut = ({
       window.removeEventListener('keydown', downHandler)
       window.removeEventListener('keyup', upHandler)
     }
-  }, [])
+  }, [upHandler, downHandler])
 
   return keyPressed
 }
