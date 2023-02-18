@@ -108,6 +108,10 @@ export type MenuProps = {
    * Placeholder text in the menu
    */
   placeholder?: string
+  /**
+   * Stop the menu from filtering results
+   */
+  preventSearch?: boolean
 }
 
 /* Command with an index used for keyboard navigation */
