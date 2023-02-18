@@ -79,8 +79,8 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
     dispatch({ type: ActionType.RESET, custom: 0 })
 
     if (!query || props.preventSearch) {
+      if (!query) input.current!.value = ''
       setCrumbs(props.crumbs)
-      input.current!.value = ''
       return setResults(props.commands)
     }
 
