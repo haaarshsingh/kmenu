@@ -1,4 +1,11 @@
-import { Dispatch, ReactElement, RefObject, SetStateAction } from 'react'
+import {
+  AnchorHTMLAttributes,
+  Dispatch,
+  FunctionComponent,
+  ReactElement,
+  RefObject,
+  SetStateAction
+} from 'react'
 
 export type MenuContext = {
   /**
@@ -138,6 +145,7 @@ export type SortedCommands = {
   category: string
   commands: GlobalCommand[]
 }
+type navLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 
 export type CategoryCommand = {
   /**
@@ -173,6 +181,7 @@ export type CategoryCommand = {
    * Whether or not to close this menu when the functino is called
    */
   closeOnComplete?: boolean
+  Anchor?: FunctionComponent<navLinkProps>
 }
 
 export type Shortcut = {

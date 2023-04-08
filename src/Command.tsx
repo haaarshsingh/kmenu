@@ -33,63 +33,123 @@ const Command: FC<{
     }
   }, [isSelected, enter])
 
+  const Link = command.Anchor
+
   return (
     <div role='option' aria-selected={isSelected}>
       <span ref={topRef} aria-hidden='true' />
-      <a
-        className='command'
-        onMouseMove={onMouseEnter}
-        style={{
-          color: isSelected
-            ? config?.commandActive || '#343434'
-            : config?.commandInactive || '#828282'
-        }}
-        onClick={() => {
-          if (!command.closeOnComplete) setOpen(0)
-          run(command)
-        }}
-        href={command.href || '#'}
-        target={command.newTab ? '_blank' : '_self'}
-        rel='noreferrer'
-      >
-        {isSelected && (
-          <motion.div
-            layoutId='box'
-            className='selected'
-            initial={false}
-            aria-hidden='true'
-            transition={{ type: 'spring', stiffness: 1000, damping: 80 }}
-            style={{ background: config?.barBackground || '#82828220' }}
-          />
-        )}
-        <div className='info_wrapper'>
-          {command.icon && command.icon}
-          <p className='command_text'>{command.text}</p>
-        </div>
-        {command.shortcuts && (
-          <div className='shortcuts'>
-            {command.shortcuts.modifier && (
-              <kbd
-                style={{
-                  backgroundColor: config?.shortcutBackground || '#82828220'
-                }}
-              >
-                {command.shortcuts.modifier}
-              </kbd>
-            )}
-            {command.shortcuts.keys.map((key, index) => (
-              <kbd
-                key={index}
-                style={{
-                  backgroundColor: config?.shortcutBackground || '#82828220'
-                }}
-              >
-                {key}
-              </kbd>
-            ))}
+      {Link ? (
+        <Link
+          className='command'
+          onMouseMove={onMouseEnter}
+          style={{
+            color: isSelected
+              ? config?.commandActive || '#343434'
+              : config?.commandInactive || '#828282'
+          }}
+          onClick={() => {
+            if (!command.closeOnComplete) setOpen(0)
+            run(command)
+          }}
+          href={command.href || '#'}
+          target={command.newTab ? '_blank' : '_self'}
+          rel='noreferrer'
+        >
+          {isSelected && (
+            <motion.div
+              layoutId='box'
+              className='selected'
+              initial={false}
+              aria-hidden='true'
+              transition={{ type: 'spring', stiffness: 1000, damping: 80 }}
+              style={{ background: config?.barBackground || '#82828220' }}
+            />
+          )}
+          <div className='info_wrapper'>
+            {command.icon && command.icon}
+            <p className='command_text'>{command.text}</p>
           </div>
-        )}
-      </a>
+          {command.shortcuts && (
+            <div className='shortcuts'>
+              {command.shortcuts.modifier && (
+                <kbd
+                  style={{
+                    backgroundColor: config?.shortcutBackground || '#82828220'
+                  }}
+                >
+                  {command.shortcuts.modifier}
+                </kbd>
+              )}
+              {command.shortcuts.keys.map((key, index) => (
+                <kbd
+                  key={index}
+                  style={{
+                    backgroundColor: config?.shortcutBackground || '#82828220'
+                  }}
+                >
+                  {key}
+                </kbd>
+              ))}
+            </div>
+          )}
+        </Link>
+      ) : (
+        <a
+          className='command'
+          onMouseMove={onMouseEnter}
+          style={{
+            color: isSelected
+              ? config?.commandActive || '#343434'
+              : config?.commandInactive || '#828282'
+          }}
+          onClick={() => {
+            if (!command.closeOnComplete) setOpen(0)
+            run(command)
+          }}
+          href={command.href || '#'}
+          target={command.newTab ? '_blank' : '_self'}
+          rel='noreferrer'
+        >
+          {isSelected && (
+            <motion.div
+              layoutId='box'
+              className='selected'
+              initial={false}
+              aria-hidden='true'
+              transition={{ type: 'spring', stiffness: 1000, damping: 80 }}
+              style={{ background: config?.barBackground || '#82828220' }}
+            />
+          )}
+          <div className='info_wrapper'>
+            {command.icon && command.icon}
+            <p className='command_text'>{command.text}</p>
+          </div>
+          {command.shortcuts && (
+            <div className='shortcuts'>
+              {command.shortcuts.modifier && (
+                <kbd
+                  style={{
+                    backgroundColor: config?.shortcutBackground || '#82828220'
+                  }}
+                >
+                  {command.shortcuts.modifier}
+                </kbd>
+              )}
+              {command.shortcuts.keys.map((key, index) => (
+                <kbd
+                  key={index}
+                  style={{
+                    backgroundColor: config?.shortcutBackground || '#82828220'
+                  }}
+                >
+                  {key}
+                </kbd>
+              ))}
+            </div>
+          )}
+        </a>
+      )}
+
       <span ref={bottomRef} className='scroll_ref' aria-hidden='true' />
     </div>
   )
