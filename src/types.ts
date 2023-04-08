@@ -283,6 +283,12 @@ export type Config = {
    * @default #82828220
    */
   shortcutBackground: string
+  /**
+   * The animation duration of dialog transitions (seconds)
+   *
+   * @default 0.1
+   */
+  animationDuration: number
 }
 
 export type ParseProps = {
