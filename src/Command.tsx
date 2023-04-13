@@ -33,13 +33,11 @@ const Command: FC<{
     }
   }, [isSelected, enter])
 
-  const Link = command.Anchor
-
   return (
     <div role='option' aria-selected={isSelected}>
       <span ref={topRef} aria-hidden='true' />
-      {Link ? (
-        <Link
+      {command.anchor ? (
+        <command.anchor
           className='command'
           onMouseMove={onMouseEnter}
           style={{
@@ -92,7 +90,7 @@ const Command: FC<{
               ))}
             </div>
           )}
-        </Link>
+        </command.anchor>
       ) : (
         <a
           className='command'
@@ -149,7 +147,6 @@ const Command: FC<{
           )}
         </a>
       )}
-
       <span ref={bottomRef} className='scroll_ref' aria-hidden='true' />
     </div>
   )
