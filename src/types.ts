@@ -1,7 +1,7 @@
 import {
   AnchorHTMLAttributes,
   Dispatch,
-  FunctionComponent,
+  FC,
   ReactElement,
   RefObject,
   SetStateAction
@@ -145,7 +145,8 @@ export type SortedCommands = {
   category: string
   commands: GlobalCommand[]
 }
-type navLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
+
+type NavLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 
 export type CategoryCommand = {
   /**
@@ -178,10 +179,13 @@ export type CategoryCommand = {
    */
   shortcuts?: Shortcut
   /**
-   * Whether or not to close this menu when the functino is called
+   * Whether or not to close this menu when the function is called
    */
   closeOnComplete?: boolean
-  Anchor?: FunctionComponent<navLinkProps>
+  /**
+   * Allow for custom HTML to be passed as the anchor property
+  */
+  anchor?: FC<NavLinkProps>
 }
 
 export type Shortcut = {
