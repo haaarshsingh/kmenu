@@ -33,19 +33,19 @@ yarn add kmenu
 
 After you install, you must wrap your application around the `MenuProvider` component. Want to learn how you can customise your menu configuration? Check out the [MenuConfig section](https://github.com/harshhhdev/kmenu/README.md#menu-config).
 
-Inside the `MenuProvider`, you can pass in the theme configuration which all of the menus will use. All props are optional, and you can also pass in props if your commands or sections have extra margin between them. Here's a look: 
+Inside the `MenuProvider`, you can pass in the theme configuration which all of the menus will use. All props are optional, and you can also pass in props if your commands or sections have extra margin between them. Here's a look:
 
-| Parameter       | Description                                             | Type      | Optional |
-|-----------------|---------------------------------------------------------|-----------|----------|
-| config          | The config file passed onto the palette                 | Config    | ✅       |
-| dimensions      | The values of the height of the palettes (px)           | Dimension | ✅       |
+| Parameter  | Description                                   | Type      | Optional |
+| ---------- | --------------------------------------------- | --------- | -------- |
+| config     | The config file passed onto the palette       | Config    | ✅       |
+| dimensions | The values of the height of the palettes (px) | Dimension | ✅       |
 
 Now, here's a look at the dimensions object:
 
-| Parameter       | Description                                             | Type    | Default | Optional |
-|-----------------|---------------------------------------------------------|---------|---------|----------|
-| commandHeight   | The height of each command in the palette (px)          | number  | 54      | ✅       |
-| sectionHeight   | The height of each category/section in the palette (px) | number  | 31      | ✅       |
+| Parameter     | Description                                             | Type   | Default | Optional |
+| ------------- | ------------------------------------------------------- | ------ | ------- | -------- |
+| commandHeight | The height of each command in the palette (px)          | number | 54      | ✅       |
+| sectionHeight | The height of each category/section in the palette (px) | number | 31      | ✅       |
 
 Below is an example:
 
@@ -53,31 +53,29 @@ Below is an example:
 import { MenuProvider, MenuConfig } from 'kmenu'
 
 const App = () => {
-  const config: MenuConfig = { /* ... */ }
-  
-  return (
-    <MenuProvider config={config}>
-       {/* ... */}
-    </MenuProvider>
-  )
+  const config: MenuConfig = {
+    /* ... */
+  }
+
+  return <MenuProvider config={config}>{/* ... */}</MenuProvider>
 }
 ```
 
-### Adding commands 
+### Adding commands
 
-After you've installed the package, you can now begin adding commands onto the command menu. 
+After you've installed the package, you can now begin adding commands onto the command menu.
 
 The commands are broken up into two arrays. One array contains the different categories of the commands, and another array contains the commands itself. Here's a look at how you can define categories:
 
-| Parameter | Description                                               | Type    | Optional | 
-|-----------|-----------------------------------------------------------|---------|----------|
+| Parameter | Description                                               | Type    | Optional |
+| --------- | --------------------------------------------------------- | ------- | -------- |
 | category  | The name of the category the command will be displayed in | string  | ❌       |
 | commands  | An array of commands passed onto the category             | Command | ❌       |
 
 Awesome. Now here's a look at how you can create commands:
 
-| Parameter       | Description                                                            | Type         | Optional | 
-|-----------------|------------------------------------------------------------------------|--------------|----------|
+| Parameter       | Description                                                            | Type         | Optional |
+| --------------- | ---------------------------------------------------------------------- | ------------ | -------- |
 | icon            | The icon displayed next to the command                                 | ReactElement | ✅       |
 | text            | The text displayed on the command                                      | String       | ❌       |
 | perform         | The action to perform                                                  | void         | ✅       |
@@ -87,20 +85,20 @@ Awesome. Now here's a look at how you can create commands:
 | shorcuts        | The keyboard shortcuts to activate this command                        | Shortcut     | ✅       |
 | closeOnComplete | Whether the menu should close when the command is run (default: false) | boolean      | ✅       |
 
-As you might notice, the commands give you the ability to define custom shortcuts. 
+As you might notice, the commands give you the ability to define custom shortcuts.
 
 Each shortcut can have two target keys and a modifier that would be used in conjunction with a single target key. Note that if you're using a modifier, you can only use a SINGLE target key. Here's a look at how you can create shortcuts:
 
-| Parameter | Description                                              | Type                       | Optional | 
-|-----------|----------------------------------------------------------|----------------------------|----------|
+| Parameter | Description                                              | Type                       | Optional |
+| --------- | -------------------------------------------------------- | -------------------------- | -------- |
 | modifier  | The modifier key used in conjunction with the target key | enum (shift/alt/ctrl/meta) | ✅       |
 | keys      | The target keys for this command                         | Tuple [string, string?]    | ❌       |
 
-After you've created all your commands, you must pass them into the `useCommands` hook, which returns a getter and a setter for the commands. For a reference, check out the section on the [useCommands hook](https://github.com/harshhhdev/kmenu/README.md#usecommands-hook). 
+After you've created all your commands, you must pass them into the `useCommands` hook, which returns a getter and a setter for the commands. For a reference, check out the section on the [useCommands hook](https://github.com/harshhhdev/kmenu/README.md#usecommands-hook).
 
 _NOTE: THE SHORTCUTS PROPERTY IS PURELY COSMETIC AND HAS NO FUNCTIONALITY._
 
-Now that you have an underlying idea of how commands work, here's an example of how to create the commands (using [TypeScript](https://typescriptlang.org/)): 
+Now that you have an underlying idea of how commands work, here's an example of how to create the commands (using [TypeScript](https://typescriptlang.org/)):
 
 ```ts
 import {
@@ -162,7 +160,7 @@ const main: Command[] = [
 
 const Component = () => {
   const [commands, setCommands] = useCommands(main)
-  
+
   /* ... */
 }
 ```
@@ -171,15 +169,15 @@ const Component = () => {
 
 `useKmenu` is a utility hook that gives you some useful functions and information about the current status of the menu. You can use these for a multitude of different things such as nested routes on the command menu or for toggling the menu through a button on your UI.
 
-Here's a list of all the information it provides: 
+Here's a list of all the information it provides:
 
-| Parameter | Description                                                              | Type                             |
-|-----------|--------------------------------------------------------------------------|----------------------------------|
-| input     | The current text in the search bar of the menu that is currently open    | string                           |
-| setInput  | The setter function to change the open state                             | Dispatch<SetStateAction<string>> |
-| open      | The index of the menu is currently open                                  | number                           |
-| setOpen   | The setter function to change the open state                             | (index: number) => void          |
-| toggle    | The function for toggling the main menu open/close                       | void                             |
+| Parameter | Description                                                           | Type                             |
+| --------- | --------------------------------------------------------------------- | -------------------------------- |
+| input     | The current text in the search bar of the menu that is currently open | string                           |
+| setInput  | The setter function to change the open state                          | Dispatch<SetStateAction<string>> |
+| open      | The index of the menu is currently open                               | number                           |
+| setOpen   | The setter function to change the open state                          | (index: number) => void          |
+| toggle    | The function for toggling the main menu open/close                    | void                             |
 
 With that, here's also a code example of how you could use this hook.
 
@@ -190,7 +188,7 @@ import { useKmenu } from 'kmenu'
 
 const Component = () => {
   const { input, open, toggle } = useKmenu()
-  
+
   return (
     <div>
       <p>The current text on the search bar is: {input}</p>
@@ -201,14 +199,13 @@ const Component = () => {
 }
 ```
 
-
 ### useCommands Hook
 
 With [kmenu v1](https://www.npmjs.com/package/kmenu/v/1.0.0-dev), you can now dynamically compute and define commands.
 
-When commands are inputted into the `useCommands` hook, they're returned into an object of command-menu parsable commands, and they require an initial value of the commands you'd like to pass in. 
+When commands are inputted into the `useCommands` hook, they're returned into an object of command-menu parsable commands, and they require an initial value of the commands you'd like to pass in.
 
-*NOTE: YOU CANNOT USE `SetCommands` DIRECTLY INSIDE OF A `useEffect` HOOK AT RENDER*
+_NOTE: YOU CANNOT USE `SetCommands` DIRECTLY INSIDE OF A `useEffect` HOOK AT RENDER_
 
 Here's an example of the hook live in action:
 
@@ -216,23 +213,25 @@ Here's an example of the hook live in action:
 import { CommandMenu, Command, useCommands } from 'kmenu'
 
 const Component = () => {
-  const main: Command[] = [ /* ... */ ]
-  
+  const main: Command[] = [
+    /* ... */
+  ]
+
   const [commands, setCommands] = useCommands(main)
-  
-  return 
-    <CommandMenu commands={commands} crumbs={['Home']} index={1} main />
+
+  return
+  ;<CommandMenu commands={commands} crumbs={['Home']} index={1} main />
 }
 ```
 
 ### Customising the menu
 
-You can easily customise the colours on your command menu as well. Here's a list of properties that are customisable: 
+You can easily customise the colours on your command menu as well. Here's a list of properties that are customisable:
 
 _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 
-| Parameter          | Description                                                  | Type   | Default                     | 
-|--------------------|--------------------------------------------------------------|--------|-----------------------------|
+| Parameter          | Description                                                  | Type   | Default                     |
+| ------------------ | ------------------------------------------------------------ | ------ | --------------------------- |
 | backdropColor      | The colour of the backdrop (include opacity)                 | string | #FFFFFF90                   |
 | backdropBlur       | The backround blur of the backdrop (px)                      | number | 2px                         |
 | backgroundColor    | The background colour of the menu                            | string | #FFFFFF                     |
@@ -249,24 +248,25 @@ _NOTE: ALL PROPERTIES ARE **OPTIONAL**_
 | commandActive      | The colour of the icon and text when the command is active   | string | #343434                     |
 | barBackground      | The background colour of the active bar (include opacity)    | string | #FFFFFF20                   |
 | shortcutBackground | The background colour of the keyboard shortcut               | string | #82828220                   |
+| animationDuration  | The duration of the dialog opening animation                 | number | 0.1                         |
 
 ### Setting up the menu
 
 Be sure to wrap our menu around a `CommandWrapper` component. Here are all the properties you can pass into it:
 
-| Parameter     | Description                                                   | Type      | Optional | 
-|---------------|---------------------------------------------------------------|-----------|----------|
-| value         | The default value on this particular menu                     | string    | ✅       |
+| Parameter | Description                               | Type   | Optional |
+| --------- | ----------------------------------------- | ------ | -------- |
+| value     | The default value on this particular menu | string | ✅       |
 
-Here are all the options available on the menu: 
+Here are all the options available on the menu:
 
-| Parameter     | Description                                                   | Type      | Optional | 
-|---------------|---------------------------------------------------------------|-----------|----------|
-| commands      | The commands for this menu to display                         | Command[] | ❌       |
-| index         | The index of this menu                                        | number    | ❌       |
-| crumbs        | The current path of the command menu                          | string[]  | ❌       |
-| preventSearch | Disable filtering results for the menu                        | string    | ✅       |
-| placeholder   | The placeholder text on this particular menu                  | string    | ✅       |
+| Parameter     | Description                                  | Type      | Optional |
+| ------------- | -------------------------------------------- | --------- | -------- |
+| commands      | The commands for this menu to display        | Command[] | ❌       |
+| index         | The index of this menu                       | number    | ❌       |
+| crumbs        | The current path of the command menu         | string[]  | ❌       |
+| preventSearch | Disable filtering results for the menu       | string    | ✅       |
+| placeholder   | The placeholder text on this particular menu | string    | ✅       |
 
 Once you have added commands to the menu and configured it to you preferences, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customise the styles on the menu to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
 
@@ -278,20 +278,21 @@ import { CommandMenu, Command, MenuConfig } from 'kmenu'
 import 'kmenu/dist/index.css'
 
 const Component = () => {
-  const commands: Command[] = [ /* ... */ ]
-  const config: MenuConfig = { /* ... */ }
-  const categories: string[] = [ /* ... */ ]
+  const commands: Command[] = [
+    /* ... */
+  ]
+  const config: MenuConfig = {
+    /* ... */
+  }
+  const categories: string[] = [
+    /* ... */
+  ]
 
   return (
     <MenuProvider config={config}>
       /* ... */
       <CommandWrapper>
-        <CommandMenu
-          commands={commands}
-          index={1}
-          crumbs={['Home']}
-          main
-        />
+        <CommandMenu commands={commands} index={1} crumbs={['Home']} main />
       </CommandWrapper>
       /* ... */
     </MenuProvider>
@@ -303,7 +304,7 @@ export default Component
 
 That's about all the configuration you'll need to do in order to get a basic command menu to work.
 
-### Nested Menus 
+### Nested Menus
 
 This library also provides support for nested menus and commands. Here's an example to help you out:
 
@@ -351,11 +352,11 @@ const Component = () => {
       ]
     }
   ]
-  
+
   const { setOpen } = useKmenu()
   const [mainCommands, setMainCommands] = useCommands(main)
   const [nestedCommands, setNestedCommands] = useCommands(nested)
-  
+
   return (
     {/* ... */}
     <CommandMenu
@@ -380,14 +381,14 @@ If this isn't enough, there's also an [example](https://github.com/harshhhdev/km
 
 ### useShortcut hook
 
-This library also ships with a [custom React hook](https://reactjs.org/docs/hooks-custom.html) called `useShortcut` which you can use to define your own shortcuts within your application. 
+This library also ships with a [custom React hook](https://reactjs.org/docs/hooks-custom.html) called `useShortcut` which you can use to define your own shortcuts within your application.
 
-| Parameter       | Description                                           | Type                       | Optional  | 
-|-----------------|-------------------------------------------------------|----------------------------|-----------|
-| targetKey       | The key that the shortcut is listening for            | string (must be valid key) | ❌        |
-| modifier        | The modifier key which can will activate the shortcut | enum (shift/alt/ctrl/meta) | ✅        |
+| Parameter | Description                                           | Type                       | Optional |
+| --------- | ----------------------------------------------------- | -------------------------- | -------- |
+| targetKey | The key that the shortcut is listening for            | string (must be valid key) | ❌       |
+| modifier  | The modifier key which can will activate the shortcut | enum (shift/alt/ctrl/meta) | ✅       |
 
-Here's an example: 
+Here's an example:
 
 ```jsx
 import { useShortcut } from 'kmenu'
@@ -418,7 +419,7 @@ cd kmenu
 yarn
 
 # Setup example directory
-cd example 
+cd example
 yarn
 ```
 
@@ -453,9 +454,9 @@ Awesome. Your React development server should now be running on [port 3000](http
 - [Prettier](https://prettier.io/)
 - [ESLint](https://eslint.org/)
 
-# Inspirations 
+# Inspirations
 
 - [Vercel](https://vercel.com)
-- [Ultra](https://ultra.tf) 
+- [Ultra](https://ultra.tf)
 - [GitHub](https://github.com)
 - [CommandBar](https://commandbar.com)
