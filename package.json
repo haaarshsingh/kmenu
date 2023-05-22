@@ -38,7 +38,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.2.3",
-    "@types/node": "^18.11.9",
+    "@types/node": "^20.2.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "@types/resize-observer-browser": "^0.1.7",
