@@ -260,13 +260,15 @@ Be sure to wrap our menu around a `CommandWrapper` component. Here are all the p
 
 Here are all the options available on the menu:
 
-| Parameter     | Description                                  | Type      | Optional |
-| ------------- | -------------------------------------------- | --------- | -------- |
-| commands      | The commands for this menu to display        | Command[] | ❌       |
-| index         | The index of this menu                       | number    | ❌       |
-| crumbs        | The current path of the command menu         | string[]  | ❌       |
-| preventSearch | Disable filtering results for the menu       | string    | ✅       |
-| placeholder   | The placeholder text on this particular menu | string    | ✅       |
+| Parameter          | Description                                  | Type         | Optional |
+| ------------------ | -------------------------------------------- | ------------ | -------- |
+| commands           | The commands for this menu to display        | Command[]    | ❌       |
+| index              | The index of this menu                       | number       | ❌       |
+| crumbs             | The current path of the command menu         | string[]     | ❌       |
+| preventSearch      | Disable filtering results for the menu       | string       | ✅       |
+| loadingPlaceholder | Element to be displayed while commands load  | ReactElement | ✅       |
+| loadingState       | Whether or not the data is currently loading | boolean      | ✅       |
+| placeholder        | The placeholder text on this particular menu | string       | ✅       |
 
 Once you have added commands to the menu and configured it to you preferences, you can add it into your application. Add in the CSS file for styling. Optionally, if you'd like to FULLY customize the styles on the menu to your likings then you can copy the [index.css file](https://github.com/harshhhdev/harshhhdev.github.io/blob/master/compiled/index.css) from the [repository](https://github.com/harshhhdev/kmenu) and import that instead. You'll also need to create a [useState](https://reactjs.org/docs/hooks-state.html) hook for handling the state.
 

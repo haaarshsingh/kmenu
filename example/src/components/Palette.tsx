@@ -6,7 +6,7 @@ import {
   useCommands,
   useKmenu
 } from 'kmenu'
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import {
   FiAlertCircle,
   FiCode,
@@ -24,9 +24,10 @@ import {
   FiTwitter,
   FiZap
 } from 'react-icons/fi'
+import styles from '../styles/example.module.css'
 
 const Palette: FC = () => {
-  const { setOpen } = useKmenu()
+  const { open, setOpen } = useKmenu()
 
   const main: Command[] = [
     {
@@ -167,8 +168,21 @@ const Palette: FC = () => {
     }
   ]
 
+  const loading: Command[] = []
+
   const [mainCommands] = useCommands(main)
-  const [navigationCommands] = useCommands(nested)
+  const [loadingCommands, setLoadingCommands] = useCommands(loading)
+
+  const [awaiting, setAwaiting] = useState(true)
+
+  useEffect(() => {
+    if (open !== 2) return
+
+    setAwaiting(true)
+
+    setLoadingCommands(nested)
+    setTimeout(() => setAwaiting(false), 1000)
+  }, [open, setOpen])
 
   return (
     <CommandWrapper>
@@ -179,12 +193,21 @@ const Palette: FC = () => {
         placeholder='Placeholder Two'
       />
       <CommandMenu
-        commands={navigationCommands}
+        commands={loadingCommands}
         crumbs={['Home', 'Search']}
         index={2}
+        loadingPlaceholder={<LoadingSpinner />}
+        loadingState={awaiting}
       />
     </CommandWrapper>
   )
 }
+
+const LoadingSpinner = () => (
+  <div className={styles.spinner_container}>
+    <div className={styles.spinner} />
+    <p>Fetching data...</p>
+  </div>
+)
 
 export default Palette

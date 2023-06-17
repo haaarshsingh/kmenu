@@ -19,33 +19,35 @@ export const CommandMenu: FC<MenuProps> = (props) => {
 
   return (
     <Wrapper {...props}>
-      {results?.commands.map((category, index) => (
-        <div key={index}>
-          {category.commands.length > 0 && (
-            <p
-              className='category_header'
-              style={{
-                color: config?.headingColor || '#828282'
-              }}
-            >
-              {category.category}
-            </p>
-          )}
-          {category.commands.map((command, index) => (
-            <Command
-              onMouseEnter={() =>
-                dispatch({
-                  type: ActionType.CUSTOM,
-                  custom: command.globalIndex
-                })
-              }
-              isSelected={state.selected === command.globalIndex}
-              command={command}
-              key={index}
-            />
+      {typeof props.loadingPlaceholder !== 'undefined' && props.loadingState
+        ? props.loadingPlaceholder
+        : results?.commands.map((category, index) => (
+            <div key={index}>
+              {category.commands.length > 0 && (
+                <p
+                  className='category_header'
+                  style={{
+                    color: config?.headingColor || '#828282'
+                  }}
+                >
+                  {category.category}
+                </p>
+              )}
+              {category.commands.map((command, index) => (
+                <Command
+                  onMouseEnter={() =>
+                    dispatch({
+                      type: ActionType.CUSTOM,
+                      custom: command.globalIndex
+                    })
+                  }
+                  isSelected={state.selected === command.globalIndex}
+                  command={command}
+                  key={index}
+                />
+              ))}
+            </div>
           ))}
-        </div>
-      ))}
     </Wrapper>
   )
 }
@@ -110,7 +112,7 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
       commands: sorted,
       initialHeight: props.commands.initialHeight
     })
-  }, [query, setQuery, open])
+  }, [query, setQuery, open, props.loadingState])
 
   const up = useShortcut({ targetKey: 'ArrowUp' })
   const down = useShortcut({ targetKey: 'ArrowDown' })
@@ -133,6 +135,8 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
         height:
           results!.index >= 5
             ? results?.initialHeight
+            : props.loadingState
+            ? 'auto'
             : results!.commands.length * (dimensions?.sectionHeight || 31) +
               results!.index * (dimensions?.commandHeight || 54)
       }}

@@ -119,6 +119,14 @@ export type MenuProps = {
    * Stop the menu from filtering results
    */
   preventSearch?: boolean
+  /**
+   * Element to be displayed while commands load
+   */
+  loadingPlaceholder?: ReactElement
+  /**
+   * Whether or not the data is currently loading
+   */
+  loadingState?: boolean
 }
 
 /* Command with an index used for keyboard navigation */
@@ -184,7 +192,7 @@ export type CategoryCommand = {
   closeOnComplete?: boolean
   /**
    * Allow for custom HTML to be passed as the anchor property
-  */
+   */
   anchor?: FC<NavLinkProps>
 }
 
