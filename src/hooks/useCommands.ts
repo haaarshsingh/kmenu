@@ -58,36 +58,39 @@ export const useCommands = (
 
   return [
     { index: index!, commands: commands, initialHeight: height! },
-    useCallback((cmds: Command[]) => {
-      let currentCategories = 0
-      let height = 0
-      let index = 0
+    useCallback(
+      (cmds: Command[]) => {
+        let currentCategories = 0
+        let height = 0
+        let index = 0
 
-      setCommands(() => {
-        const sorted: SortedCommands[] = []
-        cmds.forEach((category) => {
-          currentCategories++
-          const indexedCommands: GlobalCommand[] = category.commands.map(
-            (command) => {
-              index++
-              if (index <= 5) height = currentCategories * 31 + index * 54
-              return {
-                ...command,
-                globalIndex: index - 1
+        setCommands(() => {
+          const sorted: SortedCommands[] = []
+          cmds.forEach((category) => {
+            currentCategories++
+            const indexedCommands: GlobalCommand[] = category.commands.map(
+              (command) => {
+                index++
+                if (index <= 5) height = currentCategories * 31 + index * 54
+                return {
+                  ...command,
+                  globalIndex: index - 1
+                }
               }
-            }
-          )
+            )
 
-          sorted.push({
-            category: category.category,
-            commands: indexedCommands
+            sorted.push({
+              category: category.category,
+              commands: indexedCommands
+            })
           })
-        })
 
-        setHeight(height)
-        setIndex(index)
-        return sorted
-      })
-    }, [])
+          setHeight(height)
+          setIndex(index)
+          return sorted
+        })
+      },
+      [commands]
+    )
   ]
 }
