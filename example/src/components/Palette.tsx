@@ -42,6 +42,13 @@ const Palette: FC = () => {
           icon: <FiCopy />,
           text: 'Copy URL'
         }
+      ],
+      subCommands: [
+        {
+          icon: <FiGithub />,
+          text: 'Search GitHub',
+          perform: () => null
+        }
       ]
     },
     {

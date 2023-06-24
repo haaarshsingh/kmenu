@@ -141,6 +141,10 @@ export type Command = {
    * The commands this category will have
    */
   commands: CategoryCommand[]
+  /**
+   * Commands which are only visible by search
+   */
+  subCommands?: CategoryCommand[]
 }
 
 export type CommandWithIndex = {
@@ -152,6 +156,7 @@ export type CommandWithIndex = {
 export type SortedCommands = {
   category: string
   commands: GlobalCommand[]
+  subCommands?: GlobalCommand[]
 }
 
 type NavLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>

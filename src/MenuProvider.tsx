@@ -79,7 +79,7 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
       setOpen(1)
     }
 
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && open === 1) {
       setQuery('')
       setOpen(0)
     }
@@ -94,7 +94,11 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
       }
     }
 
-    if (open > 1 && event.key === 'Backspace' && query === '') {
+    if (
+      open > 1 &&
+      query === '' &&
+      (event.key === 'Backspace' || event.key === 'Escape')
+    ) {
       event.preventDefault()
       setAnimate(true)
       setTimeout(() => setAnimate(false), 100)
