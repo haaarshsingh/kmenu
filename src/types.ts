@@ -338,7 +338,7 @@ export type UseKmenuReturnType = {
   input: string
   setInput: Dispatch<SetStateAction<string>>
   open: number
-  setOpen: (index: number) => void
+  setOpen: (index: number, preventAnimate?: boolean) => void
   toggle: () => void
 }
 
