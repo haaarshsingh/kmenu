@@ -90,12 +90,23 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
     const sorted: SortedCommands[] = []
 
     props.commands.commands.forEach((row) => {
+      console.log(props.commands.commands)
+
       const results: SortedCommands = {
         category: row.category,
         commands: []
       }
 
       row.commands.forEach((command) => {
+        const text =
+          command.text.toLowerCase() + command.keywords?.toLowerCase()
+        if (text.includes(query.toLowerCase())) {
+          results.commands.push({ ...command, globalIndex: index })
+          index++
+        }
+      })
+
+      row.subCommands?.forEach((command) => {
         const text =
           command.text.toLowerCase() + command.keywords?.toLowerCase()
         if (text.includes(query.toLowerCase())) {

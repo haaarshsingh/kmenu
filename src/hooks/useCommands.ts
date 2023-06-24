@@ -44,9 +44,13 @@ export const useCommands = (
         }
       )
 
+      const subCommands: GlobalCommand[] | undefined =
+        category.subCommands?.map((command) => ({ ...command, globalIndex: 0 }))
+
       sorted.push({
         category: category.category,
-        commands: indexedCommands
+        commands: indexedCommands,
+        subCommands: subCommands
       })
     })
 
