@@ -21,8 +21,8 @@ export const useKmenu = (): UseKmenuReturnType => {
     context.setOpen((open: number) => (open === 0 ? 1 : 0))
   }, [])
 
-  const openNestedMenu = useCallback((index: number) => {
-    context.setAnimate(true)
+  const openNestedMenu = useCallback((index: number, preventAnimate?: boolean) => {
+    if (!preventAnimate) context.setAnimate(true)
     setTimeout(() => context.setAnimate(false), 100)
     context.setOpen(index)
   }, [])
