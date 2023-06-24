@@ -45,9 +45,9 @@ export const CommandWrapper: FC<
             role='dialog'
             aria-modal='true'
             ref={menuRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0, scale: animate ? 0.98 : 1 }}
-            exit={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: animate ? 0.98 : 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: config?.animationDuration ?? 0.1 }}
             style={{
               backgroundColor: config?.backgroundColor || '#FFFFFF',
