@@ -263,6 +263,7 @@ Here are all the options available on the menu:
 | Parameter          | Description                                  | Type         | Optional |
 | ------------------ | -------------------------------------------- | ------------ | -------- |
 | commands           | The commands for this menu to display        | Command[]    | ❌       |
+| subCommands        | Commands availiable only by search           | Command[]    | ✅       |
 | index              | The index of this menu                       | number       | ❌       |
 | crumbs             | The current path of the command menu         | string[]     | ❌       |
 | preventSearch      | Disable filtering results for the menu       | string       | ✅       |
