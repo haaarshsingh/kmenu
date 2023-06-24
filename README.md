@@ -171,13 +171,13 @@ const Component = () => {
 
 Here's a list of all the information it provides:
 
-| Parameter | Description                                                           | Type                             |
-| --------- | --------------------------------------------------------------------- | -------------------------------- |
-| input     | The current text in the search bar of the menu that is currently open | string                           |
-| setInput  | The setter function to change the open state                          | Dispatch<SetStateAction<string>> |
-| open      | The index of the menu is currently open                               | number                           |
-| setOpen   | The setter function to change the open state                          | (index: number) => void          |
-| toggle    | The function for toggling the main menu open/close                    | void                             |
+| Parameter | Description                                                           | Type                                              |
+| --------- | --------------------------------------------------------------------- | ------------------------------------------------- |
+| input     | The current text in the search bar of the menu that is currently open | string                                            |
+| setInput  | The setter function to change the input                               | Dispatch<SetStateAction<string>>                  |
+| open      | The index of the menu is currently open                               | number                                            |
+| setOpen   | The setter function to change the open state                          | (index: number, preventAnimate?: boolean) => void |
+| toggle    | The function for toggling the main menu open/close                    | void                                              |
 
 With that, here's also a code example of how you could use this hook.
 
