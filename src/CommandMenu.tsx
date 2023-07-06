@@ -90,8 +90,6 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
     const sorted: SortedCommands[] = []
 
     props.commands.commands.forEach((row) => {
-      console.log(props.commands.commands)
-
       const results: SortedCommands = {
         category: row.category,
         commands: []
