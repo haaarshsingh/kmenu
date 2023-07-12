@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
-    "eslint-config-react-app": "^7.0.1"
+    "eslint-config-react-app": "link:../node_modules/eslint-config-react-app"
   },
   "eslintConfig": {
     "extends": "react-app"
