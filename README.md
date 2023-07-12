@@ -175,9 +175,10 @@ Here's a list of all the information it provides:
 | --------- | --------------------------------------------------------------------- | ------------------------------------------------- |
 | input     | The current text in the search bar of the menu that is currently open | string                                            |
 | setInput  | The setter function to change the input                               | Dispatch<SetStateAction<string>>                  |
+| isOpen    | The index of the menu is currently open                               | () => boolean                                     |
 | open      | The index of the menu is currently open                               | number                                            |
 | setOpen   | The setter function to change the open state                          | (index: number, preventAnimate?: boolean) => void |
-| toggle    | The function for toggling the main menu open/close                    | void                                              |
+| toggle    | The function for toggling the main menu open/close                    | () => void                                        |
 
 With that, here's also a code example of how you could use this hook.
 
