@@ -21,15 +21,23 @@ export const useKmenu = (): UseKmenuReturnType => {
     context.setOpen((open: number) => (open === 0 ? 1 : 0))
   }, [])
 
-  const openNestedMenu = useCallback((index: number, preventAnimate?: boolean) => {
-    if (!preventAnimate) context.setAnimate(true)
-    setTimeout(() => context.setAnimate(false), 100)
-    context.setOpen(index)
-  }, [])
+  const openNestedMenu = useCallback(
+    (index: number, preventAnimate?: boolean) => {
+      if (!preventAnimate) context.setAnimate(true)
+      setTimeout(() => context.setAnimate(false), 100)
+      context.setOpen(index)
+    },
+    []
+  )
+
+  const isOpen = useCallback(() => {
+    return context.open !== 0
+  }, [context.open])
 
   return {
     input: context.query,
     setInput: context.setQuery,
+    isOpen,
     open: context.open,
     setOpen: openNestedMenu,
     toggle

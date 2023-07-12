@@ -27,7 +27,7 @@ import {
 import styles from '../styles/example.module.css'
 
 const Palette: FC = () => {
-  const { open, setOpen } = useKmenu()
+  const { open, setOpen, isOpen } = useKmenu()
 
   const main: Command[] = [
     {

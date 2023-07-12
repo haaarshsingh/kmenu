@@ -337,6 +337,7 @@ export type UseInViewProps = {
 export type UseKmenuReturnType = {
   input: string
   setInput: Dispatch<SetStateAction<string>>
+  isOpen: () => boolean
   open: number
   setOpen: (index: number, preventAnimate?: boolean) => void
   toggle: () => void
