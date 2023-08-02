@@ -19,7 +19,11 @@
   <a href="https://18nb0j.csb.app/">CodeSandbox</a>
  </p>
 
-# 🚀 Quickstart
+## Consulting
+
+If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [hi.harsh@pm.me](mailto:hi.harsh@pm.me).
+
+## 🚀 Quickstart
 
 Having trouble? Unsure of something? Feel free to ask away in the [discussions](https://github.com/harshhhdev/kmenu/discussions).
 
@@ -408,7 +412,7 @@ export default Shortcut
 
 The example below will run when someone uses the keyboard shortcut `shift+s`.
 
-# 💻 Development
+## Development
 
 Run the project locally
 
@@ -448,17 +452,7 @@ yarn start
 
 Awesome. Your React development server should now be running on [port 3000](http://localhost:3000).
 
-# 🔧 Tools Used
-
-- [create-react-library](https://www.npmjs.com/package/create-react-library)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Microbundle](https://github.com/developit/microbundle)
-- [React](https://reactjs.org/)
-- [Framer Motion](https://framer.com/motion/)
-- [Prettier](https://prettier.io/)
-- [ESLint](https://eslint.org/)
-
-# Inspirations
+## Inspirations
 
 - [Vercel](https://vercel.com)
 - [Ultra](https://ultra.tf)
