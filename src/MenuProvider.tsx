@@ -52,11 +52,11 @@ export const MenuProvider: FC<MenuProviderProps & { children: ReactNode }> = ({
       case ActionType.INCREASE:
         return state.selected === results!.index - 1
           ? { ...state, selected: results!.index - 1 }
-          : { ...state, selected: state.selected + 0.5 }
+          : { ...state, selected: state.selected + 1 }
       case ActionType.DECREASE:
         return state.selected === 0
           ? { ...state, selected: 0 }
-          : { ...state, selected: state.selected - 0.5 }
+          : { ...state, selected: state.selected - 1 }
       case ActionType.CUSTOM:
         return {
           ...state,
