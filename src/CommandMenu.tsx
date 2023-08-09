@@ -1,4 +1,5 @@
 import React, { FC, ReactNode, useContext, useEffect } from 'react'
+import { useShortcut } from './hooks/useShortcut'
 import { MenuContext } from './MenuProvider'
 import { ActionType, MenuProps, SortedCommands } from './types'
 import Command from './Command'
@@ -122,20 +123,11 @@ const Wrapper: FC<MenuProps & { children: ReactNode }> = (props) => {
     })
   }, [query, setQuery, open, props.loadingState])
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowDown') {
-        event.preventDefault()
-        dispatch({ type: ActionType.INCREASE, custom: 0 })
-      } else if (event.key === 'ArrowUp') {
-        event.preventDefault()
-        dispatch({ type: ActionType.DECREASE, custom: 0 })
-      }
-    }
+  const upHandler = () => dispatch({ type: ActionType.DECREASE, custom: 0 })
+  const downHandler = () => dispatch({ type: ActionType.INCREASE, custom: 0 })
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
+  useShortcut({ targetKey: 'ArrowUp', handler: upHandler })
+  useShortcut({ targetKey: 'ArrowDown', handler: downHandler })
 
   if (open !== props.index || typeof results?.index === 'undefined') return null
 

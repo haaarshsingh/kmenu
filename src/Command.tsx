@@ -13,9 +13,16 @@ const Command: FC<{
 }> = ({ onMouseEnter, isSelected, command }) => {
   const { setOpen, config } = useContext(MenuContext)
 
+  const select = () => {
+    if (isSelected) {
+      if (!command.closeOnComplete) setOpen(0)
+      run(command)
+    }
+  }
+
   const topRef = useRef<HTMLSpanElement>(null)
   const bottomRef = useRef<HTMLSpanElement>(null)
-  const enter = useShortcut({ targetKey: 'Enter' })
+  const enter = useShortcut({ targetKey: 'Enter', handler: select })
 
   const inViewTop = useInView({ ref: topRef })
   const inViewBottom = useInView({ ref: bottomRef })
@@ -26,11 +33,6 @@ const Command: FC<{
         behavior: 'smooth',
         block: 'end'
       })
-
-    if (enter && isSelected) {
-      if (!command.closeOnComplete) setOpen(0)
-      run(command)
-    }
   }, [isSelected, enter])
 
   return (

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { UseShortcutProps } from '../types'
 
 /**
@@ -14,48 +14,33 @@ export const useShortcut = ({
   targetKey,
   modifier,
   handler
-}: UseShortcutProps): boolean => {
-  const [keyPressed, setKeyPressed] = useState(false)
-
-  const downHandler = useCallback((event: KeyboardEvent) => {
-    if (event.key === targetKey) {
-      if (modifier === 'shift' && event.shiftKey) {
-        event.preventDefault()
-        setKeyPressed(true)
-        handler?.()
-      } else if (modifier === 'ctrl' && event.ctrlKey) {
-        event.preventDefault()
-        setKeyPressed(true)
-        handler?.()
-      } else if (modifier === 'alt' && event.altKey) {
-        event.preventDefault()
-        setKeyPressed(true)
-        handler?.()
-      } else if (modifier === 'meta' && event.metaKey) {
-        event.preventDefault()
-        setKeyPressed(true)
-        handler?.()
-      } else {
-        event.preventDefault()
-        setKeyPressed(true)
-        handler?.()
+}: UseShortcutProps) => {
+  const downHandler = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === targetKey) {
+        if (modifier === 'shift' && event.shiftKey) {
+          event.preventDefault()
+          handler?.()
+        } else if (modifier === 'ctrl' && event.ctrlKey) {
+          event.preventDefault()
+          handler?.()
+        } else if (modifier === 'alt' && event.altKey) {
+          event.preventDefault()
+          handler?.()
+        } else if (modifier === 'meta' && event.metaKey) {
+          event.preventDefault()
+          handler?.()
+        } else {
+          event.preventDefault()
+          handler?.()
+        }
       }
-    }
-  }, [handler, setKeyPressed])
-
-  const upHandler = useCallback((event: KeyboardEvent) => {
-    if (event.key === targetKey) setKeyPressed(false)
-  }, [setKeyPressed])
+    },
+    [handler]
+  )
 
   useEffect(() => {
     window.addEventListener('keydown', downHandler)
-    window.addEventListener('keyup', upHandler)
-
-    return () => {
-      window.removeEventListener('keydown', downHandler)
-      window.removeEventListener('keyup', upHandler)
-    }
-  }, [upHandler, downHandler])
-
-  return keyPressed
+    return () => window.removeEventListener('keydown', downHandler)
+  }, [downHandler])
 }
