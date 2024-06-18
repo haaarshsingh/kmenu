@@ -65,37 +65,40 @@ const examples = [
     icon: <TbRulerMeasure />,
     name: "Basic",
     description: "A basic, single-page command menu with commands.",
+    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Basic.tsx",
   },
   {
     icon: <FiGrid />,
     name: "Nested menus",
     description:
       "A multi-page command menu with a master menu and breadcrumbs.",
+    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Nested.tsx",
   },
   {
     icon: <FiCheckCircle />,
     name: "Checkboxes",
     description: "A settings page command menu with checkbox commands.",
+    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Checkbox.tsx",
   },
   {
     icon: <CgSearchLoading />,
     name: "Loading states",
     description: "Display a loading spinner while fetching data for your menu.",
+    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Loading.tsx",
   },
   {
     icon: <LuPaintbrush />,
-    name: "Themes",
+    name: "Dark Mode",
     description: "Build a command menu that supports both dark and light mode.",
+    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/app/examples/dark/page.tsx",
   },
   {
     icon: <TbTableShortcut />,
-    name: "Shortcuts",
-    description: "A single-page command menu with keyboard shortcuts.",
+    name: "Modal",
+    description: "A command menu that functions as a password reset modal.",
+    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Modal.tsx",
   },
 ];
-
-const titleCase = (x: string) =>
-  x.replace(/\b\w/g, (match) => match.toUpperCase()).replace(/\s+/g, "");
 
 export default () => (
   <div className="docs-lg:ml-64 mr-6 mt-12 min-w-0 xl:ml-80">
@@ -134,9 +137,7 @@ export default () => (
       <div className="mt-6 grid grid-cols-3 gap-4">
         {examples.map((card, index) => (
           <a
-            href={`https://github.com/harshhhdev/kmenu/tree/master/example/src/kmenu/${titleCase(
-              card.name,
-            )}.tsx`}
+            href={card.href}
             rel="noreferrer"
             target="_blank"
             key={index}
