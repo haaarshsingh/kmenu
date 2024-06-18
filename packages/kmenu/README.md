@@ -23,7 +23,7 @@
 
 If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [hi.harsh@pm.me](mailto:hi.harsh@pm.me).
 
-## 🚀 Quickstart
+## Quickstart
 
 View the [official documentation](https://kmenu.hxrsh.in/docs) for more thorough examples and documentation.
 
@@ -217,9 +217,10 @@ _REMINDER: YOUR APPLICATION OR PARENT COMPONENT MUST BE WRAPPED IN THE `MENUPROV
 
 In an attempt to showcase everything this menu can do, [examples/src/kmenu](https://github.com/harshhhdev/kmenu/tree/master/example/src/kmenu) includes an ever-growing list some things you can do with kmenu:
 
-- [Basic](https://github.com/harshhhdev/kmenu/tree/master/example/src/kmenu/Basic.tsx)
-- [Nested menus](https://github.com/harshhhdev/kmenu/tree/master/example/src/kmenu/NestedMenus.tsx)
-- [Checkboxes](https://github.com/harshhhdev/kmenu/tree/master/example/src/kmenu/Checkboxes.tsx)
-- [Loading states](https://github.com/harshhhdev/kmenu/tree/master/example/src/kmenu/LoadingStates.tsx)
+- [Basic](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Basic.tsx)
+- [Nested menus](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Nested.tsx)
+- [Checkboxes](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Checkbox.tsx)
+- [Loading states](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Loading.tsx)
+- [Modal](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Modal.tsx)
 
 This list is ever-growing. If there's something you ever want to add, any and all [pull requests](https://github.com/harshhhdev/kmenu/pulls) are always welcomed.
