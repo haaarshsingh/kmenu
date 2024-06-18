@@ -1322,6 +1322,18 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@emotion/is-prop-valid@^0.8.2":
+  version "0.8.8"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
+  integrity sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==
+  dependencies:
+    "@emotion/memoize" "0.7.4"
+
+"@emotion/memoize@0.7.4":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
+  integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
+
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -4636,6 +4648,15 @@ framer-motion@^11.0.3:
   dependencies:
     tslib "^2.4.0"
 
+framer-motion@^9.0.1:
+  version "9.1.7"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-9.1.7.tgz#1dc7dbd5bca086c90d09847c3fcaec3ecb7906af"
+  integrity sha512-nKxBkIO4IPkMEqcBbbATxsVjwPYShKl051yhBv9628iAH6JLeHD0siBHxkL62oQzMC1+GNX73XtPjgP753ufuw==
+  dependencies:
+    tslib "^2.4.0"
+  optionalDependencies:
+    "@emotion/is-prop-valid" "^0.8.2"
+
 fs-extra@8.1.0, fs-extra@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-8.1.0.tgz#49d43c45a88cd9677668cb7be1b46efdb8d2e1c0"
@@ -5980,6 +6001,22 @@ kleur@^4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
+
+kmenu@*:
+  version "1.4.32"
+  resolved "https://registry.yarnpkg.com/kmenu/-/kmenu-1.4.32.tgz#8555e77e5027b9cef550e886df8db8c45de1804c"
+  integrity sha512-V65t8ktWYOtIUYYohsVa3B5SmEpgfCCd68r6qZPvn/ivf1GbmSkGUsNnyBxNYU5o72vFBru6GPjoU2DLbBnq1A==
+  dependencies:
+    framer-motion "^9.0.1"
+    react-scrollbar-size "^5.0.0"
+
+kmenu@latest:
+  version "2.0.0-beta"
+  resolved "https://registry.yarnpkg.com/kmenu/-/kmenu-2.0.0-beta.tgz#7712ccc472a9f6e07de80419998383f887ea601d"
+  integrity sha512-A+9HAOz1Pv7X63jAzNrWa/Cybo/ykEsrvCZN4BaotG0V5F5UjiqjSoQLgBXuSBuL9lIpywNTuENNEAVCFuYJtQ==
+  dependencies:
+    framer-motion "^11.0.3"
+    react-scrollbar-size "^5.0.0"
 
 language-subtag-registry@^0.3.20:
   version "0.3.23"
