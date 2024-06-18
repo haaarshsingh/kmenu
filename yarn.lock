@@ -6010,14 +6010,6 @@ kmenu@*:
     framer-motion "^9.0.1"
     react-scrollbar-size "^5.0.0"
 
-kmenu@latest:
-  version "2.0.0-beta"
-  resolved "https://registry.yarnpkg.com/kmenu/-/kmenu-2.0.0-beta.tgz#7712ccc472a9f6e07de80419998383f887ea601d"
-  integrity sha512-A+9HAOz1Pv7X63jAzNrWa/Cybo/ykEsrvCZN4BaotG0V5F5UjiqjSoQLgBXuSBuL9lIpywNTuENNEAVCFuYJtQ==
-  dependencies:
-    framer-motion "^11.0.3"
-    react-scrollbar-size "^5.0.0"
-
 language-subtag-registry@^0.3.20:
   version "0.3.23"
   resolved "https://registry.yarnpkg.com/language-subtag-registry/-/language-subtag-registry-0.3.23.tgz#23529e04d9e3b74679d70142df3fd2eb6ec572e7"
