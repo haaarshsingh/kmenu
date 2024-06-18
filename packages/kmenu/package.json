@@ -1,6 +1,6 @@
 {
   "name": "kmenu",
-  "version": "2.0.0-dev",
+  "version": "2.0.0-1-dev",
   "description": "🌈 Animated and accessible cmdk interface",
   "author": "harshhhdev",
   "license": "MIT",
@@ -18,6 +18,9 @@
     "command bar",
     "command menu",
     "command palette"
+  ],
+  "files": [
+    "dist"
   ],
   "engines": {
     "node": ">=10"
