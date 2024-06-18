@@ -127,12 +127,12 @@ export const items: Item[] = [
       {
         icon: <TbExternalLink />,
         name: "Examples",
-        href: "https://github.com/harshhhdev/kmenu/tree/master/examples",
+        href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/",
       },
       {
         icon: <TbExternalLink />,
         name: "Types",
-        href: "https://github.com/harshhhdev/kmenu/tree/master/examples",
+        href: "https://github.com/harshhhdev/kmenu/blob/master/packages/kmenu/src/types.ts",
       },
     ],
   },

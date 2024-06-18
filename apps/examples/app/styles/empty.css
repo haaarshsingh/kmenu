@@ -1,0 +1,50 @@
+.backdrop {
+}
+
+.dialog {
+}
+
+.crumbs {
+}
+
+.breadcrumb {
+}
+
+.searchbar {
+}
+
+.command_wrapper {
+}
+
+.command {
+}
+
+.shortcuts > kbd {
+}
+
+.shortcuts {
+}
+
+.info_wrapper {
+}
+
+.info_wrapper > svg {
+}
+
+.category_header {
+}
+
+.selected {
+}
+
+.command_text {
+}
+
+.scroll_ref {
+}
+
+/* For ideal behavior, set width to 90% */
+@media only screen and (max-width: 700px) {
+  .dialog {
+  }
+}
