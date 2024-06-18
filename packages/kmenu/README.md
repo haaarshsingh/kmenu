@@ -16,7 +16,7 @@
       ·
   <a href="https://react-ts-fotwq9.stackblitz.io">StackBlitz</a>
       ·
-  <a href="https://18nb0j.csb.app/">CodeSandbox</a>
+  <a href="https://codesandbox.io/p/sandbox/kmenu-4r2nqf">CodeSandbox</a>
  </p>
 
 ## Consulting

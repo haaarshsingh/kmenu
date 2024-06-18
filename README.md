@@ -14,9 +14,9 @@
       ·
   <a href="https://www.producthunt.com/products/kmenu">Product Hunt</a>
       ·
-  <a href="https://react-ts-fotwq9.stackblitz.io">StackBlitz</a>
+  <a href="https://stackblitz.com/edit/stackblitz-starters-j8z9st?file=app%2Flayout.tsx">StackBlitz</a>
       ·
-  <a href="https://18nb0j.csb.app/">CodeSandbox</a>
+  <a href="https://codesandbox.io/p/sandbox/kmenu-4r2nqf">CodeSandbox</a>
  </p>
 
 ## Consulting
