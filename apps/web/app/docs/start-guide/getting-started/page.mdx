@@ -1,0 +1,76 @@
+export const metadata = { title: "Getting Started" };
+
+# Getting Started
+
+Install and configure kmenu.
+
+## Installation
+
+Having trouble? Unsure of something? Feel free to ask away in the [discussions](https://github.com/harshhhdev/kmenu/discussions).
+
+Install the [NPM package](https://www.npmjs.com/package/kmenu):
+
+```bash:Terminal
+npm install kmenu@latest
+yarn add kmenu@latest
+pnpm install kmenu@latest
+```
+
+## Using the Provider
+
+After you install, you must wrap your application around the `MenuProvider` component. If your application has some values (padding/margin/etc) which override the styles of the menu, you need to explicitly define the height of each _command component_ and each _section_ in your code. Here's a look:
+
+| Parameter  | Description                                          | Type       | Optional |
+| ---------- | ---------------------------------------------------- | ---------- | -------- |
+| dimensions | Height values of different elements in the menu (px) | Dimensions | ✅       |
+
+Now, here's a look at the dimensions object:
+
+| Parameter     | Description                                                       | Type   | Default | Optional |
+| ------------- | ----------------------------------------------------------------- | ------ | ------- | -------- |
+| commandHeight | The height of each command in the palette (px)                    | number | 54      | ✅       |
+| sectionHeight | The height of each category/section in the palette (px)           | number | 31      | ✅       |
+| commands      | The maximum number of commands displayed on menu without overflow | number | 5       | ✅       |
+
+### Finding Values
+
+If your command menu just doesn't feel "right" or if the marigns are slightly off, you might need to go into inspect element and find the exact size of your elements. Here's an example of finding `sectionHeight`:
+
+![Inspector finding height of section](/public/docs/start-guide/inspector-section-screenshot.webp)
+
+You can find `commandHeight` from your CSS file if you're using root variables, just search for the variable `--selected-height`. Alternatively, you can just open up the inspector:
+
+![Inspector finding height of command](/public/docs/start-guide/inspector-command-screenshot.webp)
+
+So, for those values, I'd have a `dimensions` object that looks like this:
+
+```tsx:cmdk.tsx
+import type { Dimensions } from 'kmenu'
+
+const dimensions: Dimensions = {
+  sectionHeight: 30,
+  commandHeight: 50
+}
+```
+
+### More Configuration
+
+The commands variable is the max amount of commands displayed when your menu initially opens up. If you open the menu on this site, the value is six and you'll see six commands neatly displayed on the menu with no overflow.
+
+Note, if your `commands` are exactly the same number or lower than the amount of commands you display and there's a scrollbar on your menu, you might need to input in your dimensions.
+
+Here's how you'd use your menu provider:
+
+```tsx:app/layout.tsx
+import { MenuProvider, Dimensions } from 'kmenu'
+
+export default ({ children }) => {
+  const dimensions: Dimensions = {}
+
+  return (
+    <MenuProvider dimensions={dimensions}>
+      {children}
+    </MenuProvider>
+  )
+}
+```

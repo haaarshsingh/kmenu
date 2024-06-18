@@ -1,0 +1,47 @@
+# Keyboard Shortcuts
+
+Further simplify your dashboard navigation with shortcuts.
+
+## Defining shortcuts
+
+As of [kmenu v1.2.0](https://www.npmjs.com/package/kmenu?activeTab=versions) shortcuts are only a cosmetic item on the menu, meaning that you will have to go into your application and define them yourselves. This was because different people go about implementing their shortcuts in different ways, and it doesn't seem fit to use a "one size fits all" method for defining them.
+
+Each shortcut can have two target keys and a modifier:
+
+| Parameter | Description                                           | Type                                   | Optional |
+| --------- | ----------------------------------------------------- | -------------------------------------- | -------- |
+| keys      | The key(s) that the shortcut is listening for         | [string, string?] (must be valid)      | ❌       |
+| modifier  | The modifier key which can will activate the shortcut | string (must be valid) or ReactElement | ✅       |
+
+### useShortcut Hook
+
+Although it isn't automatic, library does export a simple `useShortcut` hook for you to quickly create shortcuts with the menu. Here's a look at the type:
+
+| Parameter | Description                                            | Type                   | Optional |
+| --------- | ------------------------------------------------------ | ---------------------- | -------- |
+| targetKey | A SINGLE target key that the shortcut is listening for | string (must be valid) | ❌       |
+| modifier  | The modifier key which can will activate the shortcut  | shift/ctrl/alt/meta    | ✅       |
+| handler   | The function that runs when the shortcut is called     | void                   | ✅       |
+
+Usage:
+
+```tsx:Shortcuts.tsx
+useShortcut({ targetKey: 'ArrowUp', modifier: 'alt', handler: () => null })
+useShortcut({ targetKey: 'ArrowDown', modifier: 'alt', handler: () => null })
+```
+
+## Example
+
+To define a shortcut, add them into individual command object:
+
+```tsx:CommandMenu.tsx
+import { Command, Plus } from './icons'
+
+const command = {
+  icon: <Plus />,
+  text: 'New Tab',
+  href: '/',
+  newTab: true,
+  shortcuts: { modifier: <Command />, keys: ['t'] },
+},
+```

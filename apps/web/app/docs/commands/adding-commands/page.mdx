@@ -1,0 +1,85 @@
+export const metadata = { title: "Adding Commands" };
+
+# Adding Commands
+
+Now that we setup the menu, let's add commands to it.
+
+## Commands Object
+
+The commands are broken up into two arrays: an array that contains the different categories of the commands, and another array contains the commands itself. Here's how you can define categories:
+
+| Parameter   | Description                                                             | Type    | Optional |
+| ----------- | ----------------------------------------------------------------------- | ------- | -------- |
+| category    | The name of the category the command will be displayed in               | string  | ❌       |
+| commands    | An array of commands passed onto the category                           | Command | ❌       |
+| subCommands | An array of commands passed onto the category only accessible by search | Command | ✅       |
+
+## Creating Commands
+
+Here's a look at how you can create commands:
+
+| Parameter       | Description                                               | Type         | Optional |
+| --------------- | --------------------------------------------------------- | ------------ | -------- |
+| icon            | The icon displayed next to the command                    | ReactElement | ✅       |
+| text            | The text displayed on the command                         | string       | ❌       |
+| perform         | The action to perform                                     | void         | ✅       |
+| href            | The link to open                                          | void         | ✅       |
+| newTab          | Whether or not the link should open in a new tab          | boolean      | ✅       |
+| keywords        | Search keywords for the command                           | string       | ✅       |
+| shorcuts        | The keyboard shortcuts displayed on the command           | Shortcut     | ✅       |
+| closeOnComplete | Whether the menu should close after command executes      | boolean      | ✅       |
+| anchor          | Allow for custom HTML to be passed as the anchor property | NavLink      | ✅       |
+| checkbox        | Add a checkbox to the command                             | Checkbox     | ✅       |
+
+You can read more about keyboard shortcuts on the [next page](/docs/commands/keyboard-shortcuts). Here is a breakdown of some other properties:
+
+### Checkbox
+
+You can read more about checkboxes [here](/docs/features/checkboxes).
+
+### Anchor
+
+This is to use elements like [next/link](https://nextjs.org/docs/pages/api-reference/components/link) to add prefetching and client-side navigation between routes. This is of type `AnchorHTMLAttributes<HTMLAnchorElement>` and allows you to simply pass in the link component itself.
+
+However, my suggested approach with Next.js is using the `perform` function with the `useRouter` hook, and using the push function to redirect the user to the desired route.
+
+## Creating a Commands Array
+
+We can create our commands array like this:
+
+```tsx:CommandMenu.tsx
+import type { Command } from 'kmenu'
+
+const main: Command[] = [
+  {
+    category: 'Utility',
+    commands: [
+      {
+        icon: <Dashboard />,
+        text: 'Dashboard',
+        href: '/dashboard',
+        keywords: ['home', 'back'],
+      },
+      {
+        icon: <Cloud />,
+        text: 'Deployments',
+        href: '/deployments',
+      },
+      {
+        icon: <ArrowLeft />,
+        text: 'Previous',
+        perform: () => navigateToPreviousPage(),
+        keywords: ['back']
+      },
+    ],
+    subCommands: [
+      {
+        icon: <ExternalLink />,
+        text: 'Home',
+        href: '/',
+        newTab: true,
+      },
+    ],
+  },
+]
+```

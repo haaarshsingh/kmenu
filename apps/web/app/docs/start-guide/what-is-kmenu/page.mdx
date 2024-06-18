@@ -1,0 +1,37 @@
+import FAQ from "../../../../components/MDX/FAQ";
+
+# What is kmenu?
+
+This command palette library serves as a magic wand for users navigating and interacting with your application. It's a tool that provides users with an efficient way to access various functions and features without having to rely on finding their way through traditional menus or buttons.
+
+The user types a few customizable keywords into a menu, and voilà, they have the entire application at their fingertips. From navigating pages, executing commands, and toggling settings, kmenu can do it all.
+
+## Introduction
+
+One of my favorite command menu implementations is [Vercel](https://vercel.com/). The command menu found on Vercel is what initially inspired me to make kmenu, and their dashboard is a wonderful example of a command menu implementation.
+
+Let's take this scenario: Vercel is where I have most of my deployments, include the one for kmenu, and I wanted to find my previous deployment of the kmenu website. The sequence would be something like:
+
+1. Find "kmenu" from my grid of over 40 projects and click on it
+2. Click on the "deployments" tab
+3. Click on the domain second that's from the top
+4. Click on the domain URL
+5. View the domain
+
+![Deployment page](/public/docs/start-guide/vercel-dashboard.webp)
+
+Timing myself, that took around nine seconds, and I've used Vercel for almost five years now. Imagine how long it would take a user that was new to the interface.
+
+In contrast, if I use their command menu, the sequence looks something like:
+
+1. Press ⌘ + k
+2. Search "kmenu"
+3. Click on "search deployments"
+4. Select the second one from top
+5. View the domain
+
+In contrast to clicking and navigating, the command menu approach took four seconds, which is less than half the time. These small intervals of time saved may seem insignificant, but they add up significantly, especially for frequent users. They contribute to your application's UX, making tasks quicker and more intuitive, which ultimately enhances user productivity and satisfaction.
+
+## FAQ
+
+<FAQ />

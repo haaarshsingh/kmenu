@@ -1,0 +1,52 @@
+.content ol {
+  @apply my-5 ml-4 list-decimal text-slate-600 dark:text-slate-400;
+}
+
+.content ol li::marker {
+  @apply text-slate-400 dark:text-slate-600;
+}
+
+.content p {
+  @apply my-2 text-slate-600 dark:text-slate-400;
+}
+
+.content a {
+  @apply text-sky-500;
+}
+
+.content ul:not(.list-none) {
+  @apply my-5 ml-4 list-outside list-disc text-slate-900 dark:text-slate-100;
+}
+
+.content p > code {
+  @apply rounded border border-slate-300 bg-slate-100 p-1 font-mono text-xs dark:border-slate-800 dark:bg-slate-900;
+}
+
+.content table {
+  @apply my-5 block w-full border-separate border-spacing-0 overflow-x-auto whitespace-nowrap rounded-lg border border-slate-300 dark:border-slate-800;
+}
+
+.content th:not(:last-of-type),
+.content td:not(:last-of-type) {
+  @apply border-r border-r-slate-300 dark:border-r-neutral-800;
+}
+
+.content th {
+  @apply w-full border-b border-b-slate-300 px-2 py-2 text-left text-sm font-medium dark:border-b-slate-800;
+}
+
+.content thead {
+  @apply text-left;
+}
+
+.content td {
+  @apply w-fit px-2 py-2 text-left text-sm;
+}
+
+.content .rehype-code-title {
+  @apply mt-4 rounded-t-md border-l border-r border-t border-l-slate-300 border-r-slate-300 border-t-slate-300 py-2 pl-3 font-mono text-xs dark:border-l-slate-800 dark:border-r-slate-800 dark:border-t-slate-800;
+}
+
+.content pre {
+  @apply mb-4 overflow-x-auto rounded-b-md border border-slate-300 p-3 text-xs text-slate-900 dark:border-slate-800 dark:text-slate-100;
+}

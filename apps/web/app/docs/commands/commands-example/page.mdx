@@ -1,0 +1,56 @@
+export const metadata = { title: "Commands Example" };
+
+# Commands Example
+
+Now let's piece it all together. Let's create a basic menu with a set of static commands.
+
+## Adding Commands to Menu
+
+Before you add the commands to the menu, make sure the array is of type `Command[]`. You can explicity assign this type to the array by importing it from the library if you're using TypeScript.
+
+### Command Wrapper
+
+Be sure to wrap ALL your menus around a `CommandWrapper` component. This component contains things like the breadcrumbs and the search bar. You can pass in a default value for the input on the command wrapper:
+
+| Parameter    | Description                    | Type   | Optional |
+| ------------ | ------------------------------ | ------ | -------- |
+| defaultValue | The default value on the input | string | ✅       |
+
+### Command Menu
+
+Here are all the options available on the menu:
+
+| Parameter          | Description                                  | Type         | Optional |
+| ------------------ | -------------------------------------------- | ------------ | -------- |
+| commands           | The commands for this menu to display        | Command[]    | ❌       |
+| index              | The index of this menu                       | number       | ❌       |
+| crumbs             | The current path of the command menu         | string[]     | ❌       |
+| preventSearch      | Disable filtering results for the menu       | string       | ✅       |
+| loadingPlaceholder | Element to be displayed while commands load  | ReactElement | ✅       |
+| loadingState       | Whether or not the data is currently loading | boolean      | ✅       |
+| placeholder        | The placeholder text on this particular menu | string       | ✅       |
+
+The index is the index of this menu—if you only have a single menu, set this to one. This number is used for opening and closing multiple menus, whenever you want to open a sub menu simply use the `setOpen` command and input the index of the menu you'd like to open. For more information on this, see [nested menus](/docs/features/nested-menus).
+
+#### Breadcrumbs
+
+Breadcrumbs are on the top of your menu and used to navigate between different pages of your menu. You define them in an array of strings and they are each auto-linked to their previous indexes.
+
+## Example
+
+After you define your components, you must input them into the `useCommands` hook. Learn more about it [here](/docs/hooks/usecommands-hook).
+
+```tsx:CommandMenu.tsx
+export default () => {
+  const main = [
+    /* ... */
+  ];
+  const [mainCommands] = useCommands(main);
+
+  return (
+    <CommandWrapper>
+      <CommandMenu commands={mainCommands} index={1} crumbs={['Home']} />
+    </CommandWrapper>
+  );
+};
+```

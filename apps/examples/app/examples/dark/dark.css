@@ -1,0 +1,61 @@
+body.dark .kmenu {
+  --backdrop-background: hsla(0, 0%, 0%, 0.565);
+
+  --menu-background: rgb(19, 19, 19);
+  --menu-shadow: none;
+  --menu-border: 1px solid hsla(0, 0%, 15%, 1);
+
+  --search-border: 1px solid hsla(0, 0%, 15%, 1);
+  --search-color: hsla(0, 0%, 100%, 1);
+
+  --breadcrumb-background: hsla(0, 0%, 14%, 1);
+  --breadcrumb-color: #666666;
+  --breadcrumb-border: 1px solid #242424;
+
+  --command-inactive-color: hsla(0, 0%, 40%, 1);
+  --command-active-color: hsla(0, 0%, 80%, 1);
+
+  --command-heading-color: #666666;
+
+  --shortcut-inactive-color: hsla(0, 0%, 51%, 1);
+  --shortcut-active-color: hsla(0, 0%, 80%, 1);
+  --shortcut-inactive-background: hsla(0, 0%, 100%, 0);
+  --shortcut-active-background: hsla(0, 0%, 10%, 1);
+  --shortcut-border: 1px solid hsla(0, 0%, 15%, 1);
+
+  --checkbox-inactive-background: hsla(0, 0%, 100%, 0);
+  --checkbox-active-background: hsla(0, 0%, 100%, 0);
+  --checkbox-checked-background: hsla(210, 100%, 72%, 1);
+  --checkbox-checked-border: 1px solid hsla(210, 100%, 72%, 1);
+  --checkbox-inactive-border: 1px solid hsla(0, 0%, 89%, 1);
+  --checkbox-active-border: 1px solid #d5d5d5;
+  --checkbox-check-color: hsla(0, 0%, 100%, 1);
+
+  --selected-background: hsla(0, 0%, 100%, 0.05);
+}
+
+body.dark {
+  background-color: #121212;
+}
+
+body.dark h1 {
+  color: #f6f6f6;
+}
+
+body.dark > a {
+  color: #f6f6f6;
+}
+
+body.dark main > button {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  color: #f6f6f6;
+}
+
+body.dark main > button:hover {
+  background-color: hsla(0, 0%, 100%, 0.15);
+}
+
+body.dark main > button:active {
+  background-color: hsla(0, 0%, 100%, 0.25);
+  color: #f6f6f6;
+}
