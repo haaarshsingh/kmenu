@@ -21,6 +21,11 @@ const tt_interfaces = localFont({
       style: "medium",
     },
     {
+      path: "./fonts/TTInterfaces-Semibold.woff2",
+      weight: "600",
+      style: "semibold",
+    },
+    {
       path: "./fonts/TTInterfaces-Bold.woff2",
       weight: "700",
       style: "bold",
