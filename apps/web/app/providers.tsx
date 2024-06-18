@@ -2,13 +2,13 @@
 
 import { useEffect, useState, type FC, type ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
-import { MenuProvider } from "kmenu";
+import { MenuProvider, Dimensions } from "kmenu";
 
 export default (({ children }) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), [mounted]);
 
-  const dimensions = {
+  const dimensions: Dimensions = {
     sectionHeight: 30,
     commandHeight: 50,
     commands: 6,
