@@ -1,6 +1,6 @@
 {
   "name": "kmenu",
-  "version": "2.0.0-beta",
+  "version": "2.0.0-dev",
   "description": "🌈 Animated and accessible cmdk interface",
   "author": "harshhhdev",
   "license": "MIT",
@@ -29,7 +29,7 @@
     "publish-packages": "turbo run build lint test && changeset version && changeset publish"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": ">=16.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-unicode-property-regex": "^7.18.6",
