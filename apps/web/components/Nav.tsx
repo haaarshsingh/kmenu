@@ -35,12 +35,12 @@ export default () => (
           <Link href="#features" className="mr-2">
             Features
           </Link>
-          <Link href="/docs" className="mr-2">
+          <a href="https://github.com/harshhhdev/kmenu/tree/master/apps/examples" className="mr-2">
             Examples
-          </Link>
-          <Link href="/docs" className="mr-4">
+          </a>
+          <a href="https://www.npmjs.com/package/kmenu" className="mr-4">
             NPM
-          </Link>
+          </a>
         </nav>
         <div className="flex items-center border-l border-l-slate-300 dark:border-l-slate-600">
           <ThemeToggle className="h-5 w-5" />
