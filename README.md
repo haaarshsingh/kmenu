@@ -10,6 +10,8 @@
 <p align="center">
   <a href="https://kmenu.hxrsh.in">Demo</a>
     ·
+  <a href="https://kmenu.hxrsh.in/docs">Documentation</a>
+    ·
   <a href="https://npmjs.com/package/kmenu">NPM</a>
       ·
   <a href="https://www.producthunt.com/products/kmenu">Product Hunt</a>
