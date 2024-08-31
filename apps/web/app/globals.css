@@ -2,36 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth !important;
+main::after {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #000 100%);
 }
 
-button,
-img {
-  user-select: none;
-}
-
-::selection {
-  background-color: rgb(14 165 233);
-  color: rgb(255, 255, 255);
-}
-
-body,
-body * {
-  font-family: var(--font-display);
-}
-
-code *,
-pre *,
-tt,
-kbd,
-samp {
-  font-family: var(--font-mono) !important;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  @apply text-slate-950 dark:text-slate-50;
+kbd {
 }

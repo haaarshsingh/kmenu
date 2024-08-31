@@ -1,23 +1,9 @@
-import Nav from "../components/Nav";
-import Hero from "../components/Hero";
-import Gradient from "../components/Gradient";
-import Features from "../components/Features";
-import Footer from "../components/Footer";
-import CTA from "../components/CTA";
-import ContentLayout from "../components/ContentLayout";
-
 export default () => (
-  <>
-    <Nav />
-    <main>
-      <Hero />
-      <ContentLayout>
-        <Features />
-        <CTA />
-      </ContentLayout>
-    </main>
-    <ContentLayout>
-      <Footer />
-    </ContentLayout>
-  </>
+  <main className="flex h-screen w-screen flex-col items-center justify-center">
+    <h1 className="text-4xl font-bold">kmenu</h1>
+    <p className="text-neutral-400">
+      Press <kbd>⌘</kbd>
+      <kbd>k</kbd> to open
+    </p>
+  </main>
 );

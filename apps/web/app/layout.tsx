@@ -127,7 +127,7 @@ export default (({ children }) => (
       className={clsx(
         tt_interfaces.variable,
         fira_code.variable,
-        "bg-slate-100 dark:bg-slate-950",
+        "bg-neutral-100 dark:bg-neutral-950",
       )}
     >
       <Providers>
