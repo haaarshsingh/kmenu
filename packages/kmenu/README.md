@@ -27,7 +27,7 @@ If you're a startup or founder using this for your application and need some hel
 
 View the [official documentation](https://kmenu.hxrsh.in/docs) for more thorough examples and documentation.
 
-Having trouble? Unsure of something? Feel free to ask away in the [discussions](https://github.com/harshhhdev/kmenu/discussions).
+Having trouble? Unsure of something? Feel free to ask away in the [discussions](https://github.com/haaarshsingh/kmenu/discussions).
 
 Install the [npm package](https://www.npmjs.com/package/kmenu):
 
@@ -215,12 +215,12 @@ _REMINDER: YOUR APPLICATION OR PARENT COMPONENT MUST BE WRAPPED IN THE `MENUPROV
 
 ## Examples
 
-In an attempt to showcase everything this menu can do, [examples/src/kmenu](https://github.com/harshhhdev/kmenu/tree/master/example/src/kmenu) includes an ever-growing list some things you can do with kmenu:
+In an attempt to showcase everything this menu can do, [examples/src/kmenu](https://github.com/haaarshsingh/kmenu/tree/master/example/src/kmenu) includes an ever-growing list some things you can do with kmenu:
 
-- [Basic](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Basic.tsx)
-- [Nested menus](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Nested.tsx)
-- [Checkboxes](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Checkbox.tsx)
-- [Loading states](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Loading.tsx)
-- [Modal](https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Modal.tsx)
+- [Basic](https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Basic.tsx)
+- [Nested menus](https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Nested.tsx)
+- [Checkboxes](https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Checkbox.tsx)
+- [Loading states](https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Loading.tsx)
+- [Modal](https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Modal.tsx)
 
-This list is ever-growing. If there's something you ever want to add, any and all [pull requests](https://github.com/harshhhdev/kmenu/pulls) are always welcomed.
+This list is ever-growing. If there's something you ever want to add, any and all [pull requests](https://github.com/haaarshsingh/kmenu/pulls) are always welcomed.

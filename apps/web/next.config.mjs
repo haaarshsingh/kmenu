@@ -62,7 +62,7 @@ const config = {
         protocol: "https",
         hostname: "github.com",
         port: "",
-        pathname: "/harshhhdev/kmenu/**",
+        pathname: "/haaarshsingh/kmenu/**",
       },
     ],
   },

@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     "kbar",
     "command bar",
     "Harsh Singh",
-    "harshhhdev",
+    "haaarshsingh",
   ],
   authors: [{ name: "Harsh Singh", url: "https://harshsingh.xyz" }],
   openGraph: {
@@ -104,8 +104,8 @@ export const metadata: Metadata = {
     title: "kmenu",
     description: "🌈 An animated and accessible command menu for React.",
     siteId: "kmenu",
-    creator: "@harshhhdev",
-    creatorId: "harshhhdev",
+    creator: "@haaarshsingh",
+    creatorId: "haaarshsingh",
     images: {
       url: "https://kmenu.hxrsh.in/og.png",
       alt: 'A command menu overlaying the text "kmenu"',

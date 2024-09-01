@@ -123,8 +123,8 @@ export default () => {
             hi.harsh@pm.me
           </a>{" "}
           or{" "}
-          <a href="https://x.com/harshhhdev" rel="noreferrer" target="_blank">
-            @harshhhdev
+          <a href="https://x.com/haaarshsingh" rel="noreferrer" target="_blank">
+            @haaarshsingh
           </a>{" "}
           with your proposals.
         </>

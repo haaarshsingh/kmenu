@@ -65,43 +65,43 @@ const examples = [
     icon: <TbRulerMeasure />,
     name: "Basic",
     description: "A basic, single-page command menu with commands.",
-    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Basic.tsx",
+    href: "https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Basic.tsx",
   },
   {
     icon: <FiGrid />,
     name: "Nested menus",
     description:
       "A multi-page command menu with a master menu and breadcrumbs.",
-    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Nested.tsx",
+    href: "https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Nested.tsx",
   },
   {
     icon: <FiCheckCircle />,
     name: "Checkboxes",
     description: "A settings page command menu with checkbox commands.",
-    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Checkbox.tsx",
+    href: "https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Checkbox.tsx",
   },
   {
     icon: <CgSearchLoading />,
     name: "Loading states",
     description: "Display a loading spinner while fetching data for your menu.",
-    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Loading.tsx",
+    href: "https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Loading.tsx",
   },
   {
     icon: <LuPaintbrush />,
     name: "Dark Mode",
     description: "Build a command menu that supports both dark and light mode.",
-    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/app/examples/dark/page.tsx",
+    href: "https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/app/examples/dark/page.tsx",
   },
   {
     icon: <TbTableShortcut />,
     name: "Modal",
     description: "A command menu that functions as a password reset modal.",
-    href: "https://github.com/harshhhdev/kmenu/blob/master/apps/examples/examples/Modal.tsx",
+    href: "https://github.com/haaarshsingh/kmenu/blob/master/apps/examples/examples/Modal.tsx",
   },
 ];
 
 export default () => (
-  <div className="docs-lg:ml-64 mr-6 mt-12 min-w-0 xl:ml-80">
+  <div className="mr-6 mt-12 min-w-0 docs-lg:ml-64 xl:ml-80">
     <section>
       <h1 className="mb-1 text-2xl font-bold">Documentation</h1>
       <p className="text-base font-medium text-slate-600 dark:text-slate-400">

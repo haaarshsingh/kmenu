@@ -100,7 +100,7 @@ export default () => {
         {
           icon: <SiReact />,
           text: "Examples",
-          href: "https://github.com/harshhhdev/kmenu",
+          href: "https://github.com/haaarshsingh/kmenu",
           newTab: true,
         },
       ],
@@ -212,13 +212,13 @@ export default () => {
         {
           icon: <BsGithub />,
           text: "GitHub",
-          href: "https://github.com/harshhhdev/kmenu",
+          href: "https://github.com/haaarshsingh/kmenu",
           newTab: true,
         },
         {
           icon: <BsTwitterX />,
           text: "Twitter",
-          href: "https://x.com/harshhhdev",
+          href: "https://x.com/haaarshsingh",
           newTab: true,
         },
         {
