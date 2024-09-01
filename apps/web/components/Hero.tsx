@@ -15,13 +15,13 @@ export default () => {
 
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center">
-      <h1 className="animate-slide text-5xl font-bold opacity-0 [animation-delay:.1s]">
+      <h1 className="animate-slide z-10 text-5xl font-bold opacity-0 [animation-delay:.1s]">
         kmenu
       </h1>
-      <p className="animate-slide mt-1.5 text-neutral-500 opacity-0 [animation-delay:.2s]">
+      <p className="animate-slide z-10 mt-1.5 text-neutral-500 opacity-0 [animation-delay:.2s]">
         A perfect navigation experience
       </p>
-      <div className="animate-slide mt-6 flex items-center gap-x-1 opacity-0 [animation-delay:.3s]">
+      <div className="animate-slide z-10 mt-6 flex items-center gap-x-1 opacity-0 [animation-delay:.3s]">
         <button
           className="group flex cursor-copy select-none items-center rounded-full bg-neutral-800 py-2 pl-4 text-sm transition-all hover:bg-neutral-700/70 active:scale-[.98]"
           onClick={() => {

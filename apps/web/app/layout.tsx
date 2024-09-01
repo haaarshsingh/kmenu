@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   creator: "Harsh Singh",
   publisher: "Harsh Singh",
-  description: "🌈 An animated and accessible command menu for React",
+  description: "The perfect ⌘K menu ",
   keywords: [
     "kmenu",
     "cmdk",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Harsh Singh", url: "https://harshsingh.xyz" }],
   openGraph: {
     title: "kmenu",
-    description: "🌈 An animated and accessible command menu for React",
+    description: " The perfect ⌘K menu ",
     url: "https://kmenu.hxrsh.in",
     siteName: "Harsh Singh",
     images: [
@@ -105,7 +105,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "kmenu",
-    description: "🌈 An animated and accessible command menu for React.",
+    description: "The perfect ⌘K menu ",
     siteId: "kmenu",
     creator: "@haaarshsingh",
     creatorId: "haaarshsingh",

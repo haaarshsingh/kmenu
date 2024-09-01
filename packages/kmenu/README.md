@@ -6,7 +6,7 @@
   </a>
 </p>
 
-<p align="center">🌈 Animated and accessible cmdk interface</p>
+<p align="center">The perfect ⌘K menu </p>
 <p align="center">
   <a href="https://kmenu.hxrsh.in">Demo</a>
     ·
