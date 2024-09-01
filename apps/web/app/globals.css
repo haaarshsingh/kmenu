@@ -6,6 +6,10 @@
   background-image: url(/grid.svg);
 }
 
+html.light .root {
+  background-image: url(/grid-light.svg);
+}
+
 .root:before {
   background-image: url(/bg.jpg);
   background-size: cover;
@@ -32,4 +36,8 @@
 ::selection {
   background-color: #04cf7e;
   color: #0a0a0a;
+}
+
+html.light .root::after {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fff 100%);
 }

@@ -1,13 +1,13 @@
 ::placeholder {
-  @apply text-slate-500;
+  @apply text-neutral-500;
 }
 
 .backdrop {
-  @apply fixed left-0 top-0 z-50 flex h-screen w-screen select-none flex-col items-center overflow-hidden bg-slate-400/50 backdrop-blur-sm dark:bg-slate-950/75;
+  @apply fixed left-0 top-0 z-50 flex h-screen w-screen select-none flex-col items-center overflow-hidden bg-neutral-400/50 dark:bg-neutral-950/50;
 }
 
 .dialog {
-  @apply shadow-menu fixed top-[20%] w-[600px] rounded-xl border border-slate-200 bg-slate-50 p-2 transition [will-change:height] dark:border-slate-800 dark:bg-slate-950;
+  @apply fixed top-[20%] w-[600px] rounded-xl border border-neutral-200 bg-neutral-50 p-2 shadow-menu transition [will-change:height] dark:border-neutral-800 dark:bg-neutral-950;
 }
 
 .crumbs {
@@ -15,11 +15,11 @@
 }
 
 .breadcrumb {
-  @apply mr-1.5 cursor-pointer rounded border border-slate-200 bg-slate-100 px-2.5 pb-1 pt-1.5 text-xs text-slate-600 outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400;
+  @apply mr-1.5 cursor-pointer rounded border border-neutral-200 bg-neutral-100 px-2.5 pb-1 pt-1.5 text-xs text-neutral-600 outline-none dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400;
 }
 
 .searchbar {
-  @apply mb-1.5 w-full border-b border-b-slate-300 bg-transparent px-2.5 py-3.5 text-slate-900 outline-none dark:border-b-slate-800 dark:text-slate-100;
+  @apply mb-1.5 w-full border-b border-b-neutral-300 bg-transparent px-2.5 py-3.5 font-light text-neutral-900 outline-none dark:border-b-neutral-800 dark:text-neutral-100;
 }
 
 .command_wrapper {
@@ -27,23 +27,23 @@
 }
 
 .command {
-  @apply relative flex h-[50px] items-center justify-between text-sm text-slate-500 no-underline transition-colors;
+  @apply relative flex h-[50px] items-center justify-between text-sm text-neutral-500 no-underline transition-colors;
 }
 
 div[role="option"][aria-selected="true"] .command {
-  @apply text-slate-900 dark:text-slate-100;
+  @apply text-neutral-900 dark:text-neutral-100;
 }
 
 div[role="option"][aria-selected="true"] .info_wrapper > svg {
-  @apply text-slate-900 dark:text-slate-100;
+  @apply text-neutral-900 dark:text-neutral-100;
 }
 
 .shortcuts > kbd {
-  @apply mr-2 flex h-6 w-6 items-center justify-center rounded border border-slate-200 bg-none font-mono text-xs text-slate-400 transition-colors dark:border-slate-800 dark:text-slate-600;
+  @apply mr-2 flex h-6 w-6 items-center justify-center rounded border border-neutral-200 bg-none font-mono text-xs text-neutral-400 transition-colors dark:border-neutral-800 dark:text-neutral-600;
 }
 
 div[role="option"][aria-selected="true"] .shortcuts > kbd {
-  @apply bg-slate-200 text-slate-600 dark:bg-slate-800/25;
+  @apply bg-neutral-200 text-neutral-600 dark:bg-neutral-800/25;
 }
 
 .shortcuts {
@@ -55,19 +55,19 @@ div[role="option"][aria-selected="true"] .shortcuts > kbd {
 }
 
 .info_wrapper > svg {
-  @apply mr-2 h-4 w-4 text-slate-500 transition-colors;
+  @apply mr-2 h-4 w-4 text-neutral-500 transition-colors;
 }
 
 .category_header {
-  @apply pb-2 pl-2 pt-1.5 text-xs text-slate-400;
+  @apply pb-2 pl-2 pt-1.5 text-xs font-light text-neutral-400;
 }
 
 .selected {
-  @apply absolute h-12 w-full rounded-lg bg-slate-950/5 dark:bg-slate-50/5;
+  @apply absolute h-12 w-full rounded-lg bg-neutral-950/5 dark:bg-neutral-50/5;
 }
 
 .command_text {
-  @apply mt-0.5 w-fit max-w-[90%] overflow-hidden overflow-ellipsis text-sm;
+  @apply w-fit max-w-[90%] overflow-hidden overflow-ellipsis text-sm font-light;
 }
 
 .scroll_ref {

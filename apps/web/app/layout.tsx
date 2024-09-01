@@ -134,7 +134,7 @@ export default (({ children }) => (
       )}
     >
       <Providers>
-        {/* <CommandMenu /> */}
+        <CommandMenu />
         {children}
       </Providers>
     </body>
