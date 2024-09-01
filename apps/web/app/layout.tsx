@@ -57,7 +57,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kmenu.hxrsh.in"),
-  title: { default: "kmenu", template: "%s — kmenu" },
+  title: {
+    default: "kmenu — the perfect navigation experience",
+    template: "%s — kmenu",
+  },
   creator: "Harsh Singh",
   publisher: "Harsh Singh",
   description: "🌈 An animated and accessible command menu for React",

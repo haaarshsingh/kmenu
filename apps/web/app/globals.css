@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-main::after {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #000 100%);
-}
-
 ::selection {
-  @apply bg-purple-500 text-neutral-50;
-}
-
-p > div {
-  @apply shadow-[0_3px_0px_0px_#3f3f46];
+  @apply bg-teal-500 text-neutral-50;
 }

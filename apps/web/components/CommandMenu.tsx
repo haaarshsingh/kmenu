@@ -25,7 +25,6 @@ import { HiOutlineDesktopComputer } from "react-icons/hi";
 import { LuLink2 } from "react-icons/lu";
 import { SiReact } from "react-icons/si";
 import { TbFishHook, TbMoonStars, TbPaint, TbPower } from "react-icons/tb";
-import { Item, items, slugify } from "./Sidebar";
 import { BsDiscord, BsGithub, BsTwitterX } from "react-icons/bs";
 import { CgNpm } from "react-icons/cg";
 
@@ -34,40 +33,6 @@ export default () => {
 
   const { setTheme } = useTheme();
   const { setOpen } = useKmenu();
-
-  const docsToCommands = (item: Item): Command[] => [
-    {
-      category: item.category,
-      commands: item.pages.map((page) => ({
-        icon: page.icon,
-        text: page.name,
-        ...(!page.href && {
-          perform: () =>
-            router.push(
-              `/docs/${slugify(item.category)}/${slugify(page.name)}`,
-            ),
-          closeOnComplete: true,
-        }),
-        ...(page.href && { href: page.href, newTab: true }),
-      })),
-    },
-  ];
-
-  const generateDocCommands = (): InnerCommand[] =>
-    items.flatMap((item) =>
-      item.pages.map((page) => ({
-        icon: page.icon,
-        text: page.name,
-        ...(!page.href && {
-          perform: () =>
-            router.push(
-              `/docs/${slugify(item.category)}/${slugify(page.name)}`,
-            ),
-          closeOnComplete: true,
-        }),
-        ...(page.href && { href: page.href, newTab: true }),
-      })),
-    );
 
   const main: Command[] = [
     {
@@ -104,7 +69,6 @@ export default () => {
           newTab: true,
         },
       ],
-      subCommands: generateDocCommands(),
     },
     {
       category: "Utility",
@@ -172,7 +136,6 @@ export default () => {
           perform: () => setOpen(9),
         },
       ],
-      subCommands: generateDocCommands(),
     },
   ];
 
@@ -234,12 +197,6 @@ export default () => {
   const [mainCommands] = useCommands(main);
   const [docsCommands] = useCommands(docs);
   const [themeCommands] = useCommands(theme);
-  const [startGuide] = useCommands(docsToCommands(items[0]!));
-  const [commands] = useCommands(docsToCommands(items[1]!));
-  const [customization] = useCommands(docsToCommands(items[2]!));
-  const [hooks] = useCommands(docsToCommands(items[3]!));
-  const [features] = useCommands(docsToCommands(items[4]!));
-  const [other] = useCommands(docsToCommands(items[5]!));
   const [linkCommands] = useCommands(links);
 
   return (
@@ -255,36 +212,6 @@ export default () => {
         commands={themeCommands}
         index={3}
         crumbs={["Home", "Theme"]}
-      />
-      <CommandMenu
-        commands={startGuide}
-        index={4}
-        crumbs={["Home", "Docs", "Start Guide"]}
-      />
-      <CommandMenu
-        commands={commands}
-        index={5}
-        crumbs={["Home", "Docs", "Commands"]}
-      />
-      <CommandMenu
-        commands={customization}
-        index={6}
-        crumbs={["Home", "Docs", "Customization"]}
-      />
-      <CommandMenu
-        commands={hooks}
-        index={7}
-        crumbs={["Home", "Docs", "Hooks"]}
-      />
-      <CommandMenu
-        commands={features}
-        index={8}
-        crumbs={["Home", "Docs", "Features"]}
-      />
-      <CommandMenu
-        commands={other}
-        index={9}
-        crumbs={["Home", "Docs", "Other"]}
       />
       <CommandMenu
         commands={linkCommands}
