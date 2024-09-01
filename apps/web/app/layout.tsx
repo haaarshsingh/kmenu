@@ -2,49 +2,17 @@ import "./globals.css";
 import "./cmdk.css";
 
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import clsx from "clsx";
 import { FC, ReactNode } from "react";
 import Providers from "./providers";
 import CommandMenu from "../components/CommandMenu";
+import { Inter } from "next/font/google";
 
-const tt_interfaces = localFont({
-  src: [
-    {
-      path: "./fonts/TTInterfaces-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/TTInterfaces-Medium.woff2",
-      weight: "500",
-      style: "medium",
-    },
-    {
-      path: "./fonts/TTInterfaces-Semibold.woff2",
-      weight: "600",
-      style: "semibold",
-    },
-    {
-      path: "./fonts/TTInterfaces-Bold.woff2",
-      weight: "700",
-      style: "bold",
-    },
-  ],
+const inter = Inter({
+  weight: ["400", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
   display: "swap",
-  variable: "--font-display",
-});
-
-const fira_code = localFont({
-  src: [
-    {
-      path: "./fonts/FiraCode-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  display: "swap",
-  variable: "--font-mono",
 });
 
 export const viewport: Viewport = {
@@ -127,11 +95,7 @@ export const metadata: Metadata = {
 export default (({ children }) => (
   <html lang="en" suppressHydrationWarning>
     <body
-      className={clsx(
-        tt_interfaces.variable,
-        fira_code.variable,
-        "bg-neutral-100 dark:bg-neutral-950",
-      )}
+      className={clsx(inter.className, "bg-neutral-100 dark:bg-neutral-950")}
     >
       <Providers>
         <CommandMenu />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, Check, Copy } from "react-feather";
+import { FiArrowRight, FiCheck, FiCopy } from "react-icons/fi";
 
 export default () => {
   const [copy, setCopy] = useState(false);
@@ -31,7 +31,11 @@ export default () => {
         >
           npm install kmenu
           <div className="ml-2 mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-neutral-300 text-neutral-600 transition-colors group-hover:bg-neutral-400/50 dark:bg-neutral-700 dark:text-neutral-400 dark:group-hover:bg-neutral-600/70">
-            {copy ? <Check className="w-3.5" /> : <Copy className="w-3.5" />}
+            {copy ? (
+              <FiCheck className="w-3.5" />
+            ) : (
+              <FiCopy className="w-3.5" />
+            )}
           </div>
         </button>
         <a
@@ -41,7 +45,7 @@ export default () => {
           className="group flex select-none items-center rounded-full px-5 py-2.5 text-sm transition-all hover:bg-neutral-950/5 active:scale-[.98] dark:hover:bg-neutral-50/10"
         >
           Get Started
-          <ArrowRight className="ml-1.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          <FiArrowRight className="ml-1.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
         </a>
       </div>
     </main>

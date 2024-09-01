@@ -19,7 +19,7 @@
 }
 
 .searchbar {
-  @apply mb-1.5 w-full border-b border-b-neutral-300 bg-transparent px-2.5 py-3.5 font-light text-neutral-900 outline-none dark:border-b-neutral-800 dark:text-neutral-100;
+  @apply mb-1.5 w-full border-b border-b-neutral-300 bg-transparent px-2.5 py-3.5 text-neutral-900 outline-none dark:border-b-neutral-800 dark:text-neutral-100;
 }
 
 .command_wrapper {
@@ -59,7 +59,7 @@ div[role="option"][aria-selected="true"] .shortcuts > kbd {
 }
 
 .category_header {
-  @apply pb-2 pl-2 pt-1.5 text-xs font-light text-neutral-400;
+  @apply pb-2 pl-2 pt-1.5 text-xs  text-neutral-400;
 }
 
 .selected {
@@ -67,7 +67,7 @@ div[role="option"][aria-selected="true"] .shortcuts > kbd {
 }
 
 .command_text {
-  @apply w-fit max-w-[90%] overflow-hidden overflow-ellipsis text-sm font-light;
+  @apply w-fit max-w-[90%] overflow-hidden overflow-ellipsis text-sm;
 }
 
 .scroll_ref {
