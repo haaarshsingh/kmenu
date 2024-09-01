@@ -1,85 +1,53 @@
 "use client";
 
-import { useKmenu } from "kmenu";
-import Link from "next/link";
-import { FiChevronRight, FiSearch } from "react-icons/fi";
-import ContentLayout from "./ContentLayout";
-import Image from "next/image";
-import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { FiArrowRight, FiCheck, FiCopy } from "react-icons/fi";
 
 export default () => {
-  const { setOpen } = useKmenu();
-  const { resolvedTheme } = useTheme();
+  const [copy, setCopy] = useState(false);
+
+  useEffect(() => {
+    if (copy)
+      setTimeout(() => {
+        setCopy(false);
+      }, 1000);
+  }, [copy]);
 
   return (
-    <section className="relative flex h-screen items-center justify-between border-b border-b-slate-300 bg-slate-200 dark:border-b-slate-700 dark:bg-slate-900">
-      <ContentLayout>
-        <div className="flex h-full w-full flex-col items-center justify-center">
-          <div className="mb-6 flex flex-col items-center">
-            <a
-              className="group flex items-center rounded-full bg-slate-300 p-1 transition-colors hover:bg-slate-400/50 dark:bg-slate-800 dark:hover:bg-slate-700"
-              href="https://www.producthunt.com/products/kmenu"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="rounded-full bg-slate-400 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-700 dark:text-slate-400">
-                <p className="pt-0.5">NEW</p>
-              </div>
-              <div className="mx-2 flex items-center text-xs text-slate-600 dark:text-slate-100">
-                <span>kmenu launches v2.0.0</span>
-                <FiChevronRight className="mb-0.5 ml-1 transition-transform group-hover:translate-x-0.5" />
-              </div>
-            </a>
-            <h2 className="mb-2 mt-4 text-center text-4xl font-bold">
-              A refined navigation experience
-            </h2>
-            <p className="text-center text-base font-medium text-slate-600 dark:text-slate-400">
-              An open-source, accessible and animated command menu for React
-            </p>
+    <main className="flex h-screen w-screen flex-col items-center justify-center">
+      <h1 className="animate-slide z-10 text-5xl font-bold opacity-0 [animation-delay:.1s]">
+        kmenu
+      </h1>
+      <p className="animate-slide z-10 mt-1.5 text-neutral-500 opacity-0 [animation-delay:.2s]">
+        A perfect navigation experience
+      </p>
+      <div className="animate-slide z-10 mt-6 flex items-center gap-x-1 opacity-0 [animation-delay:.3s]">
+        <button
+          className="group flex cursor-copy select-none items-center rounded-full bg-neutral-200 py-2 pl-4 text-sm transition-all hover:bg-neutral-400/40 active:scale-[.98] dark:bg-neutral-800 dark:hover:bg-neutral-700/70"
+          onClick={() => {
+            setCopy(true);
+            navigator.clipboard.writeText("npm install kmenu");
+          }}
+        >
+          npm install kmenu
+          <div className="ml-2 mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-neutral-300 text-neutral-600 transition-colors group-hover:bg-neutral-400/50 dark:bg-neutral-700 dark:text-neutral-400 dark:group-hover:bg-neutral-600/70">
+            {copy ? (
+              <FiCheck className="w-3.5" />
+            ) : (
+              <FiCopy className="w-3.5" />
+            )}
           </div>
-          <div className="mb-40 flex">
-            <Link
-              href="/docs"
-              className="mr-2 flex select-none items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-medium text-slate-100 transition-colors hover:bg-slate-800 dark:bg-sky-500 dark:hover:bg-sky-400"
-            >
-              <span className="mt-0.5">Get Started</span>
-            </Link>
-            <button
-              className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm dark:border-slate-700 dark:bg-slate-800"
-              onClick={() => setOpen(1)}
-            >
-              <div className="mr-12 flex items-center font-medium text-slate-400">
-                <FiSearch className="mr-1.5 text-slate-300" />
-                <span className="mt-0.5">Command Menu...</span>
-              </div>
-              <kbd className="mt-0.5 font-sans text-slate-400">
-                <abbr title="Command" className="no-underline">
-                  ⌘
-                </abbr>
-                K
-              </kbd>
-            </button>
-          </div>
-        </div>
-      </ContentLayout>
-      <Image
-        src={
-          resolvedTheme === "dark" ? "/home/cmdk-dark.webp" : "/home/cmdk.webp"
-        }
-        width={635}
-        height={354.69}
-        alt="command menu"
-        className="absolute bottom-0 left-0 right-0 z-10 m-auto text-center"
-        draggable={false}
-      />
-      <Image
-        src="/home/grid.webp"
-        width={1358}
-        height={303}
-        alt="grid"
-        className="absolute bottom-0 left-0 right-0 m-auto text-center"
-        draggable={false}
-      />
-    </section>
+        </button>
+        <a
+          href="https://github.com/haaarshsingh/kmenu"
+          target="_blank"
+          rel="noreferrer"
+          className="group flex select-none items-center rounded-full px-5 py-2.5 text-sm transition-all hover:bg-neutral-950/5 active:scale-[.98] dark:hover:bg-neutral-50/10"
+        >
+          Get Started
+          <FiArrowRight className="ml-1.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+        </a>
+      </div>
+    </main>
   );
 };

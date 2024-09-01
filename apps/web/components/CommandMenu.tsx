@@ -4,293 +4,178 @@ import {
   Command,
   CommandMenu,
   CommandWrapper,
-  InnerCommand,
   useCommands,
   useKmenu,
 } from "kmenu";
-import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
-import {
-  FiCommand,
-  FiHome,
-  FiLink,
-  FiMoon,
-  FiPlus,
-  FiSearch,
-  FiSun,
-  FiTerminal,
-  FiZap,
-} from "react-icons/fi";
+import { FC } from "react";
+import { FiCopy, FiGrid, FiMoon, FiPlus, FiSun, FiUsers } from "react-icons/fi";
+import { BsShift } from "react-icons/bs";
 import { HiOutlineDesktopComputer } from "react-icons/hi";
-import { LuLink2 } from "react-icons/lu";
-import { SiReact } from "react-icons/si";
-import { TbFishHook, TbMoonStars, TbPaint, TbPower } from "react-icons/tb";
-import { Item, items, slugify } from "./Sidebar";
-import { BsDiscord, BsGithub, BsTwitterX } from "react-icons/bs";
-import { CgNpm } from "react-icons/cg";
+import {
+  RiCss3Fill,
+  RiCustomerService2Fill,
+  RiNextjsFill,
+  RiSvelteFill,
+} from "react-icons/ri";
+import { MdOutlineDesignServices } from "react-icons/md";
+import { TbServer2 } from "react-icons/tb";
+import { useTheme } from "next-themes";
 
-export default () => {
-  const router = useRouter();
-
+export default (() => {
   const { setTheme } = useTheme();
   const { setOpen } = useKmenu();
 
-  const docsToCommands = (item: Item): Command[] => [
+  const themes = [
     {
-      category: item.category,
-      commands: item.pages.map((page) => ({
-        icon: page.icon,
-        text: page.name,
-        ...(!page.href && {
-          perform: () =>
-            router.push(
-              `/docs/${slugify(item.category)}/${slugify(page.name)}`,
-            ),
-          closeOnComplete: true,
-        }),
-        ...(page.href && { href: page.href, newTab: true }),
-      })),
+      icon: <HiOutlineDesktopComputer />,
+      text: "System",
+      perform: () => setTheme("system"),
+    },
+    {
+      icon: <FiSun />,
+      text: "Light",
+      perform: () => setTheme("light"),
+    },
+    {
+      icon: <FiMoon />,
+      text: "Dark",
+      perform: () => setTheme("dark"),
     },
   ];
-
-  const generateDocCommands = (): InnerCommand[] =>
-    items.flatMap((item) =>
-      item.pages.map((page) => ({
-        icon: page.icon,
-        text: page.name,
-        ...(!page.href && {
-          perform: () =>
-            router.push(
-              `/docs/${slugify(item.category)}/${slugify(page.name)}`,
-            ),
-          closeOnComplete: true,
-        }),
-        ...(page.href && { href: page.href, newTab: true }),
-      })),
-    );
 
   const main: Command[] = [
     {
-      category: "Navigation",
+      category: "Projects",
       commands: [
         {
-          icon: <FiHome />,
-          text: "Home",
-          perform: () => router.push("/"),
-          closeOnComplete: true,
-          keywords: ["back"],
-        },
-        {
-          icon: <FiSearch />,
-          text: "Search Documentation...",
+          icon: <FiGrid />,
+          text: "Search Projects...",
+          shortcuts: { modifier: <BsShift />, keys: ["P"] },
           perform: () => setOpen(2),
-          shortcuts: { modifier: <FiCommand />, keys: ["E"] },
-          keywords: [
-            "commands",
-            "tutorial",
-            "guide",
-            "test",
-            "hooks",
-            "menus",
-            "examples",
-            "checkboxes",
-            "cmdk",
-          ],
         },
         {
-          icon: <SiReact />,
-          text: "Examples",
-          href: "https://github.com/harshhhdev/kmenu",
-          newTab: true,
+          icon: <FiPlus />,
+          text: "Create New Project",
         },
       ],
-      subCommands: generateDocCommands(),
     },
     {
-      category: "Utility",
+      category: "Teams",
       commands: [
         {
-          icon: <TbMoonStars />,
-          text: "Set Theme...",
+          icon: <FiUsers />,
+          text: "Search Teams...",
+          shortcuts: { modifier: <BsShift />, keys: ["T"] },
           perform: () => setOpen(3),
-          keywords: ["dark", "mode", "light"],
         },
         {
-          icon: <FiLink />,
-          text: "Copy URL",
-          perform: () =>
-            navigator.clipboard.writeText(`https://kmenu.hxrsh.in/docs`),
-          closeOnComplete: true,
+          icon: <FiPlus />,
+          text: "Create New Team",
         },
       ],
     },
     {
-      category: "Other",
+      category: "General",
       commands: [
         {
-          icon: <LuLink2 />,
-          text: "Links...",
-          keywords: ["github", "code", "npm", "x", "twitter"],
-          perform: () => setOpen(10),
+          icon: <HiOutlineDesktopComputer />,
+          text: "Change Theme...",
+          shortcuts: { modifier: <BsShift />, keys: ["T"] },
+          perform: () => setOpen(4),
+        },
+        {
+          icon: <FiCopy />,
+          text: "Copy Current URL",
+          perform: () =>
+            navigator.clipboard.writeText("https://kmenu.harshsingh.xyz/"),
+        },
+      ],
+      subCommands: themes,
+    },
+  ];
+
+  const projects: Command[] = [
+    {
+      category: "Projects",
+      commands: [
+        {
+          icon: <RiNextjsFill />,
+          text: "kmenu",
+        },
+        {
+          icon: <RiSvelteFill />,
+          text: "www",
+        },
+        {
+          icon: <RiNextjsFill />,
+          text: "React Pointers",
+        },
+        {
+          icon: <RiCss3Fill />,
+          text: "dots",
         },
       ],
     },
   ];
 
-  const docs: Command[] = [
+  const teams: Command[] = [
     {
-      category: "Documentation",
+      category: "Teams",
       commands: [
         {
-          icon: <TbPower />,
-          text: "Start Guide",
-          perform: () => setOpen(4),
+          icon: <RiCustomerService2Fill />,
+          text: "Customer Service",
         },
         {
-          icon: <FiTerminal />,
-          text: "Commands",
-          perform: () => setOpen(5),
+          icon: <MdOutlineDesignServices />,
+          text: "Frontend Developers",
         },
         {
-          icon: <TbPaint />,
-          text: "Customization",
-          perform: () => setOpen(6),
-        },
-        {
-          icon: <TbFishHook />,
-          text: "Hooks",
-          perform: () => setOpen(7),
-        },
-        {
-          icon: <FiZap />,
-          text: "Features",
-          perform: () => setOpen(8),
-        },
-        {
-          icon: <FiPlus />,
-          text: "Other",
-          perform: () => setOpen(9),
+          icon: <TbServer2 />,
+          text: "Backend Developers",
         },
       ],
-      subCommands: generateDocCommands(),
     },
   ];
 
   const theme: Command[] = [
     {
       category: "Set Theme",
-      commands: [
-        {
-          icon: <HiOutlineDesktopComputer />,
-          text: "System",
-          perform: () => setTheme("system"),
-        },
-        {
-          icon: <FiSun />,
-          text: "Light",
-          perform: () => setTheme("light"),
-        },
-        {
-          icon: <FiMoon />,
-          text: "Dark",
-          perform: () => setTheme("dark"),
-        },
-      ],
-    },
-  ];
-
-  const links: Command[] = [
-    {
-      category: "Set Theme",
-      commands: [
-        {
-          icon: <BsDiscord />,
-          text: "Join Discord",
-          href: "https://discord.gg/RYjKFDayuy",
-          newTab: true,
-        },
-        {
-          icon: <BsGithub />,
-          text: "GitHub",
-          href: "https://github.com/harshhhdev/kmenu",
-          newTab: true,
-        },
-        {
-          icon: <BsTwitterX />,
-          text: "Twitter",
-          href: "https://x.com/harshhhdev",
-          newTab: true,
-        },
-        {
-          icon: <CgNpm />,
-          text: "NPM",
-          href: "https://www.npmjs.com/package/kmenu",
-          newTab: true,
-        },
-      ],
+      commands: themes,
     },
   ];
 
   const [mainCommands] = useCommands(main);
-  const [docsCommands] = useCommands(docs);
+  const [projectCommands] = useCommands(projects);
+  const [teamCommands] = useCommands(teams);
   const [themeCommands] = useCommands(theme);
-  const [startGuide] = useCommands(docsToCommands(items[0]!));
-  const [commands] = useCommands(docsToCommands(items[1]!));
-  const [customization] = useCommands(docsToCommands(items[2]!));
-  const [hooks] = useCommands(docsToCommands(items[3]!));
-  const [features] = useCommands(docsToCommands(items[4]!));
-  const [other] = useCommands(docsToCommands(items[5]!));
-  const [linkCommands] = useCommands(links);
 
   return (
     <CommandWrapper>
-      <CommandMenu commands={mainCommands} index={1} crumbs={["Home"]} />
       <CommandMenu
-        commands={docsCommands}
+        commands={mainCommands}
+        crumbs={["Home"]}
+        index={1}
+        placeholder="What do you need?"
+      />
+      <CommandMenu
+        commands={projectCommands}
+        crumbs={["Home", "Projects"]}
         index={2}
-        crumbs={["Home", "Docs"]}
-        placeholder="Search for anything..."
+        placeholder="Search Projects..."
+      />
+      <CommandMenu
+        commands={teamCommands}
+        crumbs={["Home", "Projects"]}
+        index={3}
+        placeholder="Search Teams..."
       />
       <CommandMenu
         commands={themeCommands}
-        index={3}
         crumbs={["Home", "Theme"]}
-      />
-      <CommandMenu
-        commands={startGuide}
         index={4}
-        crumbs={["Home", "Docs", "Start Guide"]}
-      />
-      <CommandMenu
-        commands={commands}
-        index={5}
-        crumbs={["Home", "Docs", "Commands"]}
-      />
-      <CommandMenu
-        commands={customization}
-        index={6}
-        crumbs={["Home", "Docs", "Customization"]}
-      />
-      <CommandMenu
-        commands={hooks}
-        index={7}
-        crumbs={["Home", "Docs", "Hooks"]}
-      />
-      <CommandMenu
-        commands={features}
-        index={8}
-        crumbs={["Home", "Docs", "Features"]}
-      />
-      <CommandMenu
-        commands={other}
-        index={9}
-        crumbs={["Home", "Docs", "Other"]}
-      />
-      <CommandMenu
-        commands={linkCommands}
-        index={10}
-        crumbs={["Home", "Links"]}
+        placeholder="Set Theme..."
       />
     </CommandWrapper>
   );
-};
+}) as FC;

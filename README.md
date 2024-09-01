@@ -6,19 +6,17 @@
   </a>
 </p>
 
-<p align="center">🌈 Animated and accessible cmdk interface</p>
+<p align="center">The perfect ⌘K menu </p>
 <p align="center">
   <a href="https://kmenu.hxrsh.in">Demo</a>
-    ·
-  <a href="https://kmenu.hxrsh.in/docs">Documentation</a>
     ·
   <a href="https://npmjs.com/package/kmenu">NPM</a>
       ·
   <a href="https://www.producthunt.com/products/kmenu">Product Hunt</a>
       ·
-  <a href="https://react-ts-fotwq9.stackblitz.io">StackBlitz</a>
+  <a href="https://stackblitz.com/edit/stackblitz-starters-j8z9st?file=app%2Flayout.tsx">StackBlitz</a>
       ·
-  <a href="https://18nb0j.csb.app/">CodeSandbox</a>
+  <a href="https://codesandbox.io/p/sandbox/kmenu-4r2nqf">CodeSandbox</a>
  </p>
 
 ## Consulting

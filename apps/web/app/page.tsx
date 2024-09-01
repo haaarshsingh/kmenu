@@ -1,23 +1,9 @@
-import Nav from "../components/Nav";
-import Hero from "../components/Hero";
-import Gradient from "../components/Gradient";
-import Features from "../components/Features";
 import Footer from "../components/Footer";
-import CTA from "../components/CTA";
-import ContentLayout from "../components/ContentLayout";
+import Hero from "../components/Hero";
 
 export default () => (
-  <>
-    <Nav />
-    <main>
-      <Hero />
-      <ContentLayout>
-        <Features />
-        <CTA />
-      </ContentLayout>
-    </main>
-    <ContentLayout>
-      <Footer />
-    </ContentLayout>
-  </>
+  <div className="root">
+    <Hero />
+    <Footer />
+  </div>
 );

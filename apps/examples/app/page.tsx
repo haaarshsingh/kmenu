@@ -51,7 +51,7 @@ export default () => (
       <p>
         Done something cool with kmenu and wanna share it?{' '}
         <a
-          href='https://github.com/harshhhdev/kmenu/pulls'
+          href='https://github.com/haaarshsingh/kmenu/pulls'
           target='_blank'
           rel='noreferrer'
         >
