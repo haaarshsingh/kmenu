@@ -42,7 +42,7 @@ export default () => {
           href="https://github.com/haaarshsingh/kmenu"
           target="_blank"
           rel="noreferrer"
-          className="group flex select-none items-center rounded-full px-5 py-2.5 text-sm transition-all hover:bg-neutral-950/5 active:scale-[.98] dark:hover:bg-neutral-50/10"
+          className="group flex select-none items-center rounded-full px-5 py-3 text-sm transition-all hover:bg-neutral-950/5 active:scale-[.98] dark:hover:bg-neutral-50/10"
         >
           Get Started
           <FiArrowRight className="ml-1.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
