@@ -29,14 +29,14 @@ This library is a monorepo built with [Turborepo](https://turbo.build/). It cons
 
 ### Apps
 
-- `web` — the official website.
-- `examples` — examples of different command menu implementations.
+- [`web`](https://github.com/haaarshsingh/kmenu/tree/master/apps/web) — the official website.
+- [`examples`](https://github.com/haaarshsingh/kmenu/tree/master/apps/examples) — examples of different command menu implementations.
 
 ### Packages
 
-- `kmenu`: the official kmenu NPM package.
-- `eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`).
-- `typescript-config`: `tsconfig.json`s used throughout the monorepo.
+- [`kmenu`](https://github.com/haaarshsingh/kmenu/tree/master/packages/kmenu): the official kmenu NPM package.
+- [`eslint-config`](https://github.com/haaarshsingh/kmenu/tree/master/packages/eslint-config): `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`).
+- [`typescript-config`](https://github.com/haaarshsingh/kmenu/tree/master/packages/typescript-config): `tsconfig.json`s used throughout the monorepo.
 
 ## Quickstart
 
