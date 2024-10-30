@@ -21,7 +21,7 @@
 
 ## Consulting
 
-If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [hi.harsh@pm.me](mailto:hi.harsh@pm.me).
+If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [yo@harshsingh.xyz](mailto:yo@harshsingh.xyz).
 
 ## What's inside?
 
