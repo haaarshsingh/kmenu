@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kmenu.hxrsh.in"),
+  metadataBase: new URL("https://kmenu.harshsingh.me"),
   title: {
     default: "kmenu — the perfect navigation experience",
     template: "%s — kmenu",
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
     "Harsh Singh",
     "haaarshsingh",
   ],
-  authors: [{ name: "Harsh Singh", url: "https://harshsingh.xyz" }],
+  authors: [{ name: "Harsh Singh", url: "https://harshsingh.me" }],
   openGraph: {
     title: "kmenu",
     description: " The perfect ⌘K menu ",
-    url: "https://kmenu.hxrsh.in",
+    url: "https://kmenu.harshsingh.me",
     siteName: "Harsh Singh",
     images: [
-      { url: "https://kmenu.hxrsh.in/og.png", width: 1200, height: 630 },
+      { url: "https://kmenu.harshsingh.me/og.png", width: 1200, height: 630 },
     ],
     locale: "en-US",
     type: "website",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     creator: "@haaarshsingh",
     creatorId: "haaarshsingh",
     images: {
-      url: "https://kmenu.hxrsh.in/og.png",
+      url: "https://kmenu.harshsingh.me/og.png",
       alt: 'A command menu overlaying the text "kmenu"',
     },
   },
@@ -86,9 +86,9 @@ export const metadata: Metadata = {
     google: "VWhTtgTikPqvWIY4n2rlUj6Fe9YgkfFMEET3TM7Rce0",
     yandex: "cfc27cbb03eb0a9c",
     yahoo: "yahoo",
-    other: { me: ["hi.harsh@pm.me"] },
+    other: { me: ["h@harshsingh.me"] },
   },
-  alternates: { canonical: "https://kmenu.hxrsh.in" },
+  alternates: { canonical: "https://kmenu.harshsingh.me" },
   category: "technology",
 };
 
