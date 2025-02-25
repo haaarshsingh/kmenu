@@ -1,14 +1,14 @@
-![image](https://kmenu.hxrsh.in/og.png)
+![image](https://kmenu.harshsingh.me/og.png)
 
 <p align="center">
-  <a href="https://kmenu.hxrsh.in/">
+  <a href="https://kmenu.harshsingh.me/">
     <h2 align="center">kmenu</h2>
   </a>
 </p>
 
 <p align="center">The perfect ⌘K menu </p>
 <p align="center">
-  <a href="https://kmenu.hxrsh.in">Demo</a>
+  <a href="https://kmenu.harshsingh.me">Demo</a>
     ·
   <a href="https://npmjs.com/package/kmenu">NPM</a>
       ·
@@ -21,15 +21,13 @@
 
 ## Consulting
 
-If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [hi.harsh@pm.me](mailto:hi.harsh@pm.me).
+If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [h@harshsingh.me](mailto:h@harshsingh.me).
 
 ## Quickstart
 
-View the [official documentation](https://kmenu.hxrsh.in/docs) for more thorough examples and documentation.
-
 Having trouble? Unsure of something? Feel free to ask away in the [discussions](https://github.com/haaarshsingh/kmenu/discussions).
 
-Install the [npm package](https://www.npmjs.com/package/kmenu):
+Install the [NPM package](https://www.npmjs.com/package/kmenu):
 
 ```zsh
 npm add kmenu
@@ -160,11 +158,11 @@ Here are all the options available on the menu:
 | loadingState       | Whether or not the data is currently loading | boolean      | ✅       |
 | placeholder        | The placeholder text on this particular menu | string       | ✅       |
 
-The index is the index of this menu—if you only have a single menu, set this to one. This number is used for opening and closing multiple menus, whenever you want to open a sub menu simply use the `setOpen` command and input the index of the menu you'd like to open. For more information on this, see [nested menus](https://kmenu.hxrsh.in/docs/features/nested-menus).
+The index is the index of this menu—if you only have a single menu, set this to one. This number is used for opening and closing multiple menus, whenever you want to open a sub menu simply use the `setOpen` command and input the index of the menu you'd like to open.
 
 #### useCommands
 
-After you define your components, you must input them into the `useCommands` hook. Learn more about it [here](https://kmenu.hxrsh.in/docs/hooks/usecommands-hook).
+After you define your components, you must input them into the `useCommands` hook.
 
 ```tsx:CommandMenu.tsx
 export default () => {
