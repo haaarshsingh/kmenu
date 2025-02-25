@@ -1,14 +1,14 @@
-![image](https://kmenu.hxrsh.in/og.png)
+![image](https://kmenu.harshsingh.me/og.png)
 
 <p align="center">
-  <a href="https://kmenu.hxrsh.in/">
+  <a href="https://kmenu.harshsingh.me/">
     <h2 align="center">kmenu</h2>
   </a>
 </p>
 
 <p align="center">The perfect ⌘K menu </p>
 <p align="center">
-  <a href="https://kmenu.hxrsh.in">Demo</a>
+  <a href="https://kmenu.harshsingh.me">Demo</a>
     ·
   <a href="https://npmjs.com/package/kmenu">NPM</a>
       ·
@@ -21,7 +21,7 @@
 
 ## Consulting
 
-If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [yo@harshsingh.xyz](mailto:yo@harshsingh.xyz).
+If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [h@harshsingh.me](mailto:h@harshsingh.me).
 
 ## What's inside?
 
