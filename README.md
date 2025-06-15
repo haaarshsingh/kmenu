@@ -19,6 +19,12 @@
   <a href="https://codesandbox.io/p/sandbox/kmenu-4r2nqf">CodeSandbox</a>
  </p>
 
+## Used by
+
+<a href="https://dependents.info/haaarshsingh/kmenu">
+  <img src="https://dependents.info/haaarshsingh/kmenu/image" />
+</a>
+
 ## Consulting
 
 If you're a startup or founder using this for your application and need some help setting it up, or perhaps even need a separate cmdk interface tailored to your application, you can reach out to at [h@harshsingh.me](mailto:h@harshsingh.me).
