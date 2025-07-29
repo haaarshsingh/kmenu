@@ -5,9 +5,8 @@ import {
   useCommands,
   useKmenu,
 } from 'kmenu'
-import { FC } from 'react'
-import { FiCheck, FiRotateCw, FiX } from 'react-icons/fi'
 import { BsOption } from 'react-icons/bs'
+import { FiCheck, FiRotateCw, FiX } from 'react-icons/fi'
 
 const generate = (length: number) => {
   let result = ''
@@ -23,7 +22,7 @@ const generate = (length: number) => {
   return result
 }
 
-export default (() => {
+export default function Modal() {
   const { setInput } = useKmenu()
 
   const main: Command[] = [
@@ -62,4 +61,4 @@ export default (() => {
       />
     </CommandWrapper>
   )
-}) as FC
+}

@@ -1,5 +1,5 @@
 import { useCallback, useContext, useState } from 'react'
-import { MenuContext } from '../MenuProvider'
+import { MenuContext } from '../menu-provider'
 import {
   Command,
   CommandWithIndex,

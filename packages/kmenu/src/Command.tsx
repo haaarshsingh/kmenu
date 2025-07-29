@@ -1,13 +1,21 @@
-import React, { FC, useRef, useEffect, useState, useContext } from 'react'
-import useInView from './hooks/useInView'
-import { useShortcut } from './hooks/useShortcut'
-import { InnerCommand } from './types'
-import run from './utils/run'
 import { motion } from 'framer-motion'
-import Checkbox from './Checkbox'
-import { MenuContext } from './MenuProvider'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { Checkbox } from './checkbox'
+import { useInView } from './hooks/use-in-view'
+import { useShortcut } from './hooks/use-shortcut'
+import { MenuContext } from './menu-provider'
+import { InnerCommand } from './types'
+import { run } from './utils/run'
 
-export default (({ onMouseEnter, isSelected, command }) => {
+export const Command = ({
+  onMouseEnter,
+  isSelected,
+  command,
+}: {
+  onMouseEnter: () => void
+  isSelected: boolean
+  command: InnerCommand
+}) => {
   const { setOpen } = useContext(MenuContext)
   const [checked, setChecked] = useState(command.checkbox?.checked)
 
@@ -117,8 +125,4 @@ export default (({ onMouseEnter, isSelected, command }) => {
       <span ref={bottomRef} className='scroll_ref' aria-hidden='true' />
     </div>
   )
-}) as FC<{
-  command: InnerCommand
-  onMouseEnter: () => void
-  isSelected: boolean
-}>
+}

@@ -7,7 +7,7 @@ import { UseInViewProps } from '../types'
  * @param {React.RefObject<HTMLSpanElement>} ref - The ref of the element we are checking
  * @returns {boolean} Whether or not the given element is in view
  */
-const useInView = ({ ref }: UseInViewProps) => {
+export const useInView = ({ ref }: UseInViewProps) => {
   const [isIntersecting, setIntersecting] = useState(false)
 
   const observer = new IntersectionObserver(([entry]) =>
@@ -21,5 +21,3 @@ const useInView = ({ ref }: UseInViewProps) => {
 
   return isIntersecting
 }
-
-export default useInView

@@ -56,9 +56,8 @@ Here's how you'd use your menu provider:
 ```tsx
 import { MenuProvider, Dimensions } from 'kmenu'
 
-export default ({ children }) => {
+export const Menu = ({ children }) => {
   const dimensions: Dimensions = {}
-
   return <MenuProvider dimensions={dimensions}>{children}</MenuProvider>
 }
 ```
@@ -164,19 +163,19 @@ The index is the index of this menu—if you only have a single menu, set this t
 
 After you define your components, you must input them into the `useCommands` hook.
 
-```tsx:CommandMenu.tsx
-export default () => {
+```tsx
+export const Component = () => {
   const main = [
     /* ... */
-  ];
-  const [mainCommands] = useCommands(main);
+  ]
+  const [mainCommands] = useCommands(main)
 
   return (
     <CommandWrapper>
       <CommandMenu commands={mainCommands} index={1} crumbs={['Home']} />
     </CommandWrapper>
-  );
-};
+  )
+}
 ```
 
 That's about all the configuration you'll need to do in order to get a basic command menu to work.
@@ -203,7 +202,7 @@ Here's an example of how you can toggle the menu open with the click of a button
 ```tsx:index.tsx
 import { useKmenu } from 'kmenu'
 
-export default () => {
+export const Button = () => {
   const { toggle } = useKmenu()
   return <button onClick={toggle}>Toggle Menu</button>
 }

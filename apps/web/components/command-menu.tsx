@@ -2,26 +2,25 @@
 
 import {
   Command,
-  CommandMenu,
   CommandWrapper,
+  CommandMenu as Menu,
   useCommands,
   useKmenu,
 } from "kmenu";
-import { FC } from "react";
-import { FiCopy, FiGrid, FiMoon, FiPlus, FiSun, FiUsers } from "react-icons/fi";
+import { useTheme } from "next-themes";
 import { BsShift } from "react-icons/bs";
+import { FiCopy, FiGrid, FiMoon, FiPlus, FiSun, FiUsers } from "react-icons/fi";
 import { HiOutlineDesktopComputer } from "react-icons/hi";
+import { MdOutlineDesignServices } from "react-icons/md";
 import {
   RiCss3Fill,
   RiCustomerService2Fill,
   RiNextjsFill,
   RiSvelteFill,
 } from "react-icons/ri";
-import { MdOutlineDesignServices } from "react-icons/md";
 import { TbServer2 } from "react-icons/tb";
-import { useTheme } from "next-themes";
 
-export default (() => {
+export const CommandMenu = () => {
   const { setTheme } = useTheme();
   const { setOpen } = useKmenu();
 
@@ -152,25 +151,25 @@ export default (() => {
 
   return (
     <CommandWrapper>
-      <CommandMenu
+      <Menu
         commands={mainCommands}
         crumbs={["Home"]}
         index={1}
         placeholder="What do you need?"
       />
-      <CommandMenu
+      <Menu
         commands={projectCommands}
         crumbs={["Home", "Projects"]}
         index={2}
         placeholder="Search Projects..."
       />
-      <CommandMenu
+      <Menu
         commands={teamCommands}
         crumbs={["Home", "Projects"]}
         index={3}
         placeholder="Search Teams..."
       />
-      <CommandMenu
+      <Menu
         commands={themeCommands}
         crumbs={["Home", "Theme"]}
         index={4}
@@ -178,4 +177,4 @@ export default (() => {
       />
     </CommandWrapper>
   );
-}) as FC;
+};

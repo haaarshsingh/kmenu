@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
  *
  * @returns {boolean} Whether or not the given element is in view
  */
-const useBodyScrollable = () => {
+export const useBodyScrollable = () => {
   const [bodyScrollable, setBodyScrollable] = useState(true)
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const useBodyScrollable = () => {
 
   return bodyScrollable
 }
-
-export default useBodyScrollable

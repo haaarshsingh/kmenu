@@ -1,9 +1,9 @@
 'use client'
 
 import { useKmenu } from 'kmenu'
-import Basic from '../../../examples/Basic'
+import Basic from '../../../examples/basic'
 
-export default () => {
+export default function Page() {
   const { toggle } = useKmenu()
 
   return (

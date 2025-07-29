@@ -1,12 +1,12 @@
-import "./globals.css";
 import "./cmdk.css";
+import "./globals.css";
 
-import type { Metadata, Viewport } from "next";
 import clsx from "clsx";
-import { FC, ReactNode } from "react";
-import Providers from "./providers";
-import CommandMenu from "../components/CommandMenu";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { ReactNode } from "react";
+import { CommandMenu } from "../components/command-menu";
+import { Providers } from "./providers";
 
 const inter = Inter({
   weight: ["400", "700"],
@@ -92,15 +92,17 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
-export default (({ children }) => (
-  <html lang="en" suppressHydrationWarning>
-    <body
-      className={clsx(inter.className, "bg-neutral-100 dark:bg-neutral-950")}
-    >
-      <Providers>
-        <CommandMenu />
-        {children}
-      </Providers>
-    </body>
-  </html>
-)) as FC<{ children: ReactNode }>;
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={clsx(inter.className, "bg-neutral-100 dark:bg-neutral-950")}
+      >
+        <Providers>
+          <CommandMenu />
+          {children}
+        </Providers>
+      </body>
+    </html>
+  );
+}

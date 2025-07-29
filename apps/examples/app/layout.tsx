@@ -1,8 +1,8 @@
 import './globals.css'
 
-import type { FC, ReactNode } from 'react'
 import type { Metadata } from 'next'
-import { Inter, Fira_Code } from 'next/font/google'
+import { Fira_Code, Inter } from 'next/font/google'
+import type { ReactNode } from 'react'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,8 +23,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default (({ children }) => (
-  <html lang='en' className={`${inter.variable} ${fira.variable}`}>
-    <body>{children}</body>
-  </html>
-)) as FC<{ children: ReactNode }>
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang='en' className={`${inter.variable} ${fira.variable}`}>
+      <body>{children}</body>
+    </html>
+  )
+}

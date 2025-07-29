@@ -1,9 +1,9 @@
 'use client'
 
 import { useKmenu } from 'kmenu'
-import Nested from '../../../examples/Nested'
+import Nested from '../../../examples/nested'
 
-export default () => {
+export default function Page() {
   const { toggle } = useKmenu()
 
   return (

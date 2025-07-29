@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react'
-import { MenuContext } from '../MenuProvider'
+import { MenuContext } from '../menu-provider'
 import { UseKmenuReturnType } from '../types'
 
 /**
@@ -46,6 +46,6 @@ export const useKmenu = (): UseKmenuReturnType => {
     setOpen: openNestedMenu,
     lastOpen: context.lastOpen,
     setLastOpen: context.setLastOpen,
-    toggle
+    toggle,
   }
 }

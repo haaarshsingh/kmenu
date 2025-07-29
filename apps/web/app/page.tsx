@@ -1,9 +1,11 @@
-import Footer from "../components/Footer";
-import Hero from "../components/Hero";
+import { Footer } from "../components/footer";
+import { Hero } from "../components/hero";
 
-export default () => (
-  <div className="root">
-    <Hero />
-    <Footer />
-  </div>
-);
+export default function Page() {
+  return (
+    <div className="root">
+      <Hero />
+      <Footer />
+    </div>
+  );
+}

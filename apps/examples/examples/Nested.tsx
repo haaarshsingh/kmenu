@@ -5,7 +5,9 @@ import {
   useCommands,
   useKmenu,
 } from 'kmenu'
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import { Dispatch, SetStateAction } from 'react'
+import { BsShift } from 'react-icons/bs'
+import { FaRegHandScissors } from 'react-icons/fa'
 import {
   FiCommand,
   FiCopy,
@@ -15,14 +17,16 @@ import {
   FiSun,
   FiUsers,
 } from 'react-icons/fi'
-import { BsShift } from 'react-icons/bs'
 import { HiOutlineCursorClick, HiOutlineDesktopComputer } from 'react-icons/hi'
-import { FaRegHandScissors } from 'react-icons/fa'
-import { LuBird, LuWrench } from 'react-icons/lu'
-import { LiaDragonSolid, LiaHatCowboySideSolid } from 'react-icons/lia'
 import { IoFishOutline } from 'react-icons/io5'
+import { LiaDragonSolid, LiaHatCowboySideSolid } from 'react-icons/lia'
+import { LuBird, LuWrench } from 'react-icons/lu'
 
-export default (({ setDark }) => {
+export const Nested = ({
+  setDark,
+}: {
+  setDark: Dispatch<SetStateAction<boolean>>
+}) => {
   const { setOpen } = useKmenu()
 
   const setSystemTheme = () => {
@@ -188,4 +192,4 @@ export default (({ setDark }) => {
       />
     </CommandWrapper>
   )
-}) as FC<{ setDark: Dispatch<SetStateAction<boolean>> }>
+}

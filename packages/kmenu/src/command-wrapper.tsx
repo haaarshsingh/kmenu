@@ -1,9 +1,9 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import React, { FC, ReactNode, useContext, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { MenuContext } from './MenuProvider'
+import { useAnimation } from './hooks/use-animation'
+import { useClickOutside } from './hooks/use-click-outside'
+import { MenuContext } from './menu-provider'
 import { CommandWrapperProps } from './types'
-import useClickOutside from './hooks/useClickOutside'
-import useAnimation from './hooks/useAnimation'
 
 export const CommandWrapper: FC<
   CommandWrapperProps & { children: ReactNode }

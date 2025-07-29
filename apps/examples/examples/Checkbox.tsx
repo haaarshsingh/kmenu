@@ -1,5 +1,5 @@
 import { Command, CommandMenu, CommandWrapper, useCommands } from 'kmenu'
-import React, { FC, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { BsCommand, BsOption, BsShift } from 'react-icons/bs'
 
 type Settings = {
@@ -11,7 +11,7 @@ type Settings = {
   billingAlerts: boolean
 }
 
-export default (() => {
+export const Checkbox = () => {
   const [settings, setSettings] = useState<Settings>({
     deploymentFailures: true,
     cancelledDeployments: false,
@@ -111,4 +111,4 @@ export default (() => {
       />
     </CommandWrapper>
   )
-}) as FC
+}

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { UseClickOutsideProps } from '../types'
 
-const useClickOutside = ({ ref, handler }: UseClickOutsideProps) => {
+export const useClickOutside = ({ ref, handler }: UseClickOutsideProps) => {
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       if (!ref.current || ref.current.contains(event.target as Node)) return
@@ -17,5 +17,3 @@ const useClickOutside = ({ ref, handler }: UseClickOutsideProps) => {
     }
   }, [ref, handler])
 }
-
-export default useClickOutside

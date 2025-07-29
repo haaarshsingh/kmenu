@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, type FC, type ReactNode } from "react";
+import { Dimensions, MenuProvider } from "kmenu";
 import { ThemeProvider } from "next-themes";
-import { MenuProvider, Dimensions } from "kmenu";
+import { useEffect, useState, type ReactNode } from "react";
 
-export default (({ children }) => {
+export const Providers = ({ children }: { children: ReactNode }) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), [mounted]);
 
@@ -21,4 +21,4 @@ export default (({ children }) => {
       <MenuProvider dimensions={dimensions}>{children}</MenuProvider>
     </ThemeProvider>
   );
-}) as FC<{ children: ReactNode }>;
+};

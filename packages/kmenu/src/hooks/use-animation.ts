@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const QUERY = '(prefers-reduced-motion: no-preference)'
 
-export default () => {
+export const useAnimation = () => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [firefox, setFirefox] = useState(false)
 

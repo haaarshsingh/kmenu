@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FiArrowRight, FiCheck, FiCopy } from "react-icons/fi";
+import { FiCheck, FiCopy } from "react-icons/fi";
 
-export default () => {
+export const Hero = () => {
   const [copy, setCopy] = useState(false);
 
   useEffect(() => {
@@ -15,13 +15,13 @@ export default () => {
 
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center">
-      <h1 className="animate-slide z-10 text-5xl font-bold opacity-0 [animation-delay:.1s]">
+      <h1 className="z-10 animate-slide text-5xl font-bold opacity-0 [animation-delay:.1s]">
         kmenu
       </h1>
-      <p className="animate-slide z-10 mt-1.5 text-neutral-500 opacity-0 [animation-delay:.2s]">
+      <p className="z-10 mt-1.5 animate-slide text-neutral-500 opacity-0 [animation-delay:.2s]">
         A perfect navigation experience
       </p>
-      <div className="animate-slide z-10 mt-6 flex items-center gap-x-1 opacity-0 [animation-delay:.3s]">
+      <div className="z-10 mt-6 flex animate-slide items-center gap-x-1 opacity-0 [animation-delay:.3s]">
         <button
           className="group flex cursor-copy select-none items-center rounded-full bg-neutral-200 py-2 pl-4 text-sm transition-all hover:bg-neutral-400/40 active:scale-[.98] dark:bg-neutral-800 dark:hover:bg-neutral-700/70"
           onClick={() => {
@@ -42,10 +42,26 @@ export default () => {
           href="https://github.com/haaarshsingh/kmenu"
           target="_blank"
           rel="noreferrer"
-          className="group flex select-none items-center rounded-full px-5 py-3 text-sm transition-all hover:bg-neutral-950/5 active:scale-[.98] dark:hover:bg-neutral-50/10"
+          className="group flex select-none items-center gap-2 rounded-full px-5 py-3 text-sm transition-all hover:bg-neutral-950/5 active:scale-[.98] dark:hover:bg-neutral-50/10"
         >
           Get Started
-          <FiArrowRight className="ml-1.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          <svg
+            className="-mr-1 h-3 w-3 stroke-neutral-950"
+            fill="none"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+            aria-hidden="true"
+          >
+            <path
+              className="opacity-0 transition group-hover:opacity-100"
+              d="M0 5h7"
+            ></path>
+            <path
+              className="transition group-hover:translate-x-[3px]"
+              d="M1 1l4 4-4 4"
+            ></path>
+          </svg>
         </a>
       </div>
     </main>

@@ -1,9 +1,9 @@
 'use client'
 
 import { useKmenu } from 'kmenu'
-import Modal from '../../../examples/Modal'
+import Modal from '../../../examples/modal'
 
-export default () => {
+export default function Page() {
   const { toggle } = useKmenu()
 
   return (

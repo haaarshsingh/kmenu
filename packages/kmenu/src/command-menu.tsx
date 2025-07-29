@@ -1,9 +1,9 @@
-import React, { FC, ReactNode, useContext, useEffect } from 'react'
-import { useShortcut } from './hooks/useShortcut'
-import { MenuContext } from './MenuProvider'
-import { ActionType, MenuProps, SortedCommands } from './types'
-import Command from './Command'
 import { motion } from 'framer-motion'
+import React, { FC, ReactNode, useContext, useEffect } from 'react'
+import { Command } from './command'
+import { useShortcut } from './hooks/use-shortcut'
+import { MenuContext } from './menu-provider'
+import { ActionType, MenuProps, SortedCommands } from './types'
 
 /**
  * The main command menu component.

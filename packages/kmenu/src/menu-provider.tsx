@@ -9,7 +9,7 @@ import React, {
   useState,
 } from 'react'
 import useScrollbarSize from 'react-scrollbar-size'
-import useBodyScrollable from './hooks/useBodyScrollable'
+import { useBodyScrollable } from './hooks/use-body-scrollable'
 import {
   Action,
   ActionType,

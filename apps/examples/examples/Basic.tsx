@@ -1,10 +1,9 @@
 import { Command, CommandMenu, CommandWrapper, useCommands } from 'kmenu'
-import { FC } from 'react'
-import { FiCopy, FiGrid, FiPlus, FiUsers } from 'react-icons/fi'
 import { BsShift } from 'react-icons/bs'
+import { FiCopy, FiGrid, FiPlus, FiUsers } from 'react-icons/fi'
 import { HiOutlineDesktopComputer } from 'react-icons/hi'
 
-export default (() => {
+export const Basic = () => {
   const main: Command[] = [
     {
       category: 'Projects',
@@ -12,13 +11,13 @@ export default (() => {
         {
           icon: <FiGrid />,
           text: 'Search Projects...',
-          shortcuts: { modifier: <BsShift />, keys: ['P'] }
+          shortcuts: { modifier: <BsShift />, keys: ['P'] },
         },
         {
           icon: <FiPlus />,
-          text: 'Create New Project'
-        }
-      ]
+          text: 'Create New Project',
+        },
+      ],
     },
     {
       category: 'Teams',
@@ -26,13 +25,13 @@ export default (() => {
         {
           icon: <FiUsers />,
           text: 'Search Teams...',
-          shortcuts: { modifier: <BsShift />, keys: ['T'] }
+          shortcuts: { modifier: <BsShift />, keys: ['T'] },
         },
         {
           icon: <FiPlus />,
-          text: 'Create New Team'
-        }
-      ]
+          text: 'Create New Team',
+        },
+      ],
     },
     {
       category: 'General',
@@ -40,14 +39,14 @@ export default (() => {
         {
           icon: <HiOutlineDesktopComputer />,
           text: 'Change Theme',
-          shortcuts: { modifier: <BsShift />, keys: ['T'] }
+          shortcuts: { modifier: <BsShift />, keys: ['T'] },
         },
         {
           icon: <FiCopy />,
-          text: 'Copy Current URL'
-        }
-      ]
-    }
+          text: 'Copy Current URL',
+        },
+      ],
+    },
   ]
 
   const [mainCommands] = useCommands(main)
@@ -62,4 +61,4 @@ export default (() => {
       />
     </CommandWrapper>
   )
-}) as FC
+}

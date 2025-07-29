@@ -1,11 +1,11 @@
 'use client'
 
 import { useKmenu } from 'kmenu'
-import Nested from '../../../examples/Nested'
 import { useEffect, useState } from 'react'
+import Nested from '../../../examples/nested'
 import './dark.css'
 
-export default () => {
+export default function Page() {
   const { toggle } = useKmenu()
   const [dark, setDark] = useState(false)
 

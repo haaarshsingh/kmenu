@@ -1,9 +1,9 @@
 'use client'
 
 import { useKmenu } from 'kmenu'
-import Checkbox from '../../../examples/Checkbox'
+import Checkbox from '../../../examples/checkbox'
 
-export default () => {
+export default function Page() {
   const { toggle } = useKmenu()
 
   return (

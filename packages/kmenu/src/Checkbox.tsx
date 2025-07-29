@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
 import { motion } from 'framer-motion'
+import React from 'react'
 
 const tickVariants = {
   checked: {
@@ -19,7 +19,7 @@ const tickVariants = {
   },
 }
 
-export default (({ checked, id }) => {
+export const Checkbox = ({ checked, id }: { checked: boolean; id: string }) => {
   return (
     <button className='checkbox-container'>
       <input
@@ -52,4 +52,4 @@ export default (({ checked, id }) => {
       </div>
     </button>
   )
-}) as FC<{ checked: boolean; id: string }>
+}
