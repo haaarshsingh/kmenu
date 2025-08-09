@@ -30,9 +30,10 @@ Having trouble? Unsure of something? Feel free to ask away in the [discussions](
 Install the [NPM package](https://www.npmjs.com/package/kmenu):
 
 ```zsh
-npm add kmenu
+npm install kmenu
+pnpm install kmenu
 yarn add kmenu
-pnpm add kmenu
+bun add kmenu
 ```
 
 ### Using the Provider

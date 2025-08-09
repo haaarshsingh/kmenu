@@ -17,7 +17,7 @@
     "prettier": "^3.1.1",
     "turbo": "latest"
   },
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "bun@1.2.19",
   "engines": {
     "node": ">=18"
   }
