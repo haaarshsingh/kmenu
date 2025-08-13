@@ -73,10 +73,3 @@ bun run test
 ```
 
 Scripts are powered by Turborepo and run across workspaces. See `package.json` and `turbo.json` for details.
-
-### Links
-
-- **Website / Demo**: https://kmenu.harshsingh.me
-- **Repo**: https://github.com/haaarshsingh/kmenu
-- **Core README**: `packages/core/README.md`
-- **React README**: `packages/react/README.md`
