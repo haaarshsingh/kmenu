@@ -1,135 +1,82 @@
-# Turborepo starter
+![image](https://kmenu.harshsingh.me/og.png)
 
-This Turborepo starter is maintained by the Turborepo core team.
+<p align="center">
+  <a href="https://kmenu.harshsingh.me/">
+    <h2 align="center">kmenu</h2>
+  </a>
+</p>
 
-## Using this example
+<p align="center">Headless, accessible, framework-agnostic command menu component.</p>
 
-Run the following command:
+### About
 
-```sh
-npx create-turbo@latest
+This is the monorepo for kmenu, a tiny engine for building fast, accessible command palettes (⌘K menus). It contains the core headless library and a React adapter, plus an example app.
+
+### Packages
+
+- **core**: `kmenu` — headless engine with zero runtime dependencies. See `packages/core`.
+- **react**: `@kmenu/react` — idiomatic React components and hooks. See `packages/react`.
+
+### Apps
+
+- **web**: Example/demo site (`apps/web`).
+
+### Features
+
+- **Headless**: Bring your own UI
+- **Accessible**: WAI-ARIA compliant
+- **Lightweight**: < 6KB min+gzip (core)
+- **Framework-agnostic**: Works everywhere
+- **Zero dependencies**: No runtime deps in core
+
+### Install
+
+Core only:
+
+```bash
+npm install kmenu
+# or
+pnpm add kmenu
+# or
+bun add kmenu
 ```
 
-## What's inside?
+React adapter:
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+npm install kmenu @kmenu/react
+# or
+pnpm add kmenu @kmenu/react
+# or
+bun add kmenu @kmenu/react
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Monorepo development
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+Requirements: Node >= 18.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+```bash
+git clone https://github.com/haaarshsingh/kmenu
+cd kmenu
+bun install # or npm install / pnpm install
 
-### Develop
+# develop example app and packages
+bun run dev
 
-To develop all apps and packages, run the following command:
+# build all packages/apps
+bun run build
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+# type-check, lint, and test
+bun run check-types
+bun run lint
+bun run test
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+Scripts are powered by Turborepo and run across workspaces. See `package.json` and `turbo.json` for details.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+### Links
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- **Website / Demo**: https://kmenu.harshsingh.me
+- **Repo**: https://github.com/haaarshsingh/kmenu
+- **Core README**: `packages/core/README.md`
+- **React README**: `packages/react/README.md`

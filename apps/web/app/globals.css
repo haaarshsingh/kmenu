@@ -1,50 +1,304 @@
+@import "tailwindcss";
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::selection {
+  @apply bg-neutral-800 text-neutral-50;
+}
+
+body {
+  @apply text-neutral-50;
+  font-family:
+    var(--font-sohne),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+i {
+  font-family:
+    var(--font-newsreader),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(200px);
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+@keyframes slideUp {
+  0% {
+    transform: translateY(200px);
+  }
+  90% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
+@keyframes commandOverlayIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-* {
+@keyframes commandOverlayOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes commandDialogIn {
+  0% {
+    opacity: 0;
+    transform: scale(calc(0.85 * var(--transition-scale)));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(var(--transition-scale));
+  }
+}
+
+@keyframes commandDialogOut {
+  0% {
+    opacity: 1;
+    transform: scale(var(--transition-scale));
+  }
+  100% {
+    opacity: 0;
+    transform: scale(calc(0.9 * var(--transition-scale)));
+  }
+}
+
+@keyframes commandContentIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.command-overlay {
+  position: fixed;
+  inset: 0;
+  @apply bg-black/80;
+  backdrop-filter: blur(1px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20vh;
+  z-index: 50;
+  animation: commandOverlayIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.command-overlay.closing {
+  animation: commandOverlayOut 0.15s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.command-dialog {
+  width: 90%;
+  max-width: 640px;
+  background: #000000;
+  border-radius: 12px;
+  overflow: hidden;
+  @apply border-neutral-800 border;
+  animation: commandDialogIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --transition-scale: 1;
+}
+
+.command-dialog.closing {
+  animation: commandDialogOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.command-dialog.transitioning {
+  transition: all 1s ease-in-out;
+  --transition-scale: 0.997;
+}
+
+.command-root {
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+}
+
+.command-header {
+  @apply px-4 pt-2 pb-3 flex items-center justify-between border-b border-b-neutral-800;
+  animation: commandContentIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+}
+
+.command-header button {
+  @apply text-neutral-400 text-[13px] px-2 py-1 rounded-md hover:bg-white/10 border bg-transparent border-neutral-800;
+}
+
+.command-input {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  width: 100%;
   box-sizing: border-box;
+}
+
+.command-list {
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  animation: commandContentIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+  position: relative;
+}
+
+.command-active-indicator {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.command-group-heading {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.command-option {
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.command-option svg {
+  @apply size-4.5 text-neutral-400;
+}
+
+/* Removed hover/active backgrounds - now using animated indicator */
+
+.command-option-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.command-option-icon {
+  font-size: 1.25rem;
+}
+
+.command-option-label {
+  font-size: 0.95rem;
+}
+
+.command-option-shortcut {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.command-shortcut-key {
+  @apply bg-white/10 text-neutral-400 rounded font-sans w-6 flex items-center justify-center h-6 text-xs border-none;
+}
+
+.command-separator {
+  height: 1px;
+  background: #e1e1e1;
+  margin: 0.5rem 0;
+}
+
+.keyboard-hints {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #f7f7f7;
+  border-radius: 8px;
+}
+
+.keyboard-hints h3 {
+  margin-top: 0;
+}
+
+.keyboard-hints ul {
+  list-style: none;
   padding: 0;
-  margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.keyboard-hints li {
+  margin: 0.5rem 0;
 }
 
-.imgDark {
-  display: none;
+kbd {
+  padding: 0.25rem 0.5rem;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.875rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
+.command-breadcrumbs {
+  padding: 0.75rem 1rem 0 1rem;
+  font-size: 0.875rem;
+  @apply text-neutral-400 flex items-center gap-2;
+  animation: commandContentIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.05s backwards;
+}
+
+.command-breadcrumbs > span {
+  @apply bg-neutral-900 px-3 rounded-md py-1.5;
+}
+
+.command-breadcrumbs span {
+  cursor: pointer;
+  transition: color 0.2s;
 }

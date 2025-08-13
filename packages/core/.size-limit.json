@@ -1,0 +1,12 @@
+[
+  {
+    "name": "kmenu",
+    "path": "dist/index.mjs",
+    "limit": "6 kB"
+  },
+  {
+    "name": "kmenu - filters",
+    "path": "dist/filters.mjs",
+    "limit": "2 kB"
+  }
+]
