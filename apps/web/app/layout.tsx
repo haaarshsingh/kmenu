@@ -25,7 +25,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kmenu.harshsingh.me"),
+  metadataBase: new URL("https://kmenu.dev"),
   title: {
     default: "kmenu — the perfect navigation experience",
     template: "%s — kmenu",
@@ -47,11 +47,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "kmenu",
     description: " The perfect ⌘K menu ",
-    url: "https://kmenu.harshsingh.me",
+    url: "https://kmenu.dev",
     siteName: "Harsh Singh",
-    images: [
-      { url: "https://kmenu.harshsingh.me/og.png", width: 1200, height: 630 },
-    ],
+    images: [{ url: "https://kmenu.dev/og.png", width: 1200, height: 630 }],
     locale: "en-US",
     type: "website",
   },
@@ -79,7 +77,7 @@ export const metadata: Metadata = {
     creator: "@haaarshsingh",
     creatorId: "haaarshsingh",
     images: {
-      url: "https://kmenu.harshsingh.me/og.png",
+      url: "https://kmenu.dev/og.png",
       alt: 'A command menu overlaying the text "kmenu"',
     },
   },
@@ -89,7 +87,7 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
     other: { me: ["h@harshsingh.me"] },
   },
-  alternates: { canonical: "https://kmenu.harshsingh.me" },
+  alternates: { canonical: "https://kmenu.dev" },
   category: "technology",
 };
 

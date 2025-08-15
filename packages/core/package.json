@@ -4,6 +4,7 @@
   "description": "The perfect ⌘K menu",
   "author": "Harsh Singh",
   "license": "MIT",
+  "homepage": "https://kmenu.dev",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

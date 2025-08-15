@@ -1,7 +1,7 @@
-![image](https://kmenu.harshsingh.me/og.png)
+![image](https://kmenu.dev/og.png)
 
 <p align="center">
-  <a href="https://kmenu.harshsingh.me/">
+  <a href="https://kmenu.dev/">
     <h2 align="center">kmenu</h2>
   </a>
 </p>
@@ -10,7 +10,7 @@
 
 ### About
 
-This is the monorepo for kmenu, a tiny engine for building fast, accessible command palettes (⌘K menus). It contains the core headless library and a React adapter, plus an example app.
+This is the monorepo for kmenu, a tiny package for building fast, accessible command palettes (⌘K menus). It contains the core headless library and a React adapter, plus the main website at [kmenu.dev](https://kmenu.dev).
 
 ### Packages
 
@@ -19,11 +19,11 @@ This is the monorepo for kmenu, a tiny engine for building fast, accessible comm
 
 ### Apps
 
-- **web**: Example/demo site (`apps/web`).
+- **web**: official websiet (`apps/web`).
 
 ### Features
 
-- **Headless**: Bring your own UI
+- **Headless + composable**: Bring your own UI
 - **Accessible**: WAI-ARIA compliant
 - **Lightweight**: < 6KB min+gzip (core)
 - **Framework-agnostic**: Works everywhere

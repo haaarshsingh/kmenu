@@ -1,16 +1,11 @@
-![image](https://kmenu.harshsingh.me/og.png)
+![image](https://kmenu.dev/og.png)
 
-<p align="center">
-  <a href="https://kmenu.harshsingh.me/">
-    <h2 align="center">@kmenu/react</h2>
-  </a>
-</p>
+# kmenu [![kmenu minzip package size](https://img.shields.io/bundlephobia/minzip/kmenu)](https://www.npmjs.com/package/kmenu?activeTab=code) [![kmenu package version](https://img.shields.io/npm/v/kmenu.svg?colorB=green)](https://www.npmjs.com/package/kmenu)
 
-<p align="center">React adapter for kmenu.</p>
+A lightweight command menu library that supercharges your web app's navigation and feature discoverability. It's framework-agnostic, headless, composable, <6kB, and has no runtime dependencies.
 
-### Consulting
-
-Supercharge your startup's navigation with kmenu—need help setting it up? Have questions? Custom feature requests? Reach out at [h@harshsingh.me](mailto:h@harshsingh.me).
+Demo: [kmenu.dev](https://kmenu.dev)
+kmenu v2: [migration guide](https://github.com/haaarshsingh/kmenu/blob/main/packages/core/MIGRATING_TO_V2.md)
 
 ### Installation
 

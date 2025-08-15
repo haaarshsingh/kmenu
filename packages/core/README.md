@@ -1,20 +1,11 @@
-![image](https://kmenu.harshsingh.me/og.png)
+![image](https://kmenu.dev/og.png)
 
-<p align="center">
-  <a href="https://kmenu.harshsingh.me/">
-    <h2 align="center">kmenu</h2>
-  </a>
-</p>
+# kmenu [![kmenu minzip package size](https://img.shields.io/bundlephobia/minzip/kmenu)](https://www.npmjs.com/package/kmenu?activeTab=code) [![kmenu package version](https://img.shields.io/npm/v/kmenu.svg?colorB=green)](https://www.npmjs.com/package/kmenu)
 
-<p align="center">Headless, accessible, framework-agnostic command menu component.</p>
+A lightweight command menu library that supercharges your web app's navigation and feature discoverability. It's framework-agnostic, headless, composable, <6kB, and has no runtime dependencies.
 
-### Features
-
-- **Headless**: No styles, just behavior
-- **Accessible**: WAI-ARIA compliant
-- **Lightweight**: < 6KB min+gzip
-- **Framework-agnostic**: Works everywhere
-- **Zero dependencies**: No runtime deps
+Demo: [kmenu.dev](https://kmenu.dev)
+kmenu v2: [migration guide](https://github.com/haaarshsingh/kmenu/blob/main/packages/core/MIGRATING_TO_V2.md)
 
 ### Installation
 

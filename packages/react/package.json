@@ -1,13 +1,17 @@
 {
   "name": "@kmenu/react",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React adapter for kmenu",
   "author": "Harsh Singh",
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
+  "homepage": "https://kmenu.dev",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
