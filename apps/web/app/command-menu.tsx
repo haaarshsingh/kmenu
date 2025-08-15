@@ -12,8 +12,8 @@ import {
   useCommand,
   type CommandRef,
 } from "@kmenu/react";
-import { fuzzyFilter } from "../../../packages/core/dist";
-import type { CommandOption as CommandOptionType } from "../../../packages/core/dist";
+import { fuzzyFilter } from "kmenu";
+import type { CommandOption as CommandOptionType } from "kmenu";
 import {
   IconAt,
   IconChevronRight,
@@ -28,7 +28,7 @@ import {
 } from "@tabler/icons-react";
 
 interface Action extends Omit<CommandOptionType, "children"> {
-  icon?: string | React.ReactNode;
+  icon?: string | React.ReactNode | (() => React.ReactNode);
   shortcut?: string[];
   action?: () => void;
   children?: Action[];
@@ -56,7 +56,11 @@ function CommandOptions() {
               className="command-option"
             >
               <span className="command-option-content">
-                <span className="command-option-icon">{typedAction.icon}</span>
+                <span className="command-option-icon">
+                  {typeof typedAction.icon === "function"
+                    ? typedAction.icon()
+                    : typedAction.icon}
+                </span>
                 <span className="command-option-label">{action.label}</span>
               </span>
               {typedAction.shortcut && (
@@ -91,7 +95,9 @@ function CommandOptions() {
                   >
                     <span className="command-option-content">
                       <span className="command-option-icon">
-                        {typedAction.icon}
+                        {typeof typedAction.icon === "function"
+                          ? typedAction.icon()
+                          : typedAction.icon}
                       </span>
                       <span className="command-option-label">
                         {action.label}
@@ -122,14 +128,14 @@ function CommandOptions() {
 const actions: Action[] = [
   {
     label: "Search Projects...",
-    icon: <IconLayout2 />,
+    icon: () => <IconLayout2 />,
     shortcut: ["⌘", "P"],
     keywords: ["main", "dashboard"],
     group: "Projects",
     children: [
       {
         label: "kmenu",
-        icon: (
+        icon: () => (
           <svg
             width="800px"
             height="800px"
@@ -149,34 +155,34 @@ const actions: Action[] = [
         children: [
           {
             label: "Go to kmenu",
-            icon: <IconChevronRight />,
+            icon: () => <IconChevronRight />,
           },
           {
             label: "Go to kmenu domains",
-            icon: <IconChevronRight />,
+            icon: () => <IconChevronRight />,
           },
           {
             label: "Go to kmenu web analytics",
-            icon: <IconChevronRight />,
+            icon: () => <IconChevronRight />,
           },
           {
             label: "Go to kmenu speed insights",
-            icon: <IconChevronRight />,
+            icon: () => <IconChevronRight />,
           },
           {
             label: "Go to kmenu production logs",
-            icon: <IconChevronRight />,
+            icon: () => <IconChevronRight />,
           },
           {
             label: "Go to kmenu settings",
-            icon: <IconChevronRight />,
+            icon: () => <IconChevronRight />,
           },
         ],
       },
       {
         id: "search-www",
         label: "www",
-        icon: (
+        icon: () => (
           <svg
             width="800px"
             height="800px"
@@ -197,7 +203,7 @@ const actions: Action[] = [
       {
         id: "pointers-js",
         label: "Pointers.js",
-        icon: (
+        icon: () => (
           <svg
             width="800px"
             height="800px"
@@ -218,7 +224,7 @@ const actions: Action[] = [
       {
         id: "snip",
         label: "snip",
-        icon: (
+        icon: () => (
           <svg
             width="800px"
             height="800px"
@@ -239,7 +245,7 @@ const actions: Action[] = [
       {
         id: "dots",
         label: "dots",
-        icon: (
+        icon: () => (
           <svg
             width="800px"
             height="800px"
@@ -261,53 +267,53 @@ const actions: Action[] = [
   },
   {
     label: "Create New Project...",
-    icon: <IconPlus />,
+    icon: () => <IconPlus />,
     shortcut: ["&"],
     keywords: ["find", "query"],
     group: "Projects",
   },
   {
     label: "Search Teams...",
-    icon: <IconUsers />,
+    icon: () => <IconUsers />,
     shortcut: ["⇧", "T"],
     group: "Teams",
   },
   {
     label: "Create New Team...",
-    icon: <IconPlus />,
+    icon: () => <IconPlus />,
     shortcut: ["%"],
     group: "Teams",
   },
   {
     label: "Change Theme...",
-    icon: <IconDeviceDesktop />,
+    icon: () => <IconDeviceDesktop />,
     shortcut: ["⌥", "T"],
     group: "General",
   },
   {
     label: "Copy Current URL",
-    icon: <IconCopy />,
+    icon: () => <IconCopy />,
     shortcut: ["⌘", "⌥", "C"],
     group: "General",
   },
   {
     label: "Search Docs...",
-    icon: <IconFileSearch />,
+    icon: () => <IconFileSearch />,
     group: "Help",
   },
   {
     label: "Send Feedback...",
-    icon: <IconMessageCircle />,
+    icon: () => <IconMessageCircle />,
     group: "Help",
   },
   {
     label: "Contact Support",
-    icon: <IconAt />,
+    icon: () => <IconAt />,
     group: "Help",
   },
   {
     label: "Search Developer Tools",
-    icon: <IconExternalLink />,
+    icon: () => <IconExternalLink />,
     group: "Developer Tools",
   },
 ];
@@ -354,7 +360,7 @@ export function CommandMenu({
         dialogRef.current.classList.remove("closing");
       }
     }, 200);
-  }, [isClosing]);
+  }, [isClosing, setGlobalMenuOpen]);
 
   const triggerSubmenuTransition = useCallback(() => {
     if (dialogRef.current) {
@@ -380,7 +386,7 @@ export function CommandMenu({
 
     window.addEventListener("keydown", handleGlobalKeyDown);
     return () => window.removeEventListener("keydown", handleGlobalKeyDown);
-  }, [globalMenuOpen, isClosing, handleClose]);
+  }, [globalMenuOpen, isClosing, handleClose, setGlobalMenuOpen]);
 
   useEffect(() => {
     if (globalMenuOpen) {
