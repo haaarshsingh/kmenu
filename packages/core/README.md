@@ -4,9 +4,6 @@
 
 A lightweight command menu library that supercharges your web app's navigation and feature discoverability. It's framework-agnostic, headless, composable, <6kB, and has no runtime dependencies.
 
-Demo: [kmenu.dev](https://kmenu.dev)
-kmenu v2: [migration guide](https://github.com/haaarshsingh/kmenu/blob/main/packages/core/MIGRATING_TO_V2.md)
-
 ### Installation
 
 ```bash
