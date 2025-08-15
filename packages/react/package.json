@@ -27,8 +27,8 @@
   },
   "peerDependencies": {
     "kmenu": "workspace:*",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "kmenu": "workspace:*",
@@ -38,8 +38,6 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^9.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "size-limit": "^11.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.3.0"
