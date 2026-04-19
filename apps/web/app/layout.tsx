@@ -3,6 +3,7 @@ import { Newsreader } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
+import { Providers } from "./providers";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -97,12 +98,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${sohne.variable} ${newsreader.variable} bg-black`}>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${sohne.variable} ${newsreader.variable}`}>
+        <Providers>{children}</Providers>
       </body>
       <Script
-        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+        src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"
         type="module"
         strategy="afterInteractive"
       />

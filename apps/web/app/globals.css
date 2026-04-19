@@ -2,14 +2,58 @@
 
 :root {
   color-scheme: dark;
+  --page-bg: #000000;
+  --page-text: #fafafa;
+  --muted: rgba(255, 255, 255, 0.5);
+  --subtle: #a3a3a3;
+  --surface: #262626;
+  --surface-hover: rgba(255, 255, 255, 0.1);
+  --border-color: #262626;
+  --shortcut-bg: rgba(255, 255, 255, 0.1);
+  --selection-bg: #262626;
+  --selection-text: #fafafa;
+  --btn-secondary-bg: #262626;
+  --btn-secondary-hover: rgba(64, 64, 64, 0.7);
+  --btn-secondary-icon-bg: #404040;
+  --btn-secondary-icon-hover: rgba(82, 82, 82, 0.7);
+  --btn-secondary-icon-text: #a3a3a3;
+  --btn-primary-bg: #fafafa;
+  --btn-primary-hover: #f5f5f5;
+  --btn-primary-text: #0a0a0a;
+  --breadcrumb-bg: #171717;
+}
+
+html.light {
+  color-scheme: light;
+  --page-bg: #ffffff;
+  --page-text: #171717;
+  --muted: rgba(0, 0, 0, 0.45);
+  --subtle: #737373;
+  --surface: #f5f5f5;
+  --surface-hover: rgba(0, 0, 0, 0.06);
+  --border-color: #e5e5e5;
+  --shortcut-bg: rgba(0, 0, 0, 0.06);
+  --selection-bg: #e5e5e5;
+  --selection-text: #171717;
+  --btn-secondary-bg: #f5f5f5;
+  --btn-secondary-hover: #e5e5e5;
+  --btn-secondary-icon-bg: #e5e5e5;
+  --btn-secondary-icon-hover: #d4d4d4;
+  --btn-secondary-icon-text: #737373;
+  --btn-primary-bg: #171717;
+  --btn-primary-hover: #262626;
+  --btn-primary-text: #fafafa;
+  --breadcrumb-bg: #f5f5f5;
 }
 
 ::selection {
-  @apply bg-neutral-800 text-neutral-50;
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 body {
-  @apply text-neutral-50;
+  background: var(--page-bg);
+  color: var(--page-text);
   font-family:
     var(--font-sohne),
     system-ui,
@@ -117,7 +161,7 @@ i {
 .command-overlay {
   position: fixed;
   inset: 0;
-  @apply bg-black/80;
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(1px);
   display: flex;
   align-items: flex-start;
@@ -127,6 +171,10 @@ i {
   animation: commandOverlayIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+html.light .command-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .command-overlay.closing {
   animation: commandOverlayOut 0.15s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
@@ -134,10 +182,10 @@ i {
 .command-dialog {
   width: 90%;
   max-width: 640px;
-  background: #000000;
+  background: var(--page-bg);
   border-radius: 12px;
   overflow: hidden;
-  @apply border-neutral-800 border;
+  border: 1px solid var(--border-color);
   animation: commandDialogIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --transition-scale: 1;
 }
@@ -154,16 +202,29 @@ i {
 .command-root {
   display: flex;
   flex-direction: column;
-  background-color: #000000;
+  background-color: var(--page-bg);
 }
 
 .command-header {
-  @apply px-4 pt-2 pb-3 flex items-center justify-between border-b border-b-neutral-800;
+  padding: 0.5rem 1rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
   animation: commandContentIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
 }
 
 .command-header button {
-  @apply text-neutral-400 text-[13px] px-2 py-1 rounded-md hover:bg-white/10 border bg-transparent border-neutral-800;
+  color: var(--subtle);
+  font-size: 13px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+}
+
+.command-header button:hover {
+  background: var(--surface-hover);
 }
 
 .command-input {
@@ -172,6 +233,8 @@ i {
   outline: none;
   width: 100%;
   box-sizing: border-box;
+  background: transparent;
+  color: inherit;
 }
 
 .command-list {
@@ -184,7 +247,7 @@ i {
 
 .command-active-indicator {
   position: absolute;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface-hover);
   border-radius: 6px;
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
@@ -195,7 +258,7 @@ i {
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #666;
+  color: var(--subtle);
 }
 
 .command-option {
@@ -210,7 +273,13 @@ i {
 }
 
 .command-option svg {
-  @apply size-4.5 text-neutral-400;
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--subtle);
+}
+
+html.light .command-option svg path[fill="white"] {
+  fill: #171717;
 }
 
 /* Removed hover/active backgrounds - now using animated indicator */
@@ -236,7 +305,17 @@ i {
 }
 
 .command-shortcut-key {
-  @apply bg-white/10 text-neutral-400 rounded font-sans w-6 flex items-center justify-center h-6 text-xs border-none;
+  background: var(--shortcut-bg);
+  color: var(--subtle);
+  border-radius: 0.25rem;
+  font-family: system-ui, sans-serif;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  border: none;
 }
 
 .command-separator {
@@ -290,12 +369,21 @@ kbd {
 .command-breadcrumbs {
   padding: 0.75rem 1rem 0 1rem;
   font-size: 0.875rem;
-  @apply text-neutral-400 flex items-center gap-2;
+  color: var(--subtle);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   animation: commandContentIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.05s backwards;
 }
 
+.nav-link:hover {
+  background: var(--surface-hover);
+}
+
 .command-breadcrumbs > span {
-  @apply bg-neutral-900 px-3 rounded-md py-1.5;
+  background: var(--breadcrumb-bg);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
 }
 
 .command-breadcrumbs span {

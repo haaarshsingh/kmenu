@@ -810,19 +810,21 @@ export class CommandCore<T = any> {
 
     if (activeOption.children && activeOption.children.length > 0) {
       this.enterSubmenu(activeOption);
-    } else {
-      this.emit({ type: "select", option: activeOption });
-      this.stateMachine.transition("select");
+      return;
+    }
 
-      if (activeOption.action) {
-        const result = activeOption.action();
-        if (result instanceof Promise) {
-          result.catch(console.error);
-        } else if (Array.isArray(result)) {
-          activeOption.children = result;
-          this.enterSubmenu(activeOption);
-          return;
-        }
+    this.emit({ type: "select", option: activeOption });
+
+    if (activeOption.action) {
+      const result = activeOption.action();
+      if (result instanceof Promise) {
+        this.stateMachine.transition("select");
+        result.catch(console.error);
+      } else if (Array.isArray(result)) {
+        activeOption.children = result;
+        this.enterSubmenu(activeOption);
+      } else {
+        this.stateMachine.transition("select");
       }
     }
   }

@@ -27,7 +27,7 @@ export default function Home() {
           <li>
             <Link
               href="/"
-              className="hover:bg-white/10 px-4 py-2 rounded-full text-sm"
+              className="nav-link px-4 py-2 rounded-full text-sm"
             >
               Home
             </Link>
@@ -37,7 +37,7 @@ export default function Home() {
           </li>
           <li>
             <a
-              className="hover:bg-white/10 px-4 py-2 rounded-full text-sm"
+              className="nav-link px-4 py-2 rounded-full text-sm"
               href="https://github.com/haaarshsingh/kmenu"
             >
               Docs
@@ -48,13 +48,13 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center h-screen pb-12">
         <div className="relative">
           <KmenuModel />
-          <div className="absolute inset-0 bg-black [animation-delay:0.2s] animate-[slideDown_1s_ease-out_forwards]" />
+          <div className="absolute inset-0 bg-[var(--page-bg)] [animation-delay:0.2s] animate-[slideDown_1s_ease-out_forwards]" />
         </div>
         <div className="z-10 py-6 flex flex-col items-center gap-2">
           <h1 className="text-3xl font-bold max-w-80 text-center">
             <i>The perfect navigation experience™</i>
           </h1>
-          <p className="text-white/50 max-w-128 text-center">
+          <p className="text-[var(--muted)] max-w-128 text-center">
             Framework-agnostic, headless, composable, accessible, and fast.
             Built for smooth flow, zero friction and pure delight. Ready for
             anything.
@@ -63,10 +63,10 @@ export default function Home() {
         <div className="z-10 flex gap-2 items-center">
           <button
             onClick={copyToClipboard}
-            className="group flex cursor-copy select-none items-center rounded-full py-2 pl-4 text-sm transition-all active:scale-[.98] bg-neutral-800 hover:bg-neutral-700/70"
+            className="group flex cursor-copy select-none items-center rounded-full py-2 pl-4 text-sm transition-all active:scale-[.98] bg-[var(--btn-secondary-bg)] hover:bg-[var(--btn-secondary-hover)]"
           >
             npm install kmenu
-            <div className="ml-2 mr-2 flex h-7 w-7 items-center justify-center rounded-full transition-colors bg-neutral-700 text-neutral-400 group-hover:bg-neutral-600/70">
+            <div className="ml-2 mr-2 flex h-7 w-7 items-center justify-center rounded-full transition-colors bg-[var(--btn-secondary-icon-bg)] text-[var(--btn-secondary-icon-text)] group-hover:bg-[var(--btn-secondary-icon-hover)]">
               {copied ? (
                 <svg
                   stroke="currentColor"
@@ -103,13 +103,13 @@ export default function Home() {
           </button>
           <button
             onClick={() => setMenuOpen(true)}
-            className="group cursor-pointer flex text-neutral-950 select-none items-center rounded-full py-3 px-4 text-sm transition-all active:scale-[.98] bg-neutral-50 hover:bg-neutral-100"
+            className="group cursor-pointer flex select-none items-center rounded-full py-3 px-4 text-sm transition-all active:scale-[.98] bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover)]"
           >
-            Try it out <span className="text-neutral-400 ml-2">⌘K</span>
+            Try it out <span className="text-[var(--subtle)] ml-2">⌘K</span>
           </button>
         </div>
       </main>
-      <footer className="-translate-x-1/2 opacity-0 left-1/2 text-sm text-neutral-50/50 text-center [animation-delay:0.5s] animate-[slideUp_1s_ease-out_forwards] absolute bottom-6">
+      <footer className="-translate-x-1/2 opacity-0 left-1/2 text-sm text-[var(--muted)] text-center [animation-delay:0.5s] animate-[slideUp_1s_ease-out_forwards] absolute bottom-6">
         Crafted by{" "}
         <a
           href="https://harshsingh.me"

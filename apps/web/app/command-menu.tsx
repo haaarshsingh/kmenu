@@ -23,9 +23,12 @@ import {
   IconFileSearch,
   IconLayout2,
   IconMessageCircle,
+  IconMoon,
   IconPlus,
+  IconSun,
   IconUsers,
 } from "@tabler/icons-react";
+import { useTheme } from "next-themes";
 
 interface Action extends Omit<CommandOptionType, "children"> {
   icon?: string | React.ReactNode | (() => React.ReactNode);
@@ -289,6 +292,23 @@ const actions: Action[] = [
     icon: () => <IconDeviceDesktop />,
     shortcut: ["⌥", "T"],
     group: "General",
+    children: [
+      {
+        id: "theme-light",
+        label: "Light",
+        icon: () => <IconSun />,
+      },
+      {
+        id: "theme-dark",
+        label: "Dark",
+        icon: () => <IconMoon />,
+      },
+      {
+        id: "theme-system",
+        label: "System",
+        icon: () => <IconDeviceDesktop />,
+      },
+    ],
   },
   {
     label: "Copy Current URL",
@@ -327,6 +347,7 @@ export function CommandMenu({
   open: externalOpen,
   onOpenChange,
 }: CommandMenuProps = {}) {
+  const { setTheme } = useTheme();
   const [internalMenuOpen, setInternalMenuOpen] = useState(false);
 
   const globalMenuOpen =
@@ -451,6 +472,12 @@ export function CommandMenu({
               options={actions}
               filter={fuzzyFilter}
               onSelect={(option) => {
+                if (option.id?.startsWith("theme-")) {
+                  setTheme(option.id.replace("theme-", ""));
+                  handleClose();
+                  return;
+                }
+
                 const findAction = (
                   actions: Action[],
                   id: string
