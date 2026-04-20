@@ -2,11 +2,16 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-export function KmenuModel() {
+export function KmenuModel({ onLoad }: { onLoad?: () => void }) {
   const ref = useRef<HTMLElement>(null);
   const [isClient, setIsClient] = useState(false);
   const t0Ref = useRef<number | null>(null);
   const frameIdRef = useRef<number | null>(null);
+  const onLoadRef = useRef(onLoad);
+
+  useEffect(() => {
+    onLoadRef.current = onLoad;
+  }, [onLoad]);
 
   useEffect(() => {
     setIsClient(true);
@@ -15,6 +20,11 @@ export function KmenuModel() {
   useEffect(() => {
     if (!isClient) return;
     let cancelled = false;
+
+    const handleLoaded = () => {
+      onLoadRef.current?.();
+      startLoop();
+    };
 
     const startLoop = () => {
       const loop = (ts: number) => {
@@ -38,9 +48,9 @@ export function KmenuModel() {
       if (!el) return;
 
       if (el.getAttribute("loaded") !== null) {
-        startLoop();
+        handleLoaded();
       } else {
-        el.addEventListener("load", () => startLoop(), { once: true });
+        el.addEventListener("load", handleLoaded, { once: true });
       }
     });
 

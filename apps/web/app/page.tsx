@@ -8,6 +8,7 @@ import { CommandMenu } from "./command-menu";
 export default function Home() {
   const [copied, setCopied] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modelLoaded, setModelLoaded] = useState(false);
 
   const copyToClipboard = async () => {
     try {
@@ -47,8 +48,14 @@ export default function Home() {
       </nav>
       <main className="flex flex-col items-center justify-center h-screen pb-12">
         <div className="relative">
-          <KmenuModel />
-          <div className="absolute inset-0 bg-[var(--page-bg)] [animation-delay:0.2s] animate-[slideDown_1s_ease-out_forwards]" />
+          <KmenuModel onLoad={() => setModelLoaded(true)} />
+          <div
+            className={
+              modelLoaded
+                ? "absolute inset-0 bg-[var(--page-bg)] [animation-delay:0.2s] animate-[slideDown_1s_ease-out_forwards]"
+                : "absolute inset-0 bg-[var(--page-bg)]"
+            }
+          />
         </div>
         <div className="z-10 py-6 flex flex-col items-center gap-2">
           <h1 className="text-3xl font-bold max-w-80 text-center">
