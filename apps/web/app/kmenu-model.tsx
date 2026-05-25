@@ -68,19 +68,23 @@ export function KmenuModel({ onLoad }: { onLoad?: () => void }) {
 
   return (
     <div className="w-[200px] h-[200px] bg-[var(--page-bg)]">
-      {React.createElement("model-viewer", {
-        id: "cmd",
-        ref: ref,
-        src: "/kmenu.glb",
-        exposure: "1",
-        style: { width: "100%", height: "100%", backgroundColor: "var(--page-bg)" },
-        "camera-target": "0m 0m 0m",
-        "camera-orbit": "0deg 90deg auto",
-        "min-camera-orbit": "auto 90deg auto",
-        "max-camera-orbit": "auto 90deg auto",
-        "disable-zoom": true,
-        autoplay: true,
-      })}
+      {React.createElement(
+        "model-viewer",
+        {
+          id: "cmd",
+          ref: ref,
+          src: "/kmenu.glb",
+          exposure: "1",
+          style: { width: "100%", height: "100%", backgroundColor: "var(--page-bg)" },
+          "camera-target": "0m 0m 0m",
+          "camera-orbit": "0deg 90deg auto",
+          "min-camera-orbit": "auto 90deg auto",
+          "max-camera-orbit": "auto 90deg auto",
+          "disable-zoom": true,
+          autoplay: true,
+        },
+        <span key="progress-bar" slot="progress-bar" />,
+      )}
     </div>
   );
 }
