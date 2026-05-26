@@ -73,3 +73,7 @@ bun run test
 ```
 
 Scripts are powered by Turborepo and run across workspaces. See `package.json` and `turbo.json` for details.
+
+***
+
+Built by [Harsh Singh](https://harshsingh.me)
