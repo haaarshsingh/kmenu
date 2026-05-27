@@ -107,6 +107,11 @@ export default function RootLayout({
         type="module"
         strategy="afterInteractive"
       />
+      <Script
+        src="https://stats.harshsingh.me/script.js"
+        data-website-id="70b25294-3fb0-4a58-aaae-26cc7653270b"
+        strategy="afterInteractive"
+      />
     </html>
   );
 }
