@@ -109,7 +109,7 @@ export default function RootLayout({
       />
       <Script
         src="https://admin.harshsingh.me/script.js"
-        data-website-id="e352b6ac-dba7-4bdd-936f-9fc1bc1562a2"
+        data-website-id="b6a66213-eb34-4bb5-bf25-943860684db7"
         strategy="afterInteractive"
       />
     </html>
