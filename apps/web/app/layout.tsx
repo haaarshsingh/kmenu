@@ -108,8 +108,8 @@ export default function RootLayout({
         strategy="afterInteractive"
       />
       <Script
-        src="https://stats.harshsingh.me/script.js"
-        data-website-id="70b25294-3fb0-4a58-aaae-26cc7653270b"
+        src="https://admin.harshsingh.me/script.js"
+        data-website-id="e352b6ac-dba7-4bdd-936f-9fc1bc1562a2"
         strategy="afterInteractive"
       />
     </html>
