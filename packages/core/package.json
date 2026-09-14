@@ -1,8 +1,12 @@
 {
   "name": "kmenu",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "The perfect ⌘K menu",
-  "author": "Harsh Singh",
+  "author": {
+    "name": "Harsh Singh",
+    "email": "h@harshsingh.me",
+    "url": "https://www.harshsingh.me"
+  },
   "license": "MIT",
   "homepage": "https://kmenu.dev",
   "main": "./dist/index.js",
@@ -67,5 +71,10 @@
       "path": "dist/index.mjs",
       "limit": "6 kB"
     }
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haaarshsingh/kmenu.git",
+    "directory": "packages/core"
+  }
 }

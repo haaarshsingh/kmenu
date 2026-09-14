@@ -1,8 +1,12 @@
 {
   "name": "@kmenu/react",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "React adapter for kmenu",
-  "author": "Harsh Singh",
+  "author": {
+    "name": "Harsh Singh",
+    "email": "h@harshsingh.me",
+    "url": "https://www.harshsingh.me"
+  },
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -70,5 +74,10 @@
       "path": "dist/index.mjs",
       "limit": "3 kB"
     }
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haaarshsingh/kmenu.git",
+    "directory": "packages/react"
+  }
 }
